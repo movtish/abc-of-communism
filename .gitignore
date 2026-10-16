@@ -1,0 +1,9 @@
+results/
+figures/
+paper/
+stata/data/
+stata/output/
+external/
+sources/
+__pycache__/
+*.pyc
