@@ -1,8 +1,7 @@
-"""Map the 1897 districts to the autonomous units of 1926.
+"""Match 1897 districts to six autonomous units in the 1926 census.
 
-Use population fractions for district-weighted baselines and compare them
-with the census bureau's recomputation in volume 9, Table XV.
-Write the crosswalk, baselines and validation tables under data/."""
+Use population fractions for split districts. Compare weighted literacy
+baselines with the census bureau recomputation in volume 9, Table XV."""
 
 import os, sys
 import pandas as pd, numpy as np

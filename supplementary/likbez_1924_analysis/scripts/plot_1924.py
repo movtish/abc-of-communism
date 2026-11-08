@@ -1,3 +1,5 @@
+"""Plot survey coverage and female participation in literacy schools."""
+
 from pathlib import Path
 import pandas as pd, numpy as np
 import matplotlib

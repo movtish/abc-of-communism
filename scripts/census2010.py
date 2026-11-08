@@ -1,6 +1,6 @@
-"""Read the three Rosstat census tables downloaded by rosstat_get.py.
+"""Extract education and nationality tables from the Rosstat workbooks.
 
-Write the 2010 education and nationality tables under data/."""
+Read the files downloaded by rosstat_get.py and write CSV files under data."""
 
 import os, re, sys, warnings, numpy as np, pandas as pd
 

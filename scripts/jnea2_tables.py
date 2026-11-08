@@ -1,5 +1,7 @@
-"""Tables of the ZhNEA article on the short-run aggregate results of the literacy campaign (Russian notation, decimal comma).
-Written to jnea/tables/tab_j*.tex from results/paper_numbers.json (keys jl.*) and results/J0_cohorts_1926_1939.csv. Run after paper_numbers.py."""
+"""Write the Russian article tables with decimal commas.
+
+Read the jl.* keys in results/paper_numbers.json and the cohort file
+results/J0_cohorts_1926_1939.csv. Write jnea/tables/tab_j*.tex."""
 
 import os, sys, json
 import pandas as pd

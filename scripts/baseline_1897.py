@@ -1,8 +1,8 @@
-"""Build province baselines from the Malein replication package.
+"""Aggregate the Malein district data to pre-1917 provinces.
 
-Place its replication/data files in external/malein before running.
-District means use population in 1911, then 1897 or 1867 when necessary.
-The output is data/baseline_pre1917_by_province.csv."""
+Read the replication files under external/malein. Weight district means
+by population in 1911, falling back to 1897 or 1867 when needed. Write
+data/baseline_pre1917_by_province.csv."""
 
 import os, sys, warnings, numpy as np, pandas as pd
 

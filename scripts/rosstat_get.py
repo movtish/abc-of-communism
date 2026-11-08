@@ -1,3 +1,5 @@
+"""Download the Rosstat 2010 workbooks used by census2010.py."""
+
 import requests, sys, os, urllib3, pandas as pd
 
 urllib3.disable_warnings()

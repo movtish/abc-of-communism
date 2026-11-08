@@ -1,10 +1,9 @@
-"""Every number that appears in the paper, computed from the validated data in one place.
-Writes  paper/numbers.tex          macros \\N{key} for the numbers quoted in the text
-        paper/tables/*.tex         bodies of all tables
-        results/paper_numbers.csv  the same numbers in a flat file (key; value; decimals)
-        results/paper_numbers.txt  log
-The Stata do-file stata/ABC_of_Communism.do reproduces the same specifications from stata/data/*.dta.
-Run after build_1926_v2.py.  python scripts/paper_numbers.py   (about 15 minutes; add --fast to skip permutations and bootstraps)."""
+"""Calculate the estimates and numerical values used in the manuscripts.
+
+Run after build_1926_v2.py. Save estimates and analysis cells under
+results, and write manuscript number macros under paper. A full run
+includes permutations and bootstrap draws. The --fast option skips
+resampling for diagnostic runs."""
 
 import os, re, sys, json, itertools, warnings, numpy as np, pandas as pd, statsmodels.formula.api as smf
 

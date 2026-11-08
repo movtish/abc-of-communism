@@ -1,10 +1,10 @@
-"""Compute cluster inference for an estimable WLS contrast.
+"""Calculate cluster inference for weighted least-squares contrasts.
 
-CR1 uses rank(X), t(G-1). CR2 uses a working identity covariance after
-whitening by sqrt(weights), with a contrast-specific Satterthwaite df.
-WCR imposes the scalar null in the full design and re-fits all fixed effects.
-Population weights define an estimand; they are not presumed to be census
-sampling inverse variances by the substantive analysis."""
+CR1 uses the design rank and a t distribution with G minus one degrees
+of freedom. CR2 uses an identity working covariance after weighting and
+contrast-specific Satterthwaite degrees of freedom. The restricted wild
+bootstrap imposes a scalar null and refits fixed effects. Population
+weights define the estimand; they are not inverse sampling variances."""
 
 import numpy as np
 import pandas as pd

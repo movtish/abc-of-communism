@@ -1,8 +1,8 @@
-"""Descriptive change in the female-minus-male literacy gap, 1939--1959.
+"""Estimate regional changes in the female-minus-male gap in 1939-1959.
 
-not an estimate of the causal effect of likbez. Region fixed effects, cohort
-fixed effects, region-clustered inference. Both the five paper republics and
-nine-republic diagnostics retain unresolved minor boundary differences."""
+Use republic and cohort effects with republic-clustered inference.
+The five- and nine-republic samples retain small boundary differences.
+The comparisons are descriptive."""
 
 from pathlib import Path
 import sys, json

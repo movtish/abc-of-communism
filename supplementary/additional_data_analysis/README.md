@@ -1,18 +1,30 @@
-# Regional cohort literacy in 1959
+# Regional cohorts in 1939 and 1959
 
-This folder reads the Demoscope education workbook and follows selected regional birth cohorts from 1939 to 1959. It also includes contemporary migration extracts and a small 1923 time-use survey. The interpretation and results are in [the English evidence note](../../docs/SUPPLEMENTARY_EVIDENCE.md).
+The 1959 Demoscope workbook gives 20,025 education records. Its 89 territorial entries include national totals and nested units. The extraction checks educational components, population totals and four HTML tables. The open-ended 70+ group cannot be divided into later five-year cohorts.
 
-The workbook produces 20,025 rows. Component identities, population totals and four HTML tables are checked separately. The 89 territorial entries include national totals and nested units, so they cannot be summed as independent regions. Ages 70+ cannot be split into later five-year cohorts.
+For ages nine and above, literacy equals population minus unknown education minus illiterates, divided by population minus unknown education. Source blanks retain flags. A blank becomes zero only when known nonnegative components exhaust the total.
 
-For ages nine and above, literacy is population minus unknown education minus illiterates, divided by population minus unknown education. Source blanks are retained in flags. A blank component becomes zero only where the other nonnegative components exhaust the total exactly.
+The regional comparison follows ages 30-44 in 1939 to ages 50-64 in 1959 in three five-year bands, using fixed 1939 population weights. Five republics form the core sample and nine the extended sample. Twelve models describe changes in the female-minus-male gap. They combine learning with changes in population composition and do not identify a campaign effect or a bound on 1939 misreporting. Small boundary transfers remain unresolved.
 
-The follow-up matches ages 30-44 in 1939 to ages 50-64 in 1959, using three five-year bands and fixed 1939 weights. Five republics form the core sample and nine the extended sample. Small boundary transfers remain unresolved. The twelve models describe later changes in the female-minus-male gap; they do not estimate the campaign's causal effect or bound misreporting in 1939.
+| File or folder | Contents |
+|---|---|
+| `census1959_regions_long.csv` | Regional education counts and source blank flags |
+| `linked_republic_cohorts_1939_1959.csv` | Cohorts matched across the two censuses |
+| `republic_summary_1939_1959.csv` | Literacy changes by republic, sex and residence |
+| `persistence_sample_summary.csv` | The core and extended comparison samples |
+| `post1939_gender_gap_inference.csv` | Twelve model estimates and cluster inference |
+| `census1959_*_checks.csv` | Workbook identities and comparisons with HTML tables |
+| `census1939_online_checks.csv` | Comparisons with the downloaded 1939 tables |
+| `migration_*.csv` | Contemporary migration extracts for 1931-1932 |
+| `time_use_1923_domestic_work.csv` | Domestic-work entries from the Voronezh survey |
+| `validation_summary.json` | Extraction and accounting checks |
+| `reproduction_check.json` | Results of rerunning the packaged analysis |
+| `source_file_manifest.json` | Source URLs, file sizes and SHA-256 hashes |
+| `inputs/` | The corrected 1939 census input |
+| `raw_sources/` | Downloaded workbooks, publications and HTML tables |
+| `scripts/` | Extraction, source comparisons, estimation and plotting |
 
-## Files and reproduction
-
-`raw_sources/` preserves downloaded files. `source_file_manifest.json` records their URLs and hashes. `inputs/` contains the corrected 1939 snapshot. `validation_summary.json` records the accounting checks. The long table, linked cohorts, sample summaries, model estimates and English figure are in this folder.
-
-After installing the root requirements, run from the project root.
+Install the root requirements and run from the repository root.
 
 ```sh
 python supplementary/additional_data_analysis/scripts/analyze_new_data.py
@@ -21,4 +33,4 @@ python supplementary/additional_data_analysis/scripts/estimate_post1939.py
 python supplementary/additional_data_analysis/scripts/make_plot.py
 ```
 
-The scripts read the included inputs and overwrite their derived outputs. CSV files use commas and UTF-8 with a byte-order mark. All 32 or 512 Rademacher vectors are used in the respective regional bootstrap checks. The extraction checks establish agreement with the digitised sources, not historical census accuracy.
+Scripts replace derived outputs in this folder. CSV files use commas and UTF-8 with a byte-order mark. The regional bootstrap enumerates all 32 or 512 sign vectors for the relevant sample. The [additional-results note](../../docs/SUPPLEMENTARY_EVIDENCE.md) reports the estimates and interpretation.

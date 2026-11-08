@@ -1,3 +1,5 @@
+"""Plot regional cohort literacy in 1939 and 1959."""
+
 from pathlib import Path
 import pandas as pd
 import numpy as np

@@ -3,21 +3,33 @@
 Mark Kreshchuk  
 *How Soviet Russia Taught Its Women to Read*
 
-This paper follows birth cohorts through the censuses of 1897, 1926, 1939 and 1959 to study adult literacy during the Soviet campaign against illiteracy. Newly transcribed regional tables distinguish changes within adult cohorts from the replacement of older generations by schooled children.
+This paper studies adult literacy during the Soviet campaign against illiteracy. It follows birth cohorts through the censuses of 1897, 1926, 1939 and 1959, separating changes within cohorts from the replacement of older generations by schooled children. Regional tables on literacy institutions in 1924 provide an additional comparison.
 
-The main younger-minus-older contrast for rural women is 20.354 percentage points, with a CR2 95 per cent interval of [16.679, 24.028]. Its causal interpretation depends on counterfactual learning, migration, mortality and enumeration. Regional evidence from 1924 and 1959 examines institutional correlates and later cohort composition.
+[English paper and appendix](paper/ABC_of_Communism.pdf) · [English reading package](docs/ABC_of_Communism_reader.zip) · [Russian paper](jnea/article_jnea.pdf)
 
-[English reading package, 4.58 MB](docs/ABC_of_Communism_reader.zip) · [Paper and online appendix](paper/ABC_of_Communism.pdf) · [Russian article](jnea/article_jnea.pdf) · [Data and methods](docs/METHODS.md) · [Further evidence](docs/SUPPLEMENTARY_EVIDENCE.md) · [Sources](docs/SOURCES.md)
+The reading package contains the English paper, two research notes, the source list and the codebook. It excludes the historical scans.
 
-## Data and code
+## Contents
 
-`data/` holds the census transcriptions and derived samples. The [codebook](data/CODEBOOK.md) describes fields and validation rules. Main CSV files use semicolons; supplementary files use commas. Both use UTF-8.
+| Folder | Contents |
+|---|---|
+| [data](data/) | Census transcriptions, territorial keys and analysis samples |
+| [scripts](scripts/) | Data preparation, estimation, tables and figures |
+| [results](results/) | Saved estimates and the numbers used in the paper |
+| [figures](figures/) | Figures in PDF and PNG formats |
+| [methodology](methodology/) | Cluster inference and selection-accounting checks |
+| [supplementary](supplementary/) | The 1924 institutional survey and the 1939-1959 regional comparison |
+| [paper](paper/) | English manuscript, appendix and bibliography |
+| [jnea](jnea/) | Russian manuscript, tables and figures |
+| [stata](stata/) | Stata replication of the main specifications |
+| [validation](validation/) | Source comparisons, known discrepancies and build records |
+| [docs](docs/) | Methods, sources, file index and document builds |
 
-`scripts/` builds the main analysis. `methodology/` provides the additional cluster-inference checks. The two folders under `supplementary/` contain the 1924 institutional survey and the regional 1939-1959 follow-up, each with its own README. Source URLs, hashes and known discrepancies are retained with the data. `results/` and `figures/` contain the reported output; `paper/` and `jnea/` contain the manuscript sources.
+[File index](docs/FILES.md) · [Codebook](data/CODEBOOK.md) · [Methods](docs/METHODS.md) · [Additional results](docs/SUPPLEMENTARY_EVIDENCE.md) · [Sources](docs/SOURCES.md)
 
-## Reproduction
+## Replication
 
-Use Python 3.12 and run from the repository root.
+Use Python 3.12. Run these commands from the repository root.
 
 ```sh
 python -m pip install -r requirements.txt
@@ -33,6 +45,8 @@ python scripts/run_supplementary.py
 python scripts/verify_release.py
 ```
 
-The main number calculation includes resampling and takes about fifteen minutes. Seeds are fixed. `--fast` omits resampling and is intended for diagnostics. [Build instructions](docs/BUILD_STATUS.md) cover the PDFs and Russian tables. Stata export is available through `scripts/export_stata.py`; running `stata/ABC_of_Communism.do` requires Stata.
+The main calculation takes about fifteen minutes with resampling. Random seeds are fixed. The `--fast` option skips resampling for diagnostic runs. Main CSV files use semicolons; supplementary CSV files use commas. Both use UTF-8.
 
-The included baseline tables allow reproduction without the external Malein district package, openICPSR 231104. Rebuilding those baselines and the district map requires its data under `external/malein/`. See `scripts/baseline_1897.py` and `scripts/crosswalk.py`. No restricted third-party microdata are redistributed.
+The included baseline tables allow replication without the external Malein package, openICPSR 231104. Rebuilding those tables and the district crosswalk requires its files under `external/malein/`. See `scripts/baseline_1897.py` and `scripts/crosswalk.py`. Restricted third-party microdata are excluded.
+
+For Stata, run `python scripts/export_stata.py` after the main calculation, then `stata/ABC_of_Communism.do`. Document build commands are in [docs/BUILD_STATUS.md](docs/BUILD_STATUS.md).

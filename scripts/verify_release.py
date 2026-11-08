@@ -1,4 +1,4 @@
-"""Check source integrity, linked inputs and economically meaningful invariants."""
+"""Check source hashes, analysis inputs and reported numerical values."""
 
 from pathlib import Path
 import ast

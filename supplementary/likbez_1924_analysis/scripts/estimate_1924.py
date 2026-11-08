@@ -1,4 +1,6 @@
-"""Exploratory institutional predictors, not causal mediation estimates."""
+"""Estimate institutional correlates and the intermediate-cohort age check.
+
+Institutional placement is endogenous. The regressions are exploratory."""
 
 from pathlib import Path
 import sys, json

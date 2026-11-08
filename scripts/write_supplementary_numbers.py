@@ -1,4 +1,4 @@
-"""Generate the supplemental manuscript numbers from the estimation CSVs."""
+"""Write manuscript number macros from the supplementary model tables."""
 
 from pathlib import Path
 import pandas as pd

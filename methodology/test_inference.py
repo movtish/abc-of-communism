@@ -1,3 +1,5 @@
+"""Check cluster covariance estimates and restricted-bootstrap refits."""
+
 import numpy as np, pandas as pd, statsmodels.formula.api as smf
 from inference import Model
 

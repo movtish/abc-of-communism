@@ -1,4 +1,4 @@
-"""Map 1926 units and nationalities to their 2010 census counterparts."""
+"""Match 1926 territories and nationalities to 2010 census categories."""
 
 MAP = {
     "Татарская АССР": "Республика Татарстан",

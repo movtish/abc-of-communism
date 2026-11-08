@@ -1,18 +1,8 @@
-*  The ABC of Communism How Soviet Russia Taught Its Women to Read
-*  master do-file
-*  Regressions of the paper on stata/data (from scripts/export_stata.py).
-*  Coefficients go to stata/output/stata_results.dta and .csv under the keys
-*  of scripts/paper_numbers.py, compare with scripts/compare_stata.py.
-*  Stata 14+, no extra packages (wild bootstrap only if boottest is there).
-*  Table numbers below are those of the long version (October 2026).
-*  Blocks   1  household regime, 1897-1926        Tables 3, 8A, A1
-*            2  Russians across units              Table 4
-*            3  differences within units           Tables 5, A3, A4
-*            4  differences between nationalities  Table 6
-*            5  state regime, 1926-1939            Tables 7, 8B, A2
-*            6  two regimes                        Tables 9, A5
-*            7  korenizatsiya and convergence      Tables 10, A6
-*            8  legacy                             Tables 11, 12, 13, A8, A9
+* Replicate the main cohort specifications in Stata 14 or later.
+* Read the samples written by scripts/export_stata.py.
+* Save numerical keys under stata/output for scripts/compare_stata.py.
+* The optional boottest package supplies the wild-bootstrap checks.
+* Table references follow the October 2026 long manuscript.
 version 14
 clear all
 set more off

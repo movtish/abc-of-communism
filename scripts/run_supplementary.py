@@ -1,4 +1,4 @@
-"""Refresh audited inputs and reproduce both supplementary analyses."""
+"""Update census input snapshots and run the two supplementary analyses."""
 
 from pathlib import Path
 import shutil

@@ -1,4 +1,4 @@
-"""Build the English PDF notes from their Markdown sources."""
+"""Typeset the two English research notes from Markdown."""
 
 from pathlib import Path
 import html
@@ -30,6 +30,8 @@ styles.add(
         leading=15,
         spaceAfter=8,
         alignment=TA_LEFT,
+        allowWidows=0,
+        allowOrphans=0,
     )
 )
 styles.add(

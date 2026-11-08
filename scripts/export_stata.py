@@ -1,5 +1,7 @@
-"""Samples -> stata/data/*.dta (version 118, with variable labels) for stata/ABC_of_Communism.do.
-Reads the cell files that paper_numbers.py writes to results/, so Stata gets exactly the same cells. Run after paper_numbers.py."""
+"""Export the saved analysis samples to Stata format 118.
+
+Run after paper_numbers.py so the Stata models use the same cells.
+Files are written under stata/data with variable labels."""
 
 import os, re, sys, numpy as np, pandas as pd
 

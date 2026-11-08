@@ -1,7 +1,9 @@
-"""Linked cohorts from Vol. 9 Table XV. the same birth cohorts observed in 1897 and 1926.
-Adult literacy acquisition = literacy(1926, cohort) - literacy(1897, same cohort), by region, area, sex.
-Cohort born 1868-1877. age 20-29 in Feb 1897, age 49-58 in Dec 1926 -> use 1897 bands 20-24+25-29 vs 1926 bands 50-54+55-59
-(one-year offset; ages 49 and 59 straddle). Also the school-age cohort born 1878-1887 (10-19 in 1897; 40-49 in 1926)."""
+"""Match birth cohorts in the 1897 and 1926 tables of census volume 9.
+
+The age-band match has a one-year offset. For example, ages 20-29 in
+February 1897 are compared with ages 50-59 in December 1926, although
+the corresponding later ages are 49-58. Retain this approximation when
+interpreting literacy changes and population ratios."""
 
 import os, sys, pandas as pd, numpy as np
 

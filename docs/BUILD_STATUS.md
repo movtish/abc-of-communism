@@ -1,13 +1,25 @@
-# Building the documents
+# Building the PDFs
 
-The manuscript PDFs are included. Building them requires Tectonic 0.17.0.
+The repository includes both manuscript PDFs. To rebuild them, install Tectonic 0.17.0 and run from the repository root.
 
 ```sh
 python scripts/build_articles.py --tectonic /path/to/tectonic
 ```
 
-The first run downloads the required TeX packages. Later runs can use `--offline`. Intermediate files go under `build/`; the PDFs are copied to `paper/` and `jnea/`. PDF and source hashes are recorded in `validation/article_pdf_build.json`.
+The first build downloads TeX packages and fonts. Once cached, they can be reused with `--offline`. Build files go to `build/`; finished PDFs go to `paper/` and `jnea/`. `validation/article_pdf_build.json` records the PDF hashes and the sources used in each build.
 
-The Russian manuscript uses the OpenType Tempora fonts with XeTeX and the T2A setup with pdfLaTeX.
+The Russian manuscript uses OpenType Tempora with XeTeX. Its pdfLaTeX branch uses T2A fonts.
 
-To regenerate the supplementary notes, install `requirements-docs.txt` and run `python scripts/build_docs.py`. To regenerate the Russian tables and figures, run `python scripts/jnea2_tables.py` and `python scripts/jnea2_figures.py` after the main number calculation.
+To rebuild the English notes, run the following commands.
+
+```sh
+python -m pip install -r requirements-docs.txt
+python scripts/build_docs.py
+```
+
+For the Russian article, regenerate tables and figures after calculating the main results.
+
+```sh
+python scripts/jnea2_tables.py
+python scripts/jnea2_figures.py
+```

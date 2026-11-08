@@ -1,4 +1,6 @@
-"""Accounting sensitivities. None are estimates of unobserved migration."""
+"""Calculate selection, equivalence and exposure-duration scenarios.
+
+Selection scenarios are conditional calculations, not estimates of migration."""
 
 import pathlib, json, sys
 import numpy as np, pandas as pd

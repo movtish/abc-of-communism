@@ -1,5 +1,6 @@
-"""All figures of the paper, drawn from the validated data and from the numbers produced by paper_numbers.py.
-Writes figures/fig*.pdf and .png. Captions are set in LaTeX; the figures carry panel titles only."""
+"""Draw manuscript figures from the census samples and saved estimates.
+
+Write PDF and PNG files under figures. LaTeX supplies the captions."""
 
 import os, sys, json, warnings, numpy as np, pandas as pd, matplotlib
 

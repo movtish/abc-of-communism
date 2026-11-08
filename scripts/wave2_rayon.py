@@ -1,5 +1,7 @@
-"""Wave 2 at the level of the 1926 Gosplan rayons (Vol. 9 Table XV single ages, 1926) x 1939 census regions aggregated to rayons.
-Covers the whole RSFSR (17 rayons). Writes ROOT/data/linked_cohorts_rayon_1926_1939.csv and results/B9_wave2_rayon.txt"""
+"""Compare 1926 and 1939 cohorts across seventeen Gosplan regions.
+
+Match the 1926 single-year rows in Table XV to aggregated 1939 territories.
+Write data/linked_cohorts_rayon_1926_1939.csv and results/B9_wave2_rayon.txt."""
 
 import os, sys, warnings, numpy as np, pandas as pd, statsmodels.formula.api as smf
 

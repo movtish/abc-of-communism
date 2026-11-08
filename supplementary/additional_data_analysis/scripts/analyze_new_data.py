@@ -1,7 +1,7 @@
-"""Reproducible supplementary analysis; never edits the original article.
+"""Extract regional education, migration and time-use tables.
 
-Run with Python and the repository requirements. Inputs are downloaded,
-unmodified source files plus the independently corrected 1939 table."""
+Read the included historical sources and corrected 1939 census input.
+Write the 1959 long table, linked cohorts and accounting checks."""
 
 from pathlib import Path
 import sys, json, csv, hashlib, math

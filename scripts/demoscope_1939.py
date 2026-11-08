@@ -1,6 +1,6 @@
-"""Read the 1939 age and illiteracy tables published by Demoscope.
+"""Extract 1939 population and illiteracy tables from Demoscope.
 
-Match their territorial scope before calculating literacy and write
+Align city and oblast boundaries before calculating literacy. Write
 data/census1939_literacy_by_region_age_sex.csv."""
 
 import sys, re, time, csv, os, urllib.request, urllib.parse, html

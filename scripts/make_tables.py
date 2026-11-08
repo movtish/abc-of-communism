@@ -1,4 +1,4 @@
-"""Bodies of all tables of the paper, written to paper/tables/*.tex from results/paper_numbers.json (produced by paper_numbers.py)."""
+"""Write the English manuscript tables from results/paper_numbers.json."""
 
 import os, sys, json, numpy as np, pandas as pd
 

@@ -1,4 +1,7 @@
-"""Stata (stata/output/stata_results.csv) vs Python (results/paper_numbers.json), key by key -> stata/output/comparison.csv"""
+"""Compare Stata estimates with the Python results by numerical key.
+
+Read stata/output/stata_results.csv and results/paper_numbers.json.
+Write stata/output/comparison.csv."""
 
 import os, sys, json, numpy as np, pandas as pd
 

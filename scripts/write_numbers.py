@@ -1,8 +1,6 @@
-"""Write the numerical macros used by the English and Russian manuscripts.
+"""Write manuscript number macros from results/paper_numbers.json.
 
-Read results/paper_numbers.json after paper_numbers.py. The Russian output
-uses decimal commas; the English abstract uses decimal points.
-"""
+Use decimal commas in the Russian text and decimal points in English."""
 
 import os, re, sys, json
 

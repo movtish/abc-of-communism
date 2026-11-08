@@ -1,7 +1,7 @@
-"""Download the 1959 RSFSR education table from Demoscope.
+"""Extract the 1959 RSFSR education table from Demoscope.
 
-Write population and education by age, sex and residence to
-data/census1959_rsfsr_edu_by_age_sex.csv for the national follow-up."""
+Write education counts by age, sex and residence to
+data/census1959_rsfsr_edu_by_age_sex.csv."""
 
 import os, io, re, sys, urllib.request, pandas as pd
 

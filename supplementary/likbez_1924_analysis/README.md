@@ -1,20 +1,26 @@
 # Literacy institutions in 1924
 
-The transcription covers Table XVII of the Central Statistical Administration's education survey of 1 January 1924, published in volume XXVIII, issue 1 in 1926. Printed pages 462-467 are PDF pages 67-69 in `raw_sources/education_1924.pdf`.
+Table XVII of the education survey of 1 January 1924 records literacy schools and points, teachers and pupils. The transcription covers thirty total and rural rows in fifteen territories. The source is volume XXVIII, issue 1 of the Central Statistical Administration series, published in 1926, printed pages 462-467. These are PDF pages 67-69 in `raw_sources/education_1924.pdf`.
 
-Thirty checked rows cover fifteen territories, for total and rural populations. They count literacy points and schools, surveyed institutions, teachers and pupils by sex. Adjacent general adult-school columns are excluded. These are pupils on one date, not unique graduates or cohort-specific exposure.
+Fourteen territories match the validated male and female cohort aged 18-22 in 1926. Regressions compare early institutional measures with the female-minus-male literacy gain through 1939. The twenty-four specifications vary predictors, weights and geographical coverage. All CR2 intervals include zero. The early survey and endogenous placement of institutions limit causal interpretation.
 
-Fourteen territories link to validated male and female cells aged 18-22 in 1926. The models ask whether early institutional measures predict the subsequent female-minus-male literacy gain. The outcome, baseline gap and cohort-size control are documented in [the English evidence note](../../docs/SUPPLEMENTARY_EVIDENCE.md). All 24 CR2 intervals include zero; this is not evidence of a zero causal effect.
+| File | Contents |
+|---|---|
+| `likbez1924_transcription.csv` | Source counts, survey coverage and validation flags |
+| `linked1924_exposure_cohort_outcomes.csv` | The fourteen territories matched to census outcomes |
+| `institution_predictor_models.csv` | Twelve female pupil-share and teacher-share models |
+| `institution_scale_models.csv` | Twelve institution-count and teacher-count models |
+| `policy1931_age_sensitivity.csv` | Eight estimates with and without intermediate ages 33-37 |
+| `transcription_validation.json` | Arithmetic checks on the source rows |
+| `reproduction_check.json` | Results of rerunning the packaged analysis |
+| `source_manifest.json` | Source URLs, file sizes and SHA-256 hashes |
+| `inputs/` | The main-sample snapshot used to link cohorts |
+| `raw_sources/` | Historical publications and inspected page images |
+| `scripts/` | Transcription, estimation and plotting |
 
-Survey coverage is the share of registered institutions observed, not the share of illiterate adults taught. The Bashkir total teacher count exceeds the sex sum by three, and this residual is preserved. Boundaries have not been fully harmonised. The additional geographical filter removes only the Chuvash and Orenburg units as known concerns.
+The age check keeps the younger group at 18-32. Survey coverage counts institutions surveyed; it does not measure the share of illiterate adults taught. The Bashkir teacher total exceeds the sex sum by three, which is retained. Boundaries remain partly unresolved. The geographical exclusion removes Chuvash and Orenburg.
 
-## Files and reproduction
-
-`likbez1924_transcription.csv` contains the source rows and validation flags. `linked1924_exposure_cohort_outcomes.csv` contains the fourteen linked territories. The two institutional model CSVs report twelve share and twelve scale specifications. `policy1931_age_sensitivity.csv` reports eight checks with or without the intermediate cohort aged 33-37 in 1926. The younger group remains aged 18-32 throughout. `specification` and `excluded_cohort` identify the omission explicitly.
-
-`raw_sources/` contains historical PDFs and the inspected page images. `source_manifest.json` records their URLs and hashes. `inputs/W2_cells.csv` is the verified main-sample snapshot. The full 1930s exposure panel remains unavailable.
-
-After installing the root requirements, run from the project root.
+Install the root requirements and run from the repository root.
 
 ```sh
 python supplementary/likbez_1924_analysis/scripts/analyze_1924.py
@@ -22,4 +28,4 @@ python supplementary/likbez_1924_analysis/scripts/estimate_1924.py
 python supplementary/likbez_1924_analysis/scripts/plot_1924.py
 ```
 
-The scripts overwrite only derived outputs in this folder. CSV files use commas and UTF-8 with a byte-order mark. The larger samples use 9,999 wild-bootstrap draws; the smaller institutional samples enumerate 2,048 or 512 sign vectors. Seeds are fixed. These remain exploratory comparisons with endogenous institutional placement.
+Scripts replace derived outputs in this folder. CSV files use commas and UTF-8 with a byte-order mark. Larger samples use 9,999 bootstrap draws; smaller institutional samples enumerate 2,048 or 512 sign vectors. Random seeds are fixed. See [additional results](../../docs/SUPPLEMENTARY_EVIDENCE.md) for model definitions and estimates.

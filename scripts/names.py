@@ -1,4 +1,4 @@
-"""Transliteration of 1926 unit and group names for English figures/tables."""
+"""Provide English names for territories and ethnic groups in figures."""
 
 import re
 

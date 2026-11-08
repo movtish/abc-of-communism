@@ -1,7 +1,9 @@
-# Versions
+# Data versions
 
 ## November 2026
 
-Corrected the Moscow and Leningrad city-oblast scope in the 1939 population joins and regional aggregates. Added the 1924 institutional transcription and the regional 1959 follow-up. Included cluster-inference checks and an intermediate-cohort omission check. The younger group remains aged 18-32 in both age-policy specifications.
+The 1939 population joins now separate Moscow and Leningrad from their surrounding oblasts. The source comparisons and changed numerical values are recorded in `validation/`.
 
-The source comparisons and changed numerical keys are retained under `validation/`. Earlier derived census samples used by the validation scripts remain under `data/v1_before_validation/`.
+This version adds the 1924 institutional survey, the regional 1959 follow-up, cluster-inference checks and a specification omitting the intermediate cohort aged 33-37. The younger group remains aged 18-32 in both specifications.
+
+The earlier derived samples in `data/v1_before_validation/` are inputs to the comparison performed by `scripts/build_1926_v2.py`.

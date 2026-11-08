@@ -1,7 +1,6 @@
-"""Draw the figures for the Russian journal article.
+"""Draw the Russian article figures from results/paper_numbers.json.
 
-Read results/paper_numbers.json and write jnea/figures/rj*.pdf and PNG files.
-Run after paper_numbers.py."""
+Run after paper_numbers.py. Write PDF and PNG files under jnea/figures."""
 
 import os, sys, json, numpy as np, pandas as pd, matplotlib
 

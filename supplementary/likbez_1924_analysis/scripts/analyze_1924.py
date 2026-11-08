@@ -1,8 +1,8 @@
-"""Transcribe Table XVII of the 1924 education survey.
+"""Extract literacy institutions from Table XVII of the 1924 survey.
 
-The counts cover literacy points and schools on 1 January 1924.
-General adult schools in adjacent columns are excluded. The table
-counts pupils on that date, not graduates over a period."""
+Read literacy-school and literacy-point counts on 1 January 1924.
+Exclude adjacent general adult-school columns. Pupil counts refer to
+that date and do not measure graduates over a period."""
 
 from pathlib import Path
 import pandas as pd

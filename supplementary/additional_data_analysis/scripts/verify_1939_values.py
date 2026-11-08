@@ -1,3 +1,5 @@
+"""Compare the 1939 cohort inputs with saved Demoscope source tables."""
+
 from pathlib import Path
 from bs4 import BeautifulSoup
 import pandas as pd, sys, re, json

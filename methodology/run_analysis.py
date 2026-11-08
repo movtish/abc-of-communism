@@ -1,3 +1,5 @@
+"""Estimate the cohort specifications with alternative cluster inference."""
+
 import pathlib, sys, json, warnings
 import numpy as np, pandas as pd
 from scipy import stats

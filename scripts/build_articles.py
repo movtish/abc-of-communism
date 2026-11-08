@@ -1,4 +1,4 @@
-"""Build the English and Russian articles with a local Tectonic installation."""
+"""Compile the English and Russian manuscripts with Tectonic."""
 
 from pathlib import Path
 import argparse
