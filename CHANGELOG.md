@@ -9,4 +9,12 @@ Integrated the methodological revision and new historical data into one reproduc
 - Extended the English appendix and Russian manuscript with the new evidence and generated supplementary numerical macros.
 - Added source hashes, release validation and instructions. Preserved unresolved historical-source discrepancies and documented the outstanding article PDF build.
 
-Earlier local and public README files are retained in `docs/` as historical records. Current interpretation and reproduction commands are in the root README.
+## English editorial revision
+
+- Replaced the current Russian working reports with English methods, evidence and source notes. Preserved the earlier reports in the local archive.
+- Built and visually checked two English PDF notes and translated the supplementary figures.
+- Integrated the institutional survey, regional follow-up and age-policy evidence into the manuscript's data, results and interpretation sections.
+- Corrected the age-policy metadata. Both specifications retain ages 18-32 as the younger group; the alternative omits ages 33-37 from the intermediate group. All numerical model estimates are unchanged.
+- Edited Python and Stata comments and formatted the Python files. Checked the computational syntax separately from documentation and label changes.
+
+Current interpretation and reproduction commands are in the root README. Original publications and the Russian journal article retain their language.

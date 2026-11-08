@@ -1,36 +1,36 @@
 # The ABC of Communism
 
-Code, census transcriptions and manuscript sources for Mark Kreshchuk's working paper, *The ABC of Communism: How Soviet Russia Taught Its Women to Read*.
+Code and data for Mark Kreshchuk's working paper, *The ABC of Communism. How Soviet Russia Taught Its Women to Read*.
 
-## Current revision: 8 November 2026
+The paper follows birth cohorts through the censuses of 1897, 1926, 1939 and 1959. It documents a large rise in the recorded literacy of adult women during the Soviet campaign against illiteracy. The comparisons address how far that rise can be attributed to the campaign and what can be learned about its institutions.
 
-This revision brings together the local manuscript, the public replication code, the methodological audit and two new supplementary analyses. The evidence documents changes in recorded cohort literacy. Attribution to the campaign requires assumptions about counterfactual learning, migration, mortality, borders and reporting. Institutional channels are exploratory.
+The November 2026 revision corrects the territorial scope of the 1939 Moscow and Leningrad data, adds regional education tables from 1959 and transcribes a survey of literacy institutions in 1924. The main rural female contrast is 20.354 percentage points, with a CR2 interval of [16.679, 24.028]. The institutional comparisons are exploratory. They do not identify separate effects of enforcement, household decisions and private returns.
 
-- Corrected the Moscow/Leningrad city–oblast population-scope mismatch in 224 urban/total rows of the 1939 data and removed double counting in aggregates. Rural female younger-minus-older contrast: **20.3537 pp**; CR2 95% interval **[16.6792, 24.0282]**. DDD: **14.3791 pp**, interval **[9.7385, 19.0197]**. DDD measures a relative change between sexes, not the female treatment effect.
-- Added the 1959 regional workbook: **20,025 rows**, with partition, population and HTML/XLS consistency checks. Nine republics support a descriptive post-1939 comparison; five form the core sample. Same-name territories have not been fully harmonised for small boundary transfers. Nested territorial entries must not be added together.
-- Added **30 checked rows for 15 territories** from the 1 January 1924 survey of literacy institutions. Fourteen link to the validated youngest cohort. All 24 exploratory institutional-model CR2 intervals include zero; these data do not identify causal mediation.
-- Added eight age-policy checks using the 1931 plan. Narrowing the younger group changes the female contrast from **20.354 to 20.312 pp**.
+## Reading the project
 
-Подробности по-русски: [методологическая проверка](docs/ECONOMETRICS_REVIEW_RU.md), [новые данные 1959 года](supplementary/additional_data_analysis/ADDITIONAL_DATA_ANALYSIS_RU.md), [учреждения ликбеза 1924 года](supplementary/likbez_1924_analysis/REPORT_RU.md). Исходные отчёты сохраняют исторические описания отдельных этапов работы; актуальный статус проекта задаёт этот README.
+- [English manuscript](paper/ABC_of_Communism.tex) and [appendix](paper/appendix.tex).
+- [Data and methods](docs/METHODS.md), also available as a [PDF](docs/Data_and_methods.pdf).
+- [Further historical evidence](docs/SUPPLEMENTARY_EVIDENCE.md), also available as a [PDF](docs/Supplementary_evidence.pdf).
+- [Source register](docs/SOURCES.md), distinguishing downloaded data, partial scans and archival leads.
+- [Main census codebook](data/CODEBOOK.md).
+
+The Russian journal version is retained in `jnea/`. Original source publications and census keys keep their Russian wording. Reader-facing documentation and the new supplementary figures are in English. Earlier local reports are preserved in the local archive rather than presented as current English documentation.
 
 ## Files
 
-- `data/`: main census data, validated cells and published derived baselines; see [CODEBOOK](data/CODEBOOK.md). Main CSV files use `;`.
-- `scripts/`: main build, tables, figures, downloaders and Stata export. Paths are relative to the checkout.
-- `paper/`, `jnea/`: revised English and Russian LaTeX sources and generated tables. The English appendix includes both new analyses.
-- `results/`, `figures/`: current main calculation snapshots and figures. Independent CR2 results live in `methodology/results/`.
-- `methodology/`: independent inference, 88 specification checks and accounting sensitivities; CR1, CR2/Satterthwaite, cluster jackknife and restricted wild cluster bootstrap. `errors.json` records an expected unidentified specification; unavailable CR2 contrasts are explicitly flagged.
-- `supplementary/additional_data_analysis/`: 1959 source workbook, regional panel, migration/time-use extracts, scripts and results.
-- `supplementary/likbez_1924_analysis/`: historical PDFs and source page images, institutional transcription, 24 exploratory models and eight policy-age checks.
-- `validation/`: source evidence, scope corrections and changed numerical keys; `docs/`: audit and source-search reports.
+`data/` contains the main transcriptions, validated cells and derived baselines. `scripts/` builds the samples, estimates, tables, figures and Stata exports. `results/` and `figures/` contain the current outputs. The English and Russian manuscript sources and their tables are in `paper/` and `jnea/`.
 
-Supplementary CSV files use commas and UTF-8 with BOM. `inputs/` inside each supplement are verified snapshots of main results; the release verifier checks that these inputs still match the main project. These folders also include historical scans examined during the source search; not every scan enters a regression. Download URLs and SHA-256 hashes are in each source manifest. No restricted third-party replication microdata are redistributed.
+`methodology/` contains independent inference and 88 specification checks. Its result files distinguish CR1, CR2/Satterthwaite, the cluster jackknife and the restricted wild cluster bootstrap. Expected failures of identification are recorded explicitly.
 
-The full 1939 extraction retains 17 unresolved cells with illiterate counts exceeding population, all in the open age group 70+ of nested territories. They are listed in `validation/1939_unresolved_70plus_cells.csv`; their values are not silently repaired. They enter neither the matched age cohorts nor the national aggregates, which exclude nested territories. The release check separately enforces nonnegative counts for non-nested territories.
+`supplementary/additional_data_analysis/` contains the 1959 workbook, the regional follow-up and migration and time-use extracts. `supplementary/likbez_1924_analysis/` contains the institutional transcription, source page images, 24 exploratory institutional models and eight checks omitting an intermediate age cohort. Each folder has an English README, scripts, inputs, source hashes and results.
 
-## Reproduction
+The age-policy check keeps the younger group at ages 18-32 in 1926 in both specifications. Omitting ages 33-37 from the intermediate group changes the female contrast from 20.354 to 20.312 points. Earlier supplementary labels described the omission incorrectly. The numerical estimates are unchanged, and the corrected explanation is in the methods note.
 
-Python 3.12 and the dependencies in `requirements.txt`:
+The full 1939 extraction preserves 17 unresolved inconsistent cells, all in nested territories at ages 70+. They enter neither the matched cohorts nor the national aggregates. `validation/` lists them alongside source comparisons and release checks. The 1959 workbook also includes totals and nested territories; its 89 entries must not all be added together.
+
+## Reproducing the results
+
+Use Python 3.12 with the packages in `requirements.txt`. Run these commands from the project root.
 
 ```sh
 python -m pip install -r requirements.txt
@@ -49,12 +49,21 @@ python scripts/run_supplementary.py
 python scripts/verify_release.py
 ```
 
-`paper_numbers.py` includes resampling and can take about 15 minutes. `--fast` omits resampling and is only a diagnostic run. `run_supplementary.py` refreshes input snapshots from the main project before regenerating both supplements. Estimation scripts set seeds. Complete sign-vector enumeration with few clusters is not an exact causal randomisation test. The main paper's original inference and the independent CR2 checks are kept distinguishable.
+The full number calculation includes resampling and can take about fifteen minutes. `--fast` skips resampling and is intended for diagnostics. The supplementary runner refreshes its input snapshots from the main data and results. Seeds are fixed. Enumerating every wild-bootstrap sign vector does not turn the observational design into an exact causal randomisation test.
 
-The checked-in baseline tables permit rebuilding the main analysis without the external Malein package. To reconstruct those historical baselines or the district shapefile map, obtain the third-party files described in [the earlier public instructions](docs/README_github_before_update.md). The map builder keeps an existing checked figure when external geometry is unavailable. Source downloaders are optional: their inputs are already included. To regenerate the Stata data, use `export_stata.py`; executing Stata and comparing its output requires a licensed installation. Earlier Stata results have not been revalidated for this revision.
+Main CSV files use semicolons. Supplementary CSV files use commas. Both use UTF-8, usually with a byte-order mark. Source manifests give download URLs and SHA-256 hashes. No restricted third-party microdata are included.
 
-The primary sources are census tables hosted by [Demoscope](https://www.demoscope.ru/weekly/ssp/census.php), the 1926 regional volumes listed in the codebook, and the 1924/1931 publications linked in the new appendix and source manifests. The downloaded files are preserved without changing their numeric tables; some HTML copies were decoded to UTF-8.
+The checked-in baseline tables are enough to rebuild the main analysis. To reconstruct them from the district data, obtain the Malein replication package, openICPSR project 231104, and place `panel1879_1911.dta`, `data_from_gelbach.dta` and the `shape_files/` directory under `external/malein/`. Then run `scripts/baseline_1897.py` and `scripts/crosswalk.py`. The shapefile is also needed to redraw the district map; otherwise the figure builder retains the included map. Original source downloaders need not be run to reproduce the checked-in analysis.
 
-## Manuscript PDF status
+The Stata do-file reads the exported data. Running it requires a licensed installation. Stata output has not been revalidated for this revision.
 
-Revised LaTeX sources, numbers, tables and figure files are included. Article PDFs from earlier versions are not current outputs and are not published as this revision. A successful fresh TeX build and visual review of both articles remain outstanding because the available TeX installation could not initialise in this environment. See [BUILD_STATUS](docs/BUILD_STATUS.md). The numerical and Python checks are separate from that publishing limitation.
+## Documents
+
+The two English PDF notes are generated from their Markdown sources.
+
+```sh
+python -m pip install -r requirements-docs.txt
+python scripts/build_docs.py
+```
+
+The article uses LaTeX and its bibliography. Its build status and commands are recorded in [BUILD_STATUS.md](docs/BUILD_STATUS.md). Earlier article PDFs are not supplied as the current revision.

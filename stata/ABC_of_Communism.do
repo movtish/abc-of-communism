@@ -1,14 +1,11 @@
-*==============================================================================*
-*  The ABC of Communism: How Soviet Russia Taught Its Women to Read
+*  The ABC of Communism How Soviet Russia Taught Its Women to Read
 *  master do-file
-*
 *  Regressions of the paper on stata/data (from scripts/export_stata.py).
 *  Coefficients go to stata/output/stata_results.dta and .csv under the keys
 *  of scripts/paper_numbers.py, compare with scripts/compare_stata.py.
 *  Stata 14+, no extra packages (wild bootstrap only if boottest is there).
-*
 *  Table numbers below are those of the long version (October 2026).
-*  Blocks:   1  household regime, 1897-1926        Tables 3, 8A, A1
+*  Blocks   1  household regime, 1897-1926        Tables 3, 8A, A1
 *            2  Russians across units              Table 4
 *            3  differences within units           Tables 5, A3, A4
 *            4  differences between nationalities  Table 6
@@ -16,7 +13,6 @@
 *            6  two regimes                        Tables 9, A5
 *            7  korenizatsiya and convergence      Tables 10, A6
 *            8  legacy                             Tables 11, 12, 13, A8, A9
-*==============================================================================*
 version 14
 clear all
 set more off
@@ -50,7 +46,7 @@ program define keepl
 end
 
 *------------------------------------------------------------------------------*
-* 1. Household regime: linked cohorts 1897-1926 (Tables 3, 8A, A1)
+* 1. Household regime linked cohorts 1897-1926 (Tables 3, 8A, A1)
 *------------------------------------------------------------------------------*
 use "$DTA/household_cells.dta", clear
 encode region, gen(rid)
@@ -74,7 +70,7 @@ foreach spec in w1 w1u w1s w1t w1ur {
     keepb `spec'.fref 1.female
     if "`spec'" == "w1s" keepb w1s.surv survival
 }
-* pooled: cohorts aged 33-47 against 53-67 (the cohort aged 48-52 is left out)
+* pooled cohorts aged 33-47 against 53-67 (the cohort aged 48-52 is left out)
 regress gain i.treated##i.female i.rid if area == "rural" & bin != 4 [aw=pop97], vce(cluster rid)
 keepb w1.ddd 1.treated#1.female
 keepb w1.dd.men 1.treated
@@ -265,7 +261,7 @@ foreach o in F M G {
 }
 
 *------------------------------------------------------------------------------*
-* 5. State regime: linked cohorts 1926-1939 (Tables 7, 8B, A2)
+* 5. State regime linked cohorts 1926-1939 (Tables 7, 8B, A2)
 *------------------------------------------------------------------------------*
 cap program drop stateregime
 program define stateregime
@@ -365,7 +361,7 @@ keepb ray.ddd.exact fy
 regress gain_pp c.age1928##c.female i.rid if age_1926 != "50-54" [aw=pop_1926], vce(cluster rid)
 keepb ray.age.m age1928
 keepb ray.age.fx c.age1928#c.female
-* regions: all (ray), unchanged borders (rayx)
+* regions all (ray), unchanged borders (rayx)
 foreach k in ray rayx {
     local cond ""
     if "`k'" == "rayx" local cond "if approx_borders == 0"
