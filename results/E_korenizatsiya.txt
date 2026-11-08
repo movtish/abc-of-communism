@@ -1,0 +1,36 @@
+
+--- E1. Same nationality inside vs outside its titular unit (n cells=306, inside=57) ---   n=306  R2=0.993
+  titular_unit                                                   1.84  (se  2.68)  p=0.491
+  titular_unit:soviet                                           -3.13  (se  3.34)  p=0.349
+  titular_unit:female                                            0.65  (se  1.18)  p=0.581
+  titular_unit:soviet:female                                     0.93  (se  1.46)  p=0.521
+
+--- E2a. Excluding Tatars ---   n=160  R2=0.996
+  titular_unit                                                   3.80  (se  1.50)  p=0.012
+  titular_unit:soviet                                           -8.52  (se  1.50)  p=0.000
+  titular_unit:female                                            0.19  (se  2.61)  p=0.943
+  titular_unit:soviet:female                                     2.40  (se  0.72)  p=0.001
+
+--- E2b. Unweighted ---   n=306  R2=0.962
+  titular_unit                                                   3.76  (se  4.00)  p=0.347
+  titular_unit:soviet                                           -0.93  (se  4.47)  p=0.835
+  titular_unit:female                                            0.75  (se  1.91)  p=0.693
+  titular_unit:soviet:female                                    -0.18  (se  2.05)  p=0.932
+
+--- E2c. Excluding low-quality units ---   n=216  R2=0.996
+  titular_unit                                                   4.28  (se  2.35)  p=0.069
+  titular_unit:soviet                                           -2.95  (se  5.41)  p=0.585
+  titular_unit:female                                            1.47  (se  0.85)  p=0.086
+  titular_unit:soviet:female                                     1.36  (se  2.00)  p=0.497
+
+E3. Titular vs Russian literacy gaps by cohort in the six republics (rural, from tableIX_cohort_gaps):
+region  Башкирская АССР  Вотская АО  Карельская АССР  Марийская АО  Татарская АССР  Чувашская АССР
+band                                                                                              
+8-14                7.2        18.7             26.3          26.4             2.6            16.8
+15-19              14.9        29.4             26.9          36.1             4.1            15.3
+20-24              24.2        34.4             31.2          40.7             7.8            17.8
+25-29              22.8        35.5             31.8          37.6            12.2            23.4
+30-39              20.9        31.2             32.2          33.6            15.7            26.8
+40-49               9.5        19.5             24.9          20.8             8.8            21.5
+50-59               3.6        12.1             16.8          13.3             1.7            16.9
+60+                 0.7         NaN              8.9           6.6            -2.4             8.4

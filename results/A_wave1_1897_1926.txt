@@ -1,0 +1,65 @@
+
+--- A1. Gain 1897->1926 by age at decree x female, region FE, area=total ---   n=113  R2=0.913
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41]          19.97  (se  1.68)  p=0.000
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51]           8.07  (se  0.64)  p=0.000
+  female                                                        -0.68  (se  0.71)  p=0.342
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41]:female   -15.52  (se  2.03)  p=0.000
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51]:female    -7.29  (se  0.69)  p=0.000
+   cell means: {('A_32-41', 'F'): 2.8, ('A_32-41', 'M'): 18.5, ('B_42-51', 'F'): -0.5, ('B_42-51', 'M'): 6.6, ('C_52-61 placebo', 'F'): -1.2, ('C_52-61 placebo', 'M'): -0.8}
+
+--- A1. Gain 1897->1926 by age at decree x female, region FE, area=rural ---   n=113  R2=0.937
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41]          19.24  (se  1.72)  p=0.000
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51]           7.98  (se  0.69)  p=0.000
+  female                                                        -1.77  (se  0.51)  p=0.000
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41]:female   -16.51  (se  1.87)  p=0.000
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51]:female    -7.82  (se  0.73)  p=0.000
+   cell means: {('A_32-41', 'F'): 0.8, ('A_32-41', 'M'): 17.8, ('B_42-51', 'F'): -1.7, ('B_42-51', 'M'): 6.8, ('C_52-61 placebo', 'F'): -1.9, ('C_52-61 placebo', 'M'): -0.7}
+
+--- A1. Gain 1897->1926 by age at decree x female, region FE, area=urban ---   n=114  R2=0.828
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41]           3.72  (se  2.03)  p=0.066
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51]           5.91  (se  0.87)  p=0.000
+  female                                                        -5.40  (se  1.71)  p=0.002
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41]:female    -6.63  (se  0.76)  p=0.000
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51]:female    -5.55  (se  0.89)  p=0.000
+   cell means: {('A_32-41', 'F'): -4.8, ('A_32-41', 'M'): 8.1, ('B_42-51', 'F'): -3.7, ('B_42-51', 'M'): 8.9, ('C_52-61 placebo', 'F'): -4.2, ('C_52-61 placebo', 'M'): 2.0}
+
+--- A2a. Rural, unweighted ---   n=113  R2=0.880
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41]          18.49  (se  1.56)  p=0.000
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51]           7.47  (se  0.74)  p=0.000
+  female                                                        -1.22  (se  0.96)  p=0.207
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41]:female   -15.80  (se  1.53)  p=0.000
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51]:female    -7.30  (se  0.72)  p=0.000
+
+--- A2b. Rural, no trimming of corrupted cells ---   n=113  R2=0.937
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41]          19.24  (se  1.72)  p=0.000
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51]           7.98  (se  0.69)  p=0.000
+  female                                                        -1.77  (se  0.51)  p=0.000
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41]:female   -16.51  (se  1.87)  p=0.000
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51]:female    -7.82  (se  0.73)  p=0.000
+
+--- A2c. Rural, + survival ratio control ---   n=113  R2=0.938
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41]          19.54  (se  1.86)  p=0.000
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51]           8.43  (se  1.05)  p=0.000
+  female                                                        -1.40  (se  0.73)  p=0.056
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41]:female   -16.70  (se  1.95)  p=0.000
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51]:female    -8.04  (se  0.81)  p=0.000
+  survival_ratio                                                -4.80  (se  8.78)  p=0.584
+
+--- A2d. Rural, excluding Muslim regions (Arabic-script confound) ---   n=84  R2=0.947
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41]          20.33  (se  1.87)  p=0.000
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51]           8.47  (se  0.73)  p=0.000
+  female                                                        -1.35  (se  0.42)  p=0.001
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41]:female   -17.37  (se  2.10)  p=0.000
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51]:female    -8.30  (se  0.78)  p=0.000
+
+--- A2e. Rural, survival ratio in [0.4,0.8] ---   n=90  R2=0.952
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41]          18.95  (se  1.81)  p=0.000
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51]           8.10  (se  0.88)  p=0.000
+  female                                                        -1.49  (se  0.78)  p=0.055
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41]:female   -16.15  (se  2.06)  p=0.000
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51]:female    -7.99  (se  0.97)  p=0.000
+
+--- A3. Rural, linear in age at decree (per year) x female ---   n=113  R2=0.931
+  age_decree                                                    -0.98  (se  0.09)  p=0.000
+  female                                                       -48.43  (se  4.95)  p=0.000
+  age_decree:female                                              0.83  (se  0.09)  p=0.000

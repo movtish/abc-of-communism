@@ -1,0 +1,57 @@
+Wave-1 proxy: 1926 rural literacy of Russians in cohort 40-49 (aged 33-42 at decree) minus 60-69 (placebo). n=21; mean F 11.1, M 31.5
+
+C1. Bivariate (standardised predictor; wave 2 conditional on 1926 level):
+               wave sex                predictor  coef   se    p  n
+1 (1897-1926 proxy)   F teachers per capita 1911  1.85 0.54 0.00 19
+1 (1897-1926 proxy)   F      agrarian share 1897 -0.53 0.48 0.27 19
+1 (1897-1926 proxy)   F   child-woman ratio 1926 -1.30 0.85 0.13 19
+1 (1897-1926 proxy)   F   urban share (men) 1926  0.94 0.89 0.29 16
+1 (1897-1926 proxy)   F    rural sex ratio 20-39 -0.72 0.91 0.42 17
+1 (1897-1926 proxy)   F     female literacy 1897  1.70 0.81 0.04 19
+1 (1897-1926 proxy)   M teachers per capita 1911  1.59 0.95 0.09 19
+1 (1897-1926 proxy)   M      agrarian share 1897  1.82 0.68 0.01 19
+1 (1897-1926 proxy)   M   child-woman ratio 1926  1.40 0.65 0.03 19
+1 (1897-1926 proxy)   M   urban share (men) 1926 -0.23 1.27 0.86 16
+1 (1897-1926 proxy)   M    rural sex ratio 20-39  0.06 1.22 0.96 17
+1 (1897-1926 proxy)   M     female literacy 1897 -1.83 1.00 0.07 19
+      2 (1926-1939)   F teachers per capita 1911 -3.11 3.49 0.37 14
+      2 (1926-1939)   F      agrarian share 1897  2.44 1.27 0.05 14
+      2 (1926-1939)   F   child-woman ratio 1926 -0.66 1.31 0.61 14
+      2 (1926-1939)   F   urban share (men) 1926  2.82 1.61 0.08 14
+      2 (1926-1939)   F    rural sex ratio 20-39 -0.71 2.21 0.75 13
+      2 (1926-1939)   F     female literacy 1897 -0.22 1.39 0.87 14
+      2 (1926-1939)   M teachers per capita 1911 -0.45 0.79 0.57 14
+      2 (1926-1939)   M      agrarian share 1897  0.49 0.44 0.26 14
+      2 (1926-1939)   M   child-woman ratio 1926  0.44 0.36 0.23 14
+      2 (1926-1939)   M   urban share (men) 1926  0.28 0.78 0.72 14
+      2 (1926-1939)   M    rural sex ratio 20-39  0.33 0.88 0.71 13
+      2 (1926-1939)   M     female literacy 1897 -0.18 0.36 0.61 14
+
+C2. Stacked: female progress ~ predictor x wave2, unit-clustered SE (n units=10)
+  teachers per capita 1911     wave1 slope  -1.14 (p=0.202) | change in wave2  -0.89 (p=0.725)
+  agrarian share 1897          wave1 slope   1.71 (p=0.002) | change in wave2   1.51 (p=0.323)
+  child-woman ratio 1926       wave1 slope  -0.91 (p=0.162) | change in wave2   2.11 (p=0.102)
+  urban share (men) 1926       wave1 slope   2.71 (p=0.000) | change in wave2  -0.32 (p=0.864)
+  rural sex ratio 20-39        wave1 slope  -1.69 (p=0.004) | change in wave2  -0.78 (p=0.497)
+  female literacy 1897         wave1 slope   0.35 (p=0.715) | change in wave2   0.29 (p=0.838)
+
+--- C2b. Stacked, joint predictors x wave2 ---   n=14  R2=0.977
+  teachers_percap_1911_z                                        -1.46  (se  0.51)  p=0.004
+  cwr_z                                                         -0.28  (se  0.40)  p=0.483
+  urban_share_M_z                                                2.26  (se  0.54)  p=0.000
+  teachers_percap_1911_z:wave2                                  -1.30  (se  1.85)  p=0.481
+  cwr_z:wave2                                                    2.26  (se  1.33)  p=0.089
+  urban_share_M_z:wave2                                          2.72  (se  1.71)  p=0.112
+
+--- C3. Wave 2 women, joint predictors (n=10) ---   n=10  R2=0.848
+  lit26_F_z                                                      2.44  (se  4.52)  p=0.590
+  teachers_percap_1911_z                                        -8.64  (se  3.77)  p=0.022
+  agshare_1897_z                                                -0.84  (se  1.83)  p=0.644
+  cwr_z                                                          2.35  (se  1.68)  p=0.162
+  urban_share_M_z                                                7.08  (se  3.25)  p=0.030
+
+--- C3b. Wave 1 women (proxy), joint predictors (n=13) ---   n=13  R2=0.310
+  teachers_percap_1911_z                                         1.82  (se  1.15)  p=0.115
+  agshare_1897_z                                                 0.04  (se  1.19)  p=0.972
+  cwr_z                                                         -0.67  (se  1.01)  p=0.507
+  urban_share_M_z                                                0.51  (se  1.31)  p=0.694

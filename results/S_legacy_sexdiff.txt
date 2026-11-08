@@ -1,0 +1,55 @@
+1926 ethnic literacy gaps by nationality (Russians of the same units minus nationality), whole population, ages 20-49; rural; ages 12-29:
+              gF_ad  gM_ad  units_ad    pop_ad  D_ad  gF_adr  gM_adr  units_adr   pop_adr  D_adr  gF_yg  gM_yg  units_yg    pop_yg  D_yg
+nat                                                                                                                                     
+Башкиры        19.7   28.1       1.0  224875.0  -8.4     NaN     NaN        NaN       NaN    NaN   16.9   19.3       1.0  234760.0  -2.4
+Евреи         -55.1   -9.5       1.0   14809.0 -45.6   -14.9    -1.2        1.0   54791.0  -13.7  -44.6   -8.5       1.0   13380.0 -36.1
+Калмыки        39.8   59.7       1.0   42414.0 -19.9     NaN     NaN        NaN       NaN    NaN   45.2   39.1       1.0   34824.0   6.2
+Карелы         31.6   21.3       1.0   39142.0  10.3    23.1    20.6        1.0   36252.0    2.4   28.4   13.6       1.0   37276.0  14.8
+Коми-пермяки   11.6    6.9       1.0   42594.0   4.7     NaN     NaN        NaN       NaN    NaN    6.4    1.2       1.0   42099.0   5.2
+Марийцы        33.2   19.6       3.0  150033.0  13.5     NaN     NaN        NaN       NaN    NaN   38.0   11.0       2.0  105654.0  27.0
+Мордва         26.2   15.4       2.0  113930.0  10.7    19.0    13.3        2.0  112561.0    5.7   30.9   16.3       3.0  218916.0  14.6
+Немцы         -24.2   10.3       1.0   16653.0 -34.5   -24.0    15.7        1.0   10145.0  -39.7  -11.8   14.1       1.0   16201.0 -25.9
+Татары         10.0   23.1      11.0  756562.0 -13.1     3.7    23.9        6.0  482160.0  -20.2    4.4   13.0      11.0  721326.0  -8.6
+Удмурты        30.6   22.0       1.0  144977.0   8.6    21.7    18.6        1.0  142556.0    3.1   30.4   14.7       1.0  144462.0  15.7
+Украинцы       -4.4   -4.5       7.0  795244.0   0.1    -7.1    -4.7        5.0  356927.0   -2.4   -4.9   -2.2       4.0  357238.0  -2.7
+Чуваши         23.2   12.0       4.0  334681.0  11.2    15.3    10.0        2.0  283948.0    5.2   20.3    3.4       5.0  376841.0  16.9
+
+Nationalities in both sources: ['Башкиры', 'Евреи', 'Калмыки', 'Карелы', 'Коми-пермяки', 'Марийцы', 'Мордва', 'Немцы', 'Татары', 'Удмурты', 'Украинцы', 'Чуваши'] | cells 264
+
+Coefficient on female x D26 by cohort of 2010 (D26 = female minus male ethnic literacy gap of 1926, points); nationality x age and sex x age fixed effects; SE clustered by nationality
+A. Six Volga-Ural nationalities, secondary education               nat= 6 n=132 | born after 1960: -0.071 (0.037) | 1951-60:  0.059 (0.047) | before 1951:  0.260 (0.080) | old minus young  0.331 (0.101) | permutation p: old-young 0.114, old 0.119 (720 draws)
+B. All matched nationalities, secondary education                  nat=12 n=264 | born after 1960: -0.044 (0.040) | 1951-60:  0.046 (0.033) | before 1951:  0.184 (0.062) | old minus young  0.227 (0.096) | permutation p: old-young 0.006, old 0.004 (5000 draws)
+C. Six nationalities, unweighted                                   nat= 6 n=132 | born after 1960: -0.072 (0.053) | 1951-60:  0.077 (0.081) | before 1951:  0.255 (0.148) | old minus young  0.328 (0.189) | permutation p: old-young 0.051, old 0.094 (720 draws)
+D. Six nationalities, 1926 gaps of the rural population            nat= 4 n= 88 | born after 1960: -0.056 (0.034) | 1951-60:  0.035 (0.042) | before 1951:  0.224 (0.098) | old minus young  0.280 (0.107) | permutation p: old-young 0.458, old 0.417 (24 draws)
+E. Six nationalities, 1926 gaps of the cohorts aged 12-29          nat= 6 n=132 | born after 1960: -0.069 (0.025) | 1951-60:  0.061 (0.042) | before 1951:  0.247 (0.064) | old minus young  0.316 (0.071) | permutation p: old-young 0.049, old 0.050 (720 draws)
+F. Six nationalities, higher education                             nat= 6 n=132 | born after 1960: -0.000 (0.021) | 1951-60:  0.056 (0.039) | before 1951:  0.077 (0.078) | old minus young  0.077 (0.086) | permutation p: old-young 0.287, old 0.289 (720 draws)
+G. Six nationalities, basic (eight-year) education                 nat= 6 n=132 | born after 1960: -0.004 (0.005) | 1951-60:  0.014 (0.008) | before 1951:  0.263 (0.053) | old minus young  0.267 (0.056) | permutation p: old-young 0.096, old 0.094 (720 draws)
+H. Without Татары                                                  nat= 5 n=110 | born after 1960: -0.046 (0.050) | 1951-60:  0.056 (0.072) | before 1951:  0.198 (0.118) | old minus young  0.243 (0.153)
+H. Without Башкиры                                                 nat= 5 n=110 | born after 1960: -0.074 (0.037) | 1951-60:  0.061 (0.050) | before 1951:  0.268 (0.083) | old minus young  0.342 (0.103)
+H. Without Чуваши                                                  nat= 5 n=110 | born after 1960: -0.082 (0.064) | 1951-60:  0.055 (0.084) | before 1951:  0.231 (0.129) | old minus young  0.314 (0.174)
+H. Without Марийцы                                                 nat= 5 n=110 | born after 1960: -0.056 (0.033) | 1951-60:  0.036 (0.039) | before 1951:  0.233 (0.090) | old minus young  0.289 (0.098)
+H. Without Удмурты                                                 nat= 5 n=110 | born after 1960: -0.065 (0.042) | 1951-60:  0.071 (0.053) | before 1951:  0.283 (0.081) | old minus young  0.349 (0.120)
+H. Without Мордва                                                  nat= 5 n=110 | born after 1960: -0.086 (0.041) | 1951-60:  0.074 (0.056) | before 1951:  0.286 (0.092) | old minus young  0.372 (0.103)
+I. Non-Muslim nationalities only                                   nat=10 n=220 | born after 1960: -0.036 (0.057) | 1951-60:  0.043 (0.040) | before 1951:  0.182 (0.067) | old minus young  0.219 (0.117) | permutation p: old-young 0.026, old 0.021 (5000 draws)
+
+Female excess in the 2010 ethnic gap (women's gap minus men's gap, points) by cohort group, and the 1926 gaps:
+              mid   old  young  gF_ad  gM_ad  D_ad
+nat                                               
+Евреи         3.6  -2.7    2.9  -55.1   -9.5 -45.6
+Немцы         0.5   3.0   -1.5  -24.2   10.3 -34.5
+Калмыки      -2.7   4.4   -0.1   39.8   59.7 -19.9
+Татары        1.4   3.2    0.5   10.0   23.1 -13.1
+Башкиры       1.9   6.2   -0.5   19.7   28.1  -8.4
+Украинцы      2.8   4.7    1.7   -4.4   -4.5   0.1
+Коми-пермяки -7.2   0.2   -8.9   11.6    6.9   4.7
+Удмурты       1.2   5.4   -2.0   30.6   22.0   8.6
+Карелы       -2.8  -2.2   -3.1   31.6   21.3  10.3
+Мордва        1.8   8.1    0.0   26.2   15.4  10.7
+Чуваши        3.0  10.7   -1.0   23.2   12.0  11.2
+Марийцы       5.4  14.3   -2.8   33.2   19.6  13.5
+   across nationalities (six, n=6), old: slope 0.262, correlation 0.75
+   across nationalities (all, n=12), old: slope 0.130, correlation 0.52
+   across nationalities (six, n=6), mid: slope 0.071, correlation 0.52
+   across nationalities (all, n=12), mid: slope -0.010, correlation -0.06
+   across nationalities (six, n=6), young: slope -0.073, correlation -0.67
+   across nationalities (all, n=12), young: slope -0.071, correlation -0.46

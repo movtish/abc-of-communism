@@ -1,75 +1,122 @@
-# Codebook
+# Census 1926 (and 1897) literacy dataset — codebook
 
-All files are CSV separated by `;`, UTF-8 with BOM. Names of units, nationalities and regions are in Russian as printed in the census.
-Sex is `M` or `F`, area is `total`, `urban` or `rural`. Literacy is the share of the population able to read (in any language), in per cent.
+Built 2026-09-11 from the RSL scans of «Всесоюзная перепись населения 1926 года» (Отдел I),
+OCR layer + second OCR (rapidocr) + arithmetic checksum repair. Every cell carries a `quality` flag.
 
-## Census of 1926, Table IX
+## Files
 
-### census1926_tableIX_long.csv
-Table IX "Население по полу, возрасту, главным народностям и грамотности" of the regional volumes (T1, T2, T3, T4), as transcribed.
-One row is unit x area x age x nationality x sex. 90,642 rows.
-- `region_code`, `region` unit of 1926 (republic, autonomous oblast, guberniya or okrug). "Уральская обл." is the sum of its okrugi and is not used in the samples, so that the number of distinct units is 44.
-- `pre1917_province` province or provinces of 1897 from which the unit was formed, lower case as in Malein's `province_rus` (several are separated by `;`).
-- `volume`, `pdf_page` where the cell is in the scans.
-- `age` single years `0` ... `99`, five-year subtotals `0-4` ... `95-99`, `100+`, `unknown`, `TOTAL`.
-- `group` nationality as printed (`Всё население` is the whole population). `group_type` is `all`, `russian`, `titular` (the nationality in its own unit), `minority` or `other`.
-- `total`, `literate` persons. Literacy at ages 0-4 is printed as a dash and stored as 0.
-- `quality` how the cell was confirmed at transcription: `ok` by at least one arithmetic identity of the table, `agree` two independent readings agree, `ocr2only` only the second reading has a value, `unresolved` the readings differ, `missing` no value, `manual` corrected against the scan.
-
-The `quality` flag is not used to select cells any more. The analysis uses the validated files below, because a cell can pass an identity and still be wrong when the same misreading entered both the single years and the subtotal.
-
-### tableIX_five_year_groups_validated.csv
-One row is unit x area x nationality x sex x five-year group (ages 5 and over).
-`P_pop`, `P_lit` printed subtotal; `S_pop`, `S_lit` sum of the five single years; `val_pop`, `val_lit` the figure used.
-`tier_pop`, `tier_lit`, `tier`: 1 printed subtotal equals the sum of single years (within 2 persons or 0.5 per cent), 2 chosen by an identity of the table (urban plus rural equals total, nationalities add up to the whole population), 3 chosen by consistency with the two adjacent groups, 0 dropped.
-`src_*`: `PS` both agree, `P` printed subtotal taken, `S` sum taken, `I` value implied by two identities, `X` removed by the neighbour rule (literacy more than 25 points from both adjacent groups, or population more than three times or less than a third of both).
-
-### tableIX_single_years_validated.csv
-Single years of age with `valid` (the five-year group is validated and the validated figure is the sum of the single years) and `tier5`.
-
-### tableIX_bands_validated.csv
-The age bands used in the paper (8-11, 12-14, 15-19, 20-24, 25-29, 30-39, 40-49, 50-59, 60-69, 60+), built from validated groups or single years, after the plausibility rules (population per year of age above 2.5 times the median of the series, literacy more than 30 points from both adjacent bands, series with fewer than three bands, cells below 200 persons).
-Columns `region`, `area`, `group`, `sex`, `band`, `population`, `literate`, `literacy`, `tier`, `group_type`.
-
-### tableIX_region_quality.csv
-Share of confirmed cells by unit and area. Six units have rural pages of low quality (Astrakhan, Kungur, Volga German ASSR, Orenburg, Penza, Samara) and are dropped in one robustness check.
-
-### Files built from the validated tables by build_1926_v2.py
-- `korenizatsiya_panel.csv` literacy by unit x area x nationality x sex x band, with `titular_unit` (nationality inside its own unit) and `has_unit_1926` (the nationality had a unit in 1926). Cells below 200 persons dropped.
-- `russians_by_region.csv` Russians and the whole population by unit, area and band, literacy of men and women and the gender gap.
-- `mechanism_panel.csv`, `mechanism_panel_clean.csv` (the same file under two names, both are read by the scripts) one row per unit and nationality: child-woman ratio `cwr`, sex ratio at 20-39, sex ratio at 0-4, urban shares of men and women aged 20-39, literacy and gender gaps at 12-14, 20-24 and 30-39, gaps to Russians in the same unit (`ethgap_*`), and `mobility_gap` (urban share of men minus that of women).
-- `tableIX_cohort_gaps.csv` literacy of the titular nationality and of Russians in the six titular units by band and sex, gap = Russian minus titular.
-- `linked_cohorts_1926_1939.csv` the same birth cohorts in 1926 (single years 8-57) and 1939 (five-year groups 20-24 ... 65-69) by unit and region of 1939, area and sex: population, literacy, gain in points, survival ratio, `tier`. The cohorts aged 48-57 in 1926 were above the age limit of the campaign.
-- `russians_region_baseline.csv` (not in the repository, it contains the pre-1917 baseline) Russians by unit with the provincial baseline of 1897 and 1911 merged in.
-
-## Census of 1926, Table XV of volume 9
+### tableIX_1926_age_sex_ethnicity_literacy.csv
+Source: Таблица IX «Население по полу, возрасту, главным народностям и грамотности», regional volumes
+(T1 = Северный/Ленинградско-Карельский/Западный; T3 = ЦЧО/Средне- и Нижне-Волжский; T4 = Вятский/Урал/Башкирия).
+One row = region × area × age × ethnic group × sex.
+- region_code / region_1926 — 1926 administrative unit (по всей республике/области = area `total`).
+- pre1917_province — Malein/Dower `province_rus` value(s) the unit was carved from (for baseline merges).
+- age — single years 0–99 (`0`…`99`), five-year subtotals (`0-4` … `95-99`), `100+`, `unknown`, `TOTAL`.
+  Subtotal rows are as printed; single-year rows sum to them (checked).
+- birth_cohort — census year minus age (census day 17 Dec 1926): `1902` or `1902-1906` for bands.
+- group — ethnic group as printed; group_type: `all` (Всё население), `titular`, `russian`, `other`.
+- population, literate — persons; literacy_rate = 100*literate/population.
+- quality: `ok` = confirmed by ≥1 checksum equation; `agree` = OCR layer and second OCR read the same value;
+  `ocr2only` = only the second OCR could read the cell; `unresolved` = readings conflict, value is the OCR-layer read;
+  `missing` = no reading. Ages 0–4 literacy is printed as «—» (not assessed) and stored as 0.
+Rows: 90642; quality counts: {'unresolved': 3434, 'ocr2only': 2031, 'ok': 80958, 'missing': 1910, 'manual': 56, 'agree': 2253}.
 
 ### tableXV_1926_1897_age_sex_literacy.csv
-Table XV "Население по полу, возрасту и грамотности по переписям 17 декабря 1926 г. и 9 февраля 1897 г." (the figures of 1897 recomputed by the Central Statistical Board to the borders of 1 January 1927).
-One row is Gosplan region x census year x area x sex x age. Ages are single years 0-19 with subtotals, then five-year groups. Columns `population`, `literate`, `literacy_rate`, `quality` as above. The urban population of 1897 follows the definition of 1897.
+Source: Т.9, Таблица XV «Население по полу, возрасту и грамотности по переписям 17 декабря 1926 г. и 9 февраля 1897 г.»
+(1897 figures recomputed by ЦСУ to 1 Jan 1927 borders — see Предисловие к IX тому, method of В.П. Ефремов).
+One row = Gosplan region × census year × area (total/urban/rural) × sex × age.
+Age rows: single years 0–19 with subtotals `0-4`…`15-19`, then `20-24` … `95-99`, `100+`, `unknown`, `TOTAL`.
+Note: «городское население» in 1897 follows the 1897 definition (see preface).
+Rows: 10320; quality counts: {'ocr2only': 170, 'missing': 287, 'ok': 9730, 'agree': 47, 'unresolved': 86}.
 
-### tableXV_linked_cohorts.csv
-The same birth cohorts in 1897 and 1926 (born 1858-67, 1868-77, 1878-87) by region, area and sex: literacy in both censuses, gain in points, survival ratio. Built by `linked_cohorts.py`.
+Units covered (area total and/or rural): Tatar, Chuvash, Bashkir ASSR; Mari, Votyak AO; Karelian ASSR; gubernias of
+Orenburg, Penza, Samara, Ulyanovsk, Saratov, Astrakhan, Stalingrad, Vyatka, Nizhny Novgorod; Ural oblast (areas only,
+no ethnic breakdown). Ethnic groups as printed: Russians, Tatars (incl. Kryashens/Mishars where noted), Chuvash, Mordva,
+Mari, Votyaks, Bashkirs, Mishars, Ukrainians, Germans, Kazakhs («казаки»), Karelians/Finns/Veps, Others.
+`group_type`: all / russian / titular (group in its own unit) / minority (non-Russian group outside its unit or without
+one) / other.
 
-### linked_cohorts_rayon_1926_1939.csv
-Cohorts of Table XV in 1926 linked to the census of 1939 aggregated to the 17 Gosplan regions of the RSFSR of 1939. `approx_borders` is 1 when the regions of 1939 only approximately cover the region of 1926. Built by `wave2_rayon.py`.
+### tableIX_region_quality.csv
+Share of confirmed cells (ok/agree/manual) per unit × area. Units below 0.8 (Penza rural, Astrakhan rural, Samara,
+Nizhny Novgorod) come from faded scans: single-year rows for ages 50+ there should be used with care; cohorts ≤49 sit
+on the left page of each spread and are generally clean.
 
-## Later censuses
+### tableIX_cohort_gaps.csv
+Titular vs Russian literacy (%) by age band and sex, area = total; gap = Russian − titular (percentage points).
 
-### census1939_literacy_by_region_age_sex.csv
-Census of 1939 (RGAE f. 1562, op. 336, d. 607 and 640, from Demoscope Weekly): population, illiterate and literate by region of 1939, area, sex and five-year group.
-
-### census1959_rsfsr_edu_by_age_sex.csv
-Census of 1959, RSFSR (RGAE f. 1562, op. 336, d. 1591-1594, from Demoscope Weekly): population by area, sex, age and level of education. `literate` is everyone with any schooling plus the literate without primary schooling, `literacy` is per 100 persons who stated their education.
-
-### census2010_nat_edu_by_subject.csv, census2010_nat_edu_by_age_sex.csv, census2010_edu_by_subject_age_sex.csv
-Census of 2010 (Rosstat, volume 4 tables 14 and 13, volume 3 table 1): population aged 15 and over by level of education, by nationality and subject, by nationality, sex and age, and by subject, sex and age. Shares in per cent of those who stated their education (`sh_higher`, `sh_sec_plus`, `sh_basic_plus`, `sh_illit`, `sh_noprim`).
-
-## Keys
+### korenizatsiya_panel.csv
+Literacy (%) by region × area × ethnic group × sex × age band (8-11, 12-14, 15-19, 20-24, 25-29, 30-39, 40-49, 50-59,
+60+) with `titular_unit` (group observed inside its own republic/oblast) and `has_unit_1926` (group had a titular unit in
+1926; Mordva did not). Cells with population < 200 dropped.
 
 ### region_keys.csv
-Unit of 1926 -> Gosplan region of 1927 (Table XV) -> provinces of 1897 (Malein's `province_rus`) -> subject of 2010.
+Crosswalk 1926 unit → Gosplan region (Table XV) → pre-1917 provinces (Malein `province_rus`) → 2010 census subject.
 
-## Not in the repository
+### crosswalk_1897_districts_to_1926_units.csv / baseline_pre1917_by_region1926_v2.csv / crosswalk_validation_vs_tableXV.csv
+Uezd-level crosswalk (expert v1, population fractions for split uezds) from Malein/Dower districts to the six republics;
+population-weighted baselines; validation against the ЦСУ 1897 recomputation (Bashkir ASSR: female 10.9 vs 10.8,
+male 23.0 vs 22.8). `lit_m_1897_derived = 2·share_lit·100 − per_lit_f`; Dower's `mliteracy_1897` is not census male
+literacy and is excluded.
 
-`baseline_pre1917_by_province.csv` (built by `scripts/baseline_1897.py`) and `crosswalk_1897_districts_to_1926_units.csv` (built by `scripts/crosswalk.py`) are computed from Malein's replication package, see the README. The provincial baseline is the population-weighted mean of the districts of each province of 1897, so all units carved from one province share its value, and the regressions on it are clustered by that province (`pg`). `teachers_percap_1911` counts the teachers of all primary schools in Malein's panel.
+### tableXV_linked_cohorts.csv
+Same birth cohorts in 1897 and 1926 (born 1858–67, 1868–77, 1878–87) by Gosplan region × area × sex: literacy in both
+censuses, gain in pp, cohort survival ratio.
+
+## Validated files (added 2026-09-29, written by scripts/build_1926_v2.py)
+The paper uses only figures that pass the validation described in Appendix B of the paper. The `quality` flag of the raw
+file is NOT used for that purpose any more: a cell flagged `ok` can still be wrong when the same misreading entered both
+the single years and the subtotal.
+
+### tableIX_five_year_groups_validated.csv
+One row = region × area × group × sex × five-year group (ages 5 and over). `P_pop`, `P_lit` printed subtotal; `S_pop`, `S_lit`
+sum of the five single years; `val_pop`, `val_lit` the validated figure; `tier_pop`, `tier_lit`, `tier`:
+1 = printed subtotal equals the sum of single years (within 2 persons or 0.5 %), 2 = chosen by an identity of the table
+(urban + rural = total; nationalities sum to the whole population), 3 = chosen by consistency with the two adjacent
+cohorts, 0 = dropped. `src_*`: `PS` both agree, `P` printed subtotal taken, `S` sum taken, `I` value implied by two identities,
+`X` removed by the neighbour rule (literacy more than 25 points from both adjacent groups, or population more than three
+times or less than a third of both).
+
+### tableIX_single_years_validated.csv
+One row = single year of age with `valid` (its five-year group is validated and the validated figure is the sum of the
+single years) and `tier5`.
+
+### tableIX_bands_validated.csv
+The age bands used in the paper (8-11, 12-14, 15-19, 20-24, 25-29, 30-39, 40-49, 50-59, 60-69, 60+), built from validated
+groups or validated single years, after the plausibility rules (population per year of age above 2.5 times the median of
+the series; literacy more than 30 points from both adjacent bands; series with fewer than three bands; cells below 200
+persons). Columns: region, area, group, sex, band, population, literate, literacy, tier, group_type.
+
+### Derived files rebuilt from the validated data (same names as before)
+`korenizatsiya_panel.csv`, `russians_by_region.csv`, `russians_region_baseline.csv`, `mechanism_panel.csv`,
+`mechanism_panel_clean.csv`, `tableIX_cohort_gaps.csv`, `linked_cohorts_1926_1939.csv` (cohorts of 1926 built from validated
+single years; two placebo cohorts aged 48-52 and 53-57 added). The versions built before validation are in
+`v1_before_validation/`. Note that "Уральская обл." in the raw file is the sum of its sixteen okrugi and is excluded from
+every sample, so that the number of distinct units is 44.
+
+Two cautions on `russians_region_baseline.csv` (found on 4 October 2026):
+1. For the nine units whose volumes give no rural pages (Kalmyk AO, Komi-Permyak, Perm, Sverdlovsk, Tyumen and Chelyabinsk okrugi,
+   Nizhny Novgorod, Orel and Tambov gubernii) the literacy columns are those of the WHOLE population. `paper_numbers.py` sets them to
+   missing (`RURAL_RUS`) and uses these units in one robustness check only.
+2. The pre-1917 columns (`teachers_percap_1911`, `agshare_1897`, ...) are PROVINCIAL: the population-weighted mean of the districts of the
+   province(s) of 1897 named in `pre1917_province` (`baseline_pre1917_by_province.csv`). All units of one province share the value,
+   so regressions on them are clustered by that province group (`pg`). `teachers_percap_1911` counts the teachers of all primary schools
+   (Malein's panel), not only zemstvo schools. The district-level crosswalk (`baseline_pre1917_by_region1926_v2.csv`) exists for six
+   autonomous units and is not used in the regressions.
+
+### census1959_rsfsr_edu_by_age_sex.csv
+RSFSR, 1959 census, Table 7 (RGAE, f. 1562, op. 336, d. 1591-1594, via Demoscope `rus_edu_59.php`): population by area (urban, rural, total),
+sex, age and level of education; `literate` = with any schooling + literate without primary schooling; `literacy` = literate per 100 persons
+stating their education. Used for the three-census cohort check (keys `c3r.*`, `c3t.*`, Table 9 of the paper).
+
+## Merging with the replication data
+- Malein `panel1879_1911.dta`: key `province_rus` (lower-case Russian); district-level baseline (`share_lit`, `per_lit_f`,
+  `share_old_beleivers1867`, `share_muslim1867`, schooling variables). Aggregate districts to `pre1917_provinces_malein`
+  (population-weighted with `pop_all`) or map districts to 1926 units with the GIS file (`Id` = `Distr_ID`).
+- Dower–Finkel–Gehlbach–Nafziger `data_from_gelbach.dta`: key `province_rus`; `lingfrac_1897`, `sh_russian_1897`.
+- 2010 census Vol. 4 (Rosstat): key `subject_2010`; education by nationality × sex.
+
+## Known limitations
+- Karelian ASSR (T1) has the weakest OCR layer; check `quality` before using single-year rows there.
+- Bashkir ASSR Table IX is printed across two page halves (36 columns); merged before checksum repair.
+- 1897 pages of Table XV (columns 13–24) were extracted with an explicit column start; verify TOTAL rows against the scan
+  if a region's `unresolved`/`missing` count is high.

@@ -1,0 +1,41 @@
+﻿region_source,year,coverage_pct,arrivals_source,departures_source,accepted_net_growth_source,arithmetic_arrivals_minus_departures,difference_accepted_vs_arithmetic,units,source
+Северный край распр.,1931,70.9,183.4,90.7,75.2,92.7,-17.5,original table scale; no conversion assumed,https://istmat.org/node/18140
+Северный край распр.,1932,84.09,143.5,88.1,38.7,55.400000000000006,-16.700000000000003,original table scale; no conversion assumed,https://istmat.org/node/18140
+Карельская АССР,1931,77.1,38.0,17.0,17.6,21.0,-3.3999999999999986,original table scale; no conversion assumed,https://istmat.org/node/18140
+Карельская АССР,1932,77.13,56.1,25.5,15.5,30.6,-15.100000000000001,original table scale; no conversion assumed,https://istmat.org/node/18140
+Ленинградская обл. без г. Ленинграда,1931,27.7,269.7,154.6,170.0,115.1,54.900000000000006,original table scale; no conversion assumed,https://istmat.org/node/18140
+Ленинградская обл. без г. Ленинграда,1932,78.41,340.0,184.8,99.6,155.2,-55.599999999999994,original table scale; no conversion assumed,https://istmat.org/node/18140
+Западная обл.,1931,63.9,182.8,109.2,24.0,73.60000000000001,-49.60000000000001,original table scale; no conversion assumed,https://istmat.org/node/18140
+Западная обл.,1932,72.44,146.1,101.5,15.0,44.599999999999994,-29.599999999999994,original table scale; no conversion assumed,https://istmat.org/node/18140
+Московская обл. без г. Москвы,1931,67.7,504.1,318.6,217.9,185.5,32.400000000000006,original table scale; no conversion assumed,https://istmat.org/node/18140
+Московская обл. без г. Москвы,1932,83.87,570.6,375.0,125.8,195.60000000000002,-69.80000000000003,original table scale; no conversion assumed,https://istmat.org/node/18140
+Ивановская обл.,1931,65.4,391.0,242.0,73.6,149.0,-75.4,original table scale; no conversion assumed,https://istmat.org/node/18140
+Ивановская обл.,1932,75.49,334.9,253.5,32.8,81.39999999999998,-48.59999999999998,original table scale; no conversion assumed,https://istmat.org/node/18140
+Горьковский край,1931,72.7,340.0,190.6,106.1,149.4,-43.30000000000001,original table scale; no conversion assumed,https://istmat.org/node/18140
+Горьковский край,1932,76.06,349.1,197.7,107.3,151.40000000000003,-44.10000000000004,original table scale; no conversion assumed,https://istmat.org/node/18140
+Центрально-Черноземная обл.,1931,69.3,216.2,129.4,63.5,86.79999999999998,-23.299999999999983,original table scale; no conversion assumed,https://istmat.org/node/18140
+Центрально-Черноземная обл.,1932,87.19,199.8,127.0,59.6,72.80000000000001,-13.20000000000001,original table scale; no conversion assumed,https://istmat.org/node/18140
+Уральская обл.,1931,51.0,949.2,512.0,432.6,437.20000000000005,-4.600000000000023,original table scale; no conversion assumed,https://istmat.org/node/18140
+Уральская обл.,1932,59.65,752.2,467.7,202.2,284.50000000000006,-82.30000000000007,original table scale; no conversion assumed,https://istmat.org/node/18140
+Башкирская обл.,1931,47.5,108.2,48.4,23.1,59.800000000000004,-36.7,original table scale; no conversion assumed,https://istmat.org/node/18140
+Башкирская обл.,1932,47.55,121.3,52.2,35.8,69.1,-33.3,original table scale; no conversion assumed,https://istmat.org/node/18140
+Татарская АССР,1931,65.7,83.6,23.3,20.7,60.3,-39.599999999999994,original table scale; no conversion assumed,https://istmat.org/node/18140
+Татарская АССР,1932,65.67,71.1,22.5,32.5,48.599999999999994,-16.099999999999994,original table scale; no conversion assumed,https://istmat.org/node/18140
+Средне- Волжский край,1931,60.0,262.2,145.5,75.5,116.69999999999999,-41.19999999999999,original table scale; no conversion assumed,https://istmat.org/node/18140
+Средне- Волжский край,1932,60.03,202.6,148.3,34.2,54.29999999999998,-20.09999999999998,original table scale; no conversion assumed,https://istmat.org/node/18140
+Нижне- Волжский край,1931,76.5,444.3,170.6,114.6,273.70000000000005,-159.10000000000005,original table scale; no conversion assumed,https://istmat.org/node/18140
+Нижне- Волжский край,1932,78.68,319.6,212.5,54.4,107.10000000000002,-52.700000000000024,original table scale; no conversion assumed,https://istmat.org/node/18140
+Северо- Кавказский край,1931,86.7,721.3,464.7,157.0,256.59999999999997,-99.59999999999997,original table scale; no conversion assumed,https://istmat.org/node/18140
+Северо- Кавказский край,1932,89.15,803.5,550.2,137.8,253.29999999999995,-115.49999999999994,original table scale; no conversion assumed,https://istmat.org/node/18140
+Дагестанская АССР,1931,61.4,23.1,8.3,13.0,14.8,-1.8000000000000007,original table scale; no conversion assumed,https://istmat.org/node/18140
+Дагестанская АССР,1932,61.44,30.3,8.0,9.7,22.3,-12.600000000000001,original table scale; no conversion assumed,https://istmat.org/node/18140
+Крымская АССР,1931,85.5,190.4,148.4,9.7,42.0,-32.3,original table scale; no conversion assumed,https://istmat.org/node/18140
+Крымская АССР,1932,87.48,282.8,231.1,12.9,51.70000000000002,-38.80000000000002,original table scale; no conversion assumed,https://istmat.org/node/18140
+Казахская АССР,1931,27.9,315.8,181.4,154.1,134.4,19.69999999999999,original table scale; no conversion assumed,https://istmat.org/node/18140
+Казахская АССР,1932,27.94,265.9,96.6,106.2,169.29999999999998,-63.09999999999998,original table scale; no conversion assumed,https://istmat.org/node/18140
+Западно- Сибирский край,1931,70.9,554.4,273.9,78.49,280.5,-202.01,original table scale; no conversion assumed,https://istmat.org/node/18140
+Западно- Сибирский край,1932,446.6,511.0,301.2,178.2,209.8,-31.600000000000023,original table scale; no conversion assumed,https://istmat.org/node/18140
+Восточно- Сибирский край,1931,70.5,175.0,105.4,54.5,69.6,-15.099999999999994,original table scale; no conversion assumed,https://istmat.org/node/18140
+Восточно- Сибирский край,1932,77.43,182.2,120.9,42.5,61.29999999999998,-18.799999999999983,original table scale; no conversion assumed,https://istmat.org/node/18140
+двк,1931,61.5,215.4,150.1,96.2,65.30000000000001,30.89999999999999,original table scale; no conversion assumed,https://istmat.org/node/18140
+двк,1932,75.1,223.4,154.1,98.6,69.30000000000001,29.299999999999983,original table scale; no conversion assumed,https://istmat.org/node/18140

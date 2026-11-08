@@ -1,0 +1,17 @@
+{
+  "source_date": "1924-01-01",
+  "transcribed_rows": 30,
+  "territories": 15,
+  "source_pdf_pages": [
+    67,
+    68,
+    69
+  ],
+  "all_pupil_sex_sums_exact": true,
+  "nonnegative_unallocated_teacher_sex": true,
+  "unallocated_teachers": 3,
+  "all_rural_counts_within_total": true,
+  "matched_young_cohort_units": 14,
+  "matched_units_coverage_at_least_80pct": 11,
+  "source_pdf_sha256": "5ef7a8b4d65ad306aa3112520fd4510f45315970e9a71ff588130df3e6139544"
+}

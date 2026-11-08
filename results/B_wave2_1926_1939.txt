@@ -1,0 +1,190 @@
+
+--- B1. Gain 1926->1939 ~ cohort x female + unit FE, area=rural ---   n=174  R2=0.921
+  female                                                         7.61  (se  0.91)  p=0.000
+  C(coh)[T.13-17]:female                                        -0.00  (se  0.00)  p=0.000
+  C(coh)[T.18-22]:female                                         4.43  (se  0.71)  p=0.000
+  C(coh)[T.23-27]:female                                         8.16  (se  0.63)  p=0.000
+  C(coh)[T.28-32]:female                                         5.65  (se  0.61)  p=0.000
+  C(coh)[T.33-37]:female                                         0.31  (se  0.54)  p=0.566
+  C(coh)[T.38-42]:female                                        -3.61  (se  0.86)  p=0.000
+  C(coh)[T.43-47]:female                                        -7.33  (se  1.06)  p=0.000
+   cell means:
+   sex          F     M
+   age_1926            
+   18-22     26.8  14.7
+   23-27     23.7   8.6
+   28-32     20.5   8.4
+   33-37     14.9   8.7
+   38-42     10.8   9.2
+   43-47      6.2   7.6
+
+--- B1. Gain 1926->1939 ~ cohort x female + unit FE, area=total ---   n=270  R2=0.886
+  female                                                         7.05  (se  0.91)  p=0.000
+  C(coh)[T.13-17]:female                                         0.00  (se  0.00)  p=0.000
+  C(coh)[T.18-22]:female                                         4.45  (se  0.48)  p=0.000
+  C(coh)[T.23-27]:female                                         7.68  (se  0.48)  p=0.000
+  C(coh)[T.28-32]:female                                         4.49  (se  1.48)  p=0.002
+  C(coh)[T.33-37]:female                                        -0.15  (se  0.48)  p=0.750
+  C(coh)[T.38-42]:female                                        -2.52  (se  0.71)  p=0.000
+  C(coh)[T.43-47]:female                                        -6.89  (se  0.71)  p=0.000
+   cell means:
+   sex          F     M
+   age_1926            
+   18-22     25.6  14.7
+   23-27     23.3   9.8
+   28-32     20.2  10.1
+   33-37     14.6   9.0
+   38-42     11.6   9.3
+   43-47      6.2   7.8
+
+--- B2a. Incl. flagged units ---   n=198  R2=0.889
+  female                                                         6.99  (se  1.11)  p=0.000
+  C(coh)[T.13-17]:female                                        -0.00  (se  0.00)  p=0.000
+  C(coh)[T.18-22]:female                                         4.16  (se  0.74)  p=0.000
+  C(coh)[T.23-27]:female                                         7.57  (se  0.72)  p=0.000
+  C(coh)[T.28-32]:female                                         5.31  (se  0.60)  p=0.000
+  C(coh)[T.33-37]:female                                         0.07  (se  0.57)  p=0.899
+  C(coh)[T.38-42]:female                                        -3.35  (se  0.83)  p=0.000
+  C(coh)[T.43-47]:female                                        -6.78  (se  1.05)  p=0.000
+
+--- B2b. + survival ratio control ---   n=174  R2=0.922
+  female                                                         7.78  (se  0.95)  p=0.000
+  C(coh)[T.13-17]:female                                         0.00  (se  0.00)  p=0.049
+  C(coh)[T.18-22]:female                                         4.22  (se  0.74)  p=0.000
+  C(coh)[T.23-27]:female                                         7.91  (se  0.67)  p=0.000
+  C(coh)[T.28-32]:female                                         5.54  (se  0.61)  p=0.000
+  C(coh)[T.33-37]:female                                         0.31  (se  0.53)  p=0.555
+  C(coh)[T.38-42]:female                                        -3.62  (se  0.86)  p=0.000
+  C(coh)[T.43-47]:female                                        -6.58  (se  1.43)  p=0.000
+  survival                                                      -2.04  (se  1.80)  p=0.258
+
+--- B2c. Survival in [0.6,1.15] ---   n=107  R2=0.917
+  female                                                         7.42  (se  1.15)  p=0.000
+  C(coh)[T.13-17]:female                                         0.00  (se  0.00)  p=0.189
+  C(coh)[T.18-22]:female                                         4.53  (se  0.96)  p=0.000
+  C(coh)[T.23-27]:female                                         8.04  (se  0.79)  p=0.000
+  C(coh)[T.28-32]:female                                         5.39  (se  0.57)  p=0.000
+  C(coh)[T.33-37]:female                                         0.22  (se  0.60)  p=0.715
+  C(coh)[T.38-42]:female                                        -3.65  (se  1.18)  p=0.002
+  C(coh)[T.43-47]:female                                        -7.11  (se  1.57)  p=0.000
+
+--- B2d. Unweighted ---   n=174  R2=0.872
+  female                                                         6.51  (se  1.19)  p=0.000
+  C(coh)[T.13-17]:female                                         0.00  (se  0.00)  p=0.000
+  C(coh)[T.18-22]:female                                         5.51  (se  0.81)  p=0.000
+  C(coh)[T.23-27]:female                                         8.57  (se  0.75)  p=0.000
+  C(coh)[T.28-32]:female                                         5.62  (se  0.53)  p=0.000
+  C(coh)[T.33-37]:female                                        -0.31  (se  0.56)  p=0.573
+  C(coh)[T.38-42]:female                                        -4.99  (se  0.88)  p=0.000
+  C(coh)[T.43-47]:female                                        -7.88  (se  0.91)  p=0.000
+
+--- B2e. Russian gubernias/okrugs only (no titular units) ---   n=114  R2=0.934
+  female                                                         6.84  (se  1.01)  p=0.000
+  C(coh)[T.13-17]:female                                         0.00  (se  0.00)  p=0.000
+  C(coh)[T.18-22]:female                                         4.24  (se  0.56)  p=0.000
+  C(coh)[T.23-27]:female                                         7.88  (se  0.57)  p=0.000
+  C(coh)[T.28-32]:female                                         5.28  (se  0.78)  p=0.000
+  C(coh)[T.33-37]:female                                         0.62  (se  0.81)  p=0.447
+  C(coh)[T.38-42]:female                                        -3.57  (se  0.90)  p=0.000
+  C(coh)[T.43-47]:female                                        -7.60  (se  0.89)  p=0.000
+
+--- B2f. Excluding Ural okrugs (1926/1939 border mismatch) ---   n=138  R2=0.926
+  female                                                         7.81  (se  0.96)  p=0.000
+  C(coh)[T.13-17]:female                                        -0.00  (se  0.00)  p=0.000
+  C(coh)[T.18-22]:female                                         4.35  (se  0.77)  p=0.000
+  C(coh)[T.23-27]:female                                         8.11  (se  0.69)  p=0.000
+  C(coh)[T.28-32]:female                                         5.67  (se  0.67)  p=0.000
+  C(coh)[T.33-37]:female                                         0.46  (se  0.61)  p=0.451
+  C(coh)[T.38-42]:female                                        -3.48  (se  0.94)  p=0.000
+  C(coh)[T.43-47]:female                                        -7.31  (se  1.15)  p=0.000
+
+--- B2g. Excluding Tatar & Bashkir ASSR (script change) ---   n=156  R2=0.919
+  female                                                         6.91  (se  0.89)  p=0.000
+  C(coh)[T.13-17]:female                                        -0.00  (se  0.00)  p=0.505
+  C(coh)[T.18-22]:female                                         4.90  (se  0.67)  p=0.000
+  C(coh)[T.23-27]:female                                         8.39  (se  0.67)  p=0.000
+  C(coh)[T.28-32]:female                                         5.66  (se  0.75)  p=0.000
+  C(coh)[T.33-37]:female                                         0.43  (se  0.72)  p=0.552
+  C(coh)[T.38-42]:female                                        -4.45  (se  0.88)  p=0.000
+  C(coh)[T.43-47]:female                                        -8.01  (se  0.83)  p=0.000
+
+--- B2h. Excluding low-quality Table IX rural pages ---   n=154  R2=0.923
+  female                                                         7.90  (se  0.99)  p=0.000
+  C(coh)[T.13-17]:female                                        -0.00  (se  0.00)  p=0.002
+  C(coh)[T.18-22]:female                                         4.79  (se  0.81)  p=0.000
+  C(coh)[T.23-27]:female                                         8.58  (se  0.59)  p=0.000
+  C(coh)[T.28-32]:female                                         6.02  (se  0.58)  p=0.000
+  C(coh)[T.33-37]:female                                         0.06  (se  0.53)  p=0.905
+  C(coh)[T.38-42]:female                                        -3.89  (se  0.87)  p=0.000
+  C(coh)[T.43-47]:female                                        -7.67  (se  1.21)  p=0.000
+
+--- B3. Linear in age at 1928 x female ---   n=174  R2=0.896
+  age1928                                                       -0.31  (se  0.06)  p=0.000
+  female                                                        24.81  (se  2.29)  p=0.000
+  age1928:female                                                -0.47  (se  0.07)  p=0.000
+
+--- B4. Pooled: female + female x young(18-32) ---   n=174  R2=0.906
+  female                                                         4.18  (se  1.36)  p=0.002
+  female:young                                                   9.24  (se  1.14)  p=0.000
+   Leave-one-unit-out for female x young: min 8.66, max 9.86, max p 0.000
+   Permutation (sex labels swapped within unit x cohort, 1000 draws): observed 9.24, p = 0.000, 95% null range [-5.47, 5.46]
+
+B6. Same cohorts, rural, mean over clean units: literacy and gender gap 1926 vs 1939
+          lit26_M  lit26_F  gap26  lit39_M  lit39_F  gap39
+age_1926                                                  
+18-22        78.7     45.4   33.3     93.4     72.2   21.2
+23-27        82.9     37.5   45.4     91.5     61.2   30.3
+28-32        79.4     30.1   49.3     87.8     50.6   37.2
+33-37        73.2     24.0   49.2     81.9     38.9   43.0
+38-42        65.3     15.8   49.5     74.5     26.6   48.0
+43-47        58.2     10.5   47.7     65.8     16.8   49.0
+
+--- B7a. Women's gain (1926 age 23-32) on women's 1926 level, unit level (n=16) ---   n=16  R2=0.242
+  lit26_F                                                       -0.45  (se  0.12)  p=0.000
+
+--- B7b. + titular unit ---   n=16  R2=0.513
+  lit26_F                                                       -0.28  (se  0.13)  p=0.027
+  titular                                                        6.84  (se  2.82)  p=0.015
+
+--- B7c. Men's gain on men's 1926 level ---   n=16  R2=0.789
+  lit26_M                                                       -0.50  (se  0.07)  p=0.000
+
+--- B7d. Men: + titular ---   n=16  R2=0.798
+  lit26_M                                                       -0.47  (se  0.08)  p=0.000
+  titular                                                        0.88  (se  0.96)  p=0.361
+
+--- B7e. Women: + survival ---   n=16  R2=0.533
+  lit26_F                                                       -0.34  (se  0.20)  p=0.084
+  titular                                                        6.31  (se  3.34)  p=0.059
+  surv                                                          -1.15  (se  1.57)  p=0.464
+
+--- B7f. Women: excl. Tatar & Bashkir ---   n=14  R2=0.394
+  lit26_F                                                       -0.40  (se  0.12)  p=0.001
+  titular                                                        4.92  (se  4.16)  p=0.237
+
+--- B7g. Women: unweighted ---   n=16  R2=0.475
+  lit26_F                                                       -0.33  (se  0.08)  p=0.000
+  titular                                                        4.81  (se  2.45)  p=0.050
+
+--- B7h. Women, cohorts 18-32 ---   n=18  R2=0.461
+  lit26_F                                                       -0.36  (se  0.14)  p=0.012
+  titular                                                        5.35  (se  2.59)  p=0.039
+
+   unit-level table:
+             unit_1926  gain_F  lit26_F    pop  titular  surv  gain_M  lit26_M
+        Чувашская АССР    33.9     30.6  64523        1   0.8     9.5     82.9
+        Татарская АССР    30.2     35.6 184116        1   0.7    11.8     78.0
+      Саратовская губ.    27.4     34.4 195842        0   0.4     8.3     84.9
+       Башкирская АССР    26.8     22.6  85717        1   0.7    12.9     69.1
+            Вотская АО    24.5     28.0  32577        1   1.0    11.7     80.4
+      Тобольский округ    24.1     18.0  14425        0   7.0    24.8     55.8
+      Курганский округ    23.6     30.9  38036        0   2.6     8.8     78.7
+        Ишимский округ    23.5     18.6  32953        0   3.1    10.6     70.0
+          Курская губ.    21.0     36.2 207594        0   0.9     7.8     86.2
+          Марийская АО    20.2     32.3  38357        1   0.8     6.6     84.4
+        Самарская губ.    19.2     32.0 175282        0   0.7     8.8     81.6
+   Сталинградская губ.    19.2     40.6  97662        0   0.9     4.0     86.9
+       Карельская АССР    16.6     49.8  14910        1   1.1     2.4     89.6
+          Вятская губ.    16.4     45.0 167147        0   0.7     3.7     89.0
+       Смоленская губ.    15.4     37.2 159245        0   0.9     4.0     90.1
+     Оренбургская губ.    15.0     40.6  52609        0   1.5     3.8     84.5

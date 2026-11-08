@@ -1,0 +1,88 @@
+Child sex ratio (boys per 100 girls aged 0-4), rural, by nationality (population-weighted):
+                        csr   cwr  units
+group                                   
+Марийцы                97.4  58.1    3.0
+Вотяки                100.0  58.2    1.0
+Мордва                100.0  67.9    3.0
+Чуваши                100.1  59.9    5.0
+Русские               100.3  61.5   35.0
+Мишари                100.5  66.3    1.0
+Татары                100.5  64.9   13.0
+Прочие                100.6  61.6   26.0
+Башкиры               101.0  68.6    1.0
+Карелы, финны, вепсы  102.1  59.3    1.0
+Украинцы              102.4  62.1    7.0
+Евреи                 103.5  49.2    1.0
+Казаки                107.3  65.7    1.0
+
+Non-Russian nationality x unit cells (rural): 23; nationalities: ['Башкиры', 'Вотяки', 'Казаки', 'Карелы, финны, вепсы', 'Марийцы', 'Мишари', 'Мордва', 'Татары', 'Украинцы', 'Чуваши']; units: 14
+                     mean    std    min    max
+ethgap_F_20-24      12.30  17.90 -21.56  52.42
+ethgap_M_20-24      11.58  13.89  -8.69  55.44
+cwr_diff             1.26   5.63  -7.96  14.20
+sr_20_39_diff        1.83   9.88 -31.59  23.85
+mob_gap_diff         0.87   2.93  -6.05   9.83
+urban_share_M_diff -13.87  12.78 -34.29  33.97
+urban_share_M        7.89   9.88   0.64  49.48
+urban_share_F        5.84  10.34   0.19  50.23
+
+--- G1. ethgap_F_20-24: mobility gap ---   n=23  R2=0.099
+  cwr_diff_z                                                     5.77  (se  6.07)  p=0.342
+  sr_20_39_diff_z                                               -3.51  (se  3.62)  p=0.333
+  mob_gap_diff_z                                                 3.27  (se  7.25)  p=0.652
+  muslim                                                        -5.53  (se  6.46)  p=0.392
+
+--- G1. ethgap_F_20-24: urban share of men ---   n=23  R2=0.478
+  cwr_diff_z                                                     2.59  (se  3.67)  p=0.482
+  sr_20_39_diff_z                                                0.81  (se  2.78)  p=0.770
+  urban_share_M_diff_z                                         -17.13  (se  4.39)  p=0.000
+  muslim                                                        -1.44  (se  4.11)  p=0.726
+
+--- G1. ethgap_F_20-24: mobility gap, unit FE ---   n=23  R2=0.900
+  cwr_diff_z                                                    -4.89  (se  4.09)  p=0.231
+  sr_20_39_diff_z                                              -13.97  (se 15.81)  p=0.377
+  mob_gap_diff_z                                                -8.33  (se 12.89)  p=0.518
+  muslim                                                       -12.15  (se  4.91)  p=0.013
+
+--- G1. ethgap_M_20-24: mobility gap ---   n=23  R2=0.686
+  cwr_diff_z                                                     4.82  (se  2.22)  p=0.030
+  sr_20_39_diff_z                                               -2.31  (se  2.11)  p=0.273
+  mob_gap_diff_z                                                 1.49  (se  4.81)  p=0.757
+  muslim                                                        14.68  (se  2.96)  p=0.000
+
+--- G1. ethgap_M_20-24: urban share of men ---   n=23  R2=0.772
+  cwr_diff_z                                                     3.61  (se  1.81)  p=0.047
+  sr_20_39_diff_z                                               -0.72  (se  1.77)  p=0.684
+  urban_share_M_diff_z                                          -6.48  (se  3.19)  p=0.043
+  muslim                                                        16.30  (se  2.22)  p=0.000
+
+--- G1. ethgap_M_20-24: mobility gap, unit FE ---   n=23  R2=0.965
+  cwr_diff_z                                                    -0.25  (se  2.53)  p=0.921
+  sr_20_39_diff_z                                               -7.23  (se  7.75)  p=0.351
+  mob_gap_diff_z                                                -4.76  (se  7.63)  p=0.533
+  muslim                                                        13.66  (se  2.18)  p=0.000
+
+--- G1. ethgap_F_12-14: mobility gap ---   n=22  R2=0.429
+  cwr_diff_z                                                     6.69  (se  5.02)  p=0.183
+  sr_20_39_diff_z                                               -7.64  (se  2.57)  p=0.003
+  mob_gap_diff_z                                                -1.92  (se  6.73)  p=0.775
+  muslim                                                       -13.13  (se  3.95)  p=0.001
+
+--- G1. ethgap_F_12-14: urban share of men ---   n=22  R2=0.596
+  cwr_diff_z                                                     5.37  (se  3.31)  p=0.105
+  sr_20_39_diff_z                                               -3.65  (se  2.43)  p=0.133
+  urban_share_M_diff_z                                         -10.39  (se  2.99)  p=0.001
+  muslim                                                       -11.41  (se  2.68)  p=0.000
+
+--- G1. ethgap_F_12-14: mobility gap, unit FE ---   n=22  R2=0.916
+  cwr_diff_z                                                     0.31  (se  6.84)  p=0.964
+  sr_20_39_diff_z                                              -13.88  (se 17.29)  p=0.422
+  mob_gap_diff_z                                                -6.99  (se 12.89)  p=0.587
+  muslim                                                       -18.27  (se  5.35)  p=0.001
+G2. mob_gap_diff_z: 3.27 (7.25); leave-one-unit-out [-4.25, 8.56]; leave-one-nationality-out [-4.25, 6.06]; permutation p = 0.489; unweighted 6.22 (4.61)
+G2. urban_share_M_diff_z: -17.13 (4.39); leave-one-unit-out [-20.35, -14.64]; leave-one-nationality-out [-19.87, -8.10]; permutation p = 0.002; unweighted -4.82 (5.76)
+
+--- G3. Female ethnic gap, non-Muslim nationalities only ---   n=14  R2=0.150
+  cwr_diff_z                                                     4.59  (se  7.87)  p=0.560
+  sr_20_39_diff_z                                               -8.47  (se  4.15)  p=0.041
+  mob_gap_diff_z                                                 0.35  (se  9.91)  p=0.972

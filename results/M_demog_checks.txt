@@ -1,0 +1,36 @@
+(1a) Wave 1, RSFSR rural, cohort born 1878-87 (32-41 at decree):
+   M: pop 1897 6,496,944, pop 1926 3,345,640, survival 0.51, lit 1897 43.3, lit 1926 60.9, gain 17.6
+   F: pop 1897 6,834,381, pop 1926 3,761,279, survival 0.55, lit 1897 14.4, lit 1926 15.1, gain 0.7
+   Excess male attrition relative to women: 7.3% of the 1897 male cohort. If every excess loss were illiterate, male literacy would rise by 3.4 pp of the observed 17.6 pp gain.
+   Placebo cohort men: survival 0.46, gain 0.4 pp (this is the realised selection at higher mortality).
+(1b) Wave 2, 18 clean units rural, cohorts 18-32 in 1926:
+         pop26      pop39  lit26   gain  surv
+sex                                          
+F    2845896.0  2496542.0  40.79  24.35  0.88
+M    2359628.0  2109016.0  81.60  11.09  0.89
+   Excess female attrition relative to men: 1.9%; if all of it were illiterate, women's literacy would rise by 0.8 pp of the observed 24.4 pp.
+
+(2) Wild cluster bootstrap (Rademacher, 1,999 draws, restricted):
+   Wave 1 pooled DDD (treated x female): t = -11.01, wild-bootstrap p = 0.000, clusters = 19
+   Wave 2 pooled DDD (female x young): t = 8.16, wild-bootstrap p = 0.000, clusters = 18
+   Legacy beta_F: t = 3.95, wild-bootstrap p = 0.000, clusters = 24
+   Legacy beta_M: t = 0.33, wild-bootstrap p = 0.580
+
+(3) Whipple index (ages 23-62; 100 = no heaping, 500 = all on 0/5):
+   M all        Whipple = 139
+   M literate   Whipple = 132
+   M illiterate Whipple = 161
+   F all        Whipple = 169
+   F literate   Whipple = 135
+   F illiterate Whipple = 179
+
+(4) Summary statistics
+   Wave 1 cells: 265; regions 19; gain mean 2.6 sd 8.1; lit1897 mean 20.5; survival mean 0.51
+   Wave 2 cells: 174; units 18; gain mean 13.7 sd 8.5; lit1926 mean 50.9; survival mean 1.52
+   Decomposition cells: 866; groups 13; literacy mean 54.3 sd 26.2; median cell population 8244
+   teachers_percap_1911   n=41 mean 0.92 sd 0.27 min 0.60 max 1.83
+   urban_share_M          n=30 mean 23.42 sd 15.52 min 6.20 max 65.31
+   cwr                    n=39 mean 60.02 sd 5.46 min 45.51 max 72.78
+   agshare_1897           n=41 mean 74.06 sd 9.28 min 51.09 max 87.95
+   gender_gap_20-24       n=40 mean 32.61 sd 9.22 min 10.20 max 48.10
+   Legacy cells: 40; subjects 24; nationalities 12; gap10 mean 5.4 sd 4.9; gap26F mean 16.7 sd 15.3; gap26M mean 17.7 sd 15.0

@@ -1,0 +1,216 @@
+﻿E1 cells: 776 regions: 19
+
+--- E1a. Wave 1 event study, rural: gain 1897->1926 by age at decree (ref 63-67) x female, region FE ---   n=265  R2=0.934
+  C(bin, Treatment('63-67'))[T.33-37]                    25.46  (se  1.76)  p=0.000
+  C(bin, Treatment('63-67'))[T.38-42]                    18.29  (se  1.22)  p=0.000
+  C(bin, Treatment('63-67'))[T.43-47]                    13.58  (se  0.82)  p=0.000
+  C(bin, Treatment('63-67'))[T.48-52]                     7.65  (se  0.45)  p=0.000
+  C(bin, Treatment('63-67'))[T.53-57]                     2.85  (se  0.36)  p=0.000
+  C(bin, Treatment('63-67'))[T.58-62]                     2.17  (se  0.34)  p=0.000
+  female                                                  1.20  (se  0.43)  p=0.006
+  C(bin, Treatment('63-67'))[T.33-37]:female            -21.40  (se  2.02)  p=0.000
+  C(bin, Treatment('63-67'))[T.38-42]:female            -17.30  (se  1.36)  p=0.000
+  C(bin, Treatment('63-67'))[T.43-47]:female            -13.61  (se  0.90)  p=0.000
+  C(bin, Treatment('63-67'))[T.48-52]:female             -7.48  (se  0.48)  p=0.000
+  C(bin, Treatment('63-67'))[T.53-57]:female             -3.23  (se  0.35)  p=0.000
+  C(bin, Treatment('63-67'))[T.58-62]:female             -2.11  (se  0.28)  p=0.000
+  bin   men  men_se  women  women_se   diff  diff_se
+33-37 25.46    1.76   4.06      0.60 -21.40     2.02
+38-42 18.29    1.22   1.00      0.51 -17.30     1.36
+43-47 13.58    0.82  -0.03      0.26 -13.61     0.90
+48-52  7.65    0.45   0.17      0.26  -7.48     0.48
+53-57  2.85    0.36  -0.38      0.12  -3.23     0.35
+58-62  2.17    0.34   0.06      0.12  -2.11     0.28
+   cell means rural:
+   sex           F     M
+   age_decree           
+   33-37       2.0  20.9
+   38-42      -0.5  14.5
+   43-47      -1.6   9.3
+   48-52      -1.7   4.0
+   53-57      -2.1  -0.6
+   58-62      -1.7  -1.2
+   63-67      -1.5  -3.3
+
+--- E1b. unweighted ---   n=265  R2=0.873
+  female                                                  1.80  (se  0.79)  p=0.023
+  C(bin, Treatment('63-67'))[T.33-37]:female            -20.68  (se  1.68)  p=0.000
+  C(bin, Treatment('63-67'))[T.38-42]:female            -16.77  (se  1.33)  p=0.000
+  C(bin, Treatment('63-67'))[T.43-47]:female            -12.76  (se  1.16)  p=0.000
+  C(bin, Treatment('63-67'))[T.48-52]:female             -7.39  (se  0.56)  p=0.000
+  C(bin, Treatment('63-67'))[T.53-57]:female             -3.35  (se  0.40)  p=0.000
+  C(bin, Treatment('63-67'))[T.58-62]:female             -2.31  (se  0.42)  p=0.000
+
+--- E1c. + survival ratio ---   n=265  R2=0.935
+  female                                                  1.52  (se  0.55)  p=0.005
+  C(bin, Treatment('63-67'))[T.33-37]:female            -21.49  (se  2.03)  p=0.000
+  C(bin, Treatment('63-67'))[T.38-42]:female            -17.58  (se  1.35)  p=0.000
+  C(bin, Treatment('63-67'))[T.43-47]:female            -13.97  (se  0.89)  p=0.000
+  C(bin, Treatment('63-67'))[T.48-52]:female             -7.51  (se  0.48)  p=0.000
+  C(bin, Treatment('63-67'))[T.53-57]:female             -3.25  (se  0.37)  p=0.000
+  C(bin, Treatment('63-67'))[T.58-62]:female             -2.14  (se  0.29)  p=0.000
+  survival                                               -4.01  (se  7.20)  p=0.578
+
+--- E1d. total population ---   n=266  R2=0.913
+  female                                                  2.18  (se  0.57)  p=0.000
+  C(bin, Treatment('63-67'))[T.33-37]:female            -20.15  (se  2.16)  p=0.000
+  C(bin, Treatment('63-67'))[T.38-42]:female            -16.38  (se  1.59)  p=0.000
+  C(bin, Treatment('63-67'))[T.43-47]:female            -12.43  (se  0.89)  p=0.000
+  C(bin, Treatment('63-67'))[T.48-52]:female             -7.34  (se  0.44)  p=0.000
+  C(bin, Treatment('63-67'))[T.53-57]:female             -3.12  (se  0.32)  p=0.000
+  C(bin, Treatment('63-67'))[T.58-62]:female             -1.96  (se  0.25)  p=0.000
+
+--- E1e. Pooled DDD: treated (<=47 at decree) x female, placebo = 53-67 ---   n=228  R2=0.841
+  treated                                                18.29  (se  1.37)  p=0.000
+  female                                                 -0.68  (se  0.45)  p=0.132
+  treated:female                                        -16.31  (se  1.48)  p=0.000
+
+--- E1f. Pooled DDD excluding Muslim regions ---   n=168  R2=0.851
+  treated                                                19.40  (se  1.42)  p=0.000
+  female                                                 -0.24  (se  0.34)  p=0.478
+  treated:female                                        -17.25  (se  1.60)  p=0.000
+
+--- E2a. Wave 2 event study, rural: gain 1926->1939 by age in 1926 (ref 43-47) x female, unit FE ---   n=216  R2=0.848
+  C(coh, Treatment('43-47'))[T.18-22]                     8.55  (se  1.25)  p=0.000
+  C(coh, Treatment('43-47'))[T.23-27]                     5.09  (se  2.25)  p=0.024
+  C(coh, Treatment('43-47'))[T.28-32]                     1.95  (se  0.92)  p=0.034
+  C(coh, Treatment('43-47'))[T.33-37]                     0.70  (se  1.65)  p=0.671
+  C(coh, Treatment('43-47'))[T.38-42]                    -2.62  (se  2.27)  p=0.249
+  female                                                  1.21  (se  1.18)  p=0.306
+  C(coh, Treatment('43-47'))[T.18-22]:female             10.99  (se  1.30)  p=0.000
+  C(coh, Treatment('43-47'))[T.23-27]:female             11.57  (se  2.84)  p=0.000
+  C(coh, Treatment('43-47'))[T.28-32]:female             11.02  (se  1.29)  p=0.000
+  C(coh, Treatment('43-47'))[T.33-37]:female              5.86  (se  1.39)  p=0.000
+  C(coh, Treatment('43-47'))[T.38-42]:female              5.34  (se  2.52)  p=0.034
+  bin   men  men_se  women  women_se  diff  diff_se
+18-22  8.55    1.25  19.54      1.30 10.99     1.30
+23-27  5.09    2.25  16.65      0.87 11.57     2.84
+28-32  1.95    0.92  12.97      0.94 11.02     1.29
+33-37  0.70    1.65   6.56      0.86  5.86     1.39
+38-42 -2.62    2.27   2.72      0.93  5.34     2.52
+
+--- E2b. Pooled DDD: young (18-32 in 1926) x female, cohort and unit FE ---   n=216  R2=0.841
+  young                                                   9.43  (se  1.15)  p=0.000
+  female                                                  5.09  (se  0.92)  p=0.000
+  young:female                                            7.30  (se  1.44)  p=0.000
+
+--- E3a. Wave 1 DDD: treated x female x teachers_percap_1911 (rural, all nationalities, unit FE) ---   n=126  R2=0.978
+  treated:female                                        -24.64  (se  1.77)  p=0.000
+  treated:female:teachers_percap_1911_z                   3.79  (se  2.19)  p=0.084
+
+--- E3a. Wave 1 DDD: treated x female x urban_share_M (rural, all nationalities, unit FE) ---   n=128  R2=0.974
+  treated:female                                        -25.26  (se  1.85)  p=0.000
+  treated:female:urban_share_M_z                          1.62  (se  1.31)  p=0.213
+
+--- E3a. Wave 1 DDD: treated x female x cwr (rural, all nationalities, unit FE) ---   n=132  R2=0.975
+  treated:female                                        -24.45  (se  1.77)  p=0.000
+  treated:female:cwr_z                                   -1.68  (se  2.06)  p=0.417
+
+--- E3a. Wave 1 DDD: treated x female x agshare_1897 (rural, all nationalities, unit FE) ---   n=126  R2=0.975
+  treated:female                                        -23.14  (se  2.51)  p=0.000
+  treated:female:agshare_1897_z                          -4.27  (se  3.05)  p=0.161
+
+--- E3b. Wave 2 DDD: female x young x teachers_percap_1911 (rural, unit and cohort FE) ---   n=192  R2=0.849
+  female:young                                            7.34  (se  1.54)  p=0.000
+  female:young:teachers_percap_1911_z                     0.37  (se  1.64)  p=0.820
+
+--- E3b. Wave 2 DDD: female x young x urban_share_M (rural, unit and cohort FE) ---   n=216  R2=0.853
+  female:young                                            8.30  (se  1.41)  p=0.000
+  female:young:urban_share_M_z                            3.04  (se  1.58)  p=0.054
+
+--- E3b. Wave 2 DDD: female x young x cwr (rural, unit and cohort FE) ---   n=216  R2=0.841
+  female:young                                            7.23  (se  1.47)  p=0.000
+  female:young:cwr_z                                      0.27  (se  0.94)  p=0.774
+
+--- E3b. Wave 2 DDD: female x young x agshare_1897 (rural, unit and cohort FE) ---   n=192  R2=0.844
+  female:young                                            6.24  (se  2.29)  p=0.007
+  female:young:agshare_1897_z                             1.48  (se  2.77)  p=0.592
+
+--- E3c. Wave 2 DDD: female x young x titular unit ---   n=216  R2=0.851
+  female                                                  4.90  (se  0.96)  p=0.000
+  female:young                                            6.16  (se  1.69)  p=0.000
+  female:titular                                          0.75  (se  2.33)  p=0.749
+  female:young:titular                                    4.41  (se  2.98)  p=0.138
+
+E3 summary (DDD coefficient on sex x cohort x predictor, per SD):
+                                       wave            predictor   coef    se     p   n  units              spec
+1 (1926 cross-section: cohort 40-49 vs 60+) teachers_percap_1911  3.790 2.194 0.084 126     33          baseline
+1 (1926 cross-section: cohort 40-49 vs 60+) teachers_percap_1911  3.623 2.412 0.133 105     27 excl. low-quality
+1 (1926 cross-section: cohort 40-49 vs 60+) teachers_percap_1911  2.231 2.143 0.298 126     33        unweighted
+1 (1926 cross-section: cohort 40-49 vs 60+)        urban_share_M  1.625 1.306 0.213 128     34          baseline
+1 (1926 cross-section: cohort 40-49 vs 60+)        urban_share_M  1.584 1.326 0.232 107     28 excl. low-quality
+1 (1926 cross-section: cohort 40-49 vs 60+)        urban_share_M  1.958 1.031 0.058 128     34        unweighted
+1 (1926 cross-section: cohort 40-49 vs 60+)                  cwr -1.676 2.063 0.417 132     35          baseline
+1 (1926 cross-section: cohort 40-49 vs 60+)                  cwr -1.611 2.470 0.514 111     29 excl. low-quality
+1 (1926 cross-section: cohort 40-49 vs 60+)                  cwr  1.957 3.514 0.578 132     35        unweighted
+1 (1926 cross-section: cohort 40-49 vs 60+)         agshare_1897 -4.270 3.046 0.161 126     33          baseline
+1 (1926 cross-section: cohort 40-49 vs 60+)         agshare_1897 -3.897 3.947 0.323 105     27 excl. low-quality
+1 (1926 cross-section: cohort 40-49 vs 60+)         agshare_1897 -4.287 1.565 0.006 126     33        unweighted
+ 2 (gains 1926-1939: cohort 18-32 vs 33-47) teachers_percap_1911  0.374 1.640 0.820 192     16          baseline
+ 2 (gains 1926-1939: cohort 18-32 vs 33-47) teachers_percap_1911 -1.157 1.858 0.533 156     13 excl. low-quality
+ 2 (gains 1926-1939: cohort 18-32 vs 33-47) teachers_percap_1911  0.515 0.788 0.514 192     16        unweighted
+ 2 (gains 1926-1939: cohort 18-32 vs 33-47)        urban_share_M  3.044 1.577 0.054 216     18          baseline
+ 2 (gains 1926-1939: cohort 18-32 vs 33-47)        urban_share_M  4.101 1.508 0.007 180     15 excl. low-quality
+ 2 (gains 1926-1939: cohort 18-32 vs 33-47)        urban_share_M  2.136 1.968 0.278 216     18        unweighted
+ 2 (gains 1926-1939: cohort 18-32 vs 33-47)                  cwr  0.269 0.937 0.774 216     18          baseline
+ 2 (gains 1926-1939: cohort 18-32 vs 33-47)                  cwr  0.237 0.834 0.776 180     15 excl. low-quality
+ 2 (gains 1926-1939: cohort 18-32 vs 33-47)                  cwr  0.017 1.107 0.988 216     18        unweighted
+ 2 (gains 1926-1939: cohort 18-32 vs 33-47)         agshare_1897  1.485 2.768 0.592 192     16          baseline
+ 2 (gains 1926-1939: cohort 18-32 vs 33-47)         agshare_1897  2.758 3.431 0.421 156     13 excl. low-quality
+ 2 (gains 1926-1939: cohort 18-32 vs 33-47)         agshare_1897  3.923 3.487 0.260 192     16        unweighted
+
+--- E3d. Wave 2 DDD, all four predictors jointly ---   n=192  R2=0.863
+  female:young                                            7.89  (se  2.20)  p=0.000
+  female:young:teachers_percap_1911_z                     0.94  (se  1.64)  p=0.565
+  female:young:urban_share_M_z                            3.02  (se  1.51)  p=0.046
+  female:young:cwr_z                                      0.29  (se  1.12)  p=0.794
+  female:young:agshare_1897_z                             0.85  (se  2.90)  p=0.769
+
+--- E3e. Wave 1 DDD, all four predictors jointly ---   n=122  R2=0.982
+  treated:female                                        -24.72  (se  2.15)  p=0.000
+  treated:female:teachers_percap_1911_z                   0.81  (se  2.97)  p=0.785
+  treated:female:urban_share_M_z                          1.87  (se  1.49)  p=0.208
+  treated:female:cwr_z                                   -0.77  (se  2.03)  p=0.704
+  treated:female:agshare_1897_z                          -0.47  (se  2.33)  p=0.839
+
+E4 [total]
+ area                                  spec   gapF  gapF_se   gapM  gapM_se  n
+total                  baseline, subject FE  0.302    0.076  0.013    0.060 42
+total                      + nationality FE -0.008    0.436  0.140    0.577 42
+total                         excl. Kalmyks  0.302    0.075  0.013    0.060 41
+total    excl. Ukrainians, Germans, Kazakhs  0.321    0.090  0.018    0.088 32
+total Volga-Ural titular nationalities only  0.329    0.093  0.014    0.091 29
+total                            unweighted  0.215    0.074  0.005    0.061 42
+total                       female gap only  0.302    0.076    NaN      NaN 42
+total                         male gap only    NaN      NaN  0.029    0.101 42
+total          higher education, subject FE  0.391    0.086 -0.003    0.107 42
+total           illiteracy 2010, subject FE  0.009    0.002  0.010    0.005 42
+
+E4 [rural]
+ area                                  spec   gapF  gapF_se   gapM  gapM_se  n
+rural                  baseline, subject FE  0.215    0.088 -0.007    0.035 38
+rural                      + nationality FE -0.007    0.731 -0.033    0.539 38
+rural                         excl. Kalmyks  0.215    0.088 -0.007    0.035 38
+rural    excl. Ukrainians, Germans, Kazakhs  0.232    0.099  0.035    0.040 28
+rural Volga-Ural titular nationalities only  0.232    0.097  0.035    0.040 27
+rural                            unweighted  0.197    0.052 -0.069    0.074 38
+rural                       female gap only  0.213    0.078    NaN      NaN 38
+rural                         male gap only    NaN      NaN  0.030    0.044 38
+rural          higher education, subject FE  0.220    0.065 -0.029    0.024 38
+rural           illiteracy 2010, subject FE  0.004    0.004  0.013    0.006 38
+
+--- E5a. 2010 ethnic gap in secondary education: female x cohort (born <=1950 'old', 1951-60 'mid'), nationality and age FE ---   n=132  R2=0.960
+  female                                                 -0.22  (se  0.52)  p=0.672
+  female:mid                                              2.14  (se  0.95)  p=0.024
+  female:old                                              6.11  (se  2.37)  p=0.010
+
+--- E5b. same, higher education ---   n=132  R2=0.852
+  female                                                  0.11  (se  0.17)  p=0.521
+  female:mid                                              1.72  (se  0.42)  p=0.000
+  female:old                                             -0.11  (se  0.65)  p=0.861
+
+--- E5c. + nationality x age FE ---   n=132  R2=0.986
+  female                                                 -0.22  (se  0.69)  p=0.754
+  female:mid                                              2.13  (se  1.26)  p=0.090
+  female:old                                              6.04  (se  3.16)  p=0.056
+figures saved

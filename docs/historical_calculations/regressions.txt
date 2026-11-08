@@ -1,0 +1,97 @@
+
+--- 1. Adult gain 1897->1926 (pp) by age at decree, area=total, region FE, weights=pop1897 ---   n=113  R2=0.913
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41]            19.97  (se  1.68)  p=0.000
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51]             8.07  (se  0.64)  p=0.000
+  female                                                          -0.68  (se  0.71)  p=0.342
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41]:female    -15.52  (se  2.03)  p=0.000
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51]:female     -7.29  (se  0.69)  p=0.000
+   mean gain by cell: {('A_32-41', 'F'): 2.8, ('A_32-41', 'M'): 18.5, ('B_42-51', 'F'): -0.5, ('B_42-51', 'M'): 6.6, ('C_52-61 placebo', 'F'): -1.2, ('C_52-61 placebo', 'M'): -0.8}
+
+--- 1. Adult gain 1897->1926 (pp) by age at decree, area=rural, region FE, weights=pop1897 ---   n=113  R2=0.937
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41]            19.24  (se  1.72)  p=0.000
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51]             7.98  (se  0.69)  p=0.000
+  female                                                          -1.77  (se  0.51)  p=0.000
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41]:female    -16.51  (se  1.87)  p=0.000
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51]:female     -7.82  (se  0.73)  p=0.000
+   mean gain by cell: {('A_32-41', 'F'): 0.8, ('A_32-41', 'M'): 17.8, ('B_42-51', 'F'): -1.7, ('B_42-51', 'M'): 6.8, ('C_52-61 placebo', 'F'): -1.9, ('C_52-61 placebo', 'M'): -0.7}
+
+--- 2a. Literacy (rural, %) with region x cohort, group x cohort, sex x cohort FE; non-Russian x female x cohort (ref: 40-49) ---   n=935  R2=0.952
+  nonrus:female:C(band_c)[40-49]                                  12.50  (se  4.77)  p=0.009
+  nonrus:female:C(band_c)[30-39]                                   9.49  (se  4.28)  p=0.027
+  nonrus:female:C(band_c)[25-29]                                   3.95  (se  3.45)  p=0.252
+  nonrus:female:C(band_c)[20-24]                                   2.84  (se  4.03)  p=0.481
+  nonrus:female:C(band_c)[15-19]                                  -1.48  (se  3.98)  p=0.709
+  nonrus:female:C(band_c)[12-14]                                   1.78  (se  3.54)  p=0.615
+
+--- 2b. Same, excluding Muslim groups (Tatars, Bashkirs, Mishars) ---   n=753  R2=0.963
+  nonrus:female:C(band_c)[40-49]                                   4.74  (se  3.56)  p=0.182
+  nonrus:female:C(band_c)[30-39]                                   1.37  (se  4.16)  p=0.741
+  nonrus:female:C(band_c)[25-29]                                  -0.21  (se  4.89)  p=0.966
+  nonrus:female:C(band_c)[20-24]                                  -3.22  (se  4.93)  p=0.514
+  nonrus:female:C(band_c)[15-19]                                  -5.23  (se  3.74)  p=0.162
+  nonrus:female:C(band_c)[12-14]                                  -4.14  (se  4.68)  p=0.377
+
+--- 2c. Pooled cohorts: non-Russian x female, and its difference for Muslim groups ---   n=935  R2=0.956
+  nonrus:female                                                   -1.27  (se  2.81)  p=0.650
+  nonrus:female:muslim                                            16.83  (se  3.37)  p=0.000
+
+--- 2d. Decomposition by cohort (rural, pct; region x cohort FE, group FE) ---   n=935
+  cohort     female  non-Rus(non-Muslim)   Muslim  nonRus x female  Muslim x female
+  40-49       -53.6                  2.4    -11.0              5.7             27.3
+  30-39       -52.2                  4.4    -16.7              1.3             23.2
+  25-29       -47.5                  5.8     -1.7             -0.2             12.4
+  20-24       -36.3                  7.4     -4.4             -3.3             15.5
+  15-19       -26.0                  9.8      5.2             -5.2              4.7
+  12-14       -30.1                 11.8      9.3             -4.2             12.5
+
+--- 3. Same nationality inside vs outside titular unit: group x sex x cohort FE, region x cohort FE ---   n=324  R2=0.990
+  titular_unit                                                     2.07  (se  2.54)  p=0.414
+  titular_unit:soviet                                             -2.21  (se  4.05)  p=0.584
+  titular_unit:female                                              0.20  (se  1.23)  p=0.871
+  titular_unit:soviet:female                                       1.32  (se  1.86)  p=0.477
+   cells: 324  inside-unit cells: 59
+
+--- 4. Russians: gender_gap_20-24 ~ teachers_percap_1911_z + agshare_1897_z + cwr_z   n=41 R2=0.53 (standardised regressors, HC1) ---
+  teachers_percap_1911_z           -4.73 (se  0.91) p=0.000
+  agshare_1897_z                    2.38 (se  0.99) p=0.016
+  cwr_z                             2.12 (se  0.98) p=0.030
+
+--- 4. Russians: gender_gap_20-24 ~ exp_zemstvo_edu_pc_1894_z + agshare_1897_z + cwr_z   n=34 R2=0.38 (standardised regressors, HC1) ---
+  exp_zemstvo_edu_pc_1894_z        -3.66 (se  0.95) p=0.000
+  agshare_1897_z                    0.96 (se  1.50) p=0.521
+  cwr_z                             2.48 (se  1.02) p=0.015
+
+--- 4. Russians: gender_gap_20-24 ~ per_lit_f_z + agshare_1897_z + cwr_z   n=41 R2=0.35 (standardised regressors, HC1) ---
+  per_lit_f_z                      -2.54 (se  0.90) p=0.005
+  agshare_1897_z                    3.25 (se  0.98) p=0.001
+  cwr_z                             1.48 (se  1.19) p=0.214
+
+--- 4. Russians: gender_gap_12-14 ~ teachers_percap_1911_z + agshare_1897_z + cwr_z   n=40 R2=0.35 (standardised regressors, HC1) ---
+  teachers_percap_1911_z           -0.29 (se  2.69) p=0.914
+  agshare_1897_z                    7.70 (se  4.76) p=0.106
+  cwr_z                             3.78 (se  1.31) p=0.004
+
+--- 4. Russians: gender_gap_12-14 ~ exp_zemstvo_edu_pc_1894_z + agshare_1897_z + cwr_z   n=34 R2=0.38 (standardised regressors, HC1) ---
+  exp_zemstvo_edu_pc_1894_z        -2.02 (se  1.50) p=0.178
+  agshare_1897_z                    0.45 (se  1.85) p=0.807
+  cwr_z                             3.68 (se  0.84) p=0.000
+
+--- 4. Russians: gender_gap_12-14 ~ per_lit_f_z + agshare_1897_z + cwr_z   n=40 R2=0.35 (standardised regressors, HC1) ---
+  per_lit_f_z                      -0.34 (se  2.01) p=0.865
+  agshare_1897_z                    7.68 (se  4.68) p=0.100
+  cwr_z                             3.70 (se  1.59) p=0.020
+
+--- 4. Russians: lit_F_12-14 ~ teachers_percap_1911_z + agshare_1897_z + cwr_z   n=40 R2=0.39 (standardised regressors, HC1) ---
+  teachers_percap_1911_z            7.24 (se  2.41) p=0.003
+  agshare_1897_z                   -5.72 (se  4.59) p=0.212
+  cwr_z                            -3.91 (se  1.67) p=0.020
+
+--- 4. Russians: lit_F_12-14 ~ exp_zemstvo_edu_pc_1894_z + agshare_1897_z + cwr_z   n=34 R2=0.21 (standardised regressors, HC1) ---
+  exp_zemstvo_edu_pc_1894_z         5.10 (se  3.22) p=0.114
+  agshare_1897_z                   -0.58 (se  4.00) p=0.885
+  cwr_z                            -3.58 (se  1.94) p=0.064
+
+--- 4. Russians: lit_F_12-14 ~ per_lit_f_z + agshare_1897_z + cwr_z   n=40 R2=0.27 (standardised regressors, HC1) ---
+  per_lit_f_z                       2.85 (se  2.41) p=0.237
+  agshare_1897_z                   -7.08 (se  4.16) p=0.089
+  cwr_z                            -3.52 (se  1.99) p=0.078

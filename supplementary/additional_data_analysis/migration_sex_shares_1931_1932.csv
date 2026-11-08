@@ -1,0 +1,29 @@
+﻿republic,year,direction,male_pct,female_pct,sum_pct,source
+РСФСР,1931,arrivals,59.6,40.4,100.0,https://istmat.org/node/18139
+РСФСР,1931,departures,64.0,36.0,100.0,https://istmat.org/node/18139
+РСФСР,1932,arrivals,63.8,36.2,100.0,https://istmat.org/node/18139
+РСФСР,1932,departures,64.3,35.7,100.0,https://istmat.org/node/18139
+УССР,1931,arrivals,63.2,36.8,100.0,https://istmat.org/node/18139
+УССР,1931,departures,65.7,34.3,100.0,https://istmat.org/node/18139
+УССР,1932,arrivals,62.1,37.9,100.0,https://istmat.org/node/18139
+УССР,1932,departures,65.2,34.8,100.0,https://istmat.org/node/18139
+БССР,1931,arrivals,55.7,44.3,100.0,https://istmat.org/node/18139
+БССР,1931,departures,60.4,39.6,100.0,https://istmat.org/node/18139
+БССР,1932,arrivals,54.0,46.0,100.0,https://istmat.org/node/18139
+БССР,1932,departures,57.8,42.2,100.0,https://istmat.org/node/18139
+ЗСФСР,1931,arrivals,55.4,44.6,100.0,https://istmat.org/node/18139
+ЗСФСР,1931,departures,57.7,42.3,100.0,https://istmat.org/node/18139
+ЗСФСР,1932,arrivals,55.7,44.3,100.0,https://istmat.org/node/18139
+ЗСФСР,1932,departures,56.3,43.7,100.0,https://istmat.org/node/18139
+Туркменская ССР,1931,arrivals,51.9,48.1,100.0,https://istmat.org/node/18139
+Туркменская ССР,1931,departures,54.9,45.1,100.0,https://istmat.org/node/18139
+Туркменская ССР,1932,arrivals,53.9,46.1,100.0,https://istmat.org/node/18139
+Туркменская ССР,1932,departures,55.0,45.0,100.0,https://istmat.org/node/18139
+Узбекская ССР,1931,arrivals,55.1,44.9,100.0,https://istmat.org/node/18139
+Узбекская ССР,1931,departures,56.2,43.8,100.0,https://istmat.org/node/18139
+Узбекская ССР,1932,arrivals,52.5,47.5,100.0,https://istmat.org/node/18139
+Узбекская ССР,1932,departures,55.4,44.6,100.0,https://istmat.org/node/18139
+СССР,1931,arrivals,60.0,40.0,100.0,https://istmat.org/node/18139
+СССР,1931,departures,63.6,36.4,100.0,https://istmat.org/node/18139
+СССР,1932,arrivals,63.2,36.8,100.0,https://istmat.org/node/18139
+СССР,1932,departures,64.1,35.9,100.0,https://istmat.org/node/18139

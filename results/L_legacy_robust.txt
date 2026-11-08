@@ -1,0 +1,60 @@
+
+--- L1 [total]. 2010 gap on 1926 gaps by cohort: women/men aged 20-29 (mothers/fathers of the 1930s births) and 30-49 ---   n=39  R2=0.966
+  gapF_2029                              0.332  (se  0.093)  p=0.000
+  gapM_2029                              0.038  (se  0.105)  p=0.717
+  gapF_3049                             -0.143  (se  0.177)  p=0.417
+  gapM_3049                             -0.073  (se  0.116)  p=0.533
+
+--- L1b [total]. 1926 cohort 20-29 only ---   n=39  R2=0.961
+  gapF_2029                              0.252  (se  0.036)  p=0.000
+  gapM_2029                             -0.004  (se  0.065)  p=0.952
+
+--- L1c [total]. 1926 cohort 30-49 only ---   n=39  R2=0.919
+  gapF_3049                              0.414  (se  0.152)  p=0.006
+  gapM_3049                              0.034  (se  0.052)  p=0.518
+
+--- L1d [total]. 1926 Soviet-schooled cohort 12-19 (children, not parents, of the first wave) ---   n=37  R2=0.966
+  gapF_1219                              0.230  (se  0.040)  p=0.000
+  gapM_1219                              0.047  (se  0.035)  p=0.174
+
+--- L1e [total]. higher education on cohort 20-29 gaps ---   n=39  R2=0.955
+  gapF_2029                              0.329  (se  0.053)  p=0.000
+  gapM_2029                             -0.083  (se  0.109)  p=0.447
+
+--- L1 [rural]. 2010 gap on 1926 gaps by cohort: women/men aged 20-29 (mothers/fathers of the 1930s births) and 30-49 ---   n=34  R2=0.895
+  gapF_2029                              0.114  (se  0.100)  p=0.256
+  gapM_2029                              0.079  (se  0.077)  p=0.307
+  gapF_3049                              0.093  (se  0.127)  p=0.464
+  gapM_3049                             -0.122  (se  0.080)  p=0.127
+
+--- L1b [rural]. 1926 cohort 20-29 only ---   n=34  R2=0.884
+  gapF_2029                              0.159  (se  0.062)  p=0.010
+  gapM_2029                             -0.021  (se  0.048)  p=0.667
+
+--- L1c [rural]. 1926 cohort 30-49 only ---   n=34  R2=0.867
+  gapF_3049                              0.278  (se  0.136)  p=0.041
+  gapM_3049                             -0.017  (se  0.042)  p=0.684
+
+--- L1d [rural]. 1926 Soviet-schooled cohort 12-19 (children, not parents, of the first wave) ---   n=33  R2=0.880
+  gapF_1219                              0.147  (se  0.067)  p=0.028
+  gapM_1219                              0.007  (se  0.058)  p=0.899
+
+--- L1e [rural]. higher education on cohort 20-29 gaps ---   n=34  R2=0.937
+  gapF_2029                              0.168  (se  0.039)  p=0.000
+  gapM_2029                             -0.047  (se  0.037)  p=0.211
+
+L2. Leave-one-subject-out for beta_F: min 0.253, max 0.337 (baseline 0.301)
+    Leave-one-nationality-out: Казахи 0.30; Украинцы 0.30; Марийцы 0.29; Татары 0.34; Мордва 0.30; Коми-пермяки 0.31; Башкиры 0.29; Чуваши 0.29; Калмыки 0.30; Карелы 0.30; Немцы 0.31; Удмурты 0.34
+L3. Permutation of 1926 gaps across cells (2000 draws): observed 0.301, p = 0.003, null 95% range [-0.200, 0.187]
+L4. Mean 2010 secondary-education gap in matched cells: 3.93 pp; mean 1926 female gap 17.2 pp; implied contribution of the 1926 female gap: 5.17 pp
+
+L5. 2010 ethnic gap in secondary education: female x cohort group by nationality (age FE):
+nationality  female_young  se_young  female_x_mid  se_mid  female_x_old  se_old
+     Татары          0.51      0.28          0.85    0.61          2.76    1.03
+    Башкиры         -0.45      0.23          2.34    1.11          6.70    1.06
+     Чуваши         -1.04      0.28          4.02    1.31         11.73    0.79
+    Марийцы         -2.79      0.92          8.15    2.71         17.11    1.38
+    Удмурты         -2.03      0.54          3.20    1.02          7.45    1.03
+     Мордва          0.00      0.50          1.79    1.30          8.12    0.95
+    Калмыки         -0.05      0.80         -2.68    0.95          4.35    3.07
+       Коми         -7.20      0.39          0.70    0.77          4.29    0.76

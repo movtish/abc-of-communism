@@ -1,0 +1,9 @@
+﻿season,role,domestic_work_minutes,source_hours,source_minutes,survey_households,valid_time_budgets,survey_location,source
+summer,head_of_household,84.0,1.0,24.0,29,71,"Voronezh guberniya, 3 uezds",https://istmat.org/node/27934
+summer,housewife,422.0,7.0,2.0,29,71,"Voronezh guberniya, 3 uezds",https://istmat.org/node/27934
+summer,helping_men,64.0,1.0,4.0,29,71,"Voronezh guberniya, 3 uezds",https://istmat.org/node/27934
+summer,helping_women,322.0,5.0,22.0,29,71,"Voronezh guberniya, 3 uezds",https://istmat.org/node/27934
+winter,head_of_household,124.0,2.0,4.0,29,71,"Voronezh guberniya, 3 uezds",https://istmat.org/node/27934
+winter,housewife,541.0,9.0,1.0,29,71,"Voronezh guberniya, 3 uezds",https://istmat.org/node/27934
+winter,helping_men,95.0,1.0,35.0,29,71,"Voronezh guberniya, 3 uezds",https://istmat.org/node/27934
+winter,helping_women,341.0,5.0,41.0,29,71,"Voronezh guberniya, 3 uezds",https://istmat.org/node/27934

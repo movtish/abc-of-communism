@@ -1,0 +1,310 @@
+=== 1. DECOMPOSITION (rural, Table IX) ===
+rural cells: 935 | units: 35 | groups: 13
+                      cells  units       pop
+group                                       
+Русские                 416     35  14932724
+Татары                  158     16   1390671
+Украинцы                108      9   1304279
+Чуваши                   60      5    580692
+Мордва                   47      4    512571
+Башкиры                  12      1    347824
+Марийцы                  36      3    221025
+Вотяки                   11      1    203104
+Немцы                    19      2    127938
+Евреи                    32      3     86512
+Мишари                   12      1     76271
+Карелы, финны, вепсы     12      1     56380
+Казаки                   12      1     25768
+
+--- 1a. As in main paper: group FE, Muslim = Tatars, Bashkirs, Mishars --- n=935 R2=0.955 cols=252 rank=250
+  cohort        female      nonRus      Muslim  nonRus x F  Muslim x F
+  40-49     -53.6( 1.3)    2.4( 1.8)  -11.0( 2.4)    5.7( 3.6)   27.3( 1.5)
+  30-39     -52.2( 1.9)    4.4( 1.3)  -16.7( 8.4)    1.3( 3.8)   23.2( 7.6)
+  25-29     -47.5( 1.9)    5.8( 1.4)   -1.7( 1.6)   -0.2( 4.5)   12.4( 2.6)
+  20-24     -36.3( 2.0)    7.4( 1.3)   -4.4( 4.2)   -3.3( 4.5)   15.5( 2.5)
+  15-19     -26.0( 1.9)    9.8( 1.5)    5.2( 2.4)   -5.2( 3.4)    4.7( 6.6)
+  12-14     -30.1( 1.8)   11.8( 2.3)    9.3( 2.6)   -4.2( 4.3)   12.5( 2.6)
+
+--- 1b. No group FE (levels relative to Russians within region x cohort), Muslim = 3 groups --- n=935 R2=0.927 cols=240 rank=240
+  cohort        female      nonRus      Muslim  nonRus x F  Muslim x F
+  40-49     -53.3( 1.3)   -8.2( 5.2)  -26.5( 1.7)    5.3( 3.4)   27.2( 1.5)
+  30-39     -52.2( 1.8)   -5.3( 4.6)  -32.4( 9.6)    0.3( 3.8)   23.1( 7.6)
+  25-29     -47.5( 1.9)   -4.2( 4.4)  -17.6( 1.4)   -0.4( 4.5)   12.4( 2.6)
+  20-24     -36.3( 2.0)   -2.5( 4.3)  -20.3( 4.5)   -3.6( 4.5)   15.5( 2.4)
+  15-19     -26.0( 1.9)    0.2( 4.4)  -10.7( 2.4)   -5.8( 3.4)    4.8( 6.5)
+  12-14     -30.2( 1.8)    2.6( 2.9)   -6.4( 2.4)   -4.6( 4.4)   12.6( 2.6)
+
+--- 1c. No group FE, Muslim incl. Kazakhs --- n=935 R2=0.928 cols=240 rank=240
+  cohort        female      nonRus      Muslim  nonRus x F  Muslim x F
+  40-49     -53.3( 1.3)   -7.6( 5.2)  -27.3( 1.9)    4.9( 3.4)   27.4( 1.5)
+  30-39     -52.2( 1.8)   -4.5( 4.5)  -33.0( 9.4)   -0.2( 3.9)   23.2( 7.4)
+  25-29     -47.5( 1.9)   -3.4( 4.2)  -19.0( 2.2)   -0.9( 4.5)   13.0( 2.7)
+  20-24     -36.3( 2.0)   -2.2( 4.3)  -20.9( 4.4)   -3.6( 4.5)   15.4( 2.4)
+  15-19     -26.0( 1.9)    0.6( 4.3)  -11.3( 2.7)   -5.9( 3.5)    4.9( 6.4)
+  12-14     -30.2( 1.8)    2.9( 2.9)   -6.9( 2.6)   -5.1( 4.4)   13.1( 2.8)
+
+--- 1d. 1c excluding low-quality units --- n=715 R2=0.935 cols=204 rank=204
+  cohort        female      nonRus      Muslim  nonRus x F  Muslim x F
+  40-49     -53.4( 1.5)   -4.1( 5.5)  -26.9( 1.6)    2.8( 3.5)   27.4( 1.7)
+  30-39     -52.0( 2.2)   -0.6( 4.3)  -33.5(11.1)   -3.8( 2.5)   23.2( 8.2)
+  25-29     -47.1( 2.3)    1.0( 3.5)  -17.4( 1.6)   -4.4( 3.6)   11.6( 2.9)
+  20-24     -35.7( 2.4)    2.3( 3.6)  -20.6( 5.3)   -6.0( 4.2)   15.3( 2.8)
+  15-19     -25.5( 2.2)    4.3( 3.9)  -10.5( 3.3)   -6.1( 4.3)    3.2( 7.6)
+  12-14     -30.0( 2.1)    4.3( 3.0)   -5.7( 2.8)   -3.7( 4.6)   11.9( 2.9)
+
+--- 1e. 1c, cells >= 300 --- n=899 R2=0.929 cols=239 rank=239
+  cohort        female      nonRus      Muslim  nonRus x F  Muslim x F
+  40-49     -53.3( 1.3)   -7.7( 5.2)  -27.3( 1.9)    4.8( 3.4)   27.5( 1.5)
+  30-39     -52.2( 1.8)   -4.6( 4.5)  -33.1( 9.5)   -0.2( 3.9)   23.2( 7.4)
+  25-29     -47.5( 1.9)   -3.4( 4.3)  -18.9( 2.3)   -0.9( 4.6)   13.0( 2.7)
+  20-24     -36.3( 2.0)   -2.2( 4.4)  -21.0( 4.5)   -3.7( 4.6)   15.6( 2.4)
+  15-19     -26.0( 1.9)    0.6( 4.4)  -11.3( 2.7)   -5.8( 3.5)    4.9( 6.5)
+  12-14     -30.2( 1.8)    2.8( 2.9)   -7.0( 2.6)   -5.1( 4.5)   13.2( 2.9)
+
+--- 1f. 1c, total population (urban + rural) --- n=1159 R2=0.978 cols=294 rank=294
+  cohort        female      nonRus      Muslim  nonRus x F  Muslim x F
+  40-49     -50.1( 1.9)  -10.6( 4.7)  -22.4( 4.8)    5.8( 2.8)   14.6( 5.9)
+  30-39     -48.4( 1.2)  -11.0( 4.9)  -35.1( 8.0)    2.2( 3.2)   13.8( 7.1)
+  25-29     -43.1( 1.3)   -8.1( 4.9)  -23.4( 3.4)    0.6( 3.5)    1.9( 6.1)
+  20-24     -32.8( 1.4)   -6.3( 5.2)  -21.2( 3.2)   -2.4( 3.8)   -2.5( 9.6)
+  15-19     -24.9( 1.9)   -6.5( 5.6)  -16.0( 3.3)   -1.0( 3.4)    0.6( 9.9)
+  12-14     -26.1( 1.5)   -4.3( 4.0)  -10.6( 2.5)   -1.3( 2.9)    9.1( 2.4)
+
+--- 1g. 1c, Russians and the seven Volga-Ural nationalities only --- n=752 R2=0.965 cols=240 rank=240
+  cohort        female      nonRus      Muslim  nonRus x F  Muslim x F
+  40-49     -53.6( 1.3)  -21.4( 2.0)  -27.9( 1.6)   10.5( 2.8)   27.4( 1.5)
+  30-39     -52.3( 1.9)  -16.2( 1.8)  -33.7( 9.7)   -4.1( 2.3)   22.8( 7.6)
+  25-29     -47.5( 2.0)  -12.3( 1.6)  -19.2( 1.5)  -11.0( 2.6)   12.4( 2.7)
+  20-24     -36.3( 2.1)  -11.2( 2.0)  -21.9( 4.6)  -14.8( 3.1)   15.5( 2.5)
+  15-19     -26.0( 1.9)  -10.0( 3.3)  -12.2( 2.6)  -13.6( 2.8)    4.9( 6.7)
+  12-14     -30.2( 1.9)   -3.1( 3.5)   -7.7( 2.6)  -16.6( 3.9)   12.6( 2.7)
+
+1h. Pooled DDD (Muslim=3): nonrus x female -1.27 (2.81); x muslim 16.83 (3.37); n=935
+
+1h. Pooled DDD (Muslim incl. Kazakhs): nonrus x female -1.52 (2.83); x muslim 17.26 (3.36); n=935
+1i. Leave-one-unit-out: nonrus x female in [-3.17, -0.83]; x muslim in [15.87, 18.92]
+
+1j. Raw ethnic gaps (Russian minus group, same unit and cohort), pop-weighted, by cohort:
+        gapM              gapF             cells           
+mus   Muslim non-Muslim Muslim non-Muslim Muslim non-Muslim
+band                                                       
+40-49   28.2        8.3    1.5        4.2   13.0       26.0
+30-39   25.2        4.7    9.0        3.1   16.0       27.0
+25-29   20.6        4.0    7.2        3.6   15.0       27.0
+20-24   23.3        3.2    6.0        5.0   16.0       28.0
+15-19    8.8       -0.4    5.3        4.0   16.0       25.0
+12-14    7.0       -1.8   -7.0        1.3   13.0       26.0
+
+1k. Same by nationality, cohorts 20-24 and 40-49:
+                      gapM        gapF       units      
+band                 20-24 40-49 20-24 40-49 20-24 40-49
+group                                                   
+Башкиры               45.8  24.9  17.7   4.3   1.0   1.0
+Вотяки                13.0  28.1  26.5  12.6   1.0   1.0
+Евреи                 -1.3  -4.5  -9.3 -29.8   3.0   3.0
+Казаки                55.5  52.4  52.4  19.3   1.0   1.0
+Карелы, финны, вепсы  11.3  27.7  26.2  15.3   1.0   1.0
+Марийцы               10.3  26.6  38.1  16.0   3.0   3.0
+Мишари                20.1  22.5   9.1   4.0   1.0   1.0
+Мордва                15.7  17.7  26.5   8.4   4.0   3.0
+Немцы                 10.1   5.5 -16.1 -36.5   2.0   1.0
+Татары                16.2  28.8   1.5   0.1  13.0  10.0
+Украинцы              -5.3  -8.2 -12.7  -2.4   9.0   9.0
+Чуваши                 1.7  20.0  13.7  12.0   5.0   5.0
+
+
+=== 2. RUSSIANS ACROSS UNITS (rural, one obs per unit) ===
+n units: 44
+                         count   mean    std    min    max
+gender_gap_20-24          44.0  32.95   9.12  10.20  48.10
+lit_F_20-24               44.0  53.42  13.95  24.90  86.20
+lit_M_20-24               44.0  86.38   6.12  72.10  96.60
+gender_gap_12-14          43.0  25.83  14.65 -53.00  40.70
+teachers_percap_1911      41.0   0.92   0.27   0.60   1.83
+agshare_1897              41.0  74.06   9.28  51.09  87.95
+cwr                       44.0  60.02   5.49  45.51  72.78
+urban_share_M             34.0  20.40  17.18 -12.37  65.31
+exp_zemstvo_edu_pc_1894   34.0   0.15   0.07   0.06   0.32
+per_lit_f                 41.0  10.44   4.36   6.03  32.33
+
+2a. gender_gap_20-24 ~ teachers_percap_1911_z + agshare_1897_z + cwr_z   n=41 R2=0.533
+   teachers_percap_1911_z         -4.73 (0.91) p=0.000
+   agshare_1897_z                  2.38 (0.99) p=0.016
+   cwr_z                           2.12 (0.98) p=0.030
+
+2b. gender_gap_20-24 ~ teachers_percap_1911_z + agshare_1897_z + cwr_z + urban_share_M_z   n=32 R2=0.512
+   teachers_percap_1911_z         -4.98 (1.58) p=0.002
+   agshare_1897_z                  0.95 (0.99) p=0.337
+   cwr_z                           2.03 (1.19) p=0.086
+   urban_share_M_z                -2.20 (1.02) p=0.031
+
+2a. lit_F_20-24 ~ teachers_percap_1911_z + agshare_1897_z + cwr_z   n=41 R2=0.584
+   teachers_percap_1911_z          8.85 (1.33) p=0.000
+   agshare_1897_z                 -0.70 (1.18) p=0.551
+   cwr_z                          -3.02 (1.38) p=0.028
+
+2b. lit_F_20-24 ~ teachers_percap_1911_z + agshare_1897_z + cwr_z + urban_share_M_z   n=32 R2=0.553
+   teachers_percap_1911_z          9.12 (2.33) p=0.000
+   agshare_1897_z                  0.85 (1.38) p=0.537
+   cwr_z                          -2.70 (1.68) p=0.108
+   urban_share_M_z                 2.38 (1.54) p=0.124
+
+2a. lit_M_20-24 ~ teachers_percap_1911_z + agshare_1897_z + cwr_z   n=41 R2=0.571
+   teachers_percap_1911_z          4.12 (0.62) p=0.000
+   agshare_1897_z                  1.69 (0.58) p=0.003
+   cwr_z                          -0.89 (0.56) p=0.113
+
+2b. lit_M_20-24 ~ teachers_percap_1911_z + agshare_1897_z + cwr_z + urban_share_M_z   n=32 R2=0.537
+   teachers_percap_1911_z          4.14 (0.87) p=0.000
+   agshare_1897_z                  1.81 (0.80) p=0.024
+   cwr_z                          -0.66 (0.63) p=0.300
+   urban_share_M_z                 0.19 (0.64) p=0.773
+
+2a. gender_gap_12-14 ~ teachers_percap_1911_z + agshare_1897_z + cwr_z   n=39 R2=0.422
+   teachers_percap_1911_z         -2.86 (1.23) p=0.020
+   agshare_1897_z                  2.06 (2.10) p=0.325
+   cwr_z                           3.13 (0.96) p=0.001
+
+2b. gender_gap_12-14 ~ teachers_percap_1911_z + agshare_1897_z + cwr_z + urban_share_M_z   n=30 R2=0.487
+   teachers_percap_1911_z         -3.80 (0.84) p=0.000
+   agshare_1897_z                 -1.36 (1.39) p=0.330
+   cwr_z                           3.39 (0.86) p=0.000
+   urban_share_M_z                -1.04 (0.99) p=0.294
+
+2a. lit_F_12-14 ~ teachers_percap_1911_z + agshare_1897_z + cwr_z   n=39 R2=0.489
+   teachers_percap_1911_z          9.61 (1.47) p=0.000
+   agshare_1897_z                 -0.52 (2.69) p=0.848
+   cwr_z                          -3.31 (1.59) p=0.038
+
+2b. lit_F_12-14 ~ teachers_percap_1911_z + agshare_1897_z + cwr_z + urban_share_M_z   n=30 R2=0.503
+   teachers_percap_1911_z         10.51 (1.92) p=0.000
+   agshare_1897_z                  4.30 (2.24) p=0.055
+   cwr_z                          -2.71 (1.73) p=0.118
+   urban_share_M_z                 1.77 (1.95) p=0.362
+
+2a. lit_M_12-14 ~ teachers_percap_1911_z + agshare_1897_z + cwr_z   n=40 R2=0.436
+   teachers_percap_1911_z          6.94 (0.92) p=0.000
+   agshare_1897_z                  1.97 (1.21) p=0.101
+   cwr_z                          -0.12 (1.14) p=0.914
+
+2b. lit_M_12-14 ~ teachers_percap_1911_z + agshare_1897_z + cwr_z + urban_share_M_z   n=31 R2=0.416
+   teachers_percap_1911_z          6.79 (1.46) p=0.000
+   agshare_1897_z                  3.24 (1.45) p=0.025
+   cwr_z                           0.72 (1.32) p=0.584
+   urban_share_M_z                 0.65 (1.29) p=0.615
+
+2a. gender_gap_40-49 ~ teachers_percap_1911_z + agshare_1897_z + cwr_z   n=40 R2=0.109
+   teachers_percap_1911_z          0.05 (0.57) p=0.930
+   agshare_1897_z                  3.60 (1.71) p=0.035
+   cwr_z                           1.03 (1.61) p=0.523
+
+2b. gender_gap_40-49 ~ teachers_percap_1911_z + agshare_1897_z + cwr_z + urban_share_M_z   n=31 R2=0.143
+   teachers_percap_1911_z          0.42 (0.78) p=0.591
+   agshare_1897_z                  1.14 (3.11) p=0.714
+   cwr_z                           1.31 (1.96) p=0.503
+   urban_share_M_z                -3.91 (2.18) p=0.073
+
+2c. Leave-one-unit-out ranges (gender gap 20-24):
+     teachers_percap_1911_z  agshare_1897_z  cwr_z
+min                   -5.40            1.65   1.62
+max                   -4.27            2.67   2.76
+2d. Permutation (2000 draws) teachers_percap_1911_z: observed -4.73, p = 0.0000, 95% null range [-2.49, 2.31]
+2d. Permutation (2000 draws) cwr_z: observed 2.12, p = 0.0420, 95% null range [-1.93, 2.08]
+2e. excluding low-quality units: n=35 teachers -4.63 (1.00); agshare 2.12 (1.26); cwr 2.02 (1.30)
+2e. excluding titular units: n=33 teachers -6.32 (1.33); agshare 1.45 (1.51); cwr 2.29 (1.17)
+2e. excluding Ural okrugs: n=28 teachers -5.04 (0.95); agshare 2.99 (0.95); cwr 1.39 (1.19)
+2e. zemstvo provinces only: n=33 teachers -5.41 (1.23); agshare 0.31 (1.22); cwr 2.99 (1.03)
+2f. alternative school measure exp_zemstvo_edu_pc_1894_z: -3.66 (0.95) n=34
+2f. alternative school measure per_lit_f_z: -2.54 (0.90) n=41
+2g. SDs of regressors: {'teachers_percap_1911': 0.27, 'agshare_1897': 9.275, 'cwr': 5.492, 'urban_share_M': 17.182, 'exp_zemstvo_edu_pc_1894': 0.065, 'per_lit_f': 4.362}
+
+
+=== 3. MECHANISMS ACROSS NATIONALITIES WITHIN UNITS (rural) ===
+cells: 25 | groups: ['Башкиры', 'Вотяки', 'Карелы, финны, вепсы', 'Марийцы', 'Мишари', 'Мордва', 'Татары', 'Украинцы', 'Чуваши'] | units: 15
+                     mean    std    min    max
+ethgap_F_20-24      11.03  18.09 -21.56  46.86
+ethgap_M_20-24      10.05  11.75  -8.69  45.78
+ethgap_F_12-14       3.25  16.91 -24.77  36.54
+cwr_diff             1.59   5.98  -7.96  14.26
+sr_20_39_diff        0.14  10.22 -31.59  14.37
+mob_gap_diff         0.12  10.28 -33.94  23.25
+urban_share_M_diff -13.44   9.47 -30.52  11.79
+urban_share_F_diff -13.56  10.30 -33.58  15.96
+urban_share_M        7.40   8.70   0.64  36.17
+urban_share_F        6.15   9.52   0.19  35.88
+
+3. ethgap_F_20-24, pooled: n=25 R2=0.284
+   cwr_diff_z                      2.92 (4.52) p=0.518
+   sr_20_39_diff_z                -6.82 (4.22) p=0.106
+   mob_gap_diff_z                 -6.08 (2.15) p=0.005
+   muslim                         -6.11 (6.51) p=0.347
+
+3. ethgap_F_20-24, unit FE: n=25 R2=0.917
+   cwr_diff_z                     -0.11 (5.33) p=0.983
+   sr_20_39_diff_z               -22.43 (9.54) p=0.019
+   mob_gap_diff_z                -11.75 (7.31) p=0.108
+   muslim                        -17.77 (13.12) p=0.175
+
+3. ethgap_F_20-24, male urban share instead of gap: n=25 R2=0.406
+   cwr_diff_z                      3.36 (3.55) p=0.343
+   sr_20_39_diff_z                -4.85 (4.52) p=0.283
+   urban_share_M_diff_z           -9.87 (3.64) p=0.007
+   muslim                         -8.48 (5.79) p=0.143
+
+3. ethgap_M_20-24, pooled: n=25 R2=0.549
+   cwr_diff_z                      4.51 (1.78) p=0.011
+   sr_20_39_diff_z                -4.31 (1.93) p=0.026
+   mob_gap_diff_z                 -3.61 (0.88) p=0.000
+   muslim                         19.20 (6.14) p=0.002
+
+3. ethgap_M_20-24, unit FE: n=25 R2=0.767
+   cwr_diff_z                      3.85 (5.80) p=0.507
+   sr_20_39_diff_z               -15.44 (16.54) p=0.351
+   mob_gap_diff_z                 -9.51 (7.87) p=0.227
+   muslim                         14.16 (9.21) p=0.124
+
+3. ethgap_M_20-24, male urban share instead of gap: n=25 R2=0.535
+   cwr_diff_z                      5.04 (2.08) p=0.015
+   sr_20_39_diff_z                -2.93 (1.94) p=0.130
+   urban_share_M_diff_z           -3.79 (2.20) p=0.084
+   muslim                         18.02 (5.93) p=0.002
+
+3. ethgap_F_12-14, pooled: n=25 R2=0.512
+   cwr_diff_z                      2.68 (4.43) p=0.546
+   sr_20_39_diff_z                -6.76 (2.99) p=0.024
+   mob_gap_diff_z                 -6.48 (1.90) p=0.001
+   muslim                        -12.82 (4.18) p=0.002
+
+3. ethgap_F_12-14, unit FE: n=25 R2=0.950
+   cwr_diff_z                      2.60 (5.44) p=0.633
+   sr_20_39_diff_z               -22.52 (8.90) p=0.011
+   mob_gap_diff_z                 -9.12 (4.08) p=0.026
+   muslim                        -21.95 (10.40) p=0.035
+
+3. ethgap_F_12-14, male urban share instead of gap: n=25 R2=0.602
+   cwr_diff_z                      3.28 (3.46) p=0.343
+   sr_20_39_diff_z                -4.55 (2.74) p=0.097
+   urban_share_M_diff_z           -9.49 (2.26) p=0.000
+   muslim                        -15.23 (3.29) p=0.000
+
+3b. Leave-one-unit-out, mobility gap: [-9.38, -4.97]
+3c. Leave-one-nationality-out, mobility gap: [-9.03, -1.25]
+3d. Permutation mobility gap: observed -6.08, p = 0.1625, 95% null [-8.53, 8.15]
+3e. Unweighted HC1: mobility gap -8.20 (3.57)
+3f. Non-Muslim only: mobility gap -6.82 (2.10) n=17
+
+3g. CWR and urban shares by nationality (rural cells, pop-weighted):
+                       cwr  units
+group                            
+Евреи                 49.2    1.0
+Марийцы               57.9    3.0
+Вотяки                58.2    1.0
+Карелы, финны, вепсы  59.3    1.0
+Чуваши                60.1    4.0
+Русские               61.9   19.0
+Татары                63.2    8.0
+Казаки                65.7    1.0
+Мишари                66.3    1.0
+Мордва                67.1    4.0
+Башкиры               68.6    1.0
+Украинцы              71.3    7.0

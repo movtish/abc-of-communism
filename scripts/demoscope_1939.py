@@ -1,10 +1,10 @@
 """Scrape Demoscope's 1939 census tables (RGAE f.1562 op.336 d.607, 640) for RSFSR regions:
 illiterate population and total population by sex x age x urban/rural -> literacy by cohort.
-Output: data/census1939_literacy_by_region_age_sex.csv"""
+Output: out/dataset/census1939_literacy_by_region_age_sex.csv"""
 import sys, re, time, csv, os, urllib.request, urllib.parse, html
 sys.stdout.reconfigure(encoding='utf-8')
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__))); D = f"{ROOT}/data"
-BASE = "http://www.demoscope.ru/weekly/ssp/"
+HERE = os.path.dirname(os.path.abspath(__file__)); D = os.path.join(os.path.dirname(HERE), "data"); os.makedirs(D, exist_ok=True)
+BASE = "https://www.demoscope.ru/weekly/ssp/"
 def get(url, tries=4):
     for k in range(tries):
         try:
@@ -106,6 +106,20 @@ for rid, name in ill_regs:
                             literacy_rate=round(100*(pv - iv)/pv, 2) if pv else None)); n += 1
     print(f"{name:45s} cells={n}")
     time.sleep(0.2)
+# The population table lists Moscow/Leningrad as "в том числе" within
+# their oblasts, whereas the illiteracy table gives the cities separately.
+# Store disjoint territories; never join the two scopes by name alone.
+city_index = {(r["region_1939"], r["area"], r["sex"], r["age"]): r for r in out}
+for row in out:
+    city = {"Московская область": "город Москва", "Ленинградская область": "город Ленинград"}.get(row["region_1939"])
+    if city and row["area"] in ("total", "urban"):
+        cr = city_index.get((city, row["area"], row["sex"], row["age"]))
+        if cr is None: raise ValueError("Missing nested-city population: " + repr(row))
+        row["population"] -= cr["population"]
+        if row["population"] < row["illiterate"]: raise ValueError("Scope correction inconsistent: " + repr(row))
+        row["literate"] = row["population"] - row["illiterate"]
+        row["literacy_rate"] = round(100 * row["literate"] / row["population"], 2) if row["population"] else None
+
 with open(f"{D}/census1939_literacy_by_region_age_sex.csv", "w", newline="", encoding="utf-8-sig") as f:
     w = csv.DictWriter(f, fieldnames=["region_1939", "area", "sex", "age", "population", "illiterate", "literate", "literacy_rate"], delimiter=";")
     w.writeheader(); w.writerows(out)

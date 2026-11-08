@@ -1,0 +1,271 @@
+\documentclass[12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{natbib}
+\usepackage{caption}
+\usepackage{array}
+\usepackage{placeins}
+\usepackage{microtype}
+\usepackage{titlesec}
+\titleformat*{\section}{\large\bfseries}
+\titleformat*{\subsection}{\normalsize\bfseries}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xurl}\urlstyle{same}
+\captionsetup{labelfont=bf,font=small}
+\onehalfspacing
+\graphicspath{{../figures/}}
+\setcounter{topnumber}{2}\setcounter{totalnumber}{3}\renewcommand{\topfraction}{0.85}\renewcommand{\textfraction}{0.1}\renewcommand{\floatpagefraction}{0.7}
+\newcommand{\note}[1]{\par\vspace{3pt}\begin{minipage}{0.97\linewidth}\footnotesize\textit{Note:} #1\end{minipage}\par}
+\newcommand{\fitwidth}[1]{\resizebox{\linewidth}{!}{#1}}
+% Every number in the text is produced by scripts/paper_numbers.py and read from numbers.tex.
+% \N{key} prints the number, \NA{key} its absolute value, \NI{key} the number rounded to an integer, \NIA{key} the absolute value rounded to an integer.
+\makeatletter
+\newcommand{\N}[1]{\@ifundefined{num@#1}{\textbf{[#1]}}{\@nameuse{num@#1}}}
+\newcommand{\NA}[1]{\@ifundefined{numa@#1}{\textbf{[#1]}}{\@nameuse{numa@#1}}}
+\newcommand{\NI}[1]{\@ifundefined{numi@#1}{\textbf{[#1]}}{\@nameuse{numi@#1}}}
+\newcommand{\NIA}[1]{\@ifundefined{numia@#1}{\textbf{[#1]}}{\@nameuse{numia@#1}}}
+\makeatother
+\newcommand{\CS}[1]{\N{#1} (\N{#1.se})}
+\input{numbers}
+
+\title{\Large The ABC of Communism:\\ How Soviet Russia Taught Its Women to Read\thanks{I thank Gerhard Toews and Hosny Zoabi for comments. The 1926 census tables were transcribed from scans held by the Russian State Library. The data, the record of validation of every cell and the code that produces every number in the paper are available at \url{https://github.com/movtish/abc-of-communism}. All errors are mine.}}
+\author{Mark Kreshchuk\thanks{New Economic School and Moscow State University. Email: mkreshchuk@nes.ru.}}
+\date{October 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent How fast can a state teach adults to read, and whom does it teach? In December 1926, \NI{c3r.F.young.26} per cent of the rural women of Soviet Russia aged 20 to 34 could read. In 1939 the same women were \NI{c3r.F.young.39} per cent literate, and the census of 1959 still found them at \NI{c3r.F.young.59}. In the thirty years before, the literacy of women of the same ages had not moved. I follow birth cohorts through four censuses, using newly digitised tables of the census of 1926. Relative to women above the age limit of the campaign, the literacy of young women rose by \NI{w2.pw} points (standard error \N{w2.pw.se}), and it rose in every region. The age and sex profiles are consistent with a major expansion of adult instruction. They do not separately identify the effects of compulsory attendance, collective-farm organisation and changing returns to literacy. The estimates therefore describe cohort literacy changes and their conditional attribution to the campaign; the institutional mechanism remains an interpretation.
+
+\medskip
+\noindent \textbf{Keywords:} adult literacy, education of women, gender gap, state capacity, social mobility, socialism, Soviet Union.\\
+\textbf{JEL:} N34, I25, I28, J16, P36.
+\end{abstract}
+
+\newpage
+\begin{flushright}
+\begin{minipage}{0.74\linewidth}\small\itshape
+With the transfer of the means of production into common ownership, the single family ceases to be the economic unit of society. Private housekeeping is transformed into a social industry. The care and education of the children becomes a public affair.\par\smallskip
+\raggedleft\upshape Friedrich Engels, \emph{The Origin of the Family,\\ Private Property and the State}
+\end{minipage}
+\end{flushright}
+\vspace{4pt}
+
+\section{Introduction}\label{sec:intro}
+
+The history of mass education knows both long periods in which literacy spread slowly, as schooled generations replaced unschooled ones, and short episodes in which a state tried to teach the adults it already had. The Soviet campaign against illiteracy (\emph{likbez}, that is, \emph{likvidatsiya bezgramotnosti}, the liquidation of illiteracy) is a large-scale example of these episodes, and this paper asks how much it actually achieved. In December 1926, nine years after the revolution, \N{c3r.F.young.26} per cent of the rural women of Russia aged 20 to 34 could read. In January 1939 the same women were \N{c3r.F.young.39} per cent literate, and in January 1959, two decades after the campaign that had taught them, \N{c3r.F.young.59} per cent. Almost a third of those who could not read in 1926 had thus learned as adults. Nothing of the kind had happened to their mothers. The rural women who were aged 20 to 34 at the census of 1897 were \N{b4r.F.97} per cent literate in that year and \N{b4r.F.26} per cent literate thirty years later. Figure~\ref{fig:main} shows both facts in one picture, and they form the main result of the paper.
+
+\begin{figure}[!htbp]\centering
+\caption{The literacy of rural women by year of birth, as recorded by four censuses}\label{fig:main}
+\includegraphics[width=0.94\linewidth]{fig25_main_cohorts.pdf}
+\note{Rural population of the RSFSR. Each point is a five-year age group of the census named, placed at its mean year of birth. The censuses of 1897 and 1926 are those of the \N{cp.regions} regions that made up the RSFSR of 1939, from Table XV of Volume 9 of the census of 1926, which gives the results of 1897 within the borders of 1927. The censuses of 1939 and 1959 are sums over the RSFSR in its borders of those years. The upper axis gives the age of each cohort in December 1926 and the grey band marks the cohort aged 20 to 34. The tinted area is the change in the literacy of the same cohorts between 1926 and 1939. Appendix Figure~\ref{fig:mainall} repeats the picture for the whole population and for men.}
+\end{figure}
+
+The question matters because the education of women is where the largest efforts of states have most often failed. Women still make up the majority of the illiterate adults of the world, and the programmes that have tried to teach them, from national campaigns to the adult classes of development projects, have usually produced small effects or effects that faded \citep{abadzi1994,ortega2008,aker2012,banerji2017}. The Soviet case records a large increase in the literacy of adult cohorts. The institutional explanations for that increase are the second question of this paper. Among the possible answers one may count a state with the capacity to reach every village, which other states lacked, and incentives for the learners that other programmes did not create, which in the Soviet case took the form of promotion into the posts of the new order \citep{fitzpatrick1979}.
+
+That literacy rose under Soviet rule is one of the best known facts of Soviet history, yet the usual evidence for it cannot show what the campaign itself did. The official figures put the literacy of the rural women of the USSR aged 9 to 49 at 35 per cent in 1926 and at 77 per cent in 1939 \citep{kashin1972}. An age group of this kind changes its members between two censuses. Girls who had been to the new schools entered it, and their unschooled grandmothers left it. Only a comparison of the same birth cohorts at two dates separates the teaching of adults from the schooling of children. Historians have described the politics and the pedagogy of the campaign \citep{eklof1987,kenez1985,clark2000,glushchenko2015}, and regional studies have compared age groups across the two censuses \citep{zharkov2024,pavlova2006}, but I know of no measurement on linked cohorts in this literature or in the new economic history of Russia \citep{zhuravskaya2024}.
+
+To make such a measurement, I link birth cohorts across the censuses of 1897, 1926, 1939 and 1959. The link through 1926 rests on tables of that census which had not been digitised. They give literacy by single year of age and sex for \N{d.units.distinct} territorial units of the RSFSR, and beside every five years of age they print a subtotal against which each transcribed figure can be checked. The variation I use comes from age and from time. The campaign was addressed to those under 50, so the cohorts above that age in the 1930s show what happened to literacy without it, through mortality and migration alone. The cohorts of the same ages a generation earlier show what happened when no campaign reached women at all. Section~\ref{sec:real} examines what could make this comparison misleading, from selective mortality and migration to an exaggerated count in the census of 1939.
+
+The estimates confirm the size of the change. In the \N{w2.units} units where cohort age windows can be linked, the literacy of rural women aged 18 to 32 in 1926 rose from \N{t1s.young.F.l0} to \N{t1s.young.F.l1} per cent by 1939. Relative to women above the age limit, the rise is \N{w2.pw} points (standard error \N{w2.pw.se}), or \NI{w2.tw} per cent of those who could not read, and it lies between \N{w2r.sr.pw} and \N{w2r.mus.pw} points in every sample of units. Literacy rose in every region of the republic. In the RSFSR as a whole about \N{cntt.F.new} million women aged 20 to 49 in 1926 learned to read between the two censuses, and \N{cntt.M.new} million men.\footnote{The change in the literacy of each five-year group of the whole population between 1926 and 1939, multiplied by its number in 1939 and summed over the groups aged 20 to 49 in 1926.} Women made up \N{cntt.shareF} per cent of those who learned. The census of 1959 records sustained high literacy among the surviving cohorts, although subsequent learning, selection and territorial changes prevent it from dating all of that learning to the campaign.
+
+Why had the literacy of adult women stood still for thirty years, and why did it move then? The Bolsheviks had an answer before they had a campaign, and they took it from Engels. In a society whose economic unit is the household, a wife's labour is a private service to her family, and her emancipation requires that the functions of the household, among them the upbringing and education of children, become a public affair \citep{engels1884}. \emph{The ABC of Communism}, the commentary on the party programme of 1919 from which this paper takes its title, drew the conclusion that the right to educate belongs to society before it belongs to parents, and called for all who could read to be mobilised to teach all who could not \citep{bukharin1919}. For a decade, however, the Soviet state offered classes and left attendance to the household, as the schools of the empire had done, and the women stayed at home. Their literacy rose only when, from 1929, the state registered the illiterate of every village and bore the cost of attendance, so that the decision about who should be taught passed from the household to the state.
+
+The second half of the paper examines this institutional interpretation alongside expanded state capacity and changing private returns to literacy. The male learning probability, the age profile and regional urbanisation provide descriptive comparisons. They do not separately identify compulsory attendance, the transfer of household decisions or incentives. In particular, the regional analysis is small and urbanisation is itself an outcome of the same period, while the historical male probability is measured over a different exposure horizon.
+
+
+The paper contributes to four literatures. Historians of the campaign \citep{eklof1987,clark2000} describe its organisation and judge its results from the reports of the agencies that ran it, which counted enrolment and had no way of counting readers. This paper measures the proportion of a cohort recorded as literate at successive censuses. The economics of adult literacy finds small or no effects of programmes in Venezuela, Niger and India \citep{ortega2008,aker2012,banerji2017}, and the Soviet case suggests why. Those programmes offered classes and left attendance to the household, as the Soviet state itself had done in the 1920s with the same result. Unlike the Cuban campaign of 1961, whose effects cannot be separated from the health reforms of the same years \citep{mellace2026}, the Soviet case offers the age limit and the earlier generation as counterfactuals. In addition, the result bears on the origins of gender gaps in human capital, which a large literature traces to persistent culture \citep{alesina2013}. Finally, the paper extends the study of nation-building through education \citep{weber1976,bandiera2019,alesina2021,blanc2023} from children to adults. France made one nation out of peasants who spoke Breton or Occitan by sending their children to the schools of the state, while the Soviet state taught the adults themselves and reached the women whom the schools of the past had reached least. It thereby adds a measured case to the study of state capacity and of the legacies of socialism for women \citep{besley2009,charnysh2019,charnysh2024,campa2019,lippmann2020}.
+
+The paper proceeds as follows. Section~\ref{sec:doctrine} describes the doctrine and the campaign. Section~\ref{sec:data} presents the data and the design and Section~\ref{sec:results} the results. Section~\ref{sec:why} asks why the campaign worked, Section~\ref{sec:disc} discusses what the result implies and what it does not, and Section~\ref{sec:concl} concludes. The appendix contains the validation of the data, the model and further estimates.
+
+
+\section{Doctrine and Campaign}\label{sec:doctrine}
+
+\subsection{From Engels to the ABC of Communism}
+
+The Soviet view of women and the family had a clearly identifiable source. \emph{The Origin of the Family, Private Property and the State}, first published in 1884, was the text from which Russian Marxists took their view of the family, and its argument consists of two parts. The first part is a diagnosis. Where the single family is the economic unit of society, the management of the household is ``a private service'' and the wife ``the head servant, excluded from all participation in social production''. The second part is a remedy. Her emancipation requires her return to public production, and this in turn requires that the family cease to be the economic unit, so that housekeeping becomes a social industry and ``the care and education of the children becomes a public affair'' \citep[ch.~2]{engels1884}. Translated into the language of economics, the diagnosis says that the skills of a woman earn nothing her household can see, so that the household will not pay to improve them. The remedy, accordingly, says that the decision must pass to someone who values those skills.
+
+The Bolsheviks turned this remedy into a programme. \emph{The ABC of Communism}, written by Bukharin and Preobrazhensky in 1919 to explain the new party programme to its members, states that ``the first and fundamental right to educate children belongs to society'', and it lists among the tasks of the Soviet power schools for illiterate adults and ``the mobilisation of all the literate to teach all the illiterate'' \citep[\S\S 79 and 84, my translation]{bukharin1919}. In the same year Lenin wrote that the law had made woman equal, while housework still kept her ``a domestic slave'' \citep{lenin1919}. The decree of 26 December 1919 obliged every citizen between the ages of 8 and 50 to learn to read and write, in Russian or in the native language, ``in order to give the whole population of the Republic the opportunity of conscious participation in the political life of the country'' \citep{snk1919}. The women's departments of the party carried this argument to the village \citep{wood1997,goldman1993}, and the campaign added one of its own. A poster of 1923 shows a schoolgirl at her homework telling her mother that she could have helped, had she been able to read \citep{kruglikova1923}. The doctrine, in other words, was in place long before the means to carry it out.
+
+\subsection{Two instruments}
+
+The decree of 1919 was carried out under two different arrangements, which may be called two instruments. Throughout the 1920s the literacy points (\emph{likpunkty}), the Extraordinary Commission for the Liquidation of Illiteracy and the society Down with Illiteracy offered classes with limited funds, and in the village attendance was not enforced. The adults they reached were mostly men. The army taught its conscripts, the unions taught workers, and the village literacy point was attended by young men who expected to leave for the town or the army, and by few married women \citep{clark2000,eklof1987,kenez1985}. In this respect the first Soviet decade continued the arrangement of the late empire, whose \emph{zemstvo} and parish schools had taught those whom a household released to them.
+
+The instrument changed at the end of the decade, with the cultural campaign launched by the Komsomol in 1928, the collectivisation of agriculture from 1929 and the decrees on universal primary schooling of 1930. The illiterate of each village were registered, classes were attached to the collective farm, cultural brigades went from house to house, and attendance was enforced \citep{fitzpatrick1979,eklof1987}. The change is visible in enrolment. The schools for the illiterate, which had enrolled about one and a half million persons a year in the USSR between 1926 and 1930, enrolled five to six million a year between 1930 and 1932 and three to five million a year until 1936. The schools first took those aged 16 to 35 and then the older groups up to 50, and a decision of 1936 set the liquidation of illiteracy among those under 50 as the task of that year and the next \citep{bse1938}. The same years opened the posts of the new order to literate workers and peasants. Workers' faculties (\emph{rabfaki}), which prepared adults for higher education, had existed since 1919, and under the First Five-Year Plan literate workers and peasants were promoted on a large scale into management, the party and the offices of the collective farms \citep{fitzpatrick1979}. The campaign thus coincided with a wide opening of what later came to be called social lifts.
+
+The timing of the censuses fits these two arrangements closely. The census of December 1926 was taken at the end of the first decade and the census of January 1939 at the end of the second. Thus the cohorts that were adults in 1926 show what the second instrument did, while the cohorts that were adults in 1897 show what happened to adult women as long as attendance was left to the household, under the empire and in the first Soviet years alike.
+
+\section{Data and Design}\label{sec:data}
+
+\noindent\textit{Methodological revision.} The numerical tables use the corrected 1939 geographic scope and the covariance procedure specified below. Additional CR2, cluster-jackknife and restricted wild-bootstrap sensitivities are provided in the accompanying methodological supplement. Causal statements remain conditional on the cohort-comparison assumptions.
+
+
+\subsection{Four censuses}
+
+The four censuses used in the paper record literacy in comparable ways. The censuses of 1897, 1926 and 1939 define it in the same way, as the ability to read in any language \citep{tssu1928,zhiromskaya1996}. The census of 1959 recorded schooling and, for those without schooling, the ability to read.
+
+The core of the new data comes from the regional volumes of the census of 1926. For every \emph{guberniya}, \emph{okrug} and autonomous unit they print a table of the population by single year of age, sex and literacy, separately for town and village (Table IX). These tables had not been digitised before. I transcribed them from the scans of the Russian State Library for \N{d.units.distinct} units, \N{d.cells} cells in all. Every five-year figure appears in them twice, as a printed subtotal and as the sum of five single years transcribed separately, and a figure enters the analysis only if the two agree or if another identity of the table decides between them. Of the \N{d.g5} five-year groups between the ages of 10 and 69, \N{d.g5.t1} per cent pass the first test and \N{d.g5.t0} per cent are dropped (Appendix~\ref{sec:background}).
+
+Two further sources complete the data. Volume 9 of the same census recomputed the results of 1897 to the borders of 1927 for the nineteen regions of the RSFSR, by sex and five-year age group (Table XV). The tables of 1939 by region, age, sex and rural or urban residence, and the table of 1959 for the RSFSR, were declassified from the Russian State Archive of the Economy and digitised by Demoscope Weekly.
+
+\subsection{Linked cohorts}
+
+Linking cohorts across censuses requires matching their dates and their territories. The interval from December 1926 to January 1939 is twelve years and one month. I approximate it by an age shift of twelve years; respondents with birthdays in the intervening month can be thirteen years older. From the validated single years of 1926 I build cohorts aged 18 to 22, 23 to 27 and so on up to 53 to 57, and I compare each with the five-year group of 1939 that is twelve years older. In \N{w2.units} cases a unit of 1926 can be linked to a successor of 1939 and has validated rural pages, which gives \N{w2.n} cells by unit, cohort and sex. This is the main sample. It is rural because four fifths of the population lived in the countryside, and because it was in the village that the campaign met the household.
+
+A second sample covers the whole of the RSFSR. For the \N{ray.units} regions of Table XV that formed the RSFSR of 1939, a five-year group of 1926 is matched to three fifths of one five-year group of 1939 and two fifths of the next, and in the same way to the census of 1959. A third sample links the five-year groups of 1897 to the groups thirty years older in 1926, in \N{w1.regions} regions.\footnote{The census of 1897 was taken twenty-nine years and ten months before that of 1926. Figure~\ref{fig:main} uses the regions of the second sample and plots every census with its own age groups, so that nothing in it is interpolated.}
+
+\subsection{Design}
+
+The change in the literacy of a cohort between two censuses combines what its members learned with selection by mortality and migration, and the design separates the two. The campaign was addressed to those under 50. The cohorts aged 48 to 57 in 1926 had passed that age when its mass phase began, so the change in their literacy measures selection, together with whatever was taught above the limit. With $\Delta y_{ucs}$ the change in the literacy of cohort $c$ of sex $s$ in unit $u$, I estimate
+\begin{equation}\label{eq:m3}
+  \Delta y_{ucs} \;=\; \mu_u \;+\; \sum_{k\in\{Y,M\}}\big(\beta_k D^k_c \;+\; \delta_k D^k_c F_s\big) \;+\; \phi F_s \;+\; \varepsilon_{ucs},
+\end{equation}
+where $D^Y_c$ indicates the cohorts aged 18 to 32, $D^M_c$ those aged 33 to 47, $F_s$ indicates women and $\mu_u$ are unit effects. The effect of the campaign on young men is $\beta_Y$, the effect on young women is $\beta_Y+\delta_Y$, and $\delta_Y$ is the triple difference between cohorts, censuses and sexes. Observations are weighted by the population of the cohort in 1926, and standard errors are clustered by the shared 1939 source territory for the unit sample, and by region for regional comparisons. I estimate the same equation for the period before the campaign, comparing the cohorts aged 10 to 24 in 1897 with those aged 30 to 44.
+
+A change in percentage points depends on the room left below 100 per cent, and this room differed between the sexes. A second outcome is therefore the net literacy gain relative to initial illiteracy, $t=\Delta y/(100-y^{0})$, where $y^{0}$ is the literacy of the cohort at the earlier census, weighted by the number of its illiterate. The female difference-in-differences identifies a campaign effect only if, absent the campaign, younger and older women would have experienced the same conditional change in recorded literacy. This restriction concerns all age-specific learning, selection, reporting and territorial composition, not mortality alone. The triple difference requires a different restriction: the counterfactual younger-minus-older contrast must be equal between the sexes. Because men were also exposed, this contrast identifies a differential effect by sex rather than the total effect on women. Section~\ref{sec:real} reports accounting and specification sensitivities; they cannot verify these identifying restrictions. Since the main sample has only \N{w2.units} units, the estimates are accompanied by leave-one-out ranges, a permutation test and a wild cluster bootstrap \citep{cameron2008}, The earlier specification was replicated in Python and Stata; the present data correction and supplemental inference are implemented in Python.
+
+\section{Results}\label{sec:results}
+
+\subsection{The main picture}
+
+Figure~\ref{fig:main} plots the share of rural women who could read against their year of birth, as each of the four censuses recorded it, so that the vertical distance between two lines is the change in the literacy of a cohort.
+
+The censuses of 1897 and 1926 trace one and the same line. The women born between 1850 and 1880, who were adults in 1897, were as literate in 1926 as they had been thirty years before, to within \N{b4r.F.maxabs} points in every five-year group. Literacy rose from one cohort to the next, as the school reached more girls, yet it did not rise within a cohort. This line serves as the counterfactual for what follows. In rural Russia a woman who had not learned to read as a child did not learn later.
+
+The census of 1939 departs from that line, by \NI{c4r.F.20-24.d} points for the women aged 20 to 24 in 1926, by \NI{c4r.F.40-44.d} for those aged 40 to 44 and by \NI{c4r.F.50-54.d} for those aged 50 to 54, who had passed the age limit (Appendix Table~\ref{tab:c4}). The points of the census of 1959 lie on the line of 1939. Taken together, the cohort aged 20 to 34 in 1926 went from \N{c3r.F.young.26} to \N{c3r.F.young.39} per cent, while the cohort that had been of the same ages in 1897 went from \N{b4r.F.97} to \N{b4r.F.26}.
+
+\subsection{The size of the effect}
+
+The estimates for the units in which cohorts are matched exactly confirm what the figure shows (Table~\ref{tab:main}). Of the rural women aged 18 to 32 in 1926, \N{t1s.young.F.l0} per cent could read in that year and \N{t1s.young.F.l1} per cent in 1939. Among the women aged 48 to 57 literacy rose from \N{t1s.old.F.l0} to \N{t1s.old.F.l1} per cent. Within units, the difference between the two groups of cohorts is \N{w2.pw} points (standard error \N{w2.pw.se}). Of the younger women who could not read in 1926, \N{t1s.young.F.t} per cent could read in 1939, against \N{t1s.old.F.t} per cent of the older women, and the difference within units is \N{w2.tw} points (\N{w2.tw.se}).
+
+\begin{table}[tbp]\centering
+\caption{The same rural cohorts at two censuses, during and before the campaign}\label{tab:main}
+\begingroup\small
+\fitwidth{\input{tables/tab_main}}
+\note{Rural population. Literacy rates are means of the cohorts weighted by their population at the earlier census. The last column is the change in literacy divided by the share illiterate at the earlier census, weighted by the number of illiterate. The rows of differences are the coefficients $\beta_Y+\delta_Y$, $\beta_Y$ and $\delta_Y$ of equation~\eqref{eq:m3}, with standard errors clustered by the shared later-census territory or region in parentheses. Panel A links cohorts built from single years of age in 1926 to the five-year groups of 1939 twelve years older, and its regressions include the cohorts aged 33 to 47 with their own coefficients. Panel B links the five-year groups of 1897 to the groups thirty years older in 1926 and leaves out the cohort aged 25 to 29.}
+\endgroup
+\end{table}
+
+The men of the same cohorts present a different picture. Their literacy rose from \N{t1s.young.M.l0} to \N{t1s.young.M.l1} per cent. An illiterate man was more likely to be taught than an illiterate woman, \N{t1s.young.M.t} per cent against \N{t1s.young.F.t}, but the campaign found few illiterate men, and in points the gain of women exceeds that of men by \N{w2.pd} (\N{w2.pd.se}). Within the cohort aged 23 to 27 the gap between the sexes fell from \N{w2.gap26.23-27} to \N{w2.gap39.23-27} points, while among those aged 43 and over it did not move.
+
+Panel B of the table covers the thirty years before the campaign. The women aged 10 to 24 in 1897 were \N{t1h.young.F.l0} per cent literate in that year and \N{t1h.young.F.l1} per cent in 1926, and the older women \N{t1h.old.F.l0} and \N{t1h.old.F.l1} per cent. The difference between them, \N{w1.dd.women} points, belongs to the girls aged 10 to 14, who were still of school age. The literacy of the men aged 10 to 24, in contrast, rose from \N{t1h.young.M.l0} to \N{t1h.young.M.l1} per cent. Thus men learned as adults under the old arrangement, in the army, at work and in the town, while women did not.
+
+\subsection{Age and sex, before and during the campaign}
+
+The age profile of learning provides a further check on the argument (Figure~\ref{fig:taught}). The figure shows the share of the illiterate who learned, by age at the earlier census. Before the campaign the share of women is nil at every age from 15 to 44, while that of men falls from \NI{w1c.M.38-42} per cent at ages 15 to 19 to \NI{w1c.M.48-52} per cent at 25 to 29 and to nothing above 30. During the campaign the share of women is \NI{w2c.F.18-22} per cent at ages 18 to 22, \NI{w2c.F.23-27} at 23 to 27 and \NI{w2c.F.28-32} at 28 to 32. It falls by \NA{w2c.age.f} points with each year of age, to \NI{w2c.F.43-47} per cent at 43 to 47 and \NI{w2c.F.53-57} to \NI{w2c.F.48-52} per cent above the limit.
+
+\begin{figure}[tbp]\centering
+\caption{The share of the illiterate who learned to read, by age, before and during the campaign}\label{fig:taught}
+\includegraphics[width=\linewidth]{fig27_taught_periods.pdf}
+\note{Change in the literacy of the cohort divided by the share illiterate at the earlier census, rural population, with 95 per cent confidence intervals from standard errors clustered by region or unit. Panel (a): \N{w1.regions} regions, 1897 to 1926. Panel (b): \N{w2.units} units, 1926 to 1939. The shaded cohorts were above the age limit of the campaign.}
+\end{figure}
+
+The share of men lies above that of women at every age, so the campaign did not favour women. It reached the illiterate of both sexes, and men kept in addition the routes to literacy that they had always had (Section~\ref{sec:why}). What distinguishes the two periods is the appearance of women among the taught.
+
+\subsection{Every region}
+
+The rise in the literacy of women was not confined to a few regions (Figure~\ref{fig:regions}). The figure follows the cohort aged 20 to 34 in 1926 in each of the \N{reg.n} regions of the RSFSR. The literacy of rural women rose in all of them, by between \N{reg.F.gain.min} points in the \N{reg.F.gain.min.name} and \N{reg.F.gain.max} points in the \N{reg.F.gain.max.name}, and between \N{reg.F.taught.min} and \N{reg.F.taught.max} per cent of the illiterate learned to read. The gain in points was larger where fewer women could read in 1926, while the share of the illiterate who learned varied far less, a pattern to which Section~\ref{sec:why} returns. The smallest gains are those of the regions around Moscow and Leningrad, where most women could already read, and the largest those of four autonomous republics. It is worth stressing, however, that the campaign was no nationality policy in disguise. In the Russian \emph{gubernii} and \emph{okrugi} of the main sample the effect on women is \N{w2r.rus.pw} points (\N{w2r.rus.pw.se}), and in its autonomous republics and oblasts \N{w2r.tit.pw} (\N{w2r.tit.pw.se}).
+
+\begin{figure}[tbp]\centering
+\caption{The cohort aged 20 to 34 in 1926 at the censuses of 1926 and 1939, by region}\label{fig:regions}
+\includegraphics[width=0.9\linewidth]{fig28_regions.pdf}
+\note{Rural population of the \N{reg.n} regions that made up the RSFSR of 1939, ordered by the literacy of women in 1926. The figures of 1926 are those of Table XV of Volume 9 and the figures of 1939 those of the oblasts of 1939 aggregated to regions, each five-year group of 1926 being matched to three fifths of one group of 1939 and two fifths of the next. The vertical marks give the literacy of the men of the same cohort in 1939. An asterisk marks a region whose borders of 1939 differ from those of 1926.}
+\end{figure}
+
+\subsection{Is the rise real?}\label{sec:real}
+
+The size of the effect raises the question of whether it is genuine, and several checks address it. Table~\ref{tab:robust} repeats the estimate in samples that differ in weighting, in the treatment of cohorts whose size changed between the censuses and in the units excluded. The effect on women lies between \N{w2r.sr.pw} and \N{w2r.mus.pw} points, and between \NI{w2r.sr.tw} and \NI{w2r.mus.tw} per cent of the illiterate. In the \N{ray.units} regions that cover the whole rural RSFSR it is \N{ray.pw} points (\N{ray.pw.se}) and \NI{ray.tw} per cent. It should be noted that the cohorts of that sample are two years older and its comparison cohort, aged 50 to 54, is younger. With a separate effect for every cohort in place of the two indicators, the triple difference of the main sample is \N{w2.ddd} (\N{w2.ddd.se}). It lies between \N{w2.loo.min} and \N{w2.loo.max} when each unit in turn is excluded, and a wild cluster bootstrap gives a Monte Carlo $p$-value of \N{w2.wild} (Appendix~\ref{sec:wave2}).
+
+\begin{table}[tbp]\centering
+\caption{The effect of the campaign on the literacy of women in other samples}\label{tab:robust}
+\begingroup\small
+\fitwidth{\input{tables/tab_robust}}
+\note{Coefficients of equation~\eqref{eq:m3} for 1926 to 1939, rural population unless stated, with standard errors clustered by the shared later-census territory or region in parentheses. The first two columns give $\beta_Y+\delta_Y$, the change among women aged 18 to 32 in 1926 relative to women aged 48 to 57, in points of literacy and as a share of the illiterate, and the third gives $\delta_Y$. The cohorts whose size changed little are those with between 0.6 and 1.15 times their number of 1926 in 1939. In the last two rows the units are regions, the younger cohorts are aged 20 to 34 and the older cohort is aged 50 to 54.}
+\endgroup
+\end{table}
+
+The census of 1939 deserves particular attention, since it followed the suppressed census of 1937 and was taken under pressure. The overcount of its population, which \citet{zhiromskaya2001} puts at 1.7 per cent, would raise a literacy rate by less than two points even if every person added had been entered as literate. In addition, a uniform proportional reporting error alone would not explain a strongly declining age profile, but age-specific error remains possible. The recorded normalised gain falls from \NI{w2c.F.18-22} per cent among the youngest women to \NI{w2c.F.53-57} per cent among the oldest. An additional consistency check is the census of 1959. In the whole population of the RSFSR, which migration between village and town does not affect, the literacy of the women aged 20 to 34 in 1926 was \N{c3t.F.young.26} per cent in that year, \N{c3t.F.young.39} in 1939 and \N{c3t.F.young.59} in 1959. Measured on the census of 1959 alone, \N{c3t.F.taught59} per cent of those who were illiterate in 1926 had become literate, against \N{c3t.F.taught39} per cent measured in 1939. In the rural population the two figures are \N{c3r.F.taught59} and \N{c3r.F.taught39} per cent (Appendix Table~\ref{tab:c59}). The \NA{c3t.F.d5939} point difference between the two later censuses is a net outcome of possible reporting error in 1939, subsequent learning, loss of skills, selective survival, migration and territorial changes. Without independent restrictions on these components it does not bound the reporting error of 1939. The 1959 figures support persistence of high cohort literacy, while the timing of acquisition remains uncertain.
+
+Selective mortality and migration are the last concern. The years between the censuses include collectivisation, the famine of 1932 to 1933 and the departure of millions from the village. The count of the later cohort is not a survival count when its territory changes. In particular, two Ural districts are compared with the same larger oblast. I therefore do not use the pooled ratio of their populations as an upper bound on selective attrition. Even for matched territories a bound based on net attrition requires restrictions on compensating inflows. The main female estimate remains positive when the Ural districts are excluded and in restricted samples, but this robustness does not rule out all age-specific selection. The entire-population results remove migration between village and town as an accounting change, while retaining cross-border migration and changes in the national territory.
+
+
+\section{Institutional Explanations and Their Limits}\label{sec:why}
+
+\subsection{Three explanations}
+
+Three explanations of the observed cohort changes generate overlapping predictions and organise the discussion; the available variation does not distinguish all of them. The first is the capacity of the state, on which account the gains should appear with the means of enforcement. The second is incentives. If literacy opened the posts of the new order, the return to a woman's literacy rose for her and for her household, and learning should be concentrated among the young, who had most to gain, and in the regions where the new economy offered most. The third is the transfer of the decision from the household to the state. It predicts that the reach of the state depends on the age of the learner and hardly on local opportunities, and that men learned at the rate of that reach plus the rate at which they had always learned.
+
+\subsection{Two conditions}
+
+The argument of Engels can be written as two inequalities, which Appendix~\ref{sec:model} develops into a full model and which formalise the third explanation. A household teaches an illiterate member of sex $s$ and age $a$ if what literacy will bring the household exceeds its cost in time and effort,
+\begin{equation}\label{eq:m1}
+  r_s\,A(T-a) \;+\; \mathbf{1}\{s=f\}\,\alpha\gamma \;\ge\; c ,
+\end{equation}
+where $r_s$ is the yearly return to literacy that the household receives, $A(T-a)$ the discounted length of the remaining working life, $\gamma$ the value of a literate mother to her children and $\alpha<1$ the weight that the household gives to it. Low private returns to women's literacy are one possible parameterisation, not a measured consequence of unpaid household labour. Little adult learning follows only if private and intergenerational benefits jointly fall below costs for most households. The net literacy changes observed in census cohorts do not separately identify these returns, costs or household bargaining weights.
+
+The Soviet state valued the same literacy differently. It teaches an illiterate adult if
+\begin{equation}\label{eq:m2}
+  r_s\,A(T-a) \;+\; \mathbf{1}\{s=f\}\,\gamma \;+\; \pi \;\ge\; c_S(a) ,
+\end{equation}
+where $\pi$ is the political return to a citizen who can read, that is, the return named in the preamble of the decree, and $c_S(a)$ is the cost of teaching an adult of age $a$, which rises with age. The term $\pi$ does not depend on sex. If it is large relative to the other terms, as the scale of the campaign suggests, the state teaches illiterate women and men at rates of the same order, and it teaches more of the young than of the old. Since most of those whom the household left illiterate are women, most of those whom the state teaches are women as well.
+
+The result does not require $\gamma$, the return through children on which economists usually rest the case for teaching mothers \citep{galor2011}. The political return named in the decree is sufficient, although the campaign used the other argument as well, and the data cannot tell the two apart. The decree of 1919 already contained $\pi$, yet as long as it was carried out by offering classes, the choice of who attended remained with the household and condition~\eqref{eq:m1} governed. Condition~\eqref{eq:m2} began to govern only when the campaign, so to speak, ``went to the door''.
+
+Taken together, the two conditions give three predictions. Before the campaign reaches the household, the literacy of adult women does not change and that of young men rises. Under the additional restrictions of negligible household learning among women, common state reach and comparable populations, the share of illiterate women who learn equals $e(a)$. Its age profile depends on both benefits and costs; independence from private returns is an assumption to be investigated rather than a consequence of the observed campaign scale. The share of men equals that reach plus the household's own rate $H_m$ for the men whom the state does not reach,
+\begin{equation}\label{eq:mixmain}
+  P_m(a) \;=\; e(a) \;+\; \big(1-e(a)\big)\,H_m(a).
+\end{equation}
+
+\subsection{Evidence}
+
+The timing of the gains supports the first explanation in a qualified form. The decree, the literacy points and the promotion of literate peasants all existed in the 1920s, yet the women aged 38 to 52 at the decree were no more literate in 1926 than in 1897 (Figure~\ref{fig:taught}). The gains came with the instrument of the 1930s, which the collective farm made possible by giving the state an organisation in every village. This timing is consistent with an expanded capacity to organise instruction. The data do not establish that capacity was necessary, or that it acted through a transfer of the attendance decision rather than through other changes of the period. The data contain no regional measure of the presence of the state, and the capacity explanation cannot be tested further here.
+
+The share of men permits an illustrative accounting exercise for the third explanation. It is not an independent test of the mechanism: the historical male probability is measured over about thirty years, compared with twelve years during the campaign, and its transport to men whom the state would not reach requires additional assumptions. If the reach of the state among women, \N{mix.e}, applied to men as well, and the men whom it did not reach learned at the rate of men of the same ages before the campaign, \N{mix.h.adult}, equation~\eqref{eq:mixmain} predicts that a share of \N{mix.pred.adult} of illiterate men learned. The observed share is \N{mix.obs}. Under this transport assumption, the arithmetic assigns \N{mix.gap.pred} of the \N{mix.gap.obs} points to the historical male component. This allocation is not identified: it changes with the exposure horizon and selection into the group not reached by the state (Appendix~\ref{sec:wave2}).
+
+The age profile alone cannot distinguish incentives from the organisation of instruction. Private benefits need not consist only of a new career, and the opportunity cost of attendance can vary with age and family composition. If the gains had come from the prospect of advancement, learning would have been concentrated among the young women for whom a new career was plausible. Yet \N{w2c.F.33-37} per cent of the illiterate women aged 33 to 37 in 1926 learned, and \N{w2c.F.38-42} per cent of those aged 38 to 42, women who were in their forties by the end of the campaign and to whom literacy promised little of the kind.
+
+The regions provide the last test. Across the \N{mech.n} regions of the RSFSR, the share of the cohort aged 20 to 34 in 1926 that lived in towns rose by between \N{mech.urb.min} and \N{mech.urb.max} points between the censuses, which measures how far the opportunities of the new economy reached each region. In the rural population the share of illiterate women who learned is lower where more of the cohort moved to the towns, by \NA{mech.b.r} points per standard deviation (standard error \N{mech.b.r.se}), as it would be if those who learned were among those who left. In the whole population, which the move to the town does not affect, the correlation is \N{mech.corr.t} across all regions, a figure that rests on the Leningrad region, which drew young migrants from other regions, and \N{mech.corr.tx} in the \N{mech.nx} regions whose borders did not change (Appendix Figure~\ref{fig:why}). These associations do not identify whether learning caused migration, migration changed learning opportunities, or both responded to regional change. A weak association in a small cross-section is not evidence of equivalence to zero. The corrected territorial aggregation and additional small-sample inference are reported in the methodological supplement.
+
+Taken together, the evidence is consistent with a combination of expanded instruction, enforcement and changing private returns. It does not rank these explanations causally. A stronger test would require measures of local exposure, implementation or attendance that precede the measured outcomes, together with a defensible comparison design. The household model organises hypotheses about these channels; it does not establish which channel generated the observed cohort changes.
+
+
+\section{Discussion}\label{sec:disc}
+
+The effect is far outside the range of the adult literacy programmes that economists have evaluated, and the features that distinguish the Soviet campaign are fairly easy to name. Among them one may count enforced attendance, with its cost borne by an institution other than the learner, namely the collective farm and the school. Another feature was duration, since the campaign ran for a decade, while most modern programmes last a season. Finally, most of its learners were young adults. None of these features is peculiar to the Soviet case. What is peculiar to it is a state that applied all of them to every village of a country, and that had explained in advance why it would do so. Compulsion of the Soviet kind is neither available to a modern state nor desirable, and the evidence says nothing about whether payments for attendance, which many countries use for the schooling of girls, would reach adult women in the same way.
+
+At the same time, there are several things that the evidence does not show. It does not identify the motive of the state, since conditions~\eqref{eq:m1} and~\eqref{eq:m2} produce the same outcome whether the state valued reading citizens or reading mothers. It does not measure what compulsion cost those subjected to it. It also measures literacy as the censuses defined it, that is, the ability to read, which a ten-month course could give and which is far from schooling. Collectivisation changed the village in the same years, and a rise in the private return to a woman's literacy would have worked in the same direction as the campaign. It may be argued, however, that collectivisation is less an alternative to the argument of Engels than a part of it. His remedy was the return of women to public production, and the collective farm, which credited labour to each of its members, was the Soviet form of that return. The campaign and the collective farm removed decisions about the time and the skills of women from the household at the same moment, and the data measure their joint effect.
+
+\section{Conclusion}\label{sec:concl}
+
+This paper documents a large increase in the recorded literacy of adult female cohorts during the Soviet campaign against illiteracy. The rural cohort aged 20 to 34 in 1926 rose from \NI{c3r.F.young.26} to \NI{c3r.F.young.39} per cent literate by 1939, and the later census records sustained high literacy among surviving members. The younger-minus-older female contrast is \NI{w2.pw} points under the main specification and remains positive in the reported sample restrictions. Its causal attribution to the campaign depends on restrictions on counterfactual age-specific learning, selection and reporting.
+
+
+These findings contribute to three fields. For the economics of adult education they document a large cohort literacy change during a major adult education campaign, together with competing interpretations of its causes. For the study of nation-building they extend the reach of the state school to adults, and for the history of the Soviet Union they distinguish recorded within-cohort changes from cohort replacement, subject to selection and comparability of measurement. They also give empirical content to a thesis that the founders of the Soviet state took from Engels. The expansion of women's cohort literacy coincided with a period of intensified public instruction and institutional change. Separating household decision-making, state reach and private returns requires additional evidence.
+
+The evidence has limits that follow from its sources. The censuses report aggregates by region, cohort and sex, so the estimates describe cohorts, and the behaviour of individual persons remains unobserved. The main sample has \N{w2.units} units. Literacy here is the ability to read as the respondent declared it and the enumerator recorded it, and it was never tested. The cost of compulsion to those subjected to it remains outside its scope.
+
+Several directions for future research follow from these limits, and the sources for them exist. The remaining regional volumes of the census of 1926 would multiply the number of units, the census of 1920 would separate the first Soviet years from the last imperial decades, and additional regional tables of 1959 would extend the follow-up beyond the nine republics examined in Appendix~\ref{app:newdata}. I expect that the occupational tables of 1926 and 1939, which would show what the women who learned to read went on to do and whether they entered the industry of the Five-Year Plans, will be the most informative of these sources, since this is the question that Engels would have asked next.
+
+\clearpage
+\bibliographystyle{chicago}
+\bibliography{refs}
+
+\clearpage
+\appendix
+\setcounter{table}{0}\renewcommand{\thetable}{A\arabic{table}}
+\setcounter{figure}{0}\renewcommand{\thefigure}{A\arabic{figure}}
+\setcounter{equation}{0}\renewcommand{\theequation}{A\arabic{equation}}
+\begin{center}{\Large\bfseries Online Appendix}\end{center}
+
+\noindent The appendix refers to the period between the censuses of 1897 and 1926 as the household regime and to the period between the censuses of 1926 and 1939 as the state regime. The cohorts of the first period are labelled by their age at the decree of December 1919, which is their age at the census of 1897 plus twenty-three years. Section~\ref{sec:background} describes the sources and the validation of the 1926 tables. Section~\ref{sec:model} sets out the model and Section~\ref{sec:strategy} the estimating equations. Sections~\ref{sec:wave1} and~\ref{sec:wave2} report the two periods cohort by cohort, with their robustness checks. Section~\ref{app:why} reports the regional test of Section~\ref{sec:why}, and Section~\ref{app:tables} collects further tables and figures.
+
+\input{appendix}
+
+\end{document}

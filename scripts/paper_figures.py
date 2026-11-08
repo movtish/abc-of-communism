@@ -1,13 +1,13 @@
-"""Figures of the paper -> figures/fig*.pdf, .png (data/ and results/ from paper_numbers.py).
-No titles inside the figures, captions are in the tex."""
+"""All figures of the paper, drawn from the validated data and from the numbers produced by paper_numbers.py.
+Writes figures/fig*.pdf and .png. Captions are set in LaTeX; the figures carry panel titles only."""
 import os, sys, json, warnings, numpy as np, pandas as pd, matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle, Polygon
 from matplotlib.collections import PatchCollection
 warnings.filterwarnings("ignore"); sys.stdout.reconfigure(encoding="utf-8")
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__))); D = f"{ROOT}/data"; R = f"{ROOT}/results"; F = f"{ROOT}/figures"; os.makedirs(F, exist_ok=True)
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__))); D = f"{ROOT}/data"; R = f"{ROOT}/results"; F = f"{ROOT}/figures"
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))); sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "pylib"))
 from names import en
 J = json.load(open(f"{R}/paper_numbers.json", encoding="utf-8")); NUM = {k: v[0] for k, v in J["NUM"].items()}; STR = J["STR"]
 plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 10, "axes.spines.top": False, "axes.spines.right": False, "figure.dpi": 110})
@@ -16,7 +16,8 @@ def save(fig, name):
     fig.savefig(f"{F}/{name}.png", dpi=300, bbox_inches="tight"); fig.savefig(f"{F}/{name}.pdf", bbox_inches="tight"); plt.close(fig); print("saved", name)
 def csv(name): return pd.read_csv(f"{R}/{name}", sep=";", encoding="utf-8-sig")
 def place_labels(ax, xs, ys, labels, fontsize=6, sizes=None, show=None):
-    # labels without overlap: 8 directions x growing distances, keep the cheapest. sizes = marker areas (pt^2). call after the axis limits are set
+    """Point labels without overlap. Each label takes the position around its point that overlaps least with the labels already placed and with the other points.
+    sizes are the marker areas of the scatter (points squared); show marks the points to be labelled (all by default). Call it after the limits of the axes are final."""
     fig = ax.figure; fig.canvas.draw(); rend = fig.canvas.get_renderer(); xs, ys = np.asarray(xs, float), np.asarray(ys, float); n = len(xs)
     rad = np.sqrt(np.full(n, 30.0) if sizes is None else np.asarray(sizes, float)) / 2; px_ = fig.dpi / 72.0
     pts = ax.transData.transform(np.column_stack([xs, ys])); box = ax.get_window_extent(rend); placed = []
@@ -42,6 +43,18 @@ def place_labels(ax, xs, ys, labels, fontsize=6, sizes=None, show=None):
 ADULT = ["18-22", "23-27", "28-32", "33-37", "38-42", "43-47", "48-52", "53-57"]
 ORD1 = ["33-37", "38-42", "43-47", "48-52", "53-57", "58-62", "63-67"]
 CB = ["40-49", "30-39", "25-29", "20-24", "15-19", "12-14"]
+
+from scipy import stats as audit_stats
+DF = json.load(open(f"{R}/inference_df.json", encoding="utf-8"))
+def halfwidth(keys):
+    return np.array([audit_stats.t.ppf(.975, DF[k]) * NUM[k + ".se"] for k in keys])
+def weighted_mean_ci(t):
+    y=t.gain_pp.to_numpy(float); w=t.pop_1926.to_numpy(float); m=np.average(y, weights=w)
+    cl=t.region_1939 if "region_1939" in t else t.rayon
+    scores=pd.Series(w*(y-m)).groupby(np.asarray(cl)).sum().to_numpy()/w.sum()
+    G=len(scores)
+    if G < 2: return pd.Series({"m":m,"se":np.nan,"df":np.nan})
+    return pd.Series({"m":m,"se":np.sqrt(G/(G-1)*np.sum(scores*scores)),"df":G-1})
 
 # ---------- Figure: design ----------
 fig, ax = plt.subplots(figsize=(9.2, 4.3)); ax.set_xlim(1838, 1945); ax.set_ylim(-0.6, 5.9)
@@ -70,11 +83,11 @@ ax.axvspan(4.5, 7.5, color=CF, alpha=0.05); ax.text(6.0, 95, "adults at the decr
 save(fig, "fig02_age_profile_1926")
 
 # ---------- Figure: map ----------
-base = f"{ROOT}/external/malein"   # replication/data of ICPSR 231104, see README
-if os.path.exists(f"{base}/shape_files/districts_europe_collapsed.shp") and os.path.exists(f"{D}/crosswalk_1897_districts_to_1926_units.csv"):
+try:
     import shapefile
-    sf = shapefile.Reader(base + "/shape_files/districts_europe_collapsed.shp")
-    pan = pd.read_stata(base + "/panel1879_1911.dta", convert_categoricals=False)[["Id", "province_rus", "district"]].drop_duplicates("Id"); id2prov = dict(zip(pan.Id, pan.province_rus)); id2dist = dict(zip(pan.Id, pan.district))
+    base = os.path.join(ROOT, "external", "malein")
+    sf = shapefile.Reader(os.path.join(base, "shape_files", "districts_europe_collapsed.shp"))
+    pan = pd.read_stata(os.path.join(base, "panel1879_1911.dta"), convert_categoricals=False)[["Id", "province_rus", "district"]].drop_duplicates("Id"); id2prov = dict(zip(pan.Id, pan.province_rus)); id2dist = dict(zip(pan.Id, pan.district))
     rk = pd.read_csv(f"{D}/region_keys.csv", sep=";", encoding="utf-8-sig"); cw = pd.read_csv(f"{D}/crosswalk_1897_districts_to_1926_units.csv", sep=";", encoding="utf-8-sig"); code2name = dict(zip(rk.region_code, rk.region_1926))
     val = ball[ball.band == "20-24"].pivot_table(index="region", columns="sex", values="literacy"); val["gap"] = val.M - val.F
     ixk = pd.read_csv(f"{D}/census1926_tableIX_long.csv", sep=";", encoding="utf-8-sig", usecols=["region", "pre1917_province"]).drop_duplicates(); prov2units = {}
@@ -104,15 +117,15 @@ if os.path.exists(f"{base}/shape_files/districts_europe_collapsed.shp") and os.p
         ax.add_collection(PatchCollection(grey, facecolor="#e6e6e6", edgecolor="white", linewidths=0.2)); ax.set_xlim(22, 68); ax.set_ylim(43, 68); ax.set_aspect(1.6); ax.axis("off"); ax.set_title(ttl, fontsize=10, loc="left")
         plt.colorbar(pc, ax=ax, shrink=0.55, pad=0.01)
     fig.tight_layout(); save(fig, "fig22_map_1926")
-else:
-    print("map skipped: no external/malein or crosswalk file")
+except Exception as ex:
+    print("map not drawn:", ex)
 
 # ---------- Figure: event studies ----------
 def evplot(ax, key, bins, ref, xlabel, ylabel, title):
     x = np.arange(len(bins))
     for sx, col, mk, lab, off in (("m", CM, "o", "Men", -0.08), ("f", CF, "s", "Women", 0.08)):
         v = [NUM[f"{key}.{sx}.{b}"] for b in bins]; s = [NUM[f"{key}.{sx}.{b}.se"] for b in bins]
-        ax.errorbar(x + off, v, yerr=1.96 * np.array(s), fmt=mk + "-", color=col, capsize=3, label=lab)
+        ax.errorbar(x + off, v, yerr=halfwidth([f"{key}.{sx}.{b}" for b in bins]), fmt=mk + "-", color=col, capsize=3, label=lab)
     ax.axhline(0, color="k", lw=0.6); ax.axvspan(len(bins) - 0.5, len(bins) + 0.5, color="grey", alpha=0.15)
     ax.set_xticks(list(x) + [len(bins)]); ax.set_xticklabels(list(bins) + [ref + "\n(ref.)"], fontsize=8); ax.set_xlabel(xlabel); ax.set_ylabel(ylabel); ax.set_title(title, fontsize=9, loc="left"); ax.legend(frameon=False)
 fig, axes = plt.subplots(1, 2, figsize=(11.5, 4.4))
@@ -128,7 +141,7 @@ if "w2c.M.18-22" in NUM:
     for ax, key, bins, xl, ttl, cut in [(axes[0], "w1c", ORD1, "Age at the decree of December 1919", "(a) Household regime, 1897 to 1926", 3.5), (axes[1], "w2c", ADULT, "Age in December 1926", "(b) State regime, 1926 to 1939", 5.5)]:
         x = np.arange(len(bins))
         for sx, col, mk, lab, off in (("M", CM, "o", "Men", -0.06), ("F", CF, "s", "Women", 0.06)):
-            v = np.array([NUM[f"{key}.{sx}.{b}"] for b in bins]); s = np.array([NUM[f"{key}.{sx}.{b}.se"] for b in bins]); ax.errorbar(x + off, v, yerr=1.96 * s, fmt=mk + "-", color=col, capsize=3, label=lab)
+            v = np.array([NUM[f"{key}.{sx}.{b}"] for b in bins]); s = np.array([NUM[f"{key}.{sx}.{b}.se"] for b in bins]); ax.errorbar(x + off, v, yerr=halfwidth([f"{key}.{sx}.{b}" for b in bins]), fmt=mk + "-", color=col, capsize=3, label=lab)
         ax.axhline(0, color="k", lw=0.6); ax.axvspan(cut, len(bins) - 0.5, color="grey", alpha=0.12); ax.set_xticks(x); ax.set_xticklabels(bins, fontsize=8); ax.set_xlabel(xl); ax.set_title(ttl, fontsize=9, loc="left")
         ax.text((cut + len(bins) - 0.5) / 2, 70, "above the\nage limit", ha="center", va="top", fontsize=7.5, color="grey")
     axes[0].set_ylabel("Illiterate at the earlier census who were\nliterate at the later one, %"); axes[0].legend(frameon=False, loc="upper center"); fig.tight_layout(); save(fig, "fig24_taught")
@@ -153,9 +166,9 @@ fig.tight_layout(); save(fig, "fig11_russians_across_regions")
 # ---------- Figure: decomposition ----------
 x = np.arange(6); g = lambda k: np.array([NUM[f"dec.{k}.{b}"] for b in CB]); s = lambda k: np.array([NUM[f"dec.{k}.{b}.se"] for b in CB])
 fig, axes = plt.subplots(1, 2, figsize=(10.5, 4.2))
-ax = axes[0]; ax.errorbar(x - 0.07, g("v"), yerr=1.96 * s("v"), fmt="-o", color=CM, capsize=3, label="Volga men against Russian men"); ax.errorbar(x + 0.07, g("vw"), yerr=1.96 * s("vw"), fmt="-s", color=CF, capsize=3, label="Volga women against Russian women")
+ax = axes[0]; ax.errorbar(x - 0.07, g("v"), yerr=halfwidth([f"dec.v.{b}" for b in CB]), fmt="-o", color=CM, capsize=3, label="Volga men against Russian men"); ax.errorbar(x + 0.07, g("vw"), yerr=halfwidth([f"dec.vw.{b}" for b in CB]), fmt="-s", color=CF, capsize=3, label="Volga women against Russian women")
 ax.set_xticks(x); ax.set_xticklabels(CB); ax.set_xlabel("Age in 1926 (older to younger)"); ax.set_ylabel("Difference from Russians, pp"); ax.axhline(0, color="k", lw=0.6); ax.set_ylim(-41, 3); ax.legend(frameon=False, loc="lower left", fontsize=8); ax.set_title("(a) The ethnic gap by sex", fontsize=9, loc="left")
-ax = axes[1]; ax.errorbar(x - 0.07, g("vf"), yerr=1.96 * s("vf"), fmt="-s", color=CF, capsize=3, label="Volga nationality x female"); ax.errorbar(x + 0.07, g("mf"), yerr=1.96 * s("mf"), fmt="-^", color=CP, capsize=3, label="Muslim nationality x female")
+ax = axes[1]; ax.errorbar(x - 0.07, g("vf"), yerr=halfwidth([f"dec.vf.{b}" for b in CB]), fmt="-s", color=CF, capsize=3, label="Volga nationality x female"); ax.errorbar(x + 0.07, g("mf"), yerr=halfwidth([f"dec.mf.{b}" for b in CB]), fmt="-^", color=CP, capsize=3, label="Muslim nationality x female")
 ax.set_xticks(x); ax.set_xticklabels(CB); ax.set_xlabel("Age in 1926 (older to younger)"); ax.set_ylabel("Interaction coefficient, pp"); ax.axhline(0, color="k", lw=0.6); ax.legend(frameon=False, fontsize=8); ax.set_title("(b) The additional difference for women", fontsize=9, loc="left")
 fig.tight_layout(); save(fig, "fig10_decomposition")
 
@@ -186,8 +199,8 @@ save(fig, "fig14_mechanisms")
 # ---------- Figure: state regime, cohort means and gender gap ----------
 cl = csv("W2_cells.csv"); fig, axes = plt.subplots(1, 2, figsize=(10.8, 4.3)); ax = axes[0]
 for sx, col, mk, lab in [("M", CM, "o", "Men"), ("F", CF, "s", "Women")]:
-    gq = cl[cl.sex == sx].groupby("age_1926").apply(lambda t: pd.Series({"m": np.average(t.gain_pp, weights=t.pop_1926), "se": t.gain_pp.std() / np.sqrt(len(t))})).reindex(ADULT)
-    ax.errorbar(np.arange(8), gq.m, yerr=1.96 * gq.se, fmt="-" + mk, color=col, label=lab, capsize=3)
+    gq = cl[cl.sex == sx].groupby("age_1926").apply(weighted_mean_ci).reindex(ADULT)
+    ax.errorbar(np.arange(8), gq.m, yerr=audit_stats.t.ppf(.975, gq["df"]) * gq.se, fmt="-" + mk, color=col, label=lab, capsize=3)
 ax.axvspan(5.5, 7.5, color="grey", alpha=0.12); ax.text(6.5, ax.get_ylim()[1] * 0.95, "above the\nage limit", ha="center", va="top", fontsize=7.5, color="grey")
 ax.set_xticks(range(8)); ax.set_xticklabels(ADULT, fontsize=8); ax.set_xlabel("Age in 1926"); ax.set_ylabel("Change in literacy 1926-1939, pp"); ax.axhline(0, color="k", lw=0.6); ax.set_title("(a) Gains of the same cohorts, weighted means", fontsize=9, loc="left"); ax.legend(frameon=False, loc="upper center")
 ax = axes[1]; y = np.arange(8); g26 = np.array([NUM[f"w2.gap26.{c}"] for c in ADULT]); g39 = np.array([NUM[f"w2.gap39.{c}"] for c in ADULT])
@@ -211,7 +224,7 @@ PK = [("t", "Teachers per capita, 1911"), ("c", "Child-woman ratio, 1926"), ("u"
 fig, ax = plt.subplots(figsize=(8.2, 4.2)); y = np.arange(len(PK))[::-1]
 for j, (key, col, mk, lab) in enumerate([("tr.{}.1", CG, "o", "Household regime (levels of 1926: cohort 40-49 against 60-69)"), ("tr.{}.2", CF, "s", "State regime (gains 1926-39: cohort 18-32 against 48-57)"), ("trb.{}.2", "#e59866", "^", "State regime (gains 1926-39: cohort 18-32 against 33-47)")]):
     v = np.array([NUM[key.format(p)] for p, _ in PK]); se = np.array([NUM[key.format(p) + ".se"] for p, _ in PK])
-    ax.errorbar(v, y + (1 - j) * 0.22, xerr=1.96 * se, fmt=mk, color=col, capsize=3, label=lab)
+    ax.errorbar(v, y + (1 - j) * 0.22, xerr=halfwidth([key.format(p) for p, _ in PK]), fmt=mk, color=col, capsize=3, label=lab)
 ax.axvline(0, color="k", lw=0.6); ax.set_yticks(y); ax.set_yticklabels([l_ for _, l_ in PK]); ax.set_xlabel("Triple-difference coefficient, pp per standard deviation of the predictor"); ax.set_ylim(-0.6, len(PK) - 0.4)
 ax.legend(frameon=False, loc="upper center", bbox_to_anchor=(0.45, 1.24), ncol=1, fontsize=8); fig.tight_layout(); save(fig, "fig20_ddd_two_regimes")
 
@@ -252,8 +265,8 @@ if os.path.exists(f"{R}/B5_permutation_female_x_young.txt") and "w2.perm" in STR
 ry = csv("B9_rayon_cells.csv"); AD2 = ["20-24", "25-29", "30-34", "35-39", "40-44", "45-49", "50-54"]
 fig, axes = plt.subplots(1, 2, figsize=(11.2, 4.7), gridspec_kw={"width_ratios": [1, 1.25]}); ax = axes[0]
 for sx, col, mk, lab in [("M", CM, "o", "Men"), ("F", CF, "s", "Women")]:
-    gq = ry[ry.sex == sx].groupby("age_1926").apply(lambda t: pd.Series({"m": np.average(t.gain_pp, weights=t.pop_1926), "se": t.gain_pp.std() / np.sqrt(len(t))})).reindex(AD2)
-    ax.errorbar(np.arange(7), gq.m, yerr=1.96 * gq.se, fmt="-" + mk, color=col, label=lab, capsize=3)
+    gq = ry[ry.sex == sx].groupby("age_1926").apply(weighted_mean_ci).reindex(AD2)
+    ax.errorbar(np.arange(7), gq.m, yerr=audit_stats.t.ppf(.975, gq["df"]) * gq.se, fmt="-" + mk, color=col, label=lab, capsize=3)
 ax.axvspan(5.5, 6.5, color="grey", alpha=0.12); ax.set_xticks(range(7)); ax.set_xticklabels(AD2, fontsize=8); ax.set_xlabel("Age in 1926"); ax.set_ylabel("Change in literacy 1926-1939, pp"); ax.axhline(0, color="k", lw=0.6); ax.set_title(f"(a) {ry.rayon.nunique()} regions covering the RSFSR, rural", fontsize=9, loc="left"); ax.legend(frameon=False)
 ax = axes[1]; w_ = ry[(ry.sex == "F") & ry.age_1926.isin(["25-29", "30-34"])].groupby("rayon").agg(gain=("gain_pp", "mean")).reset_index().merge(ry[(ry.sex == "M") & ry.age_1926.isin(["25-29", "30-34"])].groupby("rayon").agg(gainM=("gain_pp", "mean")).reset_index(), on="rayon").sort_values("gain")
 y = np.arange(len(w_)); ax.barh(y - 0.2, w_.gain, 0.4, color=CF, label="Women"); ax.barh(y + 0.2, w_.gainM, 0.4, color=CM, label="Men"); ax.set_yticks(y); ax.set_yticklabels([en(r) for r in w_.rayon], fontsize=7)
@@ -302,7 +315,7 @@ SPEC = [("leg", "Baseline, subject fixed effects"), ("leg.kal", "Excluding Kalmy
 fig, axes = plt.subplots(1, 2, figsize=(11.2, 4.9), sharey=True)
 for ax, sfx, ttl in [(axes[0], "", "(a) Whole population"), (axes[1], ".r", "(b) Rural population")]:
     y = np.arange(len(SPEC)); bF = np.array([NUM[k + sfx + ".F"] for k, _ in SPEC]); sF = np.array([NUM[k + sfx + ".F.se"] for k, _ in SPEC]); bM = np.array([NUM[k + sfx + ".M"] for k, _ in SPEC]); sM = np.array([NUM[k + sfx + ".M.se"] for k, _ in SPEC])
-    ax.errorbar(bF, y - 0.15, xerr=1.96 * sF, fmt="o", color=CF, capsize=3, label="Female gap of 1926"); ax.errorbar(bM, y + 0.15, xerr=1.96 * sM, fmt="s", color=CM, capsize=3, label="Male gap of 1926")
+    ax.errorbar(bF, y - 0.15, xerr=halfwidth([k + sfx + ".F" for k, _ in SPEC]), fmt="o", color=CF, capsize=3, label="Female gap of 1926"); ax.errorbar(bM, y + 0.15, xerr=halfwidth([k + sfx + ".M" for k, _ in SPEC]), fmt="s", color=CM, capsize=3, label="Male gap of 1926")
     ax.axvline(0, color="k", lw=0.6); ax.set_yticks(y); ax.set_yticklabels([l_ for _, l_ in SPEC], fontsize=8); ax.set_title(ttl, fontsize=9, loc="left"); ax.set_xlabel("Points of the 2010 gap per point of the 1926 gap")
 axes[0].set_ylim(len(SPEC) - 0.4, -0.6); fig.legend(*axes[0].get_legend_handles_labels(), frameon=False, fontsize=8, loc="upper center", ncol=2, bbox_to_anchor=(0.6, 1.04)); fig.tight_layout(); save(fig, "fig21_legacy_robustness")
 
@@ -317,6 +330,7 @@ for i in range(len(hm)):
 plt.colorbar(im, ax=ax, label="Literate women, %"); ax.set_xlabel("Age in 1926"); save(fig, "fig12_heatmap_women_1926")
 
 # ---------- Figure: the main picture, literacy by year of birth as recorded by four censuses ----------
+# One hue for the censuses taken after the campaign and grey for those taken before it; the census of 1959 is told from that of 1939 by an open marker.
 INK, G97, GRID = "#2b2b2b", "#8a9399", "#e6e6e6"
 CENSUS_T = {1897: 1897.11, 1926: 1926.96, 1939: 1939.05, 1959: 1959.04}
 CPB = {1897: [f"{a}-{a + 4}" for a in range(15, 65, 5)], 1926: [f"{a}-{a + 4}" for a in range(20, 75, 5)], 1939: [f"{a}-{a + 4}" for a in range(30, 70, 5)], 1959: [f"{a}-{a + 4}" for a in range(50, 70, 5)]}
@@ -337,8 +351,8 @@ def cohort_profile(ax, tag, sx, col, ymax, notes=True, legend=True):
     if legend: ax.legend(frameon=False, loc="upper left", fontsize=9, handlelength=2.2, borderaxespad=0.6)
     if notes:
         xm = 1902.0; ym = (np.interp(xm, x26, y26) + np.interp(xm, x39, y39)) / 2
-        ax.annotate("learned to read as adults\nbetween 1926 and 1939", (xm, ym), xytext=(1872.0, ym + 0.15 * ymax), fontsize=9, color="#222222", ha="center", va="center", arrowprops=dict(arrowstyle="-", lw=0.7, color="#666666", shrinkA=2, shrinkB=1))
-        xo = 1859.0; ax.annotate("the censuses of 1897 and 1926 agree:\nno adult learning in thirty years", (xo, np.interp(xo, x26, y26) + 0.012 * ymax), xytext=(1848.5, 0.30 * ymax), fontsize=9, color="#222222", ha="center", va="center", arrowprops=dict(arrowstyle="-", lw=0.7, color="#666666", shrinkA=2, shrinkB=1))
+        ax.annotate("recorded cohort literacy gain\nbetween 1926 and 1939", (xm, ym), xytext=(1872.0, ym + 0.15 * ymax), fontsize=9, color="#222222", ha="center", va="center", arrowprops=dict(arrowstyle="-", lw=0.7, color="#666666", shrinkA=2, shrinkB=1))
+        xo = 1859.0; ax.annotate("similar cohort literacy in 1897 and 1926", (xo, np.interp(xo, x26, y26) + 0.012 * ymax), xytext=(1848.5, 0.30 * ymax), fontsize=9, color="#222222", ha="center", va="center", arrowprops=dict(arrowstyle="-", lw=0.7, color="#666666", shrinkA=2, shrinkB=1))
         ax.text(CENSUS_T[1926] - 27.5, 0.022 * ymax, "aged 20 to 34\nin 1926", fontsize=8, color="#555555", ha="center", va="bottom")
 if "cpr.F.1926.20-24" in NUM:
     fig, ax = plt.subplots(figsize=(7.4, 4.8)); cohort_profile(ax, "r", "F", CF, 80); ax.set_ylabel("Women who can read, per cent"); fig.tight_layout(); save(fig, "fig25_main_cohorts")
@@ -354,11 +368,11 @@ if "w2c.M.18-22" in NUM:
     for ax, key, bins, labs, xl, ttl, cut in [(axes[0], "w1c", ORD1, A97, "Age at the census of February 1897", "(a) Before the campaign, 1897 to 1926", None), (axes[1], "w2c", ADULT, ADULT, "Age at the census of December 1926", "(b) The campaign, 1926 to 1939", 5.5)]:
         x = np.arange(len(bins))
         for sx, col, mk, lab, off in (("M", CM, "o", "Men", -0.06), ("F", CF, "s", "Women", 0.06)):
-            v = np.array([NUM[f"{key}.{sx}.{b}"] for b in bins]); s = np.array([NUM[f"{key}.{sx}.{b}.se"] for b in bins]); ax.errorbar(x + off, v, yerr=1.96 * s, fmt=mk + "-", color=col, lw=2, ms=6.5, mec="white", mew=1.2, capsize=3, elinewidth=1.2, label=lab)
+            v = np.array([NUM[f"{key}.{sx}.{b}"] for b in bins]); s = np.array([NUM[f"{key}.{sx}.{b}.se"] for b in bins]); ax.errorbar(x + off, v, yerr=halfwidth([f"{key}.{sx}.{b}" for b in bins]), fmt=mk + "-", color=col, lw=2, ms=6.5, mec="white", mew=1.2, capsize=3, elinewidth=1.2, label=lab)
         ax.axhline(0, color="#444444", lw=0.7); ax.yaxis.grid(True, color=GRID, lw=0.8); ax.set_axisbelow(True); ax.set_xticks(x); ax.set_xticklabels(labs, fontsize=8.5); ax.set_xlabel(xl); ax.set_title(ttl, fontsize=9.5, loc="left")
         if cut is not None:
             ax.axvspan(cut, len(bins) - 0.5, color="#000000", alpha=0.06, lw=0); ax.text((cut + len(bins) - 0.5) / 2, 72, "above the\nage limit", ha="center", va="top", fontsize=8, color="#555555")
-    axes[0].set_ylabel("Illiterate at the earlier census who\ncould read at the later one, per cent"); axes[0].legend(frameon=False, loc="upper right"); fig.tight_layout(); save(fig, "fig27_taught_periods")
+    axes[0].set_ylabel("Net literacy gain / initially illiterate, per cent"); axes[0].legend(frameon=False, loc="upper right"); fig.tight_layout(); save(fig, "fig27_taught_periods")
 
 # ---------- Figure: the cohort of the campaign in every region ----------
 if os.path.exists(f"{R}/S1_region_gains.csv"):
@@ -369,4 +383,18 @@ if os.path.exists(f"{R}/S1_region_gains.csv"):
     ax.set_yticks(y); ax.set_yticklabels([r_ + ("*" if a_ else "") for r_, a_ in zip(f_.region_en, f_.approx_borders)], fontsize=8.5); ax.set_xlim(0, 100); ax.xaxis.grid(True, color=GRID, lw=0.8); ax.set_axisbelow(True)
     for s_ in ("left", "bottom"): ax.spines[s_].set_color("#9a9a9a")
     ax.tick_params(colors="#444444"); ax.set_xlabel("Literate, per cent (rural cohort aged 20 to 34 in 1926)"); ax.legend(frameon=False, loc="upper left", fontsize=9); fig.tight_layout(); save(fig, "fig28_regions")
+
+# ---------- Figure: why it worked, the share taught and the move of the cohort to the towns, by region ----------
+if os.path.exists(f"{R}/M_mechanism_regions.csv"):
+    mf = csv("M_mechanism_regions.csv"); mf = mf[mf.sex == "F"].reset_index(drop=True)
+    fig, axes = plt.subplots(1, 2, figsize=(11.5, 4.8), sharex=True)
+    for ax, y_, ttl in ((axes[0], "taught_r", "(a) Rural population"), (axes[1], "taught_t", "(b) Whole population")):
+        ex = mf.appr == 0
+        ax.scatter(mf.dUrb[ex], mf[y_][ex], s=46, color=CF, edgecolor="white", lw=0.8, zorder=3, label="Borders unchanged")
+        ax.scatter(mf.dUrb[~ex], mf[y_][~ex], s=46, facecolor="white", edgecolor=CF, lw=1.3, zorder=3, label="Borders changed")
+        ax.yaxis.grid(True, color=GRID, lw=0.8); ax.set_axisbelow(True); ax.set_title(ttl, fontsize=9.5, loc="left"); ax.set_ylim(15, 70)
+        ax.set_xlabel("Change in the urban share of the cohort, 1926 to 1939, points")
+        place_labels(ax, mf.dUrb.values, mf[y_].values, list(mf.region_en), fontsize=6.5, sizes=np.full(len(mf), 46.0))
+    axes[0].set_ylabel("Net literacy gain / initially illiterate, per cent"); axes[0].legend(frameon=False, loc="lower left", fontsize=8.5)
+    fig.tight_layout(); save(fig, "fig29_why_regions")
 print("all figures written to", F)

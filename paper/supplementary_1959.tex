@@ -1,0 +1,47 @@
+% Candidate supplementary text. Requires booktabs and graphicx.
+% Descriptive diagnostics only; no causal interpretation is imposed.
+\subsection*{Regional cohort literacy after 1939}
+
+Regional tabulations of the 1959 census allow a more demanding follow-up
+than the national comparison alone. We compare the cohorts aged 30--34,
+35--39 and 40--44 in January 1939 with those aged 50--54, 55--59 and 60--64
+in January 1959, holding their age composition fixed at the 1939 census.
+These age bands can be matched without interpolation. They overlap with,
+but do not exactly reproduce, the paper's group aged 20--34 in December
+1926. The five-republic diagnostic covers the Tatar, Bashkir, Chuvash,
+Mari and Udmurt republics. Karelia is excluded because of territorial
+comparability concerns. The correspondence follows the republics'
+territorial cores; a complete concordance of small territorial transfers
+has not been established.
+
+Across these five republics, female literacy in the selected cohorts
+increases by \SN{followup.total.F} percentage points for the total population and by \SN{followup.rural.F}
+points for the rural population, but changes by \SN{followup.urban.F} points in towns.
+The corresponding changes for men are \SN{followup.total.M}, \SN{followup.rural.M} and \SN{followup.urban.M} points.
+An exploratory regression of the cohort-level change on a female
+indicator, republic and age-group fixed effects, weighted by population
+in 1939, gives a female-minus-male change of \SN{urban.b} points in towns.
+The CR2/Satterthwaite 95 per cent interval is [\SN{urban.ci_low_cr2}, \SN{urban.ci_high_cr2}]; the
+restricted wild cluster bootstrap, enumerating all 32 Rademacher sign
+vectors for the five republics, gives $p=\SN{urban.wcr_p}$. This discrepancy should
+be reported rather than resolved by selecting the more favourable test.
+
+These are changes in the recorded literacy of populations occupying
+successive age groups, not transitions observed for linked individuals.
+For example, the Tatar republic's female urban cohort population is
+120.9 per cent of its 1939 size by 1959. Migration, settlement
+reclassification, territorial change or enumeration error must therefore
+enter the comparison. Wartime mortality, selective survival, subsequent
+learning and possible loss of skills add further components.
+Consequently, similarity between the two national literacy rates cannot
+by itself bound misreporting in 1939 or establish uniform regional
+persistence. The post-1939 gender-gap estimates are descriptive and do
+not identify the causal effect of the literacy campaign.
+
+% Sources: Demoscope Weekly, 1939 age and illiteracy tabulations,
+% https://www.demoscope.ru/weekly/ssp/rus_age_39.php
+% https://www.demoscope.ru/weekly/ssp/rus_ill_39.php
+% 1959 Table 7, RGAE f.1562 op.336 d.1591--1594,
+% https://www.demoscope.ru/weekly/ssp/rus_edu_59.php
+% Exact replication inputs, transformations and alternative specifications
+% accompany this supplementary text.
