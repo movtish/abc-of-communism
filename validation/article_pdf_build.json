@@ -68,9 +68,9 @@
       "language": "ru",
       "source": "jnea/article_jnea.tex",
       "pdf": "jnea/article_jnea.pdf",
-      "pdf_sha256": "f08557c1a30b6e09cb9dbc25b7ca9c6849d40f9008237c17316d3aea5c58ba84",
+      "pdf_sha256": "13e7883696e89747c78e9381ce3ce71c76fb94a0108e2943240c10dfc8f3fc83",
       "source_hashes": {
-        "jnea/article_jnea.tex": "5293f51536218a6a4562bb35f50b2bd0be13baf22673d1f79a777370f3660549",
+        "jnea/article_jnea.tex": "728a63340510fac5ce8ccdb0a35bd39fbabc97dad094b65c3927bf74e022ebc3",
         "jnea/figures/rj1_sostav.pdf": "702eb389971a5159e3a1a15bd2f4aafa226b75290abd2412caa8f2821d05e153",
         "jnea/figures/rj2_vozrast.pdf": "f61e096042c3d295ee98f9c5f0d3baa6dbb6f716bc21cecfd42a65ab8a22c741",
         "jnea/figures/rj3_regiony.pdf": "07a556cc6929f1675e24aba2e6368656bace97caa549cabf4e756ec48e93f5b8",

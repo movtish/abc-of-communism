@@ -7,7 +7,7 @@ This paper follows birth cohorts through the censuses of 1897, 1926, 1939 and 19
 
 The main younger-minus-older contrast for rural women is 20.354 percentage points, with a CR2 95 per cent interval of [16.679, 24.028]. Its causal interpretation depends on counterfactual learning, migration, mortality and enumeration. Regional evidence from 1924 and 1959 examines institutional correlates and later cohort composition.
 
-[Paper and online appendix](paper/ABC_of_Communism.pdf) · [Russian article](jnea/article_jnea.pdf) · [Data and methods](docs/METHODS.md) · [Further evidence](docs/SUPPLEMENTARY_EVIDENCE.md) · [Sources](docs/SOURCES.md)
+[English reading package, 4.58 MB](docs/ABC_of_Communism_reader.zip) · [Paper and online appendix](paper/ABC_of_Communism.pdf) · [Russian article](jnea/article_jnea.pdf) · [Data and methods](docs/METHODS.md) · [Further evidence](docs/SUPPLEMENTARY_EVIDENCE.md) · [Sources](docs/SOURCES.md)
 
 ## Data and code
 
