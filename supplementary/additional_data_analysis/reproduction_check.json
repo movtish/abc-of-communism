@@ -3,7 +3,5 @@
   "csv_results_identical_after_packaged_rerun": true,
   "models": 12,
   "new_1939_source_numeric_checks": 144,
-  "note": "Reproduction validates transformations, not historical census accuracy or causal identification.",
-  "historical_stage_original_project_modified": false,
-  "integrated_into_project": true
+  "note": "Reproduction validates transformations, not historical census accuracy or causal identification."
 }
