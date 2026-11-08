@@ -12,7 +12,7 @@
   "main_tables_and_figures": "passed",
   "stata_data_export": "passed",
   "stata_execution": "not run; licensed executable unavailable",
-  "article_pdf_build": "not verified; see docs/BUILD_STATUS.md",
+  "article_pdf_build": "built; see validation/article_pdf_build.json",
   "notes": [
     "Corrected missing os imports in the portable number writer and 1959 downloader.",
     "Sorted 60+ transcription keys to make output ordering independent of Python hash randomisation.",

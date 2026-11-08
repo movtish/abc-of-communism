@@ -162,12 +162,34 @@ for folder in ["paper", "jnea"]:
                 key for key in candidates if "#" not in key and key not in allowed
             ]
             check(not missing, f"{macro} numerical references: {p.relative_to(ROOT)}")
+pdf_current = False
+build_record = ROOT / "validation/article_pdf_build.json"
+if build_record.exists():
+    articles = json.loads(build_record.read_text(encoding="utf-8"))["articles"]
+    pdf_current = {article["language"] for article in articles} == {"en", "ru"}
+    for article in articles:
+        path = ROOT / article["pdf"]
+        pdf_current = (
+            pdf_current and path.is_file() and digest(path) == article["pdf_sha256"]
+        )
+        for name, expected in article["source_hashes"].items():
+            path = ROOT / name
+            pdf_current = (
+                pdf_current
+                and path.is_file()
+                and hashlib.sha256(
+                    path.read_bytes().replace(b"\r\n", b"\n")
+                    if path.suffix in {".tex", ".bib"}
+                    else path.read_bytes()
+                ).hexdigest()
+                == expected
+            )
 report = {
     "passed": not errors,
     "checks": len(checks),
     "errors": errors,
     "main_female_pp": female,
-    "article_pdf_rebuilt": False,
+    "article_pdf_rebuilt": bool(pdf_current),
 }
 (ROOT / "validation/release_checks.json").write_text(
     json.dumps(report, indent=2) + "\n", encoding="utf-8"

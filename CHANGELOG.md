@@ -18,3 +18,10 @@ Integrated the methodological revision and new historical data into one reproduc
 - Edited Python and Stata comments and formatted the Python files. Checked the computational syntax separately from documentation and label changes.
 
 Current interpretation and reproduction commands are in the root README. Original publications and the Russian journal article retain their language.
+
+## Article PDFs
+
+- Downloaded the required TeX packages and fonts from the direct official bundle storage.
+- Built both articles and checked all pages, references and glyphs.
+- Added a repeatable offline build and source hashes.
+- Made the Russian font setup work with both pdfLaTeX and XeTeX.

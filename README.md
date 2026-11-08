@@ -8,13 +8,13 @@ The November 2026 revision corrects the territorial scope of the 1939 Moscow and
 
 ## Reading the project
 
-- [English manuscript](paper/ABC_of_Communism.tex) and [appendix](paper/appendix.tex).
+- [English article with the online appendix](paper/ABC_of_Communism.pdf), [LaTeX source](paper/ABC_of_Communism.tex) and [appendix source](paper/appendix.tex).
 - [Data and methods](docs/METHODS.md), also available as a [PDF](docs/Data_and_methods.pdf).
 - [Further historical evidence](docs/SUPPLEMENTARY_EVIDENCE.md), also available as a [PDF](docs/Supplementary_evidence.pdf).
 - [Source register](docs/SOURCES.md), distinguishing downloaded data, partial scans and archival leads.
 - [Main census codebook](data/CODEBOOK.md).
 
-The Russian journal version is retained in `jnea/`. Original source publications and census keys keep their Russian wording. Reader-facing documentation and the new supplementary figures are in English. Earlier local reports are preserved in the local archive rather than presented as current English documentation.
+The [Russian journal article](jnea/article_jnea.pdf) and its sources are retained in `jnea/`. Original source publications and census keys keep their Russian wording. Reader-facing documentation and the new supplementary figures are in English. Earlier local reports are preserved in the local archive rather than presented as current English documentation.
 
 ## Files
 
@@ -66,4 +66,10 @@ python -m pip install -r requirements-docs.txt
 python scripts/build_docs.py
 ```
 
-The article uses LaTeX and its bibliography. Its build status and commands are recorded in [BUILD_STATUS.md](docs/BUILD_STATUS.md). Earlier article PDFs are not supplied as the current revision.
+Both current article PDFs have been built and visually checked. A local Tectonic runtime and the downloaded package cache are included in this local project folder but excluded from Git. To rebuild both articles without network access, run the following command.
+
+```sh
+python scripts/build_articles.py --offline
+```
+
+On a fresh checkout, install Tectonic 0.17.0 and run `python scripts/build_articles.py --tectonic /path/to/tectonic` once with network access. The script uses the official bundle storage directly. Build details are recorded in [BUILD_STATUS.md](docs/BUILD_STATUS.md), and source and PDF hashes in `validation/article_pdf_build.json`.

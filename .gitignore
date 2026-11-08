@@ -16,3 +16,8 @@ __pycache__/
 /results_v1_before_validation/
 /slides/
 /SESSION_NOTES*
+/.tools/
+/.tectonic-cache/
+/build/
+*.bbl
+*.xdv
