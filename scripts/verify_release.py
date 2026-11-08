@@ -62,8 +62,9 @@ check(np.isclose(female,num['w2.pw'][0]),'Independent female estimate agrees wit
 keys=set(num)|set(stored['STR'])
 suppkeys=set(re.findall(r'csname supp@([^\\]+)\\endcsname',
     (ROOT/'paper/supplementary_numbers.tex').read_text(encoding='utf-8')))
+manuscripts=json.loads((ROOT/'validation/manuscript_files.json').read_text(encoding='utf-8'))
 for folder in ['paper','jnea']:
-    for p in (ROOT/folder).rglob('*.tex'):
+    for p in [ROOT/name for name in manuscripts if name.startswith(folder+'/')]:
         text='\n'.join(line for line in p.read_text(encoding='utf-8-sig').splitlines()
                        if not line.lstrip().startswith('%'))
         for macro, candidates, allowed in [
