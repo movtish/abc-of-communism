@@ -1,0 +1,148 @@
+Wave 2 rural sample: cells 174 units 18 | cells per unit:
+unit_1926
+Башкирская АССР         6
+Воронежская губ.        2
+Вотская АО              8
+Вятская губ.           12
+Ишимский округ         12
+Карельская АССР        10
+Курганский округ       12
+Курская губ.           12
+Марийская АО           12
+Оренбургская губ.      10
+Пензенская губ.         2
+Самарская губ.          8
+Саратовская губ.       12
+Смоленская губ.         8
+Сталинградская губ.    12
+Татарская АССР         12
+Тобольский округ       12
+Чувашская АССР         12
+tiers: {1: 173, 3: 1}
+
+=== Table A2: state phase, female excess gain delta_b relative to the cohort aged 43-47, by specification ===
+Baseline                                   n=174 units=18 | 18-22  11.8(1.6) 23-27  15.5(1.5) 28-32  13.0(1.5) 33-37   7.6(1.2) 38-42   3.7(0.8) | pooled 9.24 (1.13)
+Including flagged units                    n=198 units=20 | 18-22  10.9(1.7) 23-27  14.3(1.6) 28-32  12.1(1.5) 33-37   6.9(1.3) 38-42   3.4(0.8) | pooled 8.67 (1.17)
+With survival ratio                        n=174 units=18 | 18-22  10.8(2.0) 23-27  14.5(1.9) 28-32  12.1(1.8) 33-37   6.9(1.6) 38-42   3.0(1.3) | pooled 8.24 (1.16)
+Survival ratio in [0.6, 1.15]              n=100 units=12 | 18-22  10.2(2.7) 23-27  13.7(2.5) 28-32  11.0(2.3) 33-37   5.8(1.7) 38-42   2.0(1.1) | pooled 8.52 (1.69)
+Unweighted                                 n=174 units=18 | 18-22  13.4(1.6) 23-27  16.4(1.5) 28-32  13.5(1.3) 33-37   7.6(1.0) 38-42   2.9(0.6) | pooled 10.93 (1.23)
+Russian units only                         n=114 units=12 | 18-22  11.8(1.2) 23-27  15.5(1.3) 28-32  12.9(1.5) 33-37   8.2(1.3) 38-42   4.0(1.3) | pooled 9.19 (0.89)
+Excluding Ural okrugi                      n=138 units=15 | 18-22  11.7(1.8) 23-27  15.4(1.6) 28-32  13.0(1.6) 33-37   7.8(1.4) 38-42   3.8(0.9) | pooled 9.09 (1.22)
+Excluding Tatar and Bashkir                n=156 units=16 | 18-22  12.9(1.3) 23-27  16.4(1.3) 28-32  13.7(1.5) 33-37   8.4(1.2) 38-42   3.6(1.1) | pooled 10.27 (1.04)
+Excluding low-quality units                n=154 units=15 | 18-22  12.5(1.9) 23-27  16.3(1.6) 28-32  13.7(1.6) 33-37   7.7(1.4) 38-42   3.8(0.9) | pooled 9.84 (1.19)
+Tier 1 cells only                          n=172 units=17 | 18-22  12.0(1.7) 23-27  15.5(1.5) 28-32  13.0(1.5) 33-37   7.6(1.2) 38-42   3.7(0.8) | pooled 9.40 (1.13)
+Units with all six cohorts                 n=120 units=10 | 18-22  12.3(2.2) 23-27  16.1(1.9) 28-32  13.5(1.9) 33-37   7.0(1.6) 38-42   3.2(1.0) | pooled 10.29 (1.40)
+Total population                           n=270 units=25 | 18-22  11.3(1.0) 23-27  14.6(1.0) 28-32  11.4(2.0) 33-37   6.7(0.8) 38-42   4.4(0.7) | pooled 8.42 (0.91)
+
+Age gradient: men -0.31 (0.06) per year; women a further -0.47 (0.07); implied crossing age 52.6
+   weighted fit M: slope -0.36, gain at 21.5 13.4, at 46.5 4.4, zero at age 58.6
+   weighted fit F: slope -0.71, gain at 21.5 27.0, at 46.5 9.1, zero at age 59.3
+weighted mean gains:
+sex          F     M
+age_1926            
+18-22     26.6  14.5
+23-27     23.8   8.0
+28-32     21.0   7.7
+33-37     16.1   8.2
+38-42     11.9   8.0
+43-47      6.5   6.4
+cohorts 18-32, weighted:
+     gain  lit26  lit39
+sex                    
+F    24.4   40.8   65.1
+M    11.1   81.6   92.7
+
+Unit table, cohort 23-32 (both five-year cohorts validated):
+          unit_1926  gain_F  lit26_F    pop  titular  surv  ncoh  gain_M  lit26_M
+     Чувашская АССР    33.9     30.6  64523        1   0.8     2     9.5     82.9
+     Татарская АССР    30.2     35.6 184116        1   0.7     2    11.8     78.0
+   Саратовская губ.    27.4     34.4 195842        0   0.4     2     8.3     84.9
+   Тобольский округ    24.1     18.0  14425        0   7.0     2    24.8     55.8
+   Курганский округ    23.6     30.9  38036        0   2.6     2     8.8     78.7
+     Ишимский округ    23.5     18.6  32953        0   3.1     2    10.6     70.0
+       Курская губ.    21.0     36.2 207594        0   0.9     2     7.8     86.2
+       Марийская АО    20.2     32.3  38357        1   0.8     2     6.6     84.4
+     Самарская губ.    19.2     32.0 175282        0   0.7     2     8.8     81.6
+Сталинградская губ.    19.2     40.6  97662        0   0.9     2     4.0     86.9
+    Карельская АССР    16.6     49.8  14910        1   1.1     2     2.4     89.6
+       Вятская губ.    16.4     45.0 167147        0   0.7     2     3.7     89.0
+    Смоленская губ.    15.4     37.2 159245        0   0.9     2     4.0     90.1
+  Оренбургская губ.    15.0     40.6  52609        0   1.5     2     3.8     84.5
+Russian units: women's gains from 15.0 to 27.4; titular units from 16.6 to 33.9
+   women on own level                           n=14 lit26_F -0.48 (0.19)
+   women + titular                              n=14 lit26_F -0.41 (0.13); titular 8.29 (2.51)
+   women + titular + survival                   n=14 lit26_F -0.54 (0.22); titular 7.71 (2.79); surv -1.77 (1.63)
+   women + titular, excl. Tatar and Bashkir     n=13 lit26_F -0.42 (0.13); titular 5.95 (4.70)
+   women + titular, unweighted                  n=14 lit26_F -0.38 (0.11); titular 6.15 (3.41)
+   men on own level                             n=14 lit26_M -0.56 (0.08)
+   men + titular                                n=14 lit26_M -0.53 (0.08); titular 1.01 (0.82)
+   women + titular, cohorts 18-32               n=14 lit26_F -0.48 (0.13); titular 7.66 (2.27)
+   cell-level female x young x titular: 1.87 (3.23); female x titular 2.86 (2.64)
+   cohorts 18-32 only, female x titular: 4.70 (2.12), n=94
+
+=== Two-regime test at the cell level: psi in each phase and the difference (stacked, clustered by unit) ===
+teachers_percap_1911   phase 1 psi   5.06 (1.42) | phase 2 psi   1.81 (1.82) | difference  -3.25 (2.56) p=0.204 | units p1 22 p2 16 both 11 | common units: psi1 -5.05 (4.90), difference 7.47 (9.69) p=0.441
+urban_share_M          phase 1 psi   1.41 (2.01) | phase 2 psi  -0.18 (3.01) | difference  -1.59 (4.74) p=0.738 | units p1 19 p2 15 both 10 | common units: psi1 2.06 (3.95), difference -1.90 (7.78) p=0.807
+cwr                    phase 1 psi  -3.63 (1.86) | phase 2 psi   0.52 (0.87) | difference   4.15 (1.77) p=0.019 | units p1 21 p2 15 both 11 | common units: psi1 -2.93 (0.92), difference 3.92 (1.44) p=0.006
+agshare_1897           phase 1 psi  -4.50 (3.23) | phase 2 psi  -0.54 (2.84) | difference   3.96 (5.23) p=0.449 | units p1 22 p2 16 both 11 | common units: psi1 4.76 (3.07), difference -5.90 (5.79) p=0.308
+
+=== Same cohorts (aged 18-32 in 1926): 1926 level (household regime) and 1926-39 gain (state regime), female x predictor, unit and cohort FE ===
+teachers_percap_1911   level 1926: female x z   0.39 (1.97) | gain 1926-39:  -0.96 (1.47) | difference  -1.34 (2.14) p=0.530 | units 16, cells 82
+urban_share_M          level 1926: female x z   0.04 (3.11) | gain 1926-39:   3.81 (2.04) | difference   3.77 (4.14) p=0.362 | units 15, cells 80
+cwr                    level 1926: female x z  -1.29 (0.78) | gain 1926-39:  -0.28 (0.59) | difference   1.00 (0.64) p=0.114 | units 15, cells 80
+agshare_1897           level 1926: female x z   3.42 (2.07) | gain 1926-39:   2.14 (2.04) | difference  -1.29 (2.88) p=0.655 | units 16, cells 82
+
+=== Summary statistics of the estimation samples ===
+First phase: cells 265, regions 19, gain mean 2.6 sd 8.1, survival mean 0.51
+Second phase: cells 174, units 18, gain mean 13.7 sd 8.5, survival median 0.83, mean 1.52
+Decomposition (core): cells 701, units 35, literacy mean 51.9 sd 25.5
+Legacy: cells 40, subjects 24, nationalities 12, gap10 mean 5.4 sd 4.9; weighted mean 3.9; gap26F mean 16.7 sd 15.3; gap26M mean 17.7 sd 15.0
+Legacy rural: cells 36, subjects 20
+   teachers_percap_1911   n=41 mean 0.92 sd 0.27 min 0.60 max 1.83
+   urban_share_M          n=30 mean 23.42 sd 15.52 min 6.20 max 65.31
+   cwr                    n=39 mean 60.02 sd 5.46 min 45.51 max 72.78
+   agshare_1897           n=41 mean 74.06 sd 9.28 min 51.09 max 87.95
+   gender_gap_20-24       n=40 mean 32.61 sd 9.22 min 10.20 max 48.10
+
+Validation: five-year groups aged 10-69: 8840; tier 1 91.8%, tier 2 0.9%, tier 3 1.0%, dropped 6.3%
+   rural: 3624; tier 1 90.1%, tier 2 0.7%, tier 3 1.2%, dropped 8.0%
+   single-year cells aged 8-49: 32172; valid 93.5%
+   band cells: 5984; units 45; rural 2433
+
+Age profile (rural, validated cells):
+          F     M       popM       popF
+band                                   
+8-11   29.6  46.1  1128306.0  1400824.0
+12-14  41.2  71.0  1265076.0  1461249.0
+15-19  46.4  72.9  1895391.0  2302625.0
+20-24  47.4  84.5  1317414.0  1708037.0
+25-29  37.7  83.7  1002668.0  1424877.0
+30-39  27.8  78.0  1225070.0  2034997.0
+40-49  14.3  65.0  1232563.0  1489616.0
+50-59   8.8  46.4   875818.0  1071939.0
+60-69   5.5  32.7   697787.0   833834.0
+
+=== Legacy: additional robustness ===
+ages available in the national table: ['20-24', '25-29', '30-34', '35-39', '40-44', '45-49', '50-54', '55-59', '60-64', '65-69', '70 и более']
+age-composition adjustment by nationality (share with secondary education at Russian age weights minus actual, pp; mean age 15+):
+              age_adj  mean_age
+nat2010                        
+Башкиры         -2.26     44.62
+Казахи          -6.93     41.96
+Калмыки         -4.95     42.17
+Карелы           3.70     51.59
+Коми-пермяки    -1.02     48.02
+Марийцы         -3.71     44.82
+Мордва           2.83     49.64
+Немцы            0.96     48.65
+Татары          -0.63     45.86
+Удмурты         -0.64     47.22
+Украинцы         2.79     52.58
+Чуваши          -0.49     46.64
+correlation of the 1926 female and male gaps across cells: 0.65
+Baseline, subject FE                                       n=40 beta_F 0.301 (0.076)  beta_M 0.020 (0.059)
+Age-standardised 2010 gap                                  n=40 beta_F 0.340 (0.110)  beta_M 0.126 (0.050)
+Controlling for the difference in rural share, 2010        n=40 beta_F 0.220 (0.120)  beta_M 0.008 (0.077)  rural_diff 0.057 (0.081)
+Controlling for Muslim and titular indicators              n=40 beta_F 0.133 (0.147)  beta_M 0.195 (0.174)  muslim -4.447 (4.398)  titular 0.552 (1.467)
+Age-standardised, higher education                         n=40 beta_F 0.387 (0.100)  beta_M 0.003 (0.098)
+Without subject fixed effects                              n=40 beta_F 0.181 (0.049)  beta_M -0.152 (0.079)

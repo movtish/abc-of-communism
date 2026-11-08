@@ -1,17 +1,20 @@
-"""All numbers of the paper.
--> results/paper_numbers.json, .csv (key; value; decimals), .txt (log), samples as csv in results/
--> paper/numbers.tex (through write_numbers.py)
-same specifications in stata/ABC_of_Communism.do
-python scripts/paper_numbers.py [--fast]    after build_1926_v2.py, ~15 min, --fast = no permutations / bootstraps"""
+"""Every number that appears in the paper, computed from the validated data in one place.
+Writes  paper/numbers.tex          macros \\N{key} for the numbers quoted in the text
+        paper/tables/*.tex         bodies of all tables
+        results/paper_numbers.csv  the same numbers in a flat file (key; value; decimals)
+        results/paper_numbers.txt  log
+The Stata do-file stata/ABC_of_Communism.do reproduces the same specifications from stata/data/*.dta.
+Run after build_1926_v2.py:  python scripts/paper_numbers.py   (about 15 minutes; add --fast to skip permutations and bootstraps)."""
 import os, re, sys, json, itertools, warnings, numpy as np, pandas as pd, statsmodels.formula.api as smf
 warnings.filterwarnings("ignore"); sys.stdout.reconfigure(encoding="utf-8")
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__))); D = f"{ROOT}/data"; R = f"{ROOT}/results"; PP = f"{ROOT}/paper"; TB = f"{PP}/tables"
-os.makedirs(TB, exist_ok=True); os.makedirs(R, exist_ok=True)
+os.makedirs(TB, exist_ok=True)
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from maps2010 import MAP, NATMAP
 FAST = "--fast" in sys.argv
 SEED = 20260930
 NUM, STR, LOG = {}, {}, []
+DF = {}  # exact inference degrees of freedom for every plotted coefficient
 def P(*a):
     s = " ".join(str(x) for x in a); print(s); LOG.append(s)
 def put(key, v, d=1):
@@ -26,9 +29,12 @@ def fint(v):
     return f"{int(round(v)):,}"
 def pstr(p):
     return "<0.001" if p < 0.001 else f"{p:.3f}"
-NI = []   # not identified (collinear with the FE)
+NI = []   # coefficients that the data do not identify (linear combinations of the fixed effects)
 def fit(f, d, w=None, cluster=None):
-    # WLS, SE clustered (HC1 if no cluster) as in Stata: G/(G-1) * (N-1)/(N-K) with K = rank of X, t with G-1 df
+    """Weighted least squares with standard errors clustered by `cluster` (HC1 otherwise), as in Stata: the small-sample correction
+    G/(G-1) x (N-1)/(N-K) uses the rank K of the design, and inference uses the t distribution with G-1 degrees of freedom."""
+    if cluster == "unit_1926" and "region_1939" in d.columns:
+        cluster = "region_1939"  # shared later-census observations share a cluster
     toks = set(re.split(r"[\s()*+:~,']+", f.replace("Q(", "").replace("Treatment", "")))
     d = d.dropna(subset=[c for c in d.columns if c in toks] + ([w] if w else []))
     m = smf.wls(f, data=d, weights=d[w]) if w else smf.ols(f, data=d)
@@ -36,7 +42,7 @@ def fit(f, d, w=None, cluster=None):
     if cluster:
         g = pd.factorize(d[cluster])[0]; G = int(g.max()) + 1; N = len(d)
         r = m.fit(cov_type="cluster", cov_kwds={"groups": g, "use_correction": False}, use_t=True)
-        r._results.cov_params_default = r._results.cov_params_default * (G / (G - 1)) * ((N - 1) / (N - rank))   # must be set on _results
+        r._results.cov_params_default = r._results.cov_params_default * (G / (G - 1)) * ((N - 1) / (N - rank))   # the attribute of the results, not of the wrapper
     else:
         r = m.fit(cov_type="HC1", use_t=True)
     r._null = vt_[s_ <= tol].T; r._names = list(m.exog_names); r._nclu = d[cluster].nunique() if cluster else None
@@ -50,9 +56,11 @@ def putna(key, d):
     put(key, np.nan, d); put(key + ".se", np.nan, d); puts(key + ".p", "n.i."); NI.append(key)
 def putc(key, r, term, d=1):
     if not identified(r, [term]): return putna(key, d)
+    DF[key] = float(getattr(r, "df_resid_inference", r.df_resid))
     put(key, r.params[term], d); put(key + ".se", r.bse[term], d); puts(key + ".p", pstr(r.pvalues[term]))
 def putl(key, r, expr, d=1):
     if not identified(r, [t_.strip() for t_ in expr.split("=")[0].split(" + ")]): return putna(key, d)
+    DF[key] = float(getattr(r, "df_resid_inference", r.df_resid))
     t = r.t_test(expr); put(key, float(t.effect[0]), d); put(key + ".se", float(t.sd[0][0]), d); puts(key + ".p", pstr(float(t.pvalue)))
 def cs(key, d=None):
     v, dd = NUM[key]; s, _ = NUM[key + ".se"]; d = dd if d is None else d
@@ -64,8 +72,9 @@ def z(df, cols):
 def table(name, lines):
     open(f"{TB}/{name}.tex", "w", encoding="utf-8").write("\n".join(lines) + "\n")
 
-# ---------------- fast WLS with absorbed FE, for the permutation and bootstrap loops ----------------
+# ---------------- fast weighted least squares with absorbed fixed effects (used in permutation and bootstrap loops) ----------------
 class FWL:
+    """y and regressors are residualised on the dummies of the fixed effects (weighted); clusters for the sandwich."""
     def __init__(self, d, fe_cols, w=None, cluster=None):
         n = len(d); self.sw = np.sqrt(d[w].values.astype(float)) if w else np.ones(n)
         blocks = [np.ones((n, 1))]
@@ -87,7 +96,8 @@ class FWL:
         V = XtXi @ meat @ XtXi * (G / (G - 1)) * ((self.n - 1) / (self.n - K))
         return b, b / np.sqrt(np.diag(V))
 def wild_p(d, fe_cols, xcols, term, y, w, cluster, B=999, seed=SEED):
-    # restricted wild cluster bootstrap, Rademacher weights -> (t, p)
+    """Restricted wild cluster bootstrap with Rademacher weights; returns (t, p)."""
+    if cluster == "unit_1926" and "region_1939" in d.columns: cluster = "region_1939"
     rng = np.random.default_rng(seed); d = d.reset_index(drop=True)
     F_ = FWL(d, fe_cols, w, cluster); Xr = F_.res(d[xcols].values); yr = F_.res(d[y].values); j = xcols.index(term)
     b, t = F_.ols(yr, Xr, True); t0 = t[j]
@@ -95,8 +105,9 @@ def wild_p(d, fe_cols, xcols, term, y, w, cluster, B=999, seed=SEED):
     G = F_.g.max() + 1; ts = []
     for _ in range(B):
         e = rng.choice([-1.0, 1.0], size=G)[F_.g]; ystar = fitted + u0 * e
+        ystar = ystar - F_.Q @ (F_.Q.T @ ystar)
         _, tb = F_.ols(ystar, Xr, True); ts.append(tb[j])
-    return float(t0), float(np.mean(np.abs(ts) >= abs(t0)))
+    return float(t0), float((1 + np.sum(np.abs(ts) >= abs(t0))) / (B + 1))
 
 q = pd.read_csv(f"{D}/tableIX_region_quality.csv", sep=";", encoding="utf-8-sig")
 LOWQ = set(q[(q.area == "rural") & (q.share_confirmed < 0.85)].region_1926)
@@ -124,7 +135,7 @@ sv = pd.read_csv(f"{D}/tableIX_single_years_validated.csv", sep=";", encoding="u
 puts("d.single", fint(len(s_))); put("d.single.valid", 100 * s_.valid.mean(), 1)
 bv = pd.read_csv(f"{D}/tableIX_bands_validated.csv", sep=";", encoding="utf-8-sig")
 puts("d.bands", fint(len(bv))); puts("d.bands.rural", fint((bv.area == "rural").sum()))
-bv = bv[bv.region != "Уральская обл."].copy()   # = sum of its 16 okrugi
+bv = bv[bv.region != "Уральская обл."].copy()   # aggregate of the sixteen okrugi
 ball = bv[(bv.group_type == "all") & (bv.area == "rural")]; puts("d.units.rural", str(ball.region.nunique())); puts("d.units.distinct", str(ix[ix.region != "Уральская обл."].region.nunique()))
 xv = pd.read_csv(f"{D}/tableXV_1926_1897_age_sex_literacy.csv", sep=";", encoding="utf-8-sig", dtype={"age": str})
 puts("d.xv.cells", fint(len(xv)))
@@ -143,7 +154,7 @@ for yr in (1897, 1926):
         s = rs[(rs.census_year == yr) & (rs.sex == sx)]; put(f"rsfsr.{yr}.{sx}", 100 * s.literate.sum() / s.population.sum(), 0)
 c39 = pd.read_csv(f"{D}/census1939_literacy_by_region_age_sex.csv", sep=";", encoding="utf-8-sig", dtype={"age": str})
 puts("d.c39.cells", fint(len(c39))); puts("d.c39.regions", str(c39.region_1939.nunique()))
-top = c39[~c39.region_1939.str.startswith("в том числе") & ~c39.region_1939.str.startswith("город")]
+top = c39[~c39.region_1939.str.startswith("в том числе")].copy()  # oblasts exclude the two cities after scope correction
 for sx in ("M", "F"):
     s = top[(top.area == "rural") & (top.sex == sx) & top.age.isin(A2049)]; put(f"rsfsr.1939.{sx}", 100 * s.literate.sum() / s.population.sum(), 0)
 # age profile, rural, validated cells of the whole population
@@ -193,7 +204,7 @@ d3 = d2[d2.age_decree != "33-37"]; rp3 = fit("gain ~ treated * female + C(region
 es1(d1, "w1u", w=None); r_s = es1(d1, "w1s", extra=" + survival"); putc("w1s.surv", r_s, "survival"); es1(e1[e1.area == "total"], "w1t"); es1(e1[e1.area == "urban"], "w1ur")
 if not FAST:
     dd = d2.copy(); t0, pw = wild_p(dd, ["region"], ["treated", "female", "tf"], "tf", "gain", "pop97", "region"); puts("w1.wild", pstr(pw)); P("wave 1 wild bootstrap", t0, pw)
-# share of the illiterate taught (does not depend on the room left below 100)
+# the illiterate of the earlier census who were literate at the later one: a measure that does not depend on the room left below 100 per cent
 def taught(d, key, coh, order, before, gain, pop, cluster):
     d = d.copy(); d["conv"] = 100 * d[gain] / (100 - d[before]); d["ill"] = d[pop] * (100 - d[before]) / 100; d["cc"] = d[coh].astype(str)
     r = fit("conv ~ 0 + C(cc) + C(cc):female", d, w="ill", cluster=cluster)
@@ -208,11 +219,11 @@ for sx in ("M", "F"):
         s = d2c[(d2c.sex == sx) & (d2c.treated == t_)]; put(f"w1c.{lab}.{sx}", np.average(s.conv, weights=s.ill), 0)
 s = d2c[d2c.treated == 1]; put("w1c.share.ill.F", 100 * s[s.sex == "F"].ill.sum() / s.ill.sum(), 0)
 rc = fit("conv ~ treated * female + C(region)", d2c, w="ill", cluster="region"); putc("w1c.ddd", rc, "treated:female"); putc("w1c.dd.men", rc, "treated"); putl("w1c.dd.women", rc, "treated + treated:female = 0")
-# Table 1, means of the two groups of cohorts
+# means of the two groups of cohorts (the first table of the paper): literacy at the two censuses, the change and the share of the illiterate taught
 for sx in ("M", "F"):
     for lab, s in (("young", d2c[(d2c.sex == sx) & (d2c.treated == 1)]), ("old", d2c[(d2c.sex == sx) & (d2c.treated == 0)])):
         put(f"t1h.{lab}.{sx}.l0", np.average(s.lit97, weights=s.pop97), 0); put(f"t1h.{lab}.{sx}.l1", np.average(s.lit97 + s.gain, weights=s.pop97), 0); put(f"t1h.{lab}.{sx}.d", np.average(s.gain, weights=s.pop97), 1); put(f"t1h.{lab}.{sx}.t", np.average(s.conv, weights=s.ill), 0)
-# ten-year cohorts (A1)
+# ten-year cohorts (Appendix Table A1)
 lx = pd.read_csv(f"{D}/tableXV_linked_cohorts.csv", sep=";", encoding="utf-8-sig"); lx = lx[lx.region != "РСФСР"].copy()
 lx["c"] = lx.cohort.map({"born 1878-87 (school-age in 1897)": "A", "born 1868-77 (adults in 1897)": "B", "born 1858-67": "C"}); lx["female"] = (lx.sex == "F").astype(int)
 lx["muslim"] = lx.region.isin(MUSREG).astype(int); lt = lx[lx.gain_pp.between(-30, 40)]
@@ -239,11 +250,13 @@ for sx in ("M", "F"):
 # =====================================================================================================================
 P("\n=== 2. The 1926 cross-section ===")
 rb = pd.read_csv(f"{D}/russians_region_baseline.csv", sep=";", encoding="utf-8-sig")
-# baseline is provincial, units carved from one province share it -> cluster by pg
+# The pre-revolutionary baseline is that of the province (or provinces) of 1897 from which the unit was formed, so that units carved from one province share its values.
+# Standard errors of every regression on these variables are clustered by that province group.
 rb["pg"] = rb.pre1917_province.fillna(rb.region)
 _pu = sorted({x_.strip() for pp_ in rb.pre1917_province.dropna() for x_ in str(pp_).split(";")}); _pv = pd.read_csv(f"{D}/baseline_pre1917_by_province.csv", sep=";", encoding="utf-8-sig")
 _pin = _pv[_pv.province_rus.isin(_pu) & _pv.teachers_percap_1911.notna()]; puts("base.provinces", str(len(_pin))); puts("base.districts", str(int(_pin.n_districts.sum()))); puts("base.units", str(int(rb.teachers_percap_1911.notna().sum())))
-# 9 units have no rural pages and the file has their whole population: masked here, used only in rb_all (robustness)
+# The file carries, for the units whose volumes give no rural pages, the figures of the whole population. The analysis of the rural population uses the units with rural pages only;
+# the nine others enter one robustness check with the figures of their whole population (rb_all).
 RURAL_RUS = set(bv[(bv.area == "rural") & (bv.group_type == "russian")].region); rb_all = rb.copy()
 rb.loc[~rb.region.isin(RURAL_RUS), [c_ for c_ in rb.columns if c_.startswith(("gender_gap_", "lit_F_", "lit_M_"))] + ["cwr", "sr_20_39", "csr_0_4"]] = np.nan
 puts("rus.units.rural", str(int(rb.region.isin(RURAL_RUS).sum()))); puts("rus.units.norural", str(int((~rb.region.isin(RURAL_RUS)).sum())))
@@ -284,7 +297,7 @@ lo_u = [fit(f"Q('{y}') ~ {BASE} + urban_share_M_z", du[du.region != u_]).params[
 if not FAST:
     rng = np.random.default_rng(SEED)
     def perm_ols(d, f, term, draws=2000, w=None, by=None):
-        # permute the regressor across units, or across groups `by` if it is constant within them
+        """Permutation of the regressor across units, or across the groups `by` when the regressor is constant within them."""
         obs = (smf.wls(f, data=d, weights=d[w]) if w else smf.ols(f, data=d)).fit().params[term]; a_ = []
         gv_ = d.groupby(by)[term].first() if by else None
         for _ in range(draws):
@@ -329,10 +342,10 @@ def pool(d, key, w="population", f=FP, nd=1):
     for t_ in ("vf", "vfy", "mf", "mfy"): putc(f"{key}.{t_}", r, t_, nd)
     putl(f"{key}.vyoung", r, "vf + vfy = 0", nd); putl(f"{key}.myoung", r, "mf + mfy = 0", nd); puts(f"{key}.n", str(int(r.nobs))); puts(f"{key}.units", str(d.region.nunique())); return r
 pool(kr, "ddd"); pool(kr[~kr.region.isin(LOWQ)], "ddd.nolow"); pool(kr[kr.population >= 300], "ddd.300"); pool(kr, "ddd.unw", w=None); pool(ktot, "ddd.total")
-# same in log-odds (the sexes are at different points of the diffusion curve)
+# the same decomposition in log-odds, which removes the difference between the positions of the sexes on the diffusion curve
 kr["lo"] = np.log(kr.literacy.clip(0.5, 99.5) / (100 - kr.literacy.clip(0.5, 99.5)))
 dec(kr, "decl", f=FD.replace("literacy ~", "lo ~"), nd=2); pool(kr, "dddl", f=FP.replace("literacy ~", "lo ~"), nd=2)
-# men and women separately, old vs young cohorts
+# men alone and women alone: the ethnic difference in the older and in the younger cohorts
 for sx in ("M", "F"):
     for yv, kk, nd in (("literacy", "sx", 1), ("lo", "sxl", 2)):
         r_ = fit(f"{yv} ~ C(rc) + volga + volga:young + muslim + muslim:young", kr[kr.sex == sx], w="population", cluster="region")
@@ -356,7 +369,7 @@ if not FAST:
         a_.append(coef_vfy(np.array([mp_[(x_, y_)] for x_, y_ in zip(cells.region, cells.group)], float)))
     a_ = np.array(a_); puts("ddd.perm", pstr(float(np.mean(np.abs(a_) >= abs(obs))))); put("ddd.perm.lo", np.quantile(a_, .025)); put("ddd.perm.hi", np.quantile(a_, .975)); P("decomposition permutation: observed", obs)
     t0, pw = wild_p(kr, ["rc", "gc", "sc"], ["vf", "vfy", "mf", "mfy"], "vfy", "literacy", "population", "region"); puts("ddd.wild", pstr(pw)); P("decomposition wild bootstrap", t0, pw)
-# literacy by group of nationalities, sex and cohort (weighted means of the cells)
+# literacy of each group of nationalities by sex and cohort (population-weighted means of the cells of the decomposition)
 kr["type"] = np.where(kr.volga == 1, "vol", np.where(kr.muslim == 1, "mus", "rus"))
 lt_ = kr.groupby(["type", "sex", "band"]).apply(lambda t: np.average(t.literacy, weights=t.population))
 for (t_, sx_, b_), v_ in lt_.items(): put(f"lit26.{t_}.{sx_}.{b_}", v_, 0)
@@ -424,7 +437,7 @@ def es2(d, key, w="pop_1926", extra=""):
     putc(f"{key}.fref", r, "female"); put(f"{key}.r2", r.rsquared, 2); puts(f"{key}.nobs", str(int(r.nobs))); puts(f"{key}.nunits", str(d.unit_1926.nunique()))
     rp_ = fit(FP2 + extra, d, w=w, cluster="unit_1926"); putc(f"{key}.ddd", rp_, "fy"); putc(f"{key}.ddm", rp_, "fm")
     d33 = d[d.age_1926.isin(YOUNG + MIDDLE)]; rq = fit("gain_pp ~ C(coh) + female + fy + C(unit_1926)" + extra, d33, w=w, cluster="unit_1926"); putc(f"{key}.ddd33", rq, "fy")
-    # effect by sex, 18-32 vs cohorts above the age limit: points .pw .pm .pd, share taught .tw .tm .td
+    # the effect on each sex: the cohorts aged 18-32 against the cohorts above the age limit, in points (.pw, .pm, .pd) and in the share of the illiterate taught (.tw, .tm, .td)
     dq = d.copy(); dq["conv"] = 100 * dq.gain_pp / (100 - dq.lit_1926); dq["ill"] = dq.pop_1926 * (100 - dq.lit_1926) / 100; FQ = " ~ young * female + middle * female + C(unit_1926)" + extra
     for yv, wv, tg in (("gain_pp", w, "p"), ("conv", "ill" if w else None, "t")):
         rq = fit(yv + FQ, dq, w=wv, cluster="unit_1926"); putc(f"{key}.{tg}m", rq, "young"); putl(f"{key}.{tg}w", rq, "young + young:female = 0"); putc(f"{key}.{tg}d", rq, "young:female")
@@ -441,7 +454,7 @@ for sx in ("M", "F"):
     put(f"w2.young.gain.{sx}", yy.loc[sx, "gain"], 0); put(f"w2.young.l26.{sx}", yy.loc[sx, "l26"], 0); put(f"w2.young.l39.{sx}", yy.loc[sx, "l39"], 0); put(f"w2.young.surv.{sx}", yy.loc[sx, "surv"], 2)
 put("w2.young.gain1.F", yy.loc["F", "gain"], 1)
 exf = 1 - yy.loc["F", "surv"] / yy.loc["M", "surv"]; put("w2.excess", 100 * exf, 1); put("w2.bound", (yy.loc["F", "l26"] / (1 - exf) - yy.loc["F", "l26"]) if exf > 0 else 0.0, 1)
-# bound: all women lost between the censuses were illiterate
+# the extreme case: every woman lost from the cohorts between the censuses was illiterate
 put("w2.bound.all.F", min(100.0, yy.loc["F", "l26"] / min(yy.loc["F", "surv"], 1.0)) - yy.loc["F", "l26"], 1); put("w2.young.loss.F", 100 * (1 - min(yy.loc["F", "surv"], 1.0)), 0)
 ra_ = fit("gain_pp ~ age1928 * female + C(unit_1926)", cl[cl.age_1926.isin(YOUNG + MIDDLE)], w="pop_1926", cluster="unit_1926"); putc("w2.age.m", ra_, "age1928", 2); putc("w2.age.fx", ra_, "age1928:female", 2); putl("w2.age.f", ra_, "age1928 + age1928:female = 0", 2)
 lo2 = [fit(FP2, cl[cl.unit_1926 != u_], w="pop_1926", cluster="unit_1926").params["fy"] for u_ in sorted(cl.unit_1926.unique())]; put("w2.loo.min", min(lo2)); put("w2.loo.max", max(lo2))
@@ -455,7 +468,7 @@ if not FAST:
         fl = dict(zip(zip(key_.unit_1926, key_.age_1926), rng.random(len(key_)) < 0.5)); a_.append(coef_fy(np.array([(1 - f_) if fl[(u_, c_)] else f_ for u_, c_, f_ in zip(c2.unit_1926, c2.age_1926, c2.female)], float)))
     a_ = np.array(a_); puts("w2.perm", pstr(float(np.mean(np.abs(a_) >= abs(obs))))); put("w2.perm.lo", np.quantile(a_, .025)); put("w2.perm.hi", np.quantile(a_, .975)); np.savetxt(f"{R}/B5_permutation_female_x_young.txt", a_)
     t0, pw = wild_p(cl, ["coh", "unit_1926"], ["female", "fm", "fy"], "fy", "gain_pp", "pop_1926", "unit_1926"); puts("w2.wild", pstr(pw)); P("wave 2 wild bootstrap", t0, pw)
-# share taught 1926-39
+# the illiterate of 1926 who were literate in 1939
 clc = taught(cl, "w2c", "age_1926", ADULT, "lit_1926", "gain_pp", "pop_1926", "unit_1926")
 for sx in ("M", "F"):
     for lab, s in (("young", clc[(clc.sex == sx) & (clc.young == 1)]), ("middle", clc[(clc.sex == sx) & (clc.middle == 1)]), ("placebo", clc[(clc.sex == sx) & clc.age_1926.isin(PLACEBO)])): put(f"w2c.{lab}.{sx}", np.average(s.conv, weights=s.ill), 0)
@@ -467,18 +480,18 @@ put("w2c.ratio", NUM["w2c.young.F"][0] / NUM["w2c.young.M"][0], 2); put("w1c.rat
 for sx in ("M", "F"):
     for lab, s in (("young", clc[(clc.sex == sx) & (clc.young == 1)]), ("old", clc[(clc.sex == sx) & clc.age_1926.isin(PLACEBO)])):
         put(f"t1s.{lab}.{sx}.l0", np.average(s.lit_1926, weights=s.pop_1926), 0); put(f"t1s.{lab}.{sx}.l1", np.average(s.lit_1939, weights=s.pop_1926), 0); put(f"t1s.{lab}.{sx}.d", np.average(s.gain_pp, weights=s.pop_1926), 1); put(f"t1s.{lab}.{sx}.t", np.average(s.conv, weights=s.ill), 0)
-# eq. (mix): women's share = reach of the state, men's = reach + household part
+# the reading of the two shares by equation (mix): the share of women is the reach of the state, the share of men exceeds it by the household component
 e_ = NUM["w2c.young.F"][0] / 100; h_ = NUM["w1c.treated.M"][0] / 100; put("mix.e", e_, 2); put("mix.h", h_, 2); put("mix.pred", e_ + (1 - e_) * h_, 2); put("mix.obs", NUM["w2c.young.M"][0] / 100, 2)
-# same, household part from men of the same ages in 1897 (15-29, i.e. 38-52 at the decree)
+# the same reading with the household regime measured on men of the same ages at the start of the period (15 to 29 in 1897, that is 38 to 52 at the decree)
 sa = d1c[(d1c.sex == "M") & d1c.age_decree.isin(["38-42", "43-47", "48-52"])]; ha = np.average(sa.conv, weights=sa.ill) / 100
 put("mix.h.adult", ha, 2); put("mix.pred.adult", e_ + (1 - e_) * ha, 2); put("mix.gap.obs", NUM["w2c.young.M"][0] - NUM["w2c.young.F"][0], 0); put("mix.gap.pred", 100 * (1 - e_) * ha, 0)
-# household part by age implied by (mix): (P_m - P_f) / (1 - P_f)
+# the household component of men implied by equation (mix) at each age: the excess of men over women as a share of the men whom the state's reach leaves out, (P_m - P_f) / (1 - P_f)
 for b in ADULT: put(f"mixh.{b}", 100 * (NUM[f"w2c.M.{b}"][0] - NUM[f"w2c.F.{b}"][0]) / (100 - NUM[f"w2c.F.{b}"][0]), 0)
 for kk, d_ in (("unw", clc), ("total", taught(base[base.area == "total"], "w2ct", "age_1926", ADULT, "lit_1926", "gain_pp", "pop_1926", "unit_1926")), ("rus", clc[clc.titular == 0]), ("sr", clc[clc.survival.between(0.6, 1.15)])):
     r_ = fit("conv ~ C(coh) + female + fm + fy + C(unit_1926)", d_, w=None if kk == "unw" else "ill", cluster="unit_1926"); putc(f"w2c.{kk}.ddd", r_, "fy")
     for sx in ("M", "F"):
         s = d_[(d_.sex == sx) & (d_.young == 1)]; put(f"w2c.{kk}.young.{sx}", np.average(s.conv, weights=None if kk == "unw" else s.ill), 0)
-# robustness (A2)
+# robustness (Appendix Table A2)
 d_all = prep(balanced(lc[(lc.area == "rural") & lc.age_1926.isin(ADULT) & lc.gain_pp.between(-40, 90)]))
 ROB2 = [("base", "Baseline", cl, "pop_1926", ""), ("flag", "Including flagged units", d_all, "pop_1926", ""), ("surv", "With survival ratio", cl, "pop_1926", " + survival"),
         ("sr", "Survival ratio in $[0.6, 1.15]$", balanced(cl[cl.survival.between(0.6, 1.15)]), "pop_1926", ""), ("unw", "Unweighted", cl, None, ""), ("rus", "Russian units only", cl[cl.titular == 0], "pop_1926", ""), ("tit", "Autonomous units only", cl[cl.titular == 1], "pop_1926", ""),
@@ -504,7 +517,7 @@ ul("gain_F ~ lit26_F + titular", wu, "w2u.F4", w=None); ul("gain_F ~ lit26_F + t
 cl["fyt"] = cl.fy * cl.titular; cl["ft"] = cl.female * cl.titular; cl["yt"] = cl.young * cl.titular; cl["fmt"] = cl.fm * cl.titular; cl["mt"] = cl.middle * cl.titular
 rt = fit("gain_pp ~ C(unit_1926) + C(coh) + female + fm + fy + yt + mt + ft + fmt + fyt", cl, w="pop_1926", cluster="unit_1926"); putc("w2.tit.ddd", rt, "fyt")
 wu.assign(unit_en=wu.unit_1926).to_csv(f"{R}/X_unit_table_wave2.csv", sep=";", index=False)
-# rayons (Table XV x 1939 oblasts)
+# rayon-level replication (Vol. 9 Table XV x 1939 oblasts)
 ry = pd.read_csv(f"{D}/linked_cohorts_rayon_1926_1939.csv", sep=";", encoding="utf-8-sig"); AD2 = ["20-24", "25-29", "30-34", "35-39", "40-44", "45-49", "50-54"]
 ry = ry[ry.age_1926.isin(AD2) & ry.gain_pp.between(-40, 90)].copy(); ry["female"] = (ry.sex == "F").astype(int); ry["young"] = ry.age_1926.isin(AD2[:3]).astype(int); ry["middle"] = ry.age_1926.isin(AD2[3:6]).astype(int)
 ry["fy"] = ry.female * ry.young; ry["fm"] = ry.female * ry.middle; ry["coh"] = ry.age_1926
@@ -518,17 +531,17 @@ for c in AD2: put(f"ray.cm.M.{c}", rm.loc[c, "M"]); put(f"ray.cm.F.{c}", rm.loc[
 gr = rr_.pivot_table(index=["rayon", "age_1926"], columns="sex", values=["lit_1926", "lit_1939"]).reset_index(); gr.columns = ["rayon", "age", "l26F", "l26M", "l39F", "l39M"]
 for c in ("20-24", "25-29"):
     t = gr[gr.age == c]; put(f"ray.gap26.{c}", (t.l26M - t.l26F).mean(), 0); put(f"ray.gap39.{c}", (t.l39M - t.l39F).mean(), 0)
-# share taught, rural RSFSR, cohorts 20-34 in 1926
+# the share of the illiterate taught in the rural RSFSR as a whole (cohorts aged 20-34 in 1926)
 rc_ = rr_.copy(); rc_["conv"] = 100 * rc_.gain_pp / (100 - rc_.lit_1926); rc_["ill"] = rc_.pop_1926 * (100 - rc_.lit_1926) / 100; s = rc_[rc_.young == 1]
 for sx in ("M", "F"):
     s_ = s[s.sex == sx]; put(f"ray.c.young.{sx}", np.average(s_.conv, weights=s_.ill), 0); put(f"ray.young.gain.{sx}", np.average(s_.gain_pp, weights=s_.pop_1926), 0)
 put("ray.c.share.ill.F", 100 * s[s.sex == "F"].ill.sum() / s.ill.sum(), 0); put("ray.c.ratio", NUM["ray.c.young.F"][0] / NUM["ray.c.young.M"][0], 2)
-# regions: 20-34 vs 50-54, all (ray) and unchanged borders only (rayx)
+# the effect on each sex at the level of regions: the cohorts aged 20-34 against the cohort aged 50-54, all regions (ray) and the regions whose borders did not change (rayx)
 for kk, d_ in (("ray", rc_), ("rayx", rc_[rc_.approx_borders == 0])):
     for yv, wv, tg in (("gain_pp", "pop_1926", "p"), ("conv", "ill", "t")):
         rq = fit(yv + " ~ young * female + middle * female + C(rayon)", d_, w=wv, cluster="rayon"); putc(f"{kk}.{tg}m", rq, "young"); putl(f"{kk}.{tg}w", rq, "young + young:female = 0"); putc(f"{kk}.{tg}d", rq, "young:female")
     puts(f"{kk}.nobs", str(len(d_))); puts(f"{kk}.nunits", str(d_.rayon.nunique()))
-# 1959 check, rural: literacy can't fall within a cohort, so an inflated 1939 figure would show up as a fall
+# the cohorts of 1939 in the census of 1959 (rural RSFSR): literacy cannot fall within a cohort, so an inflated 1939 figure would show as a fall by 1959
 c59 = pd.read_csv(f"{D}/census1959_rsfsr_edu_by_age_sex.csv", sep=";", encoding="utf-8-sig")
 for sx in ("M", "F"):
     for a39, a59 in (("30-34", "50-54"), ("35-39", "55-59"), ("40-44", "60-64"), ("45-49", "65-69")):
@@ -539,7 +552,7 @@ s = top[(top.area == "rural") & top.age.isin(["30-34", "35-39", "40-44"])]
 for sx in ("M", "F"):
     s_ = s[s.sex == sx]; l39 = 100 * s_.literate.sum() / s_.population.sum(); c_ = c59[(c59.area == "rural") & (c59.sex == sx) & c59.age.isin(["50-54", "55-59", "60-64"])]
     l59 = 100 * c_.literate.sum() / (c_.total - c_.education_not_stated).sum(); put(f"c39r.{sx}.young", l39, 0); put(f"c59.{sx}.young", l59, 0); put(f"d5939.{sx}.young", l59 - l39, 1); put(f"c39r.{sx}.young1", l39, 1); put(f"c59.{sx}.young1", l59, 1)
-# same for total (village -> town migration doesn't matter there) and urban
+# the same comparison in the whole population, which migration between village and town does not affect, and in the towns
 for area, tag in (("total", "t"), ("urban", "u")):
     for sx in ("M", "F"):
         for a39, a59 in (("30-34", "50-54"), ("35-39", "55-59"), ("40-44", "60-64"), ("45-49", "65-69")):
@@ -549,8 +562,8 @@ for area, tag in (("total", "t"), ("urban", "u")):
         s_ = top[(top.area == area) & (top.sex == sx) & top.age.isin(["30-34", "35-39", "40-44"])]; l39 = 100 * s_.literate.sum() / s_.population.sum()
         c_ = c59[(c59.area == area) & (c59.sex == sx) & c59.age.isin(["50-54", "55-59", "60-64"])]; l59 = 100 * c_.literate.sum() / (c_.total - c_.education_not_stated).sum()
         put(f"c39{tag}.{sx}.young1", l39, 1); put(f"c59{tag}.{sx}.young1", l59, 1); put(f"d5939{tag}.{sx}.young", l59 - l39, 1); put(f"c59{tag}.surv.{sx}", c_.total.sum() / s_.population.sum(), 2)
-# three censuses: cohorts 20-34 in 1926 (Table XV, 17 regions = RSFSR of 1939) in 1939 and 1959
-# group lo..lo+4 of 1926 is lo+12..lo+16 in Jan 1939 and lo+32..lo+36 in Jan 1959 -> 3 years of one group + 2 of the next
+# three censuses: the cohorts aged 20-34 in 1926 (Table XV, the seventeen regions that made up the RSFSR of 1939) in 1939 and in 1959, so that the gains can be measured without the census of 1939.
+# A five-year group of 1926 aged lo..lo+4 is aged lo+12..lo+16 in January 1939 and lo+32..lo+36 in January 1959: three single years of one five-year group and two of the next.
 def mix39(area, sx, lo):
     s1 = top[(top.area == area) & (top.sex == sx) & (top.age == f"{lo + 10}-{lo + 14}")]; s2 = top[(top.area == area) & (top.sex == sx) & (top.age == f"{lo + 15}-{lo + 19}")]
     return 100 * (0.6 * s1.literate.sum() + 0.4 * s2.literate.sum()) / (0.6 * s1.population.sum() + 0.4 * s2.population.sum())
@@ -567,8 +580,8 @@ for area, tag in (("rural", "r"), ("total", "t")):
         l26, l39, l59 = (sum(w3[b] * v3[b][i] for b in w3) / sum(w3.values()) for i in range(3))
         put(f"c3{tag}.{sx}.young.26", l26, 1); put(f"c3{tag}.{sx}.young.39", l39, 1); put(f"c3{tag}.{sx}.young.59", l59, 1); put(f"c3{tag}.{sx}.d5939", l59 - l39, 1); put(f"c3{tag}.{sx}.gain39", l39 - l26, 1); put(f"c3{tag}.{sx}.gain59", l59 - l26, 1)
         put(f"c3{tag}.{sx}.taught39", 100 * (l39 - l26) / (100 - l26), 0); put(f"c3{tag}.{sx}.taught59", 100 * (l59 - l26) / (100 - l26), 0); put(f"c3{tag}.{sx}.kept", 100 * (l59 - l26) / (l39 - l26), 0)
-# main figure: literacy by year of birth in four censuses, 17 regions (1897, 1926 from Table XV; 1939, 1959 RSFSR totals)
-# each census with its own five-year groups, nothing interpolated. keys cp{r|t}.{sex}.{census}.{age group}
+# The main picture: literacy by year of birth as recorded by four censuses, in the seventeen regions that made up the RSFSR of 1939 (1897 and 1926 from Table XV, 1939 and 1959 summed
+# over the RSFSR). Each census enters with its own five-year groups, so that nothing is interpolated. cp{r|t}.{sex}.{census}.{age group}.
 from names import en
 x17 = xv[xv.region_gosplan_1927.isin(ry3.rayon.unique())]; puts("cp.regions", str(x17.region_gosplan_1927.nunique()))
 CPB = {1897: [f"{a}-{a + 4}" for a in range(15, 65, 5)], 1926: [f"{a}-{a + 4}" for a in range(20, 75, 5)], 1939: [f"{a}-{a + 4}" for a in range(30, 70, 5)], 1959: [f"{a}-{a + 4}" for a in range(50, 70, 5)]}
@@ -583,13 +596,13 @@ for area, tag in (("rural", "r"), ("total", "t")):
         for b in CPB[1939]: put(f"cp{tag}.{sx}.1939.{b}", 100 * s.loc[b, "literate"] / s.loc[b, "population"], 1)
         c_ = c59[(c59.area == area) & (c59.sex == sx)].set_index("age")
         for b in CPB[1959]: put(f"cp{tag}.{sx}.1959.{b}", 100 * c_.loc[b, "literate"] / (c_.loc[b, "total"] - c_.loc[b, "education_not_stated"]), 1)
-        # cohort 20-34 in 1897, thirty years later (same ages, one generation earlier)
+        # the cohort aged 20-34 in 1897 thirty years later: the same ages as the cohort of the campaign, one generation earlier
         a_ = x17[(x17.census_year == 1897) & (x17.area == area) & (x17.sex == sx) & x17.age.isin(["20-24", "25-29", "30-34"])]; b_ = x17[(x17.census_year == 1926) & (x17.area == area) & (x17.sex == sx) & x17.age.isin(["50-54", "55-59", "60-64"])]
         l97 = 100 * a_.literate.sum() / a_.population.sum(); l26 = 100 * b_.literate.sum() / b_.population.sum()
         put(f"b4{tag}.{sx}.97", l97, 1); put(f"b4{tag}.{sx}.26", l26, 1); put(f"b4{tag}.{sx}.d", l26 - l97, 1); put(f"b4{tag}.{sx}.taught", 100 * (l26 - l97) / (100 - l97), 0)
-        dd_ = [NUM[f"cp{tag}.{sx}.1926.{lo + 30}-{lo + 34}"][0] - NUM[f"cp{tag}.{sx}.1897.{lo}-{lo + 4}"][0] for lo in range(15, 45, 5)]   # 1897 groups 15-44, thirty years later
+        dd_ = [NUM[f"cp{tag}.{sx}.1926.{lo + 30}-{lo + 34}"][0] - NUM[f"cp{tag}.{sx}.1897.{lo}-{lo + 4}"][0] for lo in range(15, 45, 5)]   # the five-year groups aged 15 to 44 in 1897, thirty years later
         put(f"b4{tag}.{sx}.dmin", min(dd_), 1); put(f"b4{tag}.{sx}.dmax", max(dd_), 1); put(f"b4{tag}.{sx}.maxabs", max(abs(v_) for v_ in dd_), 1)
-        # every group 20-54 of 1926 in 1939; number who learned at 20-49 (cohort sizes of 1939)
+        # every five-year group of 1926 between 20 and 54 in the census of 1939, and the number who learned among those aged 20 to 49 (at the size of the cohorts in 1939)
         pop = ill = new = 0.0
         for lo in range(20, 55, 5):
             b = f"{lo}-{lo + 4}"; s = ry3[(ry3.area == area) & (ry3.sex == sx) & (ry3.age_1926 == b)]; p26 = s.pop_1926.sum(); l26 = np.average(s.lit_1926, weights=s.pop_1926); l39 = mix39(area, sx, lo)
@@ -599,7 +612,7 @@ for area, tag in (("rural", "r"), ("total", "t")):
                 pop += p26; ill += p26 * (100 - l26) / 100; new += p39 * (l39 - l26) / 100
         put(f"cnt{tag}.{sx}.pop", pop / 1e6, 1); put(f"cnt{tag}.{sx}.ill", ill / 1e6, 1); put(f"cnt{tag}.{sx}.new", new / 1e6, 1); newl[sx] = new
     put(f"cnt{tag}.shareF", 100 * newl["F"] / (newl["F"] + newl["M"]), 0)
-# same cohort by region (rural, 20-34 in 1926), fig28
+# the same cohort in each region (rural, aged 20-34 in 1926): the figure by region
 rg = ry3[(ry3.area == "rural") & ry3.age_1926.isin(["20-24", "25-29", "30-34"])].groupby(["rayon", "sex"]).apply(lambda t: pd.Series({"l26": np.average(t.lit_1926, weights=t.pop_1926), "l39": np.average(t.lit_1939, weights=t.pop_1926), "pop_1926": t.pop_1926.sum(), "approx_borders": t.approx_borders.max()})).reset_index()
 rg["gain"] = rg.l39 - rg.l26; rg["taught"] = 100 * rg.gain / (100 - rg.l26); rg["region_en"] = rg.rayon.map(en); rg.to_csv(f"{R}/S1_region_gains.csv", sep=";", index=False, encoding="utf-8-sig")
 f_ = rg[rg.sex == "F"].set_index("region_en"); puts("reg.n", str(len(f_))); puts("reg.F.positive", str(int((f_.gain > 0).sum())))
@@ -607,6 +620,116 @@ put("reg.F.gain.min", f_.gain.min(), 0); put("reg.F.gain.max", f_.gain.max(), 0)
 put("reg.F.taught.min", f_.taught.min(), 0); put("reg.F.taught.max", f_.taught.max(), 0); puts("reg.F.taught.min.name", f_.taught.idxmin()); puts("reg.F.taught.max.name", f_.taught.idxmax()); put("reg.F.corr", np.corrcoef(f_.l26, f_.gain)[0, 1], 2)
 put("reg.F.l39.min", f_.l39.min(), 0); puts("reg.F.l39.min.name", f_.l39.idxmin()); put("reg.F.sd26", f_.l26.std(), 0); put("reg.F.sd39", f_.l39.std(), 0)
 P("regions, rural women aged 20-34 in 1926:\n" + f_[["l26", "l39", "gain", "taught", "approx_borders"]].round(1).sort_values("gain").to_string())
+# why it worked: did the campaign teach more where the cohort moved to the towns (social lifts)? regions, cohorts aged 20-34 in 1926
+mq = ry3[ry3.age_1926.isin(["20-24", "25-29", "30-34"])].copy(); mq["a"] = mq.lit_1926 * mq.pop_1926; mq["b"] = mq.lit_1939 * mq.pop_1939
+mg = mq.groupby(["rayon", "area", "sex"]).agg(p26=("pop_1926", "sum"), p39=("pop_1939", "sum"), a=("a", "sum"), b=("b", "sum"), appr=("approx_borders", "max")).reset_index()
+mg["l26"] = mg.a / mg.p26; mg["l39"] = mg.b / mg.p39; mg["taught"] = 100 * (mg.l39 - mg.l26) / (100 - mg.l26)
+mt = mg[mg.area == "total"].set_index(["rayon", "sex"]); mr = mg[mg.area == "rural"].set_index(["rayon", "sex"])
+mm = pd.DataFrame({"urb26": 100 * (1 - mr.p26 / mt.p26), "urb39": 100 * (1 - mr.p39 / mt.p39), "taught_r": mr.taught, "taught_t": mt.taught, "appr": mt.appr}).reset_index()
+mm["dUrb"] = mm.urb39 - mm.urb26; mm["region_en"] = mm.rayon.map(en); mm.to_csv(f"{R}/M_mechanism_regions.csv", sep=";", index=False, encoding="utf-8-sig")
+mf = mm[mm.sex == "F"].copy(); mf["dz"] = (mf.dUrb - mf.dUrb.mean()) / mf.dUrb.std(); mx = mf[mf.appr == 0]
+puts("mech.n", str(len(mf))); puts("mech.nx", str(len(mx)))
+put("mech.urb.mean", mf.dUrb.mean(), 0); put("mech.urb.min", mf.dUrb.min(), 0); put("mech.urb.max", mf.dUrb.max(), 0)
+for k_, y_ in (("r", "taught_r"), ("t", "taught_t")):
+    put(f"mech.corr.{k_}", round(np.corrcoef(mf.dUrb, mf[y_])[0, 1], 2) + 0.0, 2); put(f"mech.corr.{k_}x", round(np.corrcoef(mx.dUrb, mx[y_])[0, 1], 2) + 0.0, 2)   # no "-0.00"
+    r_ = smf.ols(f"{y_} ~ dz", mf).fit(cov_type="HC1"); put(f"mech.b.{k_}", r_.params["dz"], 1); put(f"mech.b.{k_}.se", r_.bse["dz"], 1)
+P("why it worked, regions:\n" + mf[["region_en", "urb26", "urb39", "dUrb", "taught_r", "taught_t", "appr"]].round(1).sort_values("dUrb").to_string())
+
+# =====================================================================================================================
+# The article for ZhNEA: short-run aggregate results of the literacy campaign, whole population of the RSFSR, both sexes (keys jl.*).
+# Uses only the published Table XV of 1926 (the seventeen regions of the RSFSR of 1939) and the 1939 tables; nothing from Table IX.
+# A five-year group of 1939 aged lo..lo+4 is the 1926 cohort aged lo-12..lo-8; the 1926 five-year groups above 19 are split evenly into single years.
+# =====================================================================================================================
+def singles26(sx):
+    s = x17[(x17.census_year == 1926) & (x17.area == "total") & (x17.sex == sx)].groupby("age")[["population", "literate"]].sum()
+    Pp, Ll = np.zeros(100), np.zeros(100)
+    for a_ in range(20): Pp[a_] = s.loc[str(a_), "population"]; Ll[a_] = s.loc[str(a_), "literate"]
+    for lo in range(20, 100, 5): Pp[lo:lo + 5] = s.loc[f"{lo}-{lo + 4}", "population"] / 5; Ll[lo:lo + 5] = s.loc[f"{lo}-{lo + 4}", "literate"] / 5
+    return Pp, Ll
+G39 = [f"{lo}-{lo + 4}" for lo in range(20, 70, 5)]; S26 = {}; S39 = {}
+for sx in ("M", "F"):
+    S26[sx] = singles26(sx); S39[sx] = top[(top.area == "total") & (top.sex == sx)].groupby("age")[["population", "literate"]].sum()
+S26["T"] = (S26["M"][0] + S26["F"][0], S26["M"][1] + S26["F"][1]); S39["T"] = S39["M"] + S39["F"]
+jrows = []
+for sx in ("T", "F", "M"):
+    Pp, Ll = S26[sx]; s39 = S39[sx]; rows = []
+    for g in G39:
+        lo = int(g[:2]); p39 = s39.loc[g, "population"]; l39 = 100 * s39.loc[g, "literate"] / p39; p26 = Pp[lo - 12:lo - 7].sum(); l26 = 100 * Ll[lo - 12:lo - 7].sum() / p26
+        rows.append(dict(sex=sx, age39=g, age26=f"{lo - 12}-{lo - 8}", p26=p26, p39=p39, l26=l26, l39=l39, d=l39 - l26, t=100 * (l39 - l26) / (100 - l26), new=p39 * (l39 - l26) / 100))
+    r_ = pd.DataFrame(rows); jrows.append(r_); ref = r_[r_.age26 == "53-57"].iloc[0]
+    for _, q in r_.iterrows():
+        k = f"jl.g.{sx}.{q.age26}"; put(k + ".p39", q.p39 / 1e3, 0); put(k + ".l26", q.l26, 1); put(k + ".l39", q.l39, 1); put(k + ".d", q.d, 1); put(k + ".t", q.t, 0); put(k + ".new", q.new / 1e3, 0)
+    ad = r_[r_.age26.isin(["18-22", "23-27", "28-32", "33-37", "38-42", "43-47", "48-52"])]; yg = r_[r_.age26.isin(["8-12", "13-17"])]
+    put(f"jl.new.adult.{sx}", ad.new.sum() / 1e6, 1); put(f"jl.new.adultnet.{sx}", (ad.p39 * (ad.d - ref.d) / 100).sum() / 1e6, 1); put(f"jl.new.young.{sx}", yg.new.sum() / 1e6, 1)
+    ref3 = r_[r_.age26.isin(["43-47", "48-52", "53-57"])]; refd3 = np.average(ref3.d, weights=ref3.p39); ad2 = r_[r_.age26.isin(["18-22", "23-27", "28-32", "33-37", "38-42"])]
+    put(f"jl.ref3.d.{sx}", refd3, 1); put(f"jl.new.adultnet2.{sx}", (ad2.p39 * (ad2.d - refd3) / 100).sum() / 1e6, 1); put(f"jl.new.young.share.{sx}", 100 * yg.new.sum() / (yg.new.sum() + ad.new.sum()), 0)
+    put(f"jl.ill26.adult.{sx}", (ad.p26 * (100 - ad.l26) / 100).sum() / 1e6, 1); put(f"jl.p26.adult.{sx}", ad.p26.sum() / 1e6, 1); put(f"jl.ref.d.{sx}", ref.d, 1)
+    put(f"jl.share.adult.{sx}", 100 * ad.new.sum() / (ad.p26 * (100 - ad.l26) / 100).sum(), 0)
+    # decomposition of the change in the literacy of the population aged 20-49 between the censuses
+    six = r_.iloc[:6]; w = six.p39 / six.p39.sum(); l26all = 100 * Ll[20:50].sum() / Pp[20:50].sum(); l39all = (w * six.l39).sum()
+    A_ = (w * six.l26).sum() - l26all; B_ = (w * (six.l39 - six.l26))[:2].sum(); C_ = (w * (six.l39 - six.l26))[2:].sum()
+    assert abs(A_ + B_ + C_ - (l39all - l26all)) < 1e-9
+    for k_, v_ in (("l26", l26all), ("l39", l39all), ("d", l39all - l26all), ("a", A_), ("b", B_), ("c", C_)): put(f"jl.dec.{sx}.{k_}", v_, 1)
+    for k_, v_ in (("a", A_), ("b", B_), ("c", C_), ("ab", A_ + B_)): put(f"jl.dec.{sx}.{k_}.sh", 100 * v_ / (l39all - l26all), 0)
+    put(f"jl.dec.{sx}.ab", A_ + B_, 1)
+pd.concat(jrows).to_csv(f"{R}/J0_cohorts_1926_1939.csv", sep=";", index=False, encoding="utf-8-sig")
+put("jl.new.adult.Fsh", 100 * NUM["jl.new.adult.F"][0] / NUM["jl.new.adult.T"][0], 0)
+# regions: both sexes together, whole population; cells by region and five-year group of 1926 (the 1939 figures are three fifths of one group and two fifths of the next)
+rq = ry3[(ry3.area == "total") & ry3.age_1926.isin(["20-24", "25-29", "30-34", "35-39", "40-44", "45-49", "50-54"])].copy()
+rq["lit26n"] = rq.lit_1926 * rq.pop_1926; rq["lit39n"] = rq.lit_1939 * rq.pop_1939
+cj = rq.groupby(["rayon", "age_1926"]).agg(pop_1926=("pop_1926", "sum"), pop_1939=("pop_1939", "sum"), lit26n=("lit26n", "sum"), lit39n=("lit39n", "sum"), approx_borders=("approx_borders", "max")).reset_index()
+cj["l26"] = cj.lit26n / cj.pop_1926; cj["l39"] = cj.lit39n / cj.pop_1939; cj["gain"] = cj.l39 - cj.l26; cj["conv"] = 100 * cj.gain / (100 - cj.l26); cj["ill"] = cj.pop_1926 * (100 - cj.l26) / 100
+cj["young"] = cj.age_1926.isin(["20-24", "25-29", "30-34"]).astype(int); cj["middle"] = cj.age_1926.isin(["35-39", "40-44", "45-49"]).astype(int)
+for kk, d_ in (("jl.did", cj), ("jl.didx", cj[cj.approx_borders == 0])):
+    for yv, wv, tg in (("gain", "pop_1926", "p"), ("conv", "ill", "t")):
+        rq_ = fit(yv + " ~ young + middle + C(rayon)", d_, w=wv, cluster="rayon"); putc(f"{kk}.{tg}", rq_, "young"); putc(f"{kk}.{tg}m", rq_, "middle")
+    puts(f"{kk}.n", str(len(d_))); puts(f"{kk}.units", str(d_.rayon.nunique()))
+yj = cj[cj.young == 1].groupby("rayon").agg(pop=("pop_1926", "sum"), p39=("pop_1939", "sum"), l26n=("lit26n", "sum"), l39n=("lit39n", "sum"), approx=("approx_borders", "max")).reset_index()
+yj["l26"] = yj.l26n / yj["pop"]; yj["l39"] = yj.l39n / yj.p39; yj["gain"] = yj.l39 - yj.l26
+rf_ = cj[cj.age_1926 == "50-54"].set_index("rayon").gain; yj["gain_ref"] = yj.rayon.map(rf_); yj["net"] = yj.gain - yj.gain_ref; yj["region_en"] = yj.rayon.map(en)
+yj.to_csv(f"{R}/J1_regions.csv", sep=";", index=False, encoding="utf-8-sig")
+rr2 = fit("net ~ l26", yj, w=None); putc("jl.conv.slope", rr2, "l26", 2); put("jl.conv.corr", np.corrcoef(yj.l26, yj.net)[0, 1], 2)
+rr2 = fit("gain ~ l26", yj, w=None); putc("jl.conv.raw", rr2, "l26", 2); put("jl.conv.raw.corr", np.corrcoef(yj.l26, yj.gain)[0, 1], 2)
+rr2 = fit("gain ~ l26", yj[yj.approx == 0], w=None); putc("jl.conv.rawx", rr2, "l26", 2); put("jl.reg.ref.med", yj.gain_ref.median(), 1)
+put("jl.reg.sd26", yj.l26.std(), 1); put("jl.reg.sd39", yj.l39.std(), 1); put("jl.reg.net.min", yj.net.min(), 0); put("jl.reg.net.max", yj.net.max(), 0); put("jl.reg.gain.min", yj.gain.min(), 0); put("jl.reg.gain.max", yj.gain.max(), 0)
+put("jl.reg.ref.min", yj.gain_ref.min(), 1); put("jl.reg.ref.max", yj.gain_ref.max(), 1); puts("jl.reg.n", str(len(yj))); puts("jl.reg.net.max.name", yj.set_index("region_en").net.idxmax()); puts("jl.reg.net.min.name", yj.set_index("region_en").net.idxmin())
+P("ZhNEA cohorts (both sexes):\n" + jrows[0].round(1).to_string() + "\nregions:\n" + yj[["region_en", "l26", "l39", "gain", "gain_ref", "net"]].round(1).to_string())
+# regional determinants of the gain of the cohort aged 20-34 in 1926 (one observation per region, HC1): initial literacy, urban share of the cohort in 1926, autonomous republic
+u_ = x17[(x17.census_year == 1926) & x17.age.isin(["20-24", "25-29", "30-34"])].groupby(["region_gosplan_1927", "area"]).population.sum().unstack()
+yj["urb"] = yj.rayon.map(100 * u_["urban"] / u_["total"]); yj["assr"] = yj.rayon.str.contains("АССР").astype(int)
+yj["taught"] = 100 * yj.gain / (100 - yj.l26); yj["taught_net"] = 100 * yj.net / (100 - yj.l26)
+for c_ in ("l26", "urb"): yj[c_ + "_z"] = (yj[c_] - yj[c_].mean()) / yj[c_].std()
+put("jl.urb.mean", yj.urb.mean(), 0); put("jl.urb.min", yj.urb.min(), 0); put("jl.urb.max", yj.urb.max(), 0); puts("jl.assr.n", str(int(yj.assr.sum())))
+for kk, f_, d_ in (("m1", "net ~ l26_z", yj), ("m2", "net ~ l26_z + urb_z", yj), ("m3", "net ~ l26_z + urb_z + assr", yj), ("m4", "net ~ l26_z + urb_z + assr", yj[yj.approx == 0]),
+                   ("m5", "taught_net ~ l26_z + urb_z + assr", yj), ("m6", "gain ~ l26_z + urb_z + assr", yj)):
+    r_ = fit(f_, d_, w=None)
+    for t_ in ("l26_z", "urb_z", "assr"):
+        if t_ in r_.params.index: putc(f"jl.det.{kk}.{t_}", r_, t_)
+    put(f"jl.det.{kk}.r2", r_.rsquared, 2); puts(f"jl.det.{kk}.n", str(int(r_.nobs)))
+yj.to_csv(f"{R}/J1_regions.csv", sep=";", index=False, encoding="utf-8-sig")
+# the age gradient of the gain within regions and its dependence on the initial literacy of the region (cohorts aged 20-49 in 1926)
+ca = cj[cj.age_1926 != "50-54"].copy(); ca["agemid"] = ca.age_1926.str[:2].astype(int) + 2
+ca["l26r"] = ca.rayon.map(yj.set_index("rayon").l26); ca["l26r"] = (ca.l26r - ca.l26r.mean()) / 10
+ra = fit("gain ~ agemid + C(rayon)", ca, w="pop_1926", cluster="rayon"); putc("jl.age.slope", ra, "agemid", 2)
+ra = fit("gain ~ agemid + agemid:l26r + C(rayon)", ca, w="pop_1926", cluster="rayon"); putc("jl.age.slope2", ra, "agemid", 2); putc("jl.age.int", ra, "agemid:l26r", 2)
+ra = fit("conv ~ agemid + C(rayon)", ca, w="ill", cluster="rayon"); putc("jl.age.tslope", ra, "agemid", 2)
+ra = fit("conv ~ agemid + agemid:l26r + C(rayon)", ca, w="ill", cluster="rayon"); putc("jl.age.tint", ra, "agemid:l26r", 2); puts("jl.age.n", str(len(ca)))
+# decomposition for the urban and the rural population separately (affected by migration from village to town)
+for area, tag in (("urban", "u"), ("rural", "r")):
+    Pp = np.zeros(100); Ll = np.zeros(100); s39 = None
+    for sx in ("M", "F"):
+        s = x17[(x17.census_year == 1926) & (x17.area == area) & (x17.sex == sx)].groupby("age")[["population", "literate"]].sum()
+        for a_ in range(20): Pp[a_] += s.loc[str(a_), "population"]; Ll[a_] += s.loc[str(a_), "literate"]
+        for lo in range(20, 100, 5): Pp[lo:lo + 5] += s.loc[f"{lo}-{lo + 4}", "population"] / 5; Ll[lo:lo + 5] += s.loc[f"{lo}-{lo + 4}", "literate"] / 5
+        g39 = top[(top.area == area) & (top.sex == sx)].groupby("age")[["population", "literate"]].sum(); s39 = g39 if s39 is None else s39 + g39
+    rows = []
+    for g in G39[:6]:
+        lo = int(g[:2]); p39 = s39.loc[g, "population"]; rows.append((p39, 100 * s39.loc[g, "literate"] / p39, 100 * Ll[lo - 12:lo - 7].sum() / Pp[lo - 12:lo - 7].sum(), Pp[lo - 12:lo - 7].sum()))
+    p39s = np.array([r[0] for r in rows]); l39s = np.array([r[1] for r in rows]); l26s = np.array([r[2] for r in rows]); p26s = np.array([r[3] for r in rows]); w = p39s / p39s.sum()
+    l26all = 100 * Ll[20:50].sum() / Pp[20:50].sum(); l39all = (w * l39s).sum(); A_ = (w * l26s).sum() - l26all; B_ = (w * (l39s - l26s))[:2].sum(); C_ = (w * (l39s - l26s))[2:].sum()
+    for k_, v_ in (("l26", l26all), ("l39", l39all), ("d", l39all - l26all), ("ab", A_ + B_), ("c", C_)): put(f"jl.dec{tag}.T.{k_}", v_, 1)
+    put(f"jl.dec{tag}.T.c.sh", 100 * C_ / (l39all - l26all), 0); put(f"jl.dec{tag}.T.surv", p39s[2:].sum() / p26s[2:].sum(), 2)
+P("ZhNEA determinants:\n" + yj[["region_en", "l26", "urb", "assr", "gain", "net", "taught_net"]].round(1).to_string())
 
 # =====================================================================================================================
 # 4. The determinants of women's progress in the two regimes
@@ -772,7 +895,7 @@ e.to_csv(f"{R}/S_legacy_sexdiff_nationalities.csv", sep=";", encoding="utf-8-sig
 for n_ in e.index:
     for c in ("old", "mid", "young", "gF_ad", "gM_ad", "D_ad"): put(f"sdn.{EN.get(n_, n_)}.{c}", e.loc[n_, c])
 e6 = e.loc[SIX]; put("sd.corr.six", np.corrcoef(e6.D_ad, e6.old)[0, 1], 2); put("sd.corr.all", np.corrcoef(e.D_ad, e.old)[0, 1], 2)
-# children of 1939
+# intergenerational test with the children of 1939 and the regional test with the cohorts born before 1941
 rowsI = []
 for (u_, r39), g in lc[(lc.area == "rural") & ~lc.unit_1926.isin(BAD39) & lc.gain_pp.between(-40, 90)].groupby(["unit_1926", "region_1939"]):
     def mm(sex, ages, col):
@@ -791,10 +914,11 @@ igf("kid39F ~ gF + kid26F", "ig.1"); igf("kid39F ~ gF + gM + kid26F", "ig.2"); i
 # =====================================================================================================================
 # Output
 # =====================================================================================================================
+json.dump(DF, open(f"{R}/inference_df.json", "w", encoding="utf-8"), ensure_ascii=False, indent=2)
 flat = [dict(key=k_, value=v_[0], decimals=v_[1], text=fmt(v_[0], v_[1])) for k_, v_ in NUM.items()] + [dict(key=k_, value=np.nan, decimals=np.nan, text=v_) for k_, v_ in STR.items()]
 pd.DataFrame(flat).sort_values("key").to_csv(f"{R}/paper_numbers.csv", sep=";", index=False, encoding="utf-8-sig")
 json.dump({"NUM": {k_: list(v_) for k_, v_ in NUM.items()}, "STR": STR}, open(f"{R}/paper_numbers.json", "w", encoding="utf-8"), ensure_ascii=False, indent=0)
 P("\ncoefficients that are not identified:", ", ".join(NI) if NI else "none")
 open(f"{R}/paper_numbers.txt", "w", encoding="utf-8").write("\n".join(LOG))
 print("numbers:", len(NUM), "strings:", len(STR))
-import write_numbers; write_numbers.write()   # paper/numbers.tex
+import write_numbers; write_numbers.write()   # paper/numbers.tex: the macros \N, \NA, \NI, \NIA used in the text

@@ -1,4 +1,4 @@
-"""Table bodies -> paper/tables/*.tex, from results/paper_numbers.json."""
+"""Bodies of all tables of the paper, written to paper/tables/*.tex from results/paper_numbers.json (produced by paper_numbers.py)."""
 import os, sys, json, numpy as np, pandas as pd
 sys.stdout.reconfigure(encoding="utf-8")
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__))); R = f"{ROOT}/results"; TB = f"{ROOT}/paper/tables"

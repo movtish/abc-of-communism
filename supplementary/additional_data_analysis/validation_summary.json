@@ -1,0 +1,18 @@
+{
+  "canonical_regions": 89,
+  "canonical_age_rows": 2225,
+  "long_records": 20025,
+  "component_checks": 18423,
+  "component_nonzero_residuals": 0,
+  "population_accounting_checks": 13350,
+  "population_accounting_discrepancies": 0,
+  "html_xls_numeric_checks": 9897,
+  "html_xls_discrepancies": 0,
+  "linked_cohort_rows": 216,
+  "region_summaries": 54,
+  "migration_region_rows": 31,
+  "migration_registration_rows": 40,
+  "migration_gender_rows": 28,
+  "time_use_rows": 8,
+  "source_xls_sha256": "50605b6277b075baeddfbad8b305b0373bac4e98419428f7597861fd00dd2ded"
+}

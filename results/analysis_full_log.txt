@@ -1,0 +1,611 @@
+﻿Low-quality rural units (share_confirmed<0.85): ['Астраханская губ.', 'Кунгурский округ', 'Немцев Поволжья АССР', 'Оренбургская губ.', 'Пензенская губ.', 'Самарская губ.']
+Units in Table IX panel: 45 | rural cells (groups x sex x band): 1905
+Units linked 1926->1939: 29 | cells: 782
+Table XV regions: 20
+
+Pooled rural literacy 1926 by age band and sex (pop-weighted over units):
+sex       F     M       popM       popF
+band                                   
+8-11   29.8  46.4  1348797.0  1404497.0
+12-14  42.1  72.4  1029594.0  1304442.0
+15-19  47.2  73.5  1829562.0  2159605.0
+20-24  47.8  83.9  1389501.0  1689621.0
+25-29  37.0  83.7  1070537.0  1504085.0
+30-39  27.7  78.3  1567211.0  2045942.0
+40-49  14.4  64.0  1318294.0  1628487.0
+50-59   8.2  46.2   934475.0  1276789.0
+60+     4.9  29.1  1053040.0  1351761.0
+
+--- A1. Gain 1897->1926 by age at decree x female, region FE, area=total ---   n=113  R2=0.913
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41]          19.97  (se  1.68)  p=0.000
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51]           8.07  (se  0.64)  p=0.000
+  female                                                        -0.68  (se  0.71)  p=0.342
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41]:female   -15.52  (se  2.03)  p=0.000
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51]:female    -7.29  (se  0.69)  p=0.000
+   cell means: {('A_32-41', 'F'): 2.8, ('A_32-41', 'M'): 18.5, ('B_42-51', 'F'): -0.5, ('B_42-51', 'M'): 6.6, ('C_52-61 placebo', 'F'): -1.2, ('C_52-61 placebo', 'M'): -0.8}
+
+--- A1. Gain 1897->1926 by age at decree x female, region FE, area=rural ---   n=113  R2=0.937
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41]          19.24  (se  1.72)  p=0.000
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51]           7.98  (se  0.69)  p=0.000
+  female                                                        -1.77  (se  0.51)  p=0.000
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41]:female   -16.51  (se  1.87)  p=0.000
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51]:female    -7.82  (se  0.73)  p=0.000
+   cell means: {('A_32-41', 'F'): 0.8, ('A_32-41', 'M'): 17.8, ('B_42-51', 'F'): -1.7, ('B_42-51', 'M'): 6.8, ('C_52-61 placebo', 'F'): -1.9, ('C_52-61 placebo', 'M'): -0.7}
+
+--- A1. Gain 1897->1926 by age at decree x female, region FE, area=urban ---   n=114  R2=0.828
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41]           3.72  (se  2.03)  p=0.066
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51]           5.91  (se  0.87)  p=0.000
+  female                                                        -5.40  (se  1.71)  p=0.002
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41]:female    -6.63  (se  0.76)  p=0.000
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51]:female    -5.55  (se  0.89)  p=0.000
+   cell means: {('A_32-41', 'F'): -4.8, ('A_32-41', 'M'): 8.1, ('B_42-51', 'F'): -3.7, ('B_42-51', 'M'): 8.9, ('C_52-61 placebo', 'F'): -4.2, ('C_52-61 placebo', 'M'): 2.0}
+
+--- A2a. Rural, unweighted ---   n=113  R2=0.880
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41]          18.49  (se  1.56)  p=0.000
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51]           7.47  (se  0.74)  p=0.000
+  female                                                        -1.22  (se  0.96)  p=0.207
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41]:female   -15.80  (se  1.53)  p=0.000
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51]:female    -7.30  (se  0.72)  p=0.000
+
+--- A2b. Rural, no trimming of corrupted cells ---   n=113  R2=0.937
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41]          19.24  (se  1.72)  p=0.000
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51]           7.98  (se  0.69)  p=0.000
+  female                                                        -1.77  (se  0.51)  p=0.000
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41]:female   -16.51  (se  1.87)  p=0.000
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51]:female    -7.82  (se  0.73)  p=0.000
+
+--- A2c. Rural, + survival ratio control ---   n=113  R2=0.938
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41]          19.54  (se  1.86)  p=0.000
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51]           8.43  (se  1.05)  p=0.000
+  female                                                        -1.40  (se  0.73)  p=0.056
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41]:female   -16.70  (se  1.95)  p=0.000
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51]:female    -8.04  (se  0.81)  p=0.000
+  survival_ratio                                                -4.80  (se  8.78)  p=0.584
+
+--- A2d. Rural, excluding Muslim regions (Arabic-script confound) ---   n=84  R2=0.947
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41]          20.33  (se  1.87)  p=0.000
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51]           8.47  (se  0.73)  p=0.000
+  female                                                        -1.35  (se  0.42)  p=0.001
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41]:female   -17.37  (se  2.10)  p=0.000
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51]:female    -8.30  (se  0.78)  p=0.000
+
+--- A2e. Rural, survival ratio in [0.4,0.8] ---   n=90  R2=0.952
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41]          18.95  (se  1.81)  p=0.000
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51]           8.10  (se  0.88)  p=0.000
+  female                                                        -1.49  (se  0.78)  p=0.055
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41]:female   -16.15  (se  2.06)  p=0.000
+  C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51]:female    -7.99  (se  0.97)  p=0.000
+
+--- A3. Rural, linear in age at decree (per year) x female ---   n=113  R2=0.931
+  age_decree                                                    -0.98  (se  0.09)  p=0.000
+  female                                                       -48.43  (se  4.95)  p=0.000
+  age_decree:female                                              0.83  (se  0.09)  p=0.000
+
+--- B1. Gain 1926->1939 ~ cohort x female + unit FE, area=rural ---   n=216  R2=0.848
+  female                                                         7.43  (se  0.74)  p=0.000
+  C(coh)[T.13-17]:female                                        -0.00  (se  0.00)  p=0.112
+  C(coh)[T.18-22]:female                                         4.76  (se  0.58)  p=0.000
+  C(coh)[T.23-27]:female                                         5.34  (se  2.04)  p=0.009
+  C(coh)[T.28-32]:female                                         4.80  (se  0.71)  p=0.000
+  C(coh)[T.33-37]:female                                        -0.37  (se  1.64)  p=0.824
+  C(coh)[T.38-42]:female                                        -0.88  (se  2.12)  p=0.677
+  C(coh)[T.43-47]:female                                        -6.22  (se  1.05)  p=0.000
+   cell means:
+   sex          F     M
+   age_1926            
+   18-22     27.0  14.9
+   23-27     23.9  10.2
+   28-32     20.1   8.8
+   33-37     13.4   7.9
+   38-42      9.9   5.4
+   43-47      6.5   6.7
+
+--- B1. Gain 1926->1939 ~ cohort x female + unit FE, area=total ---   n=300  R2=0.836
+  female                                                         6.39  (se  0.94)  p=0.000
+  C(coh)[T.13-17]:female                                        -0.00  (se  0.00)  p=0.000
+  C(coh)[T.18-22]:female                                         4.55  (se  0.68)  p=0.000
+  C(coh)[T.23-27]:female                                         8.25  (se  0.95)  p=0.000
+  C(coh)[T.28-32]:female                                         4.17  (se  1.26)  p=0.001
+  C(coh)[T.33-37]:female                                        -0.97  (se  1.34)  p=0.468
+  C(coh)[T.38-42]:female                                        -2.82  (se  0.70)  p=0.000
+  C(coh)[T.43-47]:female                                        -6.79  (se  0.70)  p=0.000
+   cell means:
+   sex          F     M
+   age_1926            
+   18-22     25.4  14.8
+   23-27     23.1   9.6
+   28-32     19.5   9.9
+   33-37     14.4   9.6
+   38-42     11.3   9.1
+   43-47      6.3   7.9
+
+--- B2a. Incl. flagged units ---   n=241  R2=0.836
+  female                                                         6.95  (se  0.87)  p=0.000
+  C(coh)[T.13-17]:female                                        -0.00  (se  0.00)  p=0.024
+  C(coh)[T.18-22]:female                                         4.41  (se  0.64)  p=0.000
+  C(coh)[T.23-27]:female                                         5.13  (se  1.88)  p=0.006
+  C(coh)[T.28-32]:female                                         4.57  (se  0.69)  p=0.000
+  C(coh)[T.33-37]:female                                        -0.40  (se  1.52)  p=0.790
+  C(coh)[T.38-42]:female                                        -0.86  (se  1.94)  p=0.657
+  C(coh)[T.43-47]:female                                        -5.89  (se  0.99)  p=0.000
+
+--- B2b. + survival ratio control ---   n=216  R2=0.855
+  female                                                         7.90  (se  0.74)  p=0.000
+  C(coh)[T.13-17]:female                                        -0.00  (se  0.00)  p=0.514
+  C(coh)[T.18-22]:female                                         4.12  (se  0.62)  p=0.000
+  C(coh)[T.23-27]:female                                         4.59  (se  2.01)  p=0.022
+  C(coh)[T.28-32]:female                                         4.57  (se  0.76)  p=0.000
+  C(coh)[T.33-37]:female                                        -0.12  (se  1.62)  p=0.941
+  C(coh)[T.38-42]:female                                        -0.92  (se  1.97)  p=0.640
+  C(coh)[T.43-47]:female                                        -4.34  (se  1.11)  p=0.000
+  survival                                                      -7.41  (se  2.65)  p=0.005
+
+--- B2c. Survival in [0.6,1.15] ---   n=139  R2=0.852
+  female                                                         7.58  (se  0.89)  p=0.000
+  C(coh)[T.13-17]:female                                        -0.00  (se  0.00)  p=0.000
+  C(coh)[T.18-22]:female                                         4.55  (se  0.81)  p=0.000
+  C(coh)[T.23-27]:female                                         5.07  (se  2.65)  p=0.056
+  C(coh)[T.28-32]:female                                         5.11  (se  0.67)  p=0.000
+  C(coh)[T.33-37]:female                                         0.10  (se  2.08)  p=0.961
+  C(coh)[T.38-42]:female                                        -0.75  (se  2.47)  p=0.762
+  C(coh)[T.43-47]:female                                        -6.50  (se  1.50)  p=0.000
+
+--- B2d. Unweighted ---   n=216  R2=0.804
+  female                                                         6.69  (se  0.97)  p=0.000
+  C(coh)[T.13-17]:female                                         0.00  (se  0.00)  p=0.000
+  C(coh)[T.18-22]:female                                         5.42  (se  0.77)  p=0.000
+  C(coh)[T.23-27]:female                                         6.97  (se  1.24)  p=0.000
+  C(coh)[T.28-32]:female                                         4.64  (se  0.60)  p=0.000
+  C(coh)[T.33-37]:female                                        -1.18  (se  1.18)  p=0.316
+  C(coh)[T.38-42]:female                                        -2.21  (se  1.93)  p=0.254
+  C(coh)[T.43-47]:female                                        -6.94  (se  0.81)  p=0.000
+
+--- B2e. Russian gubernias/okrugs only (no titular units) ---   n=144  R2=0.825
+  female                                                         6.78  (se  0.75)  p=0.000
+  C(coh)[T.13-17]:female                                         0.00  (se  0.00)  p=0.000
+  C(coh)[T.18-22]:female                                         4.31  (se  0.53)  p=0.000
+  C(coh)[T.23-27]:female                                         4.13  (se  2.61)  p=0.114
+  C(coh)[T.28-32]:female                                         4.47  (se  0.96)  p=0.000
+  C(coh)[T.33-37]:female                                         0.00  (se  2.32)  p=0.999
+  C(coh)[T.38-42]:female                                         0.40  (se  2.98)  p=0.893
+  C(coh)[T.43-47]:female                                        -6.52  (se  1.28)  p=0.000
+
+--- B2f. Excluding Ural okrugs (1926/1939 border mismatch) ---   n=180  R2=0.849
+  female                                                         7.56  (se  0.77)  p=0.000
+  C(coh)[T.13-17]:female                                        -0.00  (se  0.00)  p=0.851
+  C(coh)[T.18-22]:female                                         4.75  (se  0.62)  p=0.000
+  C(coh)[T.23-27]:female                                         5.19  (se  2.14)  p=0.015
+  C(coh)[T.28-32]:female                                         4.79  (se  0.75)  p=0.000
+  C(coh)[T.33-37]:female                                        -0.31  (se  1.74)  p=0.858
+  C(coh)[T.38-42]:female                                        -0.68  (se  2.24)  p=0.760
+  C(coh)[T.43-47]:female                                        -6.18  (se  1.10)  p=0.000
+
+--- B2g. Excluding Tatar & Bashkir ASSR (script change) ---   n=192  R2=0.823
+  female                                                         6.82  (se  0.70)  p=0.000
+  C(coh)[T.13-17]:female                                         0.00  (se  0.00)  p=0.103
+  C(coh)[T.18-22]:female                                         5.00  (se  0.67)  p=0.000
+  C(coh)[T.23-27]:female                                         4.89  (se  2.41)  p=0.042
+  C(coh)[T.28-32]:female                                         4.66  (se  0.87)  p=0.000
+  C(coh)[T.33-37]:female                                        -0.30  (se  2.02)  p=0.884
+  C(coh)[T.38-42]:female                                        -0.58  (se  2.62)  p=0.826
+  C(coh)[T.43-47]:female                                        -6.86  (se  1.19)  p=0.000
+
+--- B2h. Excluding low-quality Table IX rural pages ---   n=180  R2=0.866
+  female                                                         7.75  (se  0.84)  p=0.000
+  C(coh)[T.13-17]:female                                         0.00  (se  0.00)  p=0.104
+  C(coh)[T.18-22]:female                                         5.04  (se  0.63)  p=0.000
+  C(coh)[T.23-27]:female                                         5.88  (se  2.51)  p=0.019
+  C(coh)[T.28-32]:female                                         5.57  (se  0.57)  p=0.000
+  C(coh)[T.33-37]:female                                         0.63  (se  1.76)  p=0.720
+  C(coh)[T.38-42]:female                                        -2.91  (se  1.77)  p=0.100
+  C(coh)[T.43-47]:female                                        -6.46  (se  1.25)  p=0.000
+
+--- B3. Linear in age at 1928 x female ---   n=216  R2=0.833
+  age1928                                                       -0.42  (se  0.07)  p=0.000
+  female                                                        22.50  (se  2.73)  p=0.000
+  age1928:female                                                -0.41  (se  0.07)  p=0.000
+
+--- B4. Pooled: female + female x young(18-32) ---   n=216  R2=0.841
+  female                                                         5.09  (se  0.92)  p=0.000
+  female:young                                                   7.30  (se  1.44)  p=0.000
+   Leave-one-unit-out for female x young: min 6.80, max 8.27, max p 0.000
+   Permutation (sex labels swapped within unit x cohort, 1000 draws): observed 7.30, p = 0.002, 95% null range [-4.81, 4.94]
+
+B6. Same cohorts, rural, mean over clean units: literacy and gender gap 1926 vs 1939
+          lit26_M  lit26_F  gap26  lit39_M  lit39_F  gap39
+age_1926                                                  
+18-22        78.2     45.0   33.2     93.1     72.0   21.1
+23-27        81.1     36.4   44.7     91.4     60.3   31.1
+28-32        79.2     29.0   50.2     87.9     49.1   38.8
+33-37        74.9     23.5   51.4     82.8     36.9   45.9
+38-42        70.4     15.6   54.8     75.8     25.4   50.3
+43-47        59.1     10.5   48.6     65.8     17.0   48.8
+
+--- B7a. Women's gain (1926 age 23-32) on women's 1926 level, unit level (n=18) ---   n=18  R2=0.138
+  lit26_F                                                       -0.31  (se  0.17)  p=0.065
+
+--- B7b. + titular unit ---   n=18  R2=0.496
+  lit26_F                                                       -0.18  (se  0.11)  p=0.101
+  titular                                                        7.07  (se  2.13)  p=0.001
+
+--- B7c. Men's gain on men's 1926 level ---   n=18  R2=0.782
+  lit26_M                                                       -0.62  (se  0.10)  p=0.000
+
+--- B7d. Men: + titular ---   n=18  R2=0.803
+  lit26_M                                                       -0.66  (se  0.10)  p=0.000
+  titular                                                       -1.59  (se  1.39)  p=0.251
+
+--- B7e. Women: + survival ---   n=18  R2=0.502
+  lit26_F                                                       -0.20  (se  0.13)  p=0.125
+  titular                                                        6.93  (se  2.35)  p=0.003
+  surv                                                          -0.60  (se  1.15)  p=0.603
+
+--- B7f. Women: excl. Tatar & Bashkir ---   n=16  R2=0.234
+  lit26_F                                                       -0.23  (se  0.10)  p=0.029
+  titular                                                        4.09  (se  4.40)  p=0.353
+
+--- B7g. Women: unweighted ---   n=18  R2=0.383
+  lit26_F                                                       -0.28  (se  0.09)  p=0.002
+  titular                                                        4.76  (se  2.67)  p=0.074
+
+--- B7h. Women, cohorts 18-32 ---   n=18  R2=0.534
+  lit26_F                                                       -0.29  (se  0.10)  p=0.004
+  titular                                                        6.20  (se  2.05)  p=0.002
+
+   unit-level table:
+             unit_1926  gain_F  lit26_F    pop  titular  surv  gain_M  lit26_M
+        Чувашская АССР    33.9     30.6  64523        1   0.8     9.5     82.9
+        Татарская АССР    30.2     35.6 184116        1   0.7    11.8     78.0
+       Башкирская АССР    28.3     26.9 198007        1   0.7    13.1     71.3
+      Саратовская губ.    27.4     34.4 195842        0   0.4     8.3     84.9
+      Тобольский округ    24.1     18.0  14425        0   7.0    24.8     55.8
+      Курганский округ    23.6     30.9  38036        0   2.6     8.8     78.7
+        Ишимский округ    23.5     18.6  32953        0   3.1    10.6     70.0
+      Воронежская губ.    21.2     31.8 249490        0   0.8    16.4     76.6
+            Вотская АО    21.0     24.2  56617        1   1.0    11.4     77.8
+          Курская губ.    21.0     36.2 207594        0   0.9     7.8     86.2
+          Марийская АО    20.2     32.3  38357        1   0.8     6.6     84.4
+       Пензенская губ.    20.0     23.8 154039        0   0.6    15.4     74.4
+        Самарская губ.    19.2     32.0 175282        0   0.7     8.8     81.6
+   Сталинградская губ.    19.2     40.6  97662        0   0.9     4.0     86.9
+       Карельская АССР    16.6     49.8  14910        1   1.1     2.4     89.6
+          Вятская губ.    16.4     45.0 167147        0   0.7     3.7     89.0
+       Смоленская губ.    15.4     37.2 159245        0   0.9     4.0     90.1
+     Оренбургская губ.    15.0     40.6  52609        0   1.5     3.8     84.5
+Wave-1 proxy: 1926 rural literacy of Russians in cohort 40-49 (aged 32-41 at decree) minus 60+ (placebo). n=32; mean F 12.2, M 35.8
+
+C1. Bivariate (standardised predictor; wave 2 conditional on 1926 level):
+               wave sex                predictor  coef   se    p  n
+1 (1897-1926 proxy)   F teachers per capita 1911  2.47 0.87 0.00 31
+1 (1897-1926 proxy)   F      agrarian share 1897 -1.49 1.10 0.17 31
+1 (1897-1926 proxy)   F   child-woman ratio 1926 -1.14 0.64 0.08 32
+1 (1897-1926 proxy)   F   urban share (men) 1926  3.15 1.29 0.01 26
+1 (1897-1926 proxy)   F    rural sex ratio 20-39 -0.78 1.12 0.49 32
+1 (1897-1926 proxy)   F     female literacy 1897  1.02 1.01 0.31 31
+1 (1897-1926 proxy)   M teachers per capita 1911  0.93 0.91 0.31 31
+1 (1897-1926 proxy)   M      agrarian share 1897  1.42 1.00 0.16 31
+1 (1897-1926 proxy)   M   child-woman ratio 1926 -0.91 1.42 0.52 32
+1 (1897-1926 proxy)   M   urban share (men) 1926 -0.76 0.54 0.16 26
+1 (1897-1926 proxy)   M    rural sex ratio 20-39 -0.37 0.69 0.60 32
+1 (1897-1926 proxy)   M     female literacy 1897 -0.69 0.96 0.47 31
+      2 (1926-1939)   F teachers per capita 1911 -3.79 2.80 0.18 16
+      2 (1926-1939)   F      agrarian share 1897  1.95 1.42 0.17 16
+      2 (1926-1939)   F   child-woman ratio 1926  0.24 1.12 0.83 18
+      2 (1926-1939)   F   urban share (men) 1926  1.39 0.98 0.16 18
+      2 (1926-1939)   F    rural sex ratio 20-39 -0.76 0.79 0.33 18
+      2 (1926-1939)   F     female literacy 1897  1.02 1.41 0.47 16
+      2 (1926-1939)   M teachers per capita 1911  0.91 1.55 0.55 16
+      2 (1926-1939)   M      agrarian share 1897 -0.03 0.51 0.95 16
+      2 (1926-1939)   M   child-woman ratio 1926  0.24 0.47 0.61 18
+      2 (1926-1939)   M   urban share (men) 1926 -1.27 0.40 0.00 18
+      2 (1926-1939)   M    rural sex ratio 20-39  1.52 0.44 0.00 18
+      2 (1926-1939)   M     female literacy 1897 -0.88 0.49 0.07 16
+
+C2. Stacked: female progress ~ predictor x wave2, unit-clustered SE (n units=15)
+  teachers per capita 1911     wave1 slope   1.92 (p=0.057) | change in wave2  -7.93 (p=0.001)
+  agrarian share 1897          wave1 slope   1.71 (p=0.013) | change in wave2   0.57 (p=0.742)
+  child-woman ratio 1926       wave1 slope  -0.34 (p=0.385) | change in wave2   1.73 (p=0.168)
+  urban share (men) 1926       wave1 slope   2.14 (p=0.000) | change in wave2  -0.70 (p=0.505)
+  rural sex ratio 20-39        wave1 slope  -2.00 (p=0.001) | change in wave2   1.39 (p=0.306)
+  female literacy 1897         wave1 slope   0.09 (p=0.896) | change in wave2   0.81 (p=0.548)
+
+--- C2b. Stacked, joint predictors x wave2 ---   n=30  R2=0.812
+  teachers_percap_1911_z                                         2.14  (se  1.08)  p=0.047
+  cwr_z                                                         -0.20  (se  0.36)  p=0.579
+  urban_share_M_z                                                2.19  (se  0.46)  p=0.000
+  teachers_percap_1911_z:wave2                                  -7.81  (se  2.77)  p=0.005
+  cwr_z:wave2                                                    1.41  (se  0.62)  p=0.024
+  urban_share_M_z:wave2                                         -0.89  (se  0.93)  p=0.341
+
+--- C3. Wave 2 women, joint predictors (n=16) ---   n=16  R2=0.346
+  lit26_F_z                                                     -1.47  (se  2.47)  p=0.552
+  teachers_percap_1911_z                                        -2.39  (se  1.95)  p=0.222
+  agshare_1897_z                                                 1.47  (se  1.52)  p=0.332
+  cwr_z                                                          0.33  (se  1.11)  p=0.766
+  urban_share_M_z                                                0.87  (se  1.01)  p=0.392
+
+--- C3b. Wave 1 women (proxy), joint predictors (n=26) ---   n=26  R2=0.336
+  teachers_percap_1911_z                                         1.98  (se  1.12)  p=0.076
+  agshare_1897_z                                                -0.65  (se  1.10)  p=0.553
+  cwr_z                                                         -0.78  (se  0.80)  p=0.327
+  urban_share_M_z                                                2.41  (se  1.18)  p=0.041
+
+--- D1. Rural, all units (region x cohort FE, group FE), weighted by population, SE clustered by region ---   n=935  R2=0.955
+  cohort     female  nonRus(nonMus)   Muslim  nonRus x F  Muslim x F
+  40-49      -53.6(1.3)     2.4(1.8)   -11.0(2.4)     5.7(3.6)    27.3(1.5)
+  30-39      -52.2(1.9)     4.4(1.3)   -16.7(8.4)     1.3(3.8)    23.2(7.6)
+  25-29      -47.5(1.9)     5.8(1.4)    -1.7(1.6)    -0.2(4.5)    12.4(2.6)
+  20-24      -36.3(2.0)     7.4(1.3)    -4.4(4.2)    -3.3(4.5)    15.5(2.5)
+  15-19      -26.0(1.9)     9.8(1.5)     5.2(2.4)    -5.2(3.4)     4.7(6.6)
+  12-14      -30.1(1.8)    11.8(2.3)     9.3(2.6)    -4.2(4.3)    12.5(2.6)
+
+--- D2a. Rural, excluding low-quality units ---   n=715  R2=0.958
+  cohort     female  nonRus(nonMus)   Muslim  nonRus x F  Muslim x F
+  40-49      -53.4(1.5)     3.8(2.2)   -12.6(2.8)     3.0(3.6)    27.3(1.7)
+  30-39      -52.1(2.2)     5.9(1.2)   -19.4(9.5)    -2.4(2.2)    23.3(8.2)
+  25-29      -47.1(2.3)     7.9(0.9)    -3.1(1.9)    -3.9(3.6)    11.6(2.9)
+  20-24      -35.8(2.4)     9.4(1.1)    -6.4(4.9)    -5.8(4.3)    15.3(2.9)
+  15-19      -25.5(2.2)    10.8(1.7)     3.7(2.9)    -5.3(4.2)     3.1(7.7)
+  12-14      -30.0(2.1)    10.8(1.9)     8.5(2.8)    -3.5(4.6)    11.9(3.0)
+
+--- D2b. Rural, cells with population >= 300 ---   n=899  R2=0.955
+  cohort     female  nonRus(nonMus)   Muslim  nonRus x F  Muslim x F
+  40-49      -53.6(1.3)     2.3(1.8)   -10.9(2.5)     5.6(3.6)    27.4(1.5)
+  30-39      -52.2(1.9)     4.3(1.3)   -16.7(8.4)     1.2(3.8)    23.2(7.7)
+  25-29      -47.5(1.9)     5.8(1.4)    -1.5(1.7)    -0.3(4.5)    12.5(2.6)
+  20-24      -36.3(2.1)     7.3(1.3)    -4.4(4.2)    -3.3(4.6)    15.6(2.5)
+  15-19      -26.0(1.9)     9.7(1.5)     5.2(2.4)    -5.2(3.4)     4.7(6.7)
+  12-14      -30.1(1.8)    11.8(2.4)     9.3(2.6)    -4.2(4.3)    12.6(2.7)
+
+--- D2c. Total (urban+rural) ---   n=1159  R2=0.988
+  cohort     female  nonRus(nonMus)   Muslim  nonRus x F  Muslim x F
+  40-49      -50.1(1.9)     4.8(1.5)    -2.6(6.0)     6.0(3.0)    14.0(6.6)
+  30-39      -48.5(1.3)     2.9(2.8)   -15.5(6.8)     3.4(3.3)    13.4(7.6)
+  25-29      -43.2(1.3)     6.2(1.5)    -3.2(1.5)     1.2(3.4)     1.0(7.4)
+  20-24      -32.9(1.5)     8.4(1.7)    -1.7(1.2)    -1.9(4.0)    -2.6(9.9)
+  15-19      -24.8(2.0)     8.7(1.8)     3.4(1.8)    -1.0(3.3)     0.3(10.1)
+  12-14      -26.5(1.4)    10.2(1.7)     9.4(3.0)    -1.2(2.9)     9.5(2.3)
+
+   D2d unweighted: female(20-24) -33.4, nonRus x F (20-24) -3.3, Muslim x F (20-24) 7.1
+
+--- D3. Pooled: non-Russian x female and its Muslim difference (region x cohort, group x cohort, sex x cohort FE) ---   n=935  R2=0.956
+  nonrus:female                                                 -1.27  (se  2.81)  p=0.650
+  nonrus:female:muslim                                          16.83  (se  3.37)  p=0.000
+
+--- E1. Same nationality inside vs outside its titular unit (n cells=324, inside=59) ---   n=324  R2=0.990
+  titular_unit                                                   2.07  (se  2.54)  p=0.414
+  titular_unit:soviet                                           -2.21  (se  4.05)  p=0.584
+  titular_unit:female                                            0.20  (se  1.23)  p=0.871
+  titular_unit:soviet:female                                     1.32  (se  1.86)  p=0.477
+
+--- E2a. Excluding Tatars ---   n=166  R2=0.992
+  titular_unit                                                   3.38  (se  1.36)  p=0.013
+  titular_unit:soviet                                           -7.07  (se  1.32)  p=0.000
+  titular_unit:female                                           -1.15  (se  2.70)  p=0.670
+  titular_unit:soviet:female                                     3.24  (se  0.89)  p=0.000
+
+--- E2b. Unweighted ---   n=324  R2=0.939
+  titular_unit                                                   4.12  (se  3.96)  p=0.299
+  titular_unit:soviet                                           -1.37  (se  4.52)  p=0.761
+  titular_unit:female                                           -0.39  (se  2.70)  p=0.886
+  titular_unit:soviet:female                                     2.41  (se  3.18)  p=0.449
+
+--- E2c. Excluding low-quality units ---   n=228  R2=0.995
+  titular_unit                                                   4.76  (se  2.38)  p=0.045
+  titular_unit:soviet                                           -3.11  (se  5.97)  p=0.603
+  titular_unit:female                                            0.74  (se  1.21)  p=0.543
+  titular_unit:soviet:female                                     2.24  (se  2.53)  p=0.375
+
+E3. Titular vs Russian literacy gaps by cohort in the six republics (rural, from tableIX_cohort_gaps):
+region  Башкирская АССР  Вотская АО  Карельская АССР  Марийская АО  Татарская АССР  Чувашская АССР
+band                                                                                              
+8-14                7.2        18.7             26.3          26.4             2.6            16.8
+15-19              14.9        29.4             26.9          36.1             4.1            15.3
+20-24              24.2        34.4             31.2          40.7             7.8            17.8
+25-29              22.8        35.5             31.8          37.6            12.2            23.4
+30-39              20.9        31.2             32.2          33.6            15.7            26.8
+40-49               9.5        19.5             24.9          20.8             8.8            21.5
+50-59               3.6        12.1             16.8          13.3             1.7            16.9
+60+                 0.7         6.1              8.9           6.6            -2.4             8.3
+
+--- F1. Russians rural: gender_gap_20-24 ~ teachers_percap_1911_z + agshare_1897_z + cwr_z ---   n=41  R2=0.533
+  teachers_percap_1911_z                                        -4.73  (se  0.91)  p=0.000
+  agshare_1897_z                                                 2.38  (se  0.99)  p=0.016
+  cwr_z                                                          2.12  (se  0.98)  p=0.030
+
+--- F1b. Russians rural: gender_gap_20-24 ~ teachers_percap_1911_z + agshare_1897_z + cwr_z + urban_share_M_z ---   n=32  R2=0.512
+  teachers_percap_1911_z                                        -4.98  (se  1.58)  p=0.002
+  agshare_1897_z                                                 0.95  (se  0.99)  p=0.337
+  cwr_z                                                          2.03  (se  1.19)  p=0.086
+  urban_share_M_z                                               -2.20  (se  1.02)  p=0.031
+
+--- F1c. Russians rural: gender_gap_20-24 ~ exp_zemstvo_edu_pc_1894_z + agshare_1897_z + cwr_z ---   n=34  R2=0.383
+  exp_zemstvo_edu_pc_1894_z                                     -3.66  (se  0.95)  p=0.000
+  agshare_1897_z                                                 0.96  (se  1.50)  p=0.521
+  cwr_z                                                          2.48  (se  1.02)  p=0.015
+
+--- F1d. Russians rural: gender_gap_20-24 ~ per_lit_f_z + agshare_1897_z + cwr_z ---   n=41  R2=0.346
+  per_lit_f_z                                                   -2.54  (se  0.90)  p=0.005
+  agshare_1897_z                                                 3.25  (se  0.98)  p=0.001
+  cwr_z                                                          1.48  (se  1.19)  p=0.214
+
+--- F1. Russians rural: gender_gap_12-14 ~ teachers_percap_1911_z + agshare_1897_z + cwr_z ---   n=40  R2=0.346
+  teachers_percap_1911_z                                        -0.29  (se  2.69)  p=0.914
+  agshare_1897_z                                                 7.70  (se  4.76)  p=0.106
+  cwr_z                                                          3.78  (se  1.31)  p=0.004
+
+--- F1b. Russians rural: gender_gap_12-14 ~ teachers_percap_1911_z + agshare_1897_z + cwr_z + urban_share_M_z ---   n=31  R2=0.426
+  teachers_percap_1911_z                                        -0.89  (se  2.26)  p=0.694
+  agshare_1897_z                                                 8.99  (se  6.63)  p=0.175
+  cwr_z                                                          4.63  (se  1.83)  p=0.011
+  urban_share_M_z                                               -4.37  (se  2.82)  p=0.121
+
+--- F1c. Russians rural: gender_gap_12-14 ~ exp_zemstvo_edu_pc_1894_z + agshare_1897_z + cwr_z ---   n=34  R2=0.384
+  exp_zemstvo_edu_pc_1894_z                                     -2.02  (se  1.50)  p=0.178
+  agshare_1897_z                                                 0.45  (se  1.85)  p=0.807
+  cwr_z                                                          3.68  (se  0.84)  p=0.000
+
+--- F1d. Russians rural: gender_gap_12-14 ~ per_lit_f_z + agshare_1897_z + cwr_z ---   n=40  R2=0.346
+  per_lit_f_z                                                   -0.34  (se  2.01)  p=0.865
+  agshare_1897_z                                                 7.68  (se  4.68)  p=0.100
+  cwr_z                                                          3.70  (se  1.59)  p=0.020
+
+--- F1. Russians rural: lit_F_12-14 ~ teachers_percap_1911_z + agshare_1897_z + cwr_z ---   n=40  R2=0.387
+  teachers_percap_1911_z                                         7.24  (se  2.41)  p=0.003
+  agshare_1897_z                                                -5.72  (se  4.59)  p=0.212
+  cwr_z                                                         -3.91  (se  1.67)  p=0.020
+
+--- F1b. Russians rural: lit_F_12-14 ~ teachers_percap_1911_z + agshare_1897_z + cwr_z + urban_share_M_z ---   n=31  R2=0.382
+  teachers_percap_1911_z                                         7.68  (se  2.43)  p=0.002
+  agshare_1897_z                                                -5.74  (se  6.54)  p=0.380
+  cwr_z                                                         -3.92  (se  2.34)  p=0.094
+  urban_share_M_z                                                5.01  (se  3.06)  p=0.102
+
+--- F1c. Russians rural: lit_F_12-14 ~ exp_zemstvo_edu_pc_1894_z + agshare_1897_z + cwr_z ---   n=34  R2=0.212
+  exp_zemstvo_edu_pc_1894_z                                      5.10  (se  3.22)  p=0.114
+  agshare_1897_z                                                -0.58  (se  4.00)  p=0.885
+  cwr_z                                                         -3.58  (se  1.94)  p=0.064
+
+--- F1d. Russians rural: lit_F_12-14 ~ per_lit_f_z + agshare_1897_z + cwr_z ---   n=40  R2=0.272
+  per_lit_f_z                                                    2.85  (se  2.41)  p=0.237
+  agshare_1897_z                                                -7.08  (se  4.16)  p=0.089
+  cwr_z                                                         -3.52  (se  1.99)  p=0.078
+
+--- F1. Russians rural: lit_F_20-24 ~ teachers_percap_1911_z + agshare_1897_z + cwr_z ---   n=41  R2=0.584
+  teachers_percap_1911_z                                         8.85  (se  1.33)  p=0.000
+  agshare_1897_z                                                -0.70  (se  1.18)  p=0.551
+  cwr_z                                                         -3.02  (se  1.38)  p=0.028
+
+--- F1b. Russians rural: lit_F_20-24 ~ teachers_percap_1911_z + agshare_1897_z + cwr_z + urban_share_M_z ---   n=32  R2=0.553
+  teachers_percap_1911_z                                         9.12  (se  2.33)  p=0.000
+  agshare_1897_z                                                 0.85  (se  1.38)  p=0.537
+  cwr_z                                                         -2.70  (se  1.68)  p=0.108
+  urban_share_M_z                                                2.38  (se  1.54)  p=0.124
+
+--- F1c. Russians rural: lit_F_20-24 ~ exp_zemstvo_edu_pc_1894_z + agshare_1897_z + cwr_z ---   n=34  R2=0.357
+  exp_zemstvo_edu_pc_1894_z                                      5.86  (se  1.62)  p=0.000
+  agshare_1897_z                                                -0.58  (se  2.32)  p=0.803
+  cwr_z                                                         -3.23  (se  1.57)  p=0.040
+
+--- F1d. Russians rural: lit_F_20-24 ~ per_lit_f_z + agshare_1897_z + cwr_z ---   n=41  R2=0.230
+  per_lit_f_z                                                    3.82  (se  1.66)  p=0.021
+  agshare_1897_z                                                -2.60  (se  1.63)  p=0.111
+  cwr_z                                                         -2.11  (se  1.79)  p=0.239
+
+--- F2. gender_gap_20-24, excluding low-quality units ---   n=35  R2=0.496
+  teachers_percap_1911_z                                        -4.63  (se  1.00)  p=0.000
+  agshare_1897_z                                                 2.12  (se  1.26)  p=0.093
+  cwr_z                                                          2.02  (se  1.30)  p=0.121
+
+F3. Rural Russian gender gap (pp) by cohort across units:
+              region  gender_gap_12-14  gender_gap_20-24  gender_gap_30-39  gender_gap_40-49
+  Ленинградская губ.               8.1              10.2              28.0              42.6
+     Мурманская губ.               NaN              15.3              36.1              47.0
+   Череповецкая губ.              16.9              15.8              41.0              51.5
+   Новгородская губ.              19.2              18.8              44.6              54.1
+  Свердловский округ              14.2              19.5              32.8              37.7
+      Пермский округ              19.3              20.5              39.1              42.3
+     Карельская АССР              15.3              22.7              43.3              51.9
+   Астраханская губ.             -53.0              24.2              43.3              48.7
+        Калмыцкая АО               9.8              24.6              43.6              43.0
+      Псковская губ.              19.0              25.1              49.7              47.8
+Немцев Поволжья АССР              16.0              28.1              47.9              60.4
+    Тагильский округ              23.0              28.3              41.4              42.6
+    Кунгурский округ              31.1              29.0              47.6              50.3
+        Марийская АО              31.8              29.5              48.3              56.8
+        Вятская губ.              30.3              29.9              49.2              52.4
+      Троицкий округ              22.9              30.4              41.7              50.6
+  Нижегородская губ.              27.5              30.4             104.3              52.2
+Златоустовский округ              25.7              30.8              45.3              46.9
+     Ирбитский округ              30.3              31.9              46.8              48.1
+      Чувашская АССР              35.7              33.0              48.5              54.4
+  Сарапульский округ              27.7              33.8              15.5              46.7
+   Челябинский округ              25.1              34.6              50.9              50.0
+      Орловская губ.              26.4              35.1              41.9              59.0
+ Верхнекамский округ              33.3              35.1              50.6               6.5
+ Сталинградская губ.              19.9              36.9              54.3              61.2
+    Шадринский округ              33.8              37.0              51.4              87.1
+      Татарская АССР              30.7              37.1              53.7              57.0
+     Тюменский округ              29.5              37.5              44.8              40.2
+     Тамбовская губ.              28.4              37.6              51.9              52.6
+    Саратовская губ.              28.2              37.6              58.2              60.1
+     Смоленская губ.              36.2              37.7              61.4              59.7
+    Курганский округ              35.0              37.8              51.0              44.7
+          Вотская АО              34.4              38.4              51.8              49.4
+      Самарская губ.              26.5              38.8              54.2              55.8
+    Ульяновская губ.              32.2              38.9              54.7              54.3
+     Башкирская АССР              33.1              39.6              50.4              47.3
+        Курская губ.              36.7              40.9              57.1              56.3
+Коми-Пермяцкий округ              37.9              41.4              44.8              29.8
+   Оренбургская губ.              29.0              42.3              50.6              54.6
+     Пензенская губ.              37.8              44.7              56.4             106.6
+    Воронежская губ.              33.6              46.3              57.8              54.7
+      Ишимский округ              35.7              47.1              45.8              40.2
+       Брянская губ.              40.7              47.7              62.1              56.9
+    Тобольский округ              35.6              48.1              44.6              37.9
+Non-Russian group x region cells (rural): 25; groups: ['Башкиры', 'Вотяки', 'Карелы, финны, вепсы', 'Марийцы', 'Мишари', 'Мордва', 'Татары', 'Украинцы', 'Чуваши']
+Means: CWR non-Russian vs Russian diff 1.6; mobility-gap diff 0.1
+
+--- G1. ethgap_F_20-24 ~ fertility diff + sex-ratio diff + mobility-gap diff + Muslim (pooled, SE clustered by region) ---   n=25  R2=0.284
+  cwr_diff_z                                                     2.92  (se  4.52)  p=0.518
+  sr_20_39_diff_z                                               -6.82  (se  4.22)  p=0.106
+  mob_gap_diff_z                                                -6.08  (se  2.15)  p=0.005
+  muslim                                                        -6.11  (se  6.51)  p=0.347
+
+--- G1fe. same + region FE ---   n=25  R2=0.917
+  cwr_diff_z                                                    -0.11  (se  5.33)  p=0.983
+  sr_20_39_diff_z                                              -22.43  (se  9.54)  p=0.019
+  mob_gap_diff_z                                               -11.75  (se  7.31)  p=0.108
+  muslim                                                       -17.77  (se 13.12)  p=0.175
+
+--- G1. ethgap_M_20-24 ~ fertility diff + sex-ratio diff + mobility-gap diff + Muslim (pooled, SE clustered by region) ---   n=25  R2=0.549
+  cwr_diff_z                                                     4.51  (se  1.78)  p=0.011
+  sr_20_39_diff_z                                               -4.31  (se  1.93)  p=0.026
+  mob_gap_diff_z                                                -3.61  (se  0.88)  p=0.000
+  muslim                                                        19.20  (se  6.14)  p=0.002
+
+--- G1fe. same + region FE ---   n=25  R2=0.767
+  cwr_diff_z                                                     3.85  (se  5.80)  p=0.507
+  sr_20_39_diff_z                                              -15.44  (se 16.54)  p=0.351
+  mob_gap_diff_z                                                -9.51  (se  7.87)  p=0.227
+  muslim                                                        14.16  (se  9.21)  p=0.124
+
+--- G1. ethgap_F_12-14 ~ fertility diff + sex-ratio diff + mobility-gap diff + Muslim (pooled, SE clustered by region) ---   n=25  R2=0.512
+  cwr_diff_z                                                     2.68  (se  4.43)  p=0.546
+  sr_20_39_diff_z                                               -6.76  (se  2.99)  p=0.024
+  mob_gap_diff_z                                                -6.48  (se  1.90)  p=0.001
+  muslim                                                       -12.82  (se  4.18)  p=0.002
+
+--- G1fe. same + region FE ---   n=25  R2=0.950
+  cwr_diff_z                                                     2.60  (se  5.44)  p=0.633
+  sr_20_39_diff_z                                              -22.52  (se  8.90)  p=0.011
+  mob_gap_diff_z                                                -9.12  (se  4.08)  p=0.026
+  muslim                                                       -21.95  (se 10.40)  p=0.035
+
+--- G2. Female ethnic gap, non-Muslim groups only (pooled) ---   n=17  R2=0.317
+  cwr_diff_z                                                     1.43  (se  5.56)  p=0.797
+  sr_20_39_diff_z                                               -8.84  (se  4.53)  p=0.051
+  mob_gap_diff_z                                                -6.82  (se  2.10)  p=0.001
+
+--- G3a. Female ethnic gap on fertility difference alone ---   n=25  R2=0.036
+  cwr_diff_z                                                     4.06  (se  4.44)  p=0.361
+
+--- G3b. Female ethnic gap on mobility-gap difference alone ---   n=25  R2=0.118
+  mob_gap_diff_z                                                -4.77  (se  3.54)  p=0.178
+
+   Raw: CWR by group (rural, mean over regions):
+group
+Евреи                   49.0
+Вотяки                  58.0
+Марийцы                 58.0
+Карелы, финны, вепсы    59.0
+Русские                 60.0
+Чуваши                  62.0
+Татары                  64.0
+Казаки                  66.0
+Мишари                  66.0
+Мордва                  67.0
+Украинцы                68.0
+Башкиры                 69.0
+
+DONE. Results in C:\Users\Марк\OneDrive\Documents\ABC_of_Communism_Likbez/results

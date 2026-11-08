@@ -1,0 +1,1 @@
+These are historical exploratory outputs from the original local project. They are retained for provenance and are not results of the current pipeline. Use results/paper_numbers.json and methodology/results/ for current estimates.

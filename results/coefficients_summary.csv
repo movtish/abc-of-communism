@@ -1,0 +1,318 @@
+block;spec;term;coef;se;p;n
+A_wave1_1897_1926;A1_total;C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41];19.965;1.677;0.0;113
+A_wave1_1897_1926;A1_total;C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51];8.073;0.643;0.0;113
+A_wave1_1897_1926;A1_total;female;-0.677;0.713;0.3422;113
+A_wave1_1897_1926;A1_total;C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41]:female;-15.521;2.034;0.0;113
+A_wave1_1897_1926;A1_total;C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51]:female;-7.285;0.691;0.0;113
+A_wave1_1897_1926;A1_rural;C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41];19.239;1.722;0.0;113
+A_wave1_1897_1926;A1_rural;C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51];7.976;0.688;0.0;113
+A_wave1_1897_1926;A1_rural;female;-1.767;0.508;0.0005;113
+A_wave1_1897_1926;A1_rural;C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41]:female;-16.506;1.874;0.0;113
+A_wave1_1897_1926;A1_rural;C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51]:female;-7.82;0.729;0.0;113
+A_wave1_1897_1926;A1_urban;C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41];3.722;2.027;0.0663;114
+A_wave1_1897_1926;A1_urban;C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51];5.91;0.873;0.0;114
+A_wave1_1897_1926;A1_urban;female;-5.402;1.711;0.0016;114
+A_wave1_1897_1926;A1_urban;C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41]:female;-6.633;0.759;0.0;114
+A_wave1_1897_1926;A1_urban;C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51]:female;-5.547;0.887;0.0;114
+A_wave1_1897_1926;A2a;C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41];18.489;1.559;0.0;113
+A_wave1_1897_1926;A2a;C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51];7.474;0.738;0.0;113
+A_wave1_1897_1926;A2a;female;-1.216;0.963;0.2069;113
+A_wave1_1897_1926;A2a;C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41]:female;-15.8;1.527;0.0;113
+A_wave1_1897_1926;A2a;C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51]:female;-7.3;0.725;0.0;113
+A_wave1_1897_1926;A2b;C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41];19.239;1.722;0.0;113
+A_wave1_1897_1926;A2b;C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51];7.976;0.688;0.0;113
+A_wave1_1897_1926;A2b;female;-1.767;0.508;0.0005;113
+A_wave1_1897_1926;A2b;C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41]:female;-16.506;1.874;0.0;113
+A_wave1_1897_1926;A2b;C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51]:female;-7.82;0.729;0.0;113
+A_wave1_1897_1926;A2c;C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41];19.537;1.86;0.0;113
+A_wave1_1897_1926;A2c;C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51];8.43;1.045;0.0;113
+A_wave1_1897_1926;A2c;female;-1.402;0.733;0.0557;113
+A_wave1_1897_1926;A2c;C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41]:female;-16.699;1.955;0.0;113
+A_wave1_1897_1926;A2c;C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51]:female;-8.045;0.811;0.0;113
+A_wave1_1897_1926;A2c;survival_ratio;-4.803;8.781;0.5844;113
+A_wave1_1897_1926;A2d;C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41];20.327;1.874;0.0;84
+A_wave1_1897_1926;A2d;C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51];8.466;0.733;0.0;84
+A_wave1_1897_1926;A2d;female;-1.348;0.42;0.0013;84
+A_wave1_1897_1926;A2d;C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41]:female;-17.371;2.104;0.0;84
+A_wave1_1897_1926;A2d;C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51]:female;-8.296;0.775;0.0;84
+A_wave1_1897_1926;A2e;C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41];18.952;1.805;0.0;90
+A_wave1_1897_1926;A2e;C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51];8.103;0.881;0.0;90
+A_wave1_1897_1926;A2e;female;-1.492;0.778;0.0553;90
+A_wave1_1897_1926;A2e;C(cohort_c, Treatment('C_52-61 placebo'))[T.A_32-41]:female;-16.153;2.056;0.0;90
+A_wave1_1897_1926;A2e;C(cohort_c, Treatment('C_52-61 placebo'))[T.B_42-51]:female;-7.991;0.968;0.0;90
+A_wave1_1897_1926;A3;age_decree;-0.976;0.087;0.0;113
+A_wave1_1897_1926;A3;female;-48.431;4.954;0.0;113
+A_wave1_1897_1926;A3;age_decree:female;0.828;0.095;0.0;113
+B_wave2_1926_1939;B1_rural;female;7.614;0.914;0.0;174
+B_wave2_1926_1939;B1_rural;C(coh)[T.13-17]:female;-0.0;0.0;0.0;174
+B_wave2_1926_1939;B1_rural;C(coh)[T.18-22]:female;4.429;0.709;0.0;174
+B_wave2_1926_1939;B1_rural;C(coh)[T.23-27]:female;8.164;0.629;0.0;174
+B_wave2_1926_1939;B1_rural;C(coh)[T.28-32]:female;5.653;0.606;0.0;174
+B_wave2_1926_1939;B1_rural;C(coh)[T.33-37]:female;0.309;0.538;0.5656;174
+B_wave2_1926_1939;B1_rural;C(coh)[T.38-42]:female;-3.613;0.864;0.0;174
+B_wave2_1926_1939;B1_rural;C(coh)[T.43-47]:female;-7.329;1.063;0.0;174
+B_wave2_1926_1939;B1_total;female;7.047;0.914;0.0;270
+B_wave2_1926_1939;B1_total;C(coh)[T.13-17]:female;0.0;0.0;0.0;270
+B_wave2_1926_1939;B1_total;C(coh)[T.18-22]:female;4.453;0.478;0.0;270
+B_wave2_1926_1939;B1_total;C(coh)[T.23-27]:female;7.675;0.476;0.0;270
+B_wave2_1926_1939;B1_total;C(coh)[T.28-32]:female;4.488;1.481;0.0024;270
+B_wave2_1926_1939;B1_total;C(coh)[T.33-37]:female;-0.154;0.481;0.7495;270
+B_wave2_1926_1939;B1_total;C(coh)[T.38-42]:female;-2.524;0.712;0.0004;270
+B_wave2_1926_1939;B1_total;C(coh)[T.43-47]:female;-6.891;0.711;0.0;270
+B_wave2_1926_1939;B2a;female;6.987;1.108;0.0;198
+B_wave2_1926_1939;B2a;C(coh)[T.13-17]:female;-0.0;0.0;0.0;198
+B_wave2_1926_1939;B2a;C(coh)[T.18-22]:female;4.157;0.737;0.0;198
+B_wave2_1926_1939;B2a;C(coh)[T.23-27]:female;7.57;0.718;0.0;198
+B_wave2_1926_1939;B2a;C(coh)[T.28-32]:female;5.311;0.599;0.0;198
+B_wave2_1926_1939;B2a;C(coh)[T.33-37]:female;0.072;0.569;0.8987;198
+B_wave2_1926_1939;B2a;C(coh)[T.38-42]:female;-3.345;0.833;0.0001;198
+B_wave2_1926_1939;B2a;C(coh)[T.43-47]:female;-6.778;1.046;0.0;198
+B_wave2_1926_1939;B2b;female;7.785;0.946;0.0;174
+B_wave2_1926_1939;B2b;C(coh)[T.13-17]:female;0.0;0.0;0.0485;174
+B_wave2_1926_1939;B2b;C(coh)[T.18-22]:female;4.222;0.736;0.0;174
+B_wave2_1926_1939;B2b;C(coh)[T.23-27]:female;7.907;0.675;0.0;174
+B_wave2_1926_1939;B2b;C(coh)[T.28-32]:female;5.538;0.612;0.0;174
+B_wave2_1926_1939;B2b;C(coh)[T.33-37]:female;0.315;0.533;0.5546;174
+B_wave2_1926_1939;B2b;C(coh)[T.38-42]:female;-3.617;0.862;0.0;174
+B_wave2_1926_1939;B2b;C(coh)[T.43-47]:female;-6.579;1.434;0.0;174
+B_wave2_1926_1939;B2b;survival;-2.039;1.801;0.2576;174
+B_wave2_1926_1939;B2c;female;7.422;1.153;0.0;107
+B_wave2_1926_1939;B2c;C(coh)[T.13-17]:female;0.0;0.0;0.1885;107
+B_wave2_1926_1939;B2c;C(coh)[T.18-22]:female;4.535;0.964;0.0;107
+B_wave2_1926_1939;B2c;C(coh)[T.23-27]:female;8.042;0.787;0.0;107
+B_wave2_1926_1939;B2c;C(coh)[T.28-32]:female;5.388;0.568;0.0;107
+B_wave2_1926_1939;B2c;C(coh)[T.33-37]:female;0.217;0.596;0.7154;107
+B_wave2_1926_1939;B2c;C(coh)[T.38-42]:female;-3.655;1.177;0.0019;107
+B_wave2_1926_1939;B2c;C(coh)[T.43-47]:female;-7.106;1.572;0.0;107
+B_wave2_1926_1939;B2d;female;6.515;1.186;0.0;174
+B_wave2_1926_1939;B2d;C(coh)[T.13-17]:female;0.0;0.0;0.0;174
+B_wave2_1926_1939;B2d;C(coh)[T.18-22]:female;5.509;0.808;0.0;174
+B_wave2_1926_1939;B2d;C(coh)[T.23-27]:female;8.572;0.754;0.0;174
+B_wave2_1926_1939;B2d;C(coh)[T.28-32]:female;5.619;0.526;0.0;174
+B_wave2_1926_1939;B2d;C(coh)[T.33-37]:female;-0.315;0.559;0.5733;174
+B_wave2_1926_1939;B2d;C(coh)[T.38-42]:female;-4.993;0.883;0.0;174
+B_wave2_1926_1939;B2d;C(coh)[T.43-47]:female;-7.876;0.912;0.0;174
+B_wave2_1926_1939;B2e;female;6.841;1.008;0.0;114
+B_wave2_1926_1939;B2e;C(coh)[T.13-17]:female;0.0;0.0;0.0;114
+B_wave2_1926_1939;B2e;C(coh)[T.18-22]:female;4.237;0.56;0.0;114
+B_wave2_1926_1939;B2e;C(coh)[T.23-27]:female;7.881;0.574;0.0;114
+B_wave2_1926_1939;B2e;C(coh)[T.28-32]:female;5.278;0.782;0.0;114
+B_wave2_1926_1939;B2e;C(coh)[T.33-37]:female;0.618;0.811;0.4465;114
+B_wave2_1926_1939;B2e;C(coh)[T.38-42]:female;-3.571;0.9;0.0001;114
+B_wave2_1926_1939;B2e;C(coh)[T.43-47]:female;-7.603;0.89;0.0;114
+B_wave2_1926_1939;B2f;female;7.81;0.964;0.0;138
+B_wave2_1926_1939;B2f;C(coh)[T.13-17]:female;-0.0;0.0;0.0;138
+B_wave2_1926_1939;B2f;C(coh)[T.18-22]:female;4.349;0.771;0.0;138
+B_wave2_1926_1939;B2f;C(coh)[T.23-27]:female;8.114;0.69;0.0;138
+B_wave2_1926_1939;B2f;C(coh)[T.28-32]:female;5.671;0.666;0.0;138
+B_wave2_1926_1939;B2f;C(coh)[T.33-37]:female;0.462;0.614;0.4513;138
+B_wave2_1926_1939;B2f;C(coh)[T.38-42]:female;-3.478;0.936;0.0002;138
+B_wave2_1926_1939;B2f;C(coh)[T.43-47]:female;-7.309;1.153;0.0;138
+B_wave2_1926_1939;B2g;female;6.912;0.886;0.0;156
+B_wave2_1926_1939;B2g;C(coh)[T.13-17]:female;-0.0;0.0;0.5054;156
+B_wave2_1926_1939;B2g;C(coh)[T.18-22]:female;4.902;0.666;0.0;156
+B_wave2_1926_1939;B2g;C(coh)[T.23-27]:female;8.386;0.667;0.0;156
+B_wave2_1926_1939;B2g;C(coh)[T.28-32]:female;5.664;0.748;0.0;156
+B_wave2_1926_1939;B2g;C(coh)[T.33-37]:female;0.429;0.721;0.5518;156
+B_wave2_1926_1939;B2g;C(coh)[T.38-42]:female;-4.455;0.882;0.0;156
+B_wave2_1926_1939;B2g;C(coh)[T.43-47]:female;-8.014;0.832;0.0;156
+B_wave2_1926_1939;B2h;female;7.899;0.994;0.0;154
+B_wave2_1926_1939;B2h;C(coh)[T.13-17]:female;-0.0;0.0;0.0021;154
+B_wave2_1926_1939;B2h;C(coh)[T.18-22]:female;4.787;0.805;0.0;154
+B_wave2_1926_1939;B2h;C(coh)[T.23-27]:female;8.584;0.59;0.0;154
+B_wave2_1926_1939;B2h;C(coh)[T.28-32]:female;6.02;0.58;0.0;154
+B_wave2_1926_1939;B2h;C(coh)[T.33-37]:female;0.064;0.533;0.905;154
+B_wave2_1926_1939;B2h;C(coh)[T.38-42]:female;-3.889;0.873;0.0;154
+B_wave2_1926_1939;B2h;C(coh)[T.43-47]:female;-7.667;1.207;0.0;154
+B_wave2_1926_1939;B3;age1928;-0.314;0.063;0.0;174
+B_wave2_1926_1939;B3;female;24.811;2.287;0.0;174
+B_wave2_1926_1939;B3;age1928:female;-0.471;0.07;0.0;174
+B_wave2_1926_1939;B4;female;4.177;1.36;0.0021;174
+B_wave2_1926_1939;B4;female:young;9.24;1.14;0.0;174
+B;B5_permutation;female:young;9.24;;0.0;174
+B_wave2_1926_1939;B7a;lit26_F;-0.447;0.121;0.0002;16
+B_wave2_1926_1939;B7b;lit26_F;-0.278;0.125;0.0267;16
+B_wave2_1926_1939;B7b;titular;6.844;2.823;0.0154;16
+B_wave2_1926_1939;B7c;lit26_M;-0.501;0.073;0.0;16
+B_wave2_1926_1939;B7d;lit26_M;-0.468;0.083;0.0;16
+B_wave2_1926_1939;B7d;titular;0.879;0.962;0.3609;16
+B_wave2_1926_1939;B7e;lit26_F;-0.345;0.2;0.0842;16
+B_wave2_1926_1939;B7e;titular;6.309;3.338;0.0587;16
+B_wave2_1926_1939;B7e;surv;-1.152;1.573;0.4639;16
+B_wave2_1926_1939;B7f;lit26_F;-0.403;0.118;0.0007;14
+B_wave2_1926_1939;B7f;titular;4.919;4.155;0.2365;14
+B_wave2_1926_1939;B7g;lit26_F;-0.327;0.077;0.0;16
+B_wave2_1926_1939;B7g;titular;4.81;2.451;0.0497;16
+B_wave2_1926_1939;B7h;lit26_F;-0.363;0.145;0.0121;18
+B_wave2_1926_1939;B7h;titular;5.353;2.59;0.0388;18
+C;C1_wave1_F;teachers per capita 1911;1.852;0.543;0.0007;19
+C;C1_wave1_F;agrarian share 1897;-0.534;0.482;0.2684;19
+C;C1_wave1_F;child-woman ratio 1926;-1.297;0.846;0.1254;19
+C;C1_wave1_F;urban share (men) 1926;0.939;0.894;0.2935;16
+C;C1_wave1_F;rural sex ratio 20-39;-0.724;0.907;0.4246;17
+C;C1_wave1_F;female literacy 1897;1.704;0.814;0.0363;19
+C;C1_wave1_M;teachers per capita 1911;1.586;0.948;0.0944;19
+C;C1_wave1_M;agrarian share 1897;1.819;0.678;0.0073;19
+C;C1_wave1_M;child-woman ratio 1926;1.4;0.652;0.0318;19
+C;C1_wave1_M;urban share (men) 1926;-0.225;1.272;0.8595;16
+C;C1_wave1_M;rural sex ratio 20-39;0.065;1.218;0.9576;17
+C;C1_wave1_M;female literacy 1897;-1.827;0.997;0.067;19
+C;C1_wave2_F;teachers per capita 1911;-3.112;3.491;0.3727;14
+C;C1_wave2_F;agrarian share 1897;2.438;1.27;0.0549;14
+C;C1_wave2_F;child-woman ratio 1926;-0.66;1.308;0.6138;14
+C;C1_wave2_F;urban share (men) 1926;2.821;1.607;0.0793;14
+C;C1_wave2_F;rural sex ratio 20-39;-0.712;2.21;0.7475;13
+C;C1_wave2_F;female literacy 1897;-0.222;1.394;0.8736;14
+C;C1_wave2_M;teachers per capita 1911;-0.447;0.792;0.5721;14
+C;C1_wave2_M;agrarian share 1897;0.494;0.437;0.2587;14
+C;C1_wave2_M;child-woman ratio 1926;0.436;0.361;0.2282;14
+C;C1_wave2_M;urban share (men) 1926;0.283;0.779;0.7165;14
+C;C1_wave2_M;rural sex ratio 20-39;0.331;0.885;0.7084;13
+C;C1_wave2_M;female literacy 1897;-0.184;0.361;0.6096;14
+C;C2_stacked;teachers per capita 1911 x wave2;-0.893;2.535;0.7248;18
+C;C2_stacked;agrarian share 1897 x wave2;1.509;1.528;0.3234;18
+C;C2_stacked;child-woman ratio 1926 x wave2;2.111;1.29;0.1017;18
+C;C2_stacked;urban share (men) 1926 x wave2;-0.324;1.888;0.8636;18
+C;C2_stacked;rural sex ratio 20-39 x wave2;-0.781;1.15;0.4972;16
+C;C2_stacked;female literacy 1897 x wave2;0.291;1.423;0.8381;18
+C_two_regimes;C2b;teachers_percap_1911_z;-1.461;0.513;0.0044;14
+C_two_regimes;C2b;cwr_z;-0.283;0.403;0.4828;14
+C_two_regimes;C2b;urban_share_M_z;2.258;0.536;0.0;14
+C_two_regimes;C2b;teachers_percap_1911_z:wave2;-1.3;1.847;0.4815;14
+C_two_regimes;C2b;cwr_z:wave2;2.256;1.329;0.0895;14
+C_two_regimes;C2b;urban_share_M_z:wave2;2.72;1.71;0.1116;14
+C_two_regimes;C3;lit26_F_z;2.435;4.521;0.5902;10
+C_two_regimes;C3;teachers_percap_1911_z;-8.639;3.773;0.0221;10
+C_two_regimes;C3;agshare_1897_z;-0.843;1.826;0.6442;10
+C_two_regimes;C3;cwr_z;2.347;1.678;0.1618;10
+C_two_regimes;C3;urban_share_M_z;7.081;3.255;0.0296;10
+C_two_regimes;C3b;teachers_percap_1911_z;1.818;1.152;0.1147;13
+C_two_regimes;C3b;agshare_1897_z;0.042;1.188;0.9717;13
+C_two_regimes;C3b;cwr_z;-0.671;1.011;0.5066;13
+C_two_regimes;C3b;urban_share_M_z;0.515;1.31;0.6943;13
+D;D3a. Core sample, rural;volga:female;2.704;2.443;0.2683;701
+D;D3a. Core sample, rural;volga:female:young;-15.733;2.583;0.0;701
+D;D3a. Core sample, rural;muslim:female;21.209;1.852;0.0;701
+D;D3a. Core sample, rural;muslim:female:young;-10.741;2.033;0.0;701
+D;D3b. Excluding low-quality units;volga:female;1.211;2.515;0.6301;555
+D;D3b. Excluding low-quality units;volga:female:young;-15.048;2.736;0.0;555
+D;D3b. Excluding low-quality units;muslim:female;21.02;2.162;0.0;555
+D;D3b. Excluding low-quality units;muslim:female:young;-11.469;2.101;0.0;555
+D;D3c. Cells of at least 300 persons;volga:female;2.709;2.463;0.2714;681
+D;D3c. Cells of at least 300 persons;volga:female:young;-15.737;2.604;0.0;681
+D;D3c. Cells of at least 300 persons;muslim:female;21.19;1.868;0.0;681
+D;D3c. Cells of at least 300 persons;muslim:female:young;-10.677;2.078;0.0;681
+D;D3d. Unweighted;volga:female;0.476;2.074;0.8186;701
+D;D3d. Unweighted;volga:female:young;-17.88;2.785;0.0;701
+D;D3d. Unweighted;muslim:female;18.705;1.742;0.0;701
+D;D3d. Unweighted;muslim:female:young;-11.26;3.901;0.0039;701
+D;D3e. Total population;volga:female;-0.759;1.906;0.6905;896
+D;D3e. Total population;volga:female:young;-15.533;2.107;0.0;896
+D;D3e. Total population;muslim:female;17.675;1.313;0.0;896
+D;D3e. Total population;muslim:female:young;-9.478;1.911;0.0;896
+D;D3f. Excluding titular units;volga:female;4.106;3.335;0.2182;507
+D;D3f. Excluding titular units;volga:female:young;-16.918;3.867;0.0;507
+D;D3f. Excluding titular units;muslim:female;21.336;1.987;0.0;507
+D;D3f. Excluding titular units;muslim:female:young;-6.837;2.014;0.0007;507
+D;D3g. Units with a Volga-Ural nationality only;volga:female;3.05;2.438;0.211;518
+D;D3g. Units with a Volga-Ural nationality only;volga:female:young;-15.995;2.434;0.0;518
+D;D3g. Units with a Volga-Ural nationality only;muslim:female;21.545;2.088;0.0;518
+D;D3g. Units with a Volga-Ural nationality only;muslim:female:young;-10.983;1.803;0.0;518
+D;D3h. Cells validated by identities only;volga:female;2.979;2.891;0.3029;687
+D;D3h. Cells validated by identities only;volga:female:young;-16.193;2.951;0.0;687
+D;D3h. Cells validated by identities only;muslim:female;20.926;2.001;0.0;687
+D;D3h. Cells validated by identities only;muslim:female:young;-10.132;1.818;0.0;687
+E_korenizatsiya;E1;titular_unit;1.843;2.678;0.4913;306
+E_korenizatsiya;E1;titular_unit:soviet;-3.128;3.336;0.3485;306
+E_korenizatsiya;E1;titular_unit:female;0.653;1.182;0.5808;306
+E_korenizatsiya;E1;titular_unit:soviet:female;0.935;1.455;0.5208;306
+E_korenizatsiya;E2a;titular_unit;3.798;1.505;0.0116;160
+E_korenizatsiya;E2a;titular_unit:soviet;-8.525;1.503;0.0;160
+E_korenizatsiya;E2a;titular_unit:female;0.185;2.609;0.9434;160
+E_korenizatsiya;E2a;titular_unit:soviet:female;2.399;0.721;0.0009;160
+E_korenizatsiya;E2b;titular_unit;3.759;3.998;0.3472;306
+E_korenizatsiya;E2b;titular_unit:soviet;-0.932;4.474;0.835;306
+E_korenizatsiya;E2b;titular_unit:female;0.754;1.91;0.693;306
+E_korenizatsiya;E2b;titular_unit:soviet:female;-0.176;2.053;0.9315;306
+E_korenizatsiya;E2c;titular_unit;4.275;2.348;0.0687;216
+E_korenizatsiya;E2c;titular_unit:soviet;-2.951;5.409;0.5853;216
+E_korenizatsiya;E2c;titular_unit:female;1.465;0.854;0.0862;216
+E_korenizatsiya;E2c;titular_unit:soviet:female;1.361;2.002;0.4966;216
+F_russians_across_regions;F1_base_gender_gap_20-24;teachers_percap_1911_z;-4.423;0.854;0.0;34
+F_russians_across_regions;F1_base_gender_gap_20-24;agshare_1897_z;2.819;0.957;0.0032;34
+F_russians_across_regions;F1_base_gender_gap_20-24;cwr_z;1.989;1.103;0.0712;34
+F_russians_across_regions;F1_urban_gender_gap_20-24;teachers_percap_1911_z;-4.688;1.527;0.0021;24
+F_russians_across_regions;F1_urban_gender_gap_20-24;agshare_1897_z;1.719;1.326;0.195;24
+F_russians_across_regions;F1_urban_gender_gap_20-24;cwr_z;1.217;1.403;0.3855;24
+F_russians_across_regions;F1_urban_gender_gap_20-24;urban_share_M_z;-1.406;1.474;0.3401;24
+F_russians_across_regions;F1_base_lit_F_20-24;teachers_percap_1911_z;8.484;1.287;0.0;34
+F_russians_across_regions;F1_base_lit_F_20-24;agshare_1897_z;-1.122;1.173;0.3386;34
+F_russians_across_regions;F1_base_lit_F_20-24;cwr_z;-2.635;1.554;0.09;34
+F_russians_across_regions;F1_urban_lit_F_20-24;teachers_percap_1911_z;8.616;2.308;0.0002;24
+F_russians_across_regions;F1_urban_lit_F_20-24;agshare_1897_z;0.525;1.522;0.7302;24
+F_russians_across_regions;F1_urban_lit_F_20-24;cwr_z;-1.55;1.906;0.4162;24
+F_russians_across_regions;F1_urban_lit_F_20-24;urban_share_M_z;1.972;1.954;0.3127;24
+F_russians_across_regions;F1_base_lit_M_20-24;teachers_percap_1911_z;4.059;0.623;0.0;34
+F_russians_across_regions;F1_base_lit_M_20-24;agshare_1897_z;1.707;0.6;0.0044;34
+F_russians_across_regions;F1_base_lit_M_20-24;cwr_z;-0.629;0.619;0.3099;34
+F_russians_across_regions;F1_urban_lit_M_20-24;teachers_percap_1911_z;3.918;0.871;0.0;24
+F_russians_across_regions;F1_urban_lit_M_20-24;agshare_1897_z;2.253;0.846;0.0077;24
+F_russians_across_regions;F1_urban_lit_M_20-24;cwr_z;-0.321;0.673;0.6331;24
+F_russians_across_regions;F1_urban_lit_M_20-24;urban_share_M_z;0.568;0.775;0.4636;24
+F_russians_across_regions;F1_base_gender_gap_12-14;teachers_percap_1911_z;-2.55;1.419;0.0722;30
+F_russians_across_regions;F1_base_gender_gap_12-14;agshare_1897_z;2.652;2.294;0.2477;30
+F_russians_across_regions;F1_base_gender_gap_12-14;cwr_z;3.045;0.967;0.0016;30
+F_russians_across_regions;F1_base_lit_F_12-14;teachers_percap_1911_z;9.003;1.695;0.0;30
+F_russians_across_regions;F1_base_lit_F_12-14;agshare_1897_z;-1.699;2.844;0.5502;30
+F_russians_across_regions;F1_base_lit_F_12-14;cwr_z;-2.597;1.744;0.1365;30
+F_russians_across_regions;F1_base_lit_M_12-14;teachers_percap_1911_z;6.444;1.182;0.0;30
+F_russians_across_regions;F1_base_lit_M_12-14;agshare_1897_z;0.954;1.549;0.5381;30
+F_russians_across_regions;F1_base_lit_M_12-14;cwr_z;0.45;1.431;0.7533;30
+F_russians_across_regions;F1_base_gender_gap_40-49;teachers_percap_1911_z;0.11;0.567;0.8463;30
+F_russians_across_regions;F1_base_gender_gap_40-49;agshare_1897_z;3.922;1.062;0.0002;30
+F_russians_across_regions;F1_base_gender_gap_40-49;cwr_z;0.044;1.325;0.9737;30
+F_russians_across_regions;F1_base_lit_F_40-49;teachers_percap_1911_z;3.261;0.983;0.0009;30
+F_russians_across_regions;F1_base_lit_F_40-49;agshare_1897_z;-2.289;1.008;0.0232;30
+F_russians_across_regions;F1_base_lit_F_40-49;cwr_z;-2.45;1.086;0.0241;30
+F_russians_across_regions;F1_base_lit_M_40-49;teachers_percap_1911_z;3.376;1.072;0.0016;30
+F_russians_across_regions;F1_base_lit_M_40-49;agshare_1897_z;1.629;1.348;0.2267;30
+F_russians_across_regions;F1_base_lit_M_40-49;cwr_z;-2.401;1.131;0.0338;30
+G_mechanisms;G1_ethgap_F_20-24_mobility gap;cwr_diff_z;5.771;6.074;0.3421;23
+G_mechanisms;G1_ethgap_F_20-24_mobility gap;sr_20_39_diff_z;-3.508;3.621;0.3326;23
+G_mechanisms;G1_ethgap_F_20-24_mobility gap;mob_gap_diff_z;3.266;7.25;0.6523;23
+G_mechanisms;G1_ethgap_F_20-24_mobility gap;muslim;-5.531;6.462;0.392;23
+G_mechanisms;G1_ethgap_F_20-24_urban share of men;cwr_diff_z;2.586;3.675;0.4817;23
+G_mechanisms;G1_ethgap_F_20-24_urban share of men;sr_20_39_diff_z;0.812;2.777;0.7699;23
+G_mechanisms;G1_ethgap_F_20-24_urban share of men;urban_share_M_diff_z;-17.129;4.393;0.0001;23
+G_mechanisms;G1_ethgap_F_20-24_urban share of men;muslim;-1.438;4.11;0.7264;23
+G_mechanisms;G1_ethgap_F_20-24_mobility gap, unit FE;cwr_diff_z;-4.894;4.088;0.2311;23
+G_mechanisms;G1_ethgap_F_20-24_mobility gap, unit FE;sr_20_39_diff_z;-13.975;15.814;0.3769;23
+G_mechanisms;G1_ethgap_F_20-24_mobility gap, unit FE;mob_gap_diff_z;-8.334;12.892;0.518;23
+G_mechanisms;G1_ethgap_F_20-24_mobility gap, unit FE;muslim;-12.151;4.908;0.0133;23
+G_mechanisms;G1_ethgap_M_20-24_mobility gap;cwr_diff_z;4.82;2.221;0.03;23
+G_mechanisms;G1_ethgap_M_20-24_mobility gap;sr_20_39_diff_z;-2.311;2.106;0.2725;23
+G_mechanisms;G1_ethgap_M_20-24_mobility gap;mob_gap_diff_z;1.487;4.811;0.7572;23
+G_mechanisms;G1_ethgap_M_20-24_mobility gap;muslim;14.677;2.958;0.0;23
+G_mechanisms;G1_ethgap_M_20-24_urban share of men;cwr_diff_z;3.61;1.814;0.0466;23
+G_mechanisms;G1_ethgap_M_20-24_urban share of men;sr_20_39_diff_z;-0.722;1.773;0.6839;23
+G_mechanisms;G1_ethgap_M_20-24_urban share of men;urban_share_M_diff_z;-6.475;3.193;0.0426;23
+G_mechanisms;G1_ethgap_M_20-24_urban share of men;muslim;16.302;2.215;0.0;23
+G_mechanisms;G1_ethgap_M_20-24_mobility gap, unit FE;cwr_diff_z;-0.251;2.533;0.9212;23
+G_mechanisms;G1_ethgap_M_20-24_mobility gap, unit FE;sr_20_39_diff_z;-7.235;7.75;0.3506;23
+G_mechanisms;G1_ethgap_M_20-24_mobility gap, unit FE;mob_gap_diff_z;-4.756;7.626;0.5329;23
+G_mechanisms;G1_ethgap_M_20-24_mobility gap, unit FE;muslim;13.662;2.179;0.0;23
+G_mechanisms;G1_ethgap_F_12-14_mobility gap;cwr_diff_z;6.692;5.02;0.1825;22
+G_mechanisms;G1_ethgap_F_12-14_mobility gap;sr_20_39_diff_z;-7.641;2.567;0.0029;22
+G_mechanisms;G1_ethgap_F_12-14_mobility gap;mob_gap_diff_z;-1.92;6.733;0.7755;22
+G_mechanisms;G1_ethgap_F_12-14_mobility gap;muslim;-13.135;3.947;0.0009;22
+G_mechanisms;G1_ethgap_F_12-14_urban share of men;cwr_diff_z;5.373;3.312;0.1048;22
+G_mechanisms;G1_ethgap_F_12-14_urban share of men;sr_20_39_diff_z;-3.647;2.429;0.1333;22
+G_mechanisms;G1_ethgap_F_12-14_urban share of men;urban_share_M_diff_z;-10.392;2.989;0.0005;22
+G_mechanisms;G1_ethgap_F_12-14_urban share of men;muslim;-11.413;2.675;0.0;22
+G_mechanisms;G1_ethgap_F_12-14_mobility gap, unit FE;cwr_diff_z;0.31;6.843;0.9639;22
+G_mechanisms;G1_ethgap_F_12-14_mobility gap, unit FE;sr_20_39_diff_z;-13.878;17.291;0.4222;22
+G_mechanisms;G1_ethgap_F_12-14_mobility gap, unit FE;mob_gap_diff_z;-6.992;12.889;0.5875;22
+G_mechanisms;G1_ethgap_F_12-14_mobility gap, unit FE;muslim;-18.271;5.345;0.0006;22
+G_mechanisms;G3;cwr_diff_z;4.587;7.866;0.5598;14
+G_mechanisms;G3;sr_20_39_diff_z;-8.469;4.154;0.0415;14
+G_mechanisms;G3;mob_gap_diff_z;0.346;9.909;0.9721;14

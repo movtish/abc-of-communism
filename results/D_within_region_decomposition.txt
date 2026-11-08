@@ -1,0 +1,117 @@
+Core sample (rural): cells 701, units 35, units with a Volga-Ural nationality 19; tier 1-2 cells 687
+         cells  units  pop_thousand  lit_M  lit_F
+group                                            
+Башкиры   12.0    1.0         347.8   50.9   20.8
+Вотяки    12.0    1.0         220.7   63.1   17.0
+Марийцы   33.0    3.0         197.9   70.3   15.0
+Мишари    12.0    1.0          76.3   53.1   24.6
+Мордва    45.0    4.0         479.2   59.5   10.8
+Русские  383.0   35.0       13880.8   78.3   38.7
+Татары   146.0   15.0        1132.3   59.0   35.2
+Чуваши    58.0    5.0         572.1   73.5   26.5
+All enumerated nationalities (rural): cells 866, units 35
+columns: female | Volga non-Muslim nationality | Muslim nationality | Volga x female | Muslim x female | Volga women against Russian women
+
+--- D1. Rural core sample, unit x cohort FE, weighted by population, SE clustered by unit ---   n=701  R2=0.976  units=35
+  cohort        female       Volga      Muslim   Volga x F  Muslim x F  Volga women
+  40-49     -54.4( 1.6)  -22.6( 2.3)  -29.6( 1.2)   11.2( 3.3)   28.3( 1.6)  -11.4( 1.8)
+  30-39     -51.9( 2.0)  -15.9( 1.6)  -24.9( 1.2)   -4.5( 2.2)   15.8( 2.1)  -20.3( 1.9)
+  25-29     -47.2( 2.1)  -12.9( 2.0)  -19.2( 1.5)  -11.1( 2.5)   12.0( 2.8)  -23.9( 2.4)
+  20-24     -35.9( 2.3)  -10.4( 1.9)  -16.9( 1.5)  -15.2( 3.3)   10.0( 3.8)  -25.5( 2.8)
+  15-19     -26.6( 1.8)  -10.2( 2.5)  -11.0( 1.8)  -13.4( 2.7)    9.8( 3.5)  -23.7( 2.8)
+  12-14     -30.7( 1.9)   -6.0( 2.9)   -5.8( 2.2)  -13.8( 2.7)   11.2( 2.7)  -19.8( 2.4)
+
+--- D2a. Excluding low-quality units ---   n=555  R2=0.975  units=29
+  cohort        female       Volga      Muslim   Volga x F  Muslim x F  Volga women
+  40-49     -54.3( 1.8)  -22.0( 3.2)  -29.7( 1.2)    9.8( 3.8)   28.2( 1.9)  -12.2( 1.9)
+  30-39     -51.9( 2.2)  -15.2( 2.0)  -24.5( 1.4)   -5.6( 2.3)   15.5( 2.3)  -20.8( 2.4)
+  25-29     -47.2( 2.4)  -11.5( 2.0)  -19.2( 1.8)  -12.3( 3.0)   11.6( 3.1)  -23.8( 3.0)
+  20-24     -35.8( 2.6)   -9.4( 2.1)  -16.9( 1.6)  -15.3( 4.1)    9.6( 4.3)  -24.6( 4.1)
+  15-19     -26.3( 2.1)   -8.5( 2.9)  -10.6( 2.0)  -13.7( 3.1)    8.9( 3.9)  -22.1( 3.8)
+  12-14     -30.5( 2.1)   -3.8( 3.2)   -4.1( 1.5)  -14.7( 2.9)    9.6( 2.4)  -18.5( 3.5)
+
+--- D2b. Cells of at least 300 persons ---   n=681  R2=0.976  units=35
+  cohort        female       Volga      Muslim   Volga x F  Muslim x F  Volga women
+  40-49     -54.4( 1.6)  -22.6( 2.3)  -29.6( 1.2)   11.2( 3.3)   28.2( 1.6)  -11.4( 1.8)
+  30-39     -51.9( 2.0)  -15.9( 1.6)  -24.8( 1.3)   -4.5( 2.2)   15.8( 2.1)  -20.3( 1.9)
+  25-29     -47.2( 2.2)  -12.9( 2.0)  -19.1( 1.5)  -11.1( 2.6)   12.1( 2.8)  -23.9( 2.4)
+  20-24     -35.9( 2.3)  -10.4( 1.9)  -16.9( 1.5)  -15.2( 3.3)   10.1( 3.8)  -25.5( 2.8)
+  15-19     -26.6( 1.8)  -10.2( 2.6)  -10.9( 1.8)  -13.4( 2.7)    9.7( 3.5)  -23.7( 2.8)
+  12-14     -30.7( 1.9)   -6.0( 2.9)   -5.9( 2.3)  -13.8( 2.7)   11.4( 2.8)  -19.8( 2.5)
+
+--- D2c. Total population (urban and rural) ---   n=896  R2=0.979  units=43
+  cohort        female       Volga      Muslim   Volga x F  Muslim x F  Volga women
+  40-49     -51.4( 1.1)  -24.8( 1.9)  -31.0( 1.8)    7.3( 2.5)   24.4( 1.3)  -17.5( 1.5)
+  30-39     -48.4( 1.4)  -18.5( 1.5)  -27.2( 1.1)   -8.0( 1.7)   12.3( 1.6)  -26.5( 1.5)
+  25-29     -43.3( 1.4)  -14.5( 1.4)  -21.7( 1.1)  -15.1( 2.1)    8.7( 2.3)  -29.6( 1.7)
+  20-24     -32.9( 1.5)  -13.0( 1.7)  -20.0( 1.5)  -18.1( 2.6)    8.0( 3.3)  -31.2( 2.7)
+  15-19     -23.6( 1.3)  -13.8( 2.4)  -13.9( 1.4)  -15.7( 2.0)    7.3( 3.1)  -29.5( 2.4)
+  12-14     -26.9( 1.5)   -9.8( 2.6)  -10.1( 1.5)  -16.2( 2.5)    9.2( 2.4)  -25.9( 1.9)
+
+--- D2d. Unweighted ---   n=701  R2=0.955  units=35
+  cohort        female       Volga      Muslim   Volga x F  Muslim x F  Volga women
+  40-49     -51.4( 1.5)  -22.2( 2.5)  -28.7( 2.1)    8.7( 2.6)   24.4( 2.2)  -13.5( 1.5)
+  30-39     -48.4( 1.6)  -15.6( 2.1)  -27.0( 1.8)   -7.7( 1.9)   13.7( 2.0)  -23.4( 2.2)
+  25-29     -42.9( 2.1)  -10.9( 2.5)  -20.5( 2.3)  -16.4( 2.4)    7.3( 2.9)  -27.3( 2.8)
+  20-24     -33.1( 2.1)   -8.5( 2.5)  -17.4( 3.7)  -19.9( 3.0)    5.1( 5.9)  -28.5( 3.3)
+  15-19     -23.4( 1.9)   -7.3( 3.4)  -13.5( 2.6)  -18.1( 2.8)    9.2( 2.8)  -25.4( 3.5)
+  12-14     -28.6( 1.8)   -3.2( 3.4)   -6.6( 5.7)  -17.1( 2.8)    7.7( 7.3)  -20.3( 2.9)
+
+--- D2e. Cells validated by identities only (tiers 1 and 2) ---   n=687  R2=0.977  units=35
+  cohort        female       Volga      Muslim   Volga x F  Muslim x F  Volga women
+  40-49     -54.3( 1.7)  -22.4( 2.3)  -29.5( 1.4)   11.2( 3.3)   28.2( 1.7)  -11.2( 1.8)
+  30-39     -51.4( 2.1)  -15.5( 1.8)  -24.5( 1.3)   -5.0( 2.3)   15.3( 2.2)  -20.5( 1.9)
+  25-29     -47.3( 2.2)  -12.9( 2.0)  -19.1( 1.5)  -11.0( 2.6)   12.1( 2.8)  -23.9( 2.4)
+  20-24     -34.8( 2.2)   -9.7( 1.8)  -15.3( 1.7)  -16.2( 3.3)    7.9( 4.8)  -25.9( 2.8)
+  15-19     -26.6( 1.8)  -10.1( 2.8)  -11.0( 1.8)  -13.6( 2.8)    9.8( 3.5)  -23.6( 2.8)
+  12-14     -30.7( 1.9)   -6.0( 2.9)   -5.8( 2.2)  -13.8( 2.7)   11.2( 2.8)  -19.8( 2.5)
+
+--- D2f. Excluding titular units ---   n=507  R2=0.976  units=28
+  cohort        female       Volga      Muslim   Volga x F  Muslim x F  Volga women
+  40-49     -54.4( 1.8)  -21.6( 2.9)  -27.5( 2.9)   12.1( 3.8)   26.7( 2.0)   -9.5( 1.5)
+  30-39     -52.0( 2.3)  -16.4( 2.9)  -25.9( 2.6)   -2.9( 2.9)   17.8( 2.4)  -19.3( 2.3)
+  25-29     -47.3( 2.5)  -13.8( 2.9)  -20.0( 2.5)  -10.6( 3.1)   15.2( 3.1)  -24.4( 2.9)
+  20-24     -35.9( 2.7)  -11.8( 2.0)  -18.0( 3.1)  -15.9( 3.5)   13.2( 3.7)  -27.7( 2.2)
+  15-19     -26.6( 2.1)  -14.4( 2.3)  -14.9( 2.5)  -12.7( 3.1)   15.6( 2.7)  -27.0( 2.6)
+  12-14     -30.6( 2.2)  -11.1( 3.1)  -10.5( 2.4)  -12.0( 4.1)   13.4( 3.4)  -23.1( 2.4)
+
+--- D3. Pooled triple differences: old = aged 30-49, young = aged 12-29 in 1926 (unit x cohort, nationality x cohort, sex x cohort FE) ---
+D3a. Core sample, rural                                    n= 701 units=35 | volga:female   2.70 (2.44) | volga:female:young -15.73 (2.58) | muslim:female  21.21 (1.85) | muslim:female:young -10.74 (2.03)
+     Volga x female in the young cohorts (sum): -13.03 (2.56)
+     Muslim x female in the young cohorts (sum): 10.47 (3.26)
+D3b. Excluding low-quality units                           n= 555 units=29 | volga:female   1.21 (2.51) | volga:female:young -15.05 (2.74) | muslim:female  21.02 (2.16) | muslim:female:young -11.47 (2.10)
+D3c. Cells of at least 300 persons                         n= 681 units=35 | volga:female   2.71 (2.46) | volga:female:young -15.74 (2.60) | muslim:female  21.19 (1.87) | muslim:female:young -10.68 (2.08)
+D3d. Unweighted                                            n= 701 units=35 | volga:female   0.48 (2.07) | volga:female:young -17.88 (2.79) | muslim:female  18.71 (1.74) | muslim:female:young -11.26 (3.90)
+D3e. Total population                                      n= 896 units=43 | volga:female  -0.76 (1.91) | volga:female:young -15.53 (2.11) | muslim:female  17.67 (1.31) | muslim:female:young  -9.48 (1.91)
+D3f. Excluding titular units                               n= 507 units=28 | volga:female   4.11 (3.33) | volga:female:young -16.92 (3.87) | muslim:female  21.34 (1.99) | muslim:female:young  -6.84 (2.01)
+D3g. Units with a Volga-Ural nationality only              n= 518 units=19 | volga:female   3.05 (2.44) | volga:female:young -16.00 (2.43) | muslim:female  21.54 (2.09) | muslim:female:young -10.98 (1.80)
+D3h. Cells validated by identities only                    n= 687 units=35 | volga:female   2.98 (2.89) | volga:female:young -16.19 (2.95) | muslim:female  20.93 (2.00) | muslim:female:young -10.13 (1.82)
+D3i. All nationalities, others with own interactions       n= 866 units=35 | volga:female   2.71 (2.38) | volga:female:young -15.74 (2.51) | muslim:female  21.21 (1.82) | muslim:female:young -10.73 (2.00) | other:female  -0.78 (3.09) | other:female:young   5.03 (2.06)
+D3j. All nationalities pooled into one non-Russian indicator: non-Russian x female -2.52 (2.37); x Muslim 16.79 (2.76); n=866
+D3k. Leave-one-unit-out: Volga x female x young in [-17.60, -14.67]; young Volga women in [-14.06, -12.31]; Muslim x female x young in [-11.49, -8.19]
+D3l. Leave-one-nationality-out: Volga x female x young in [-17.58, -14.83]; Muslim x female x young in [-14.65, -9.25]
+D3m. Permutation of the nationality label within unit (1000 draws): observed -15.75; p = 0.0000; 95% null range [-6.62, 2.00]
+D3n. Wild cluster bootstrap (999 draws, 35 clusters): t = -6.09, p = 0.0000
+
+D4. Raw ethnic gaps (Russians minus nationality, same unit and cohort), population-weighted:
+        gapF         gapM      
+type  Muslim Volga Muslim Volga
+band                           
+40-49    0.1  11.0   30.8  22.6
+30-39    9.1  20.3   25.0  14.2
+25-29    7.0  20.5   20.0  10.0
+20-24    5.7  20.8   18.1   7.6
+15-19   -0.0  18.0   11.0   7.2
+12-14   -6.4  14.8    6.2   4.1
+
+D5. The same by nationality:
+         gapF                                gapM                              
+band    40-49 30-39 25-29 20-24 15-19 12-14 40-49 30-39 25-29 20-24 15-19 12-14
+group                                                                          
+Башкиры   NaN  14.3  16.0  17.7   7.4  -3.4   NaN  27.4  25.5  23.3  12.8   7.7
+Вотяки   12.6  22.0  25.7  26.5  21.1  10.4  28.1  17.6  15.1  13.0  12.4   5.8
+Марийцы   NaN  29.1  32.7  37.3  32.8  36.6   NaN  20.3  16.8  10.2  10.9  16.4
+Мишари    NaN  13.2  10.2   9.1   2.0  -4.3   NaN  25.6  23.4  20.1   9.7   7.1
+Мордва    7.5  16.9  21.2  25.3  25.1  23.4  22.4  13.6  12.1  13.7  16.0  11.4
+Татары    0.1   7.1   3.9   1.5  -2.3  -9.3  30.8  24.2  18.0  16.2  10.6   4.8
+Чуваши   13.1  17.4  16.1  13.7  10.8  10.2  20.3  10.3   5.7   1.7  -0.2  -1.4

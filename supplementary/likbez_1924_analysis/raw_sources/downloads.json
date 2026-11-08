@@ -1,0 +1,33 @@
+[
+  {
+    "file": "education_1922.pdf",
+    "error": "429 Client Error: Too Many Requests for url: https://istmat.org/files/uploads/22102/obrazovanie_1921-25_vyp.1_1922_god.pdf",
+    "url": "https://istmat.org/files/uploads/22102/obrazovanie_1921-25_vyp.1_1922_god.pdf"
+  },
+  {
+    "file": "education_1923.pdf",
+    "error": "429 Client Error: Too Many Requests for url: https://istmat.org/files/uploads/22102/obrazovanie_1921-25_vyp.1_1923_god.pdf",
+    "url": "https://istmat.org/files/uploads/22102/obrazovanie_1921-25_vyp.1_1923_god.pdf"
+  },
+  {
+    "file": "education_1924.pdf",
+    "bytes": 46208573,
+    "status": 200,
+    "url": "https://istmat.org/files/uploads/22102/obrazovanie_1921-25_vyp.1_1924_god.pdf"
+  },
+  {
+    "file": "education1921_25_overview.pdf",
+    "error": "429 Client Error: Too Many Requests for url: https://istmat.org/files/uploads/22102/obrazovanie_1921-25_vyp.1_obzor_21-25_tablicy.pdf",
+    "url": "https://istmat.org/files/uploads/22102/obrazovanie_1921-25_vyp.1_obzor_21-25_tablicy.pdf"
+  },
+  {
+    "file": "kult1930_34_polit.pdf",
+    "error": "429 Client Error: Too Many Requests for url: https://istmat.org/files/uploads/22124/kultstroy_1930-1934_razdel_3.pdf",
+    "url": "https://istmat.org/files/uploads/22124/kultstroy_1930-1934_razdel_3.pdf"
+  },
+  {
+    "file": "kult1940_basic.pdf",
+    "error": "429 Client Error: Too Many Requests for url: https://istmat.org/files/uploads/22545/kultstroy_1940_1.pdf",
+    "url": "https://istmat.org/files/uploads/22545/kultstroy_1940_1.pdf"
+  }
+]

@@ -1,0 +1,7 @@
+pandas
+numpy
+xlrd==2.0.2
+beautifulsoup4
+matplotlib
+scipy
+patsy

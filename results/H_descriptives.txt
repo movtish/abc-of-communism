@@ -1,0 +1,18 @@
+Low-quality rural units (share_confirmed<0.85): ['Астраханская губ.', 'Кунгурский округ', 'Немцев Поволжья АССР', 'Оренбургская губ.', 'Пензенская губ.', 'Самарская губ.']
+Units in Table IX panel: 45 | rural cells (groups x sex x band): 1827
+Units linked 1926->1939: 29 | cells: 703
+Table XV regions: 20
+Validated band cells, all nationalities, rural: 606 | units: 34
+
+Pooled rural literacy 1926 by age band and sex (pop-weighted over units):
+sex       F     M       popM       popF
+band                                   
+8-11   29.6  46.1  1128306.0  1400824.0
+12-14  41.2  71.0  1265076.0  1461249.0
+15-19  46.4  72.9  1895391.0  2302625.0
+20-24  47.4  84.5  1317414.0  1708037.0
+25-29  37.7  83.7  1002668.0  1424877.0
+30-39  27.8  78.0  1225070.0  2034997.0
+40-49  14.3  65.0  1232563.0  1489616.0
+50-59   8.8  46.4   875818.0  1071939.0
+60-69   5.5  32.7   697787.0   833834.0

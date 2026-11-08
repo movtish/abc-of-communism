@@ -1,55 +1,60 @@
 # The ABC of Communism
 
-Code and data for the paper "The ABC of Communism: How Soviet Russia Taught Its Women to Read" by Mark Kreshchuk (working paper, 2026).
+Code, census transcriptions and manuscript sources for Mark Kreshchuk's working paper, *The ABC of Communism: How Soviet Russia Taught Its Women to Read*.
 
-The paper follows the same rural birth cohorts through the censuses of 1897, 1926, 1939 and 1959. Women aged 20-34 in rural Russia in 1926 went from 43 to 61 per cent literate by 1939, while women of the same ages in 1897 had gained nothing in the thirty years before the campaign. The repository contains the census tables I transcribed, the scripts that build the samples and compute every number of the paper, and a Stata do-file that re-estimates the regressions.
+## Current revision: 8 November 2026
 
-## What is here
+This revision brings together the local manuscript, the public replication code, the methodological audit and two new supplementary analyses. The evidence documents changes in recorded cohort literacy. Attribution to the campaign requires assumptions about counterfactual learning, migration, mortality, borders and reporting. Institutional channels are exploratory.
 
-- `data/` census tables and the files built from them. CSV, separated by `;`, UTF-8. Descriptions are in `data/CODEBOOK.md`.
-- `scripts/` Python scripts, listed below in the order in which they are run.
-- `stata/ABC_of_Communism.do` the regressions of the paper in Stata.
+- Corrected the Moscow/Leningrad city–oblast population-scope mismatch in 224 urban/total rows of the 1939 data and removed double counting in aggregates. Rural female younger-minus-older contrast: **20.3537 pp**; CR2 95% interval **[16.6792, 24.0282]**. DDD: **14.3791 pp**, interval **[9.7385, 19.0197]**. DDD measures a relative change between sexes, not the female treatment effect.
+- Added the 1959 regional workbook: **20,025 rows**, with partition, population and HTML/XLS consistency checks. Nine republics support a descriptive post-1939 comparison; five form the core sample. Same-name territories have not been fully harmonised for small boundary transfers. Nested territorial entries must not be added together.
+- Added **30 checked rows for 15 territories** from the 1 January 1924 survey of literacy institutions. Fourteen link to the validated youngest cohort. All 24 exploratory institutional-model CR2 intervals include zero; these data do not identify causal mediation.
+- Added eight age-policy checks using the 1931 plan. Narrowing the younger group changes the female contrast from **20.354 to 20.312 pp**.
 
-Generated folders (`results/`, `figures/`, `paper/`, `stata/data/`, `stata/output/`) are not kept in the repository, the scripts create them.
+Подробности по-русски: [методологическая проверка](docs/ECONOMETRICS_REVIEW_RU.md), [новые данные 1959 года](supplementary/additional_data_analysis/ADDITIONAL_DATA_ANALYSIS_RU.md), [учреждения ликбеза 1924 года](supplementary/likbez_1924_analysis/REPORT_RU.md). Исходные отчёты сохраняют исторические описания отдельных этапов работы; актуальный статус проекта задаёт этот README.
 
-## Sources
+## Files
 
-- Census of 1926 (Всесоюзная перепись населения 1926 года). Table IX of the regional volumes (population by sex, single years of age, main nationalities and literacy, for 44 units of the RSFSR) and Table XV of volume 9 (the same by Gosplan region, for 1926 and for 1897 recomputed to the borders of 1927). Scans of the Russian State Library, records 01010687703, 01009004437, 01009004436, 01009004435 and 01009004430 (https://search.rsl.ru/ru/record/ followed by the number). The tables were transcribed from the scans and checked against the printed totals, see `data/CODEBOOK.md`.
-- Census of 1939. Tables of RGAE f. 1562, op. 336, d. 607 and 640 as published by Demoscope Weekly (`demoscope_1939.py` downloads them).
-- Census of 1959. RGAE f. 1562, op. 336, d. 1591-1594, through Demoscope Weekly (`demoscope_1959.py`).
-- Census of 2010. Rosstat, volume 3 table 1 and volume 4 tables 13 and 14 (`rosstat_get.py` downloads them, `census2010.py` reads them).
+- `data/`: main census data, validated cells and published derived baselines; see [CODEBOOK](data/CODEBOOK.md). Main CSV files use `;`.
+- `scripts/`: main build, tables, figures, downloaders and Stata export. Paths are relative to the checkout.
+- `paper/`, `jnea/`: revised English and Russian LaTeX sources and generated tables. The English appendix includes both new analyses.
+- `results/`, `figures/`: current main calculation snapshots and figures. Independent CR2 results live in `methodology/results/`.
+- `methodology/`: independent inference, 88 specification checks and accounting sensitivities; CR1, CR2/Satterthwaite, cluster jackknife and restricted wild cluster bootstrap. `errors.json` records an expected unidentified specification; unavailable CR2 contrasts are explicitly flagged.
+- `supplementary/additional_data_analysis/`: 1959 source workbook, regional panel, migration/time-use extracts, scripts and results.
+- `supplementary/likbez_1924_analysis/`: historical PDFs and source page images, institutional transcription, 24 exploratory models and eight policy-age checks.
+- `validation/`: source evidence, scope corrections and changed numerical keys; `docs/`: audit and source-search reports.
 
-The pre-1917 district data are not included because they belong to other authors. They come from the replication package of Malein, "The Economic Power of Elites, Human Capital, and Industrial Change" (Explorations in Economic History, 2025), openICPSR project 231104, which also contains the district data of Dower, Finkel, Gehlbach and Nafziger (American Political Science Review, 2018) as `data_from_gelbach.dta`. To use them, download the package and copy its folder `replication/data` to `external/malein/`, so that the repository has
+Supplementary CSV files use commas and UTF-8 with BOM. `inputs/` inside each supplement are verified snapshots of main results; the release verifier checks that these inputs still match the main project. These folders also include historical scans examined during the source search; not every scan enters a regression. Download URLs and SHA-256 hashes are in each source manifest. No restricted third-party replication microdata are redistributed.
 
+The full 1939 extraction retains 17 unresolved cells with illiterate counts exceeding population, all in the open age group 70+ of nested territories. They are listed in `validation/1939_unresolved_70plus_cells.csv`; their values are not silently repaired. They enter neither the matched age cohorts nor the national aggregates, which exclude nested territories. The release check separately enforces nonnegative counts for non-nested territories.
+
+## Reproduction
+
+Python 3.12 and the dependencies in `requirements.txt`:
+
+```sh
+python -m pip install -r requirements.txt
+python scripts/build_1926_v2.py
+python scripts/wave2_rayon.py
+python scripts/paper_numbers.py
+python scripts/make_tables.py
+python scripts/jnea2_tables.py
+python scripts/paper_figures.py
+python scripts/jnea2_figures.py
+python scripts/export_stata.py
+python methodology/test_inference.py
+python methodology/run_analysis.py . methodology/results
+python methodology/accounting.py . methodology/results
+python scripts/run_supplementary.py
+python scripts/verify_release.py
 ```
-external/malein/panel1879_1911.dta
-external/malein/data_from_gelbach.dta
-external/malein/shape_files/districts_europe_collapsed.shp (and the other files of the shapefile)
-```
 
-`baseline_1897.py` then builds `data/baseline_pre1917_by_province.csv` from them, and `crosswalk.py` builds the district crosswalk used for the map. Without these files `build_1926_v2.py` still rebuilds everything except `russians_region_baseline.csv`, but `paper_numbers.py` needs that file (Russians across units, Appendix F of the paper).
+`paper_numbers.py` includes resampling and can take about 15 minutes. `--fast` omits resampling and is only a diagnostic run. `run_supplementary.py` refreshes input snapshots from the main project before regenerating both supplements. Estimation scripts set seeds. Complete sign-vector enumeration with few clusters is not an exact causal randomisation test. The main paper's original inference and the independent CR2 checks are kept distinguishable.
 
-## How to run
+The checked-in baseline tables permit rebuilding the main analysis without the external Malein package. To reconstruct those historical baselines or the district shapefile map, obtain the third-party files described in [the earlier public instructions](docs/README_github_before_update.md). The map builder keeps an existing checked figure when external geometry is unavailable. Source downloaders are optional: their inputs are already included. To regenerate the Stata data, use `export_stata.py`; executing Stata and comparing its output requires a licensed installation. Earlier Stata results have not been revalidated for this revision.
 
-Python 3.12 with the packages in `requirements.txt`. From the root of the repository:
+The primary sources are census tables hosted by [Demoscope](https://www.demoscope.ru/weekly/ssp/census.php), the 1926 regional volumes listed in the codebook, and the 1924/1931 publications linked in the new appendix and source manifests. The downloaded files are preserved without changing their numeric tables; some HTML copies were decoded to UTF-8.
 
-```
-python scripts/baseline_1897.py      # pre-1917 baseline by province (needs external/malein)
-python scripts/crosswalk.py          # 1897 districts -> 1926 units, for the map (needs external/malein)
-python scripts/build_1926_v2.py      # validation of Table IX, rebuilds the derived 1926 files and the link to 1939
-python scripts/wave2_rayon.py        # the same cohorts by Gosplan region, 1926-1939
-python scripts/paper_numbers.py      # every number of the paper and paper/numbers.tex, about 15 minutes (--fast skips permutations and bootstraps)
-python scripts/make_tables.py        # paper/tables/*.tex
-python scripts/paper_figures.py      # figures/*.pdf and *.png
-python scripts/export_stata.py       # stata/data/*.dta
-```
+## Manuscript PDF status
 
-`paper_numbers.py` writes all numbers with their keys to `results/paper_numbers.json` and `.csv`. The text of the paper contains no typed numbers, it reads them from `paper/numbers.tex` through macros (`\N{key}`), so a change in a specification goes through to the text, the tables and the figures.
-
-For Stata, run `stata/ABC_of_Communism.do` from the folder `stata/` after `export_stata.py`, then `python scripts/compare_stata.py`, which compares the two sets of estimates key by key. In my last run 1,072 of 1,074 coefficients were identical and the other two are not identified in either program.
-
-The scripts that download the source tables (`demoscope_1939.py`, `demoscope_1959.py`, `rosstat_get.py`) and the one that builds `tableXV_linked_cohorts.csv` (`linked_cohorts.py`) do not need to be run, their output is already in `data/`.
-
-## Validation of the 1926 tables
-
-Table IX prints a subtotal after every five single years of age, so every five-year figure exists twice. A five-year group is used if the printed subtotal equals the sum of the single years, or if one of the two figures satisfies another identity of the table (urban plus rural equals total, nationalities add up to the whole population), or if one of them is consistent with the adjacent cohorts and the other is not. The rest is dropped. Details are at the top of `scripts/build_1926_v2.py` and in Appendix A of the paper. `data/v1_before_validation/` keeps the derived files of the first version, before this validation, because `build_1926_v2.py` compares the new files with them.
+Revised LaTeX sources, numbers, tables and figure files are included. Article PDFs from earlier versions are not current outputs and are not published as this revision. A successful fresh TeX build and visual review of both articles remain outstanding because the available TeX installation could not initialise in this environment. See [BUILD_STATUS](docs/BUILD_STATUS.md). The numerical and Python checks are separate from that publishing limitation.

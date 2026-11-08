@@ -1,23 +1,25 @@
-"""Table IX of 1926, v2: validation, then all derived 1926 files rebuilt from data/census1926_tableIX_long.csv
-under the old names in data/ (the v1 files are kept in data/v1_before_validation/). Every derived cell has `tier`.
+"""Validated 1926 panel (v2). Rebuilds every derived 1926 file from data/census1926_tableIX_long.csv using only
+cells that pass the identities printed in Table IX, and writes them under the ORIGINAL file names in data/
+(originals are copied once to data/v1_before_validation/). Every derived cell carries `tier`:
 
-Five-year group of (unit, area, nationality, sex), population and literates separately.
-P = printed subtotal, S = sum of the five single years.
-  tier 1  P and S agree (|P-S| <= max(2, 0.5%))
-  tier 2  they disagree or one is missing: take the one that fits urban + rural = total or the sum over
-          nationalities (computed from tier-1 cells)
-  tier 3  no identity decides: take the one within 15 points of literacy (40% of population per year of age)
-          of the mean of the two neighbouring groups, if the other is outside
-  else dropped
-A single year is valid if its group is tier 1, or S was taken in tier 2-3. Bands built from single years
-(8-11, 12-14, the windows for the link to 1939) use valid single years only.
-Last, plausibility rules on bands: population per year > 2.5 x median of the series, literacy > 30 points
-from both neighbours, series shorter than 3.
+Validation of a five-year age group of (unit, area, nationality, sex), separately for population and literates.
+  P = printed five-year subtotal, S = sum of the five single-year cells (two independent readings of the same number).
+  tier 1  P and S agree (|P-S| <= max(2, 0.5%)).
+  tier 2  P and S disagree or one is missing, and exactly the candidate that satisfies the area identity
+          (urban + rural = total) or the nationality identity (nationalities sum to the whole population), computed from
+          tier-1 neighbours, is taken.
+  tier 3  no identity discriminates; the candidate is taken that lies within 15 points of literacy (40 per cent of
+          population per year of age) of the mean of the two adjacent validated five-year groups while the other lies outside.
+  otherwise the cell is dropped.
+A single-year cell is valid if its five-year group is tier 1, or if S was the candidate chosen in tier 2 or 3.
+Bands built from single years (8-11, 12-14 and the shifted windows used for the 1926-1939 link) use valid single years only.
+Plausibility rules are applied last to band cells: population per year of age above 2.5 times the series median, literacy
+more than 30 points away from both adjacent cohorts, series with fewer than three cohorts.
 """
 import os, sys, shutil, warnings, numpy as np, pandas as pd
 warnings.filterwarnings("ignore"); sys.stdout.reconfigure(encoding="utf-8")
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__))); D = f"{ROOT}/data"; R = f"{ROOT}/results"
-V1 = f"{D}/v1_before_validation"; os.makedirs(V1, exist_ok=True); os.makedirs(R, exist_ok=True)
+V1 = f"{D}/v1_before_validation"; os.makedirs(V1, exist_ok=True)
 REBUILT = ["korenizatsiya_panel.csv", "russians_by_region.csv", "russians_region_baseline.csv", "mechanism_panel.csv", "mechanism_panel_clean.csv",
            "tableIX_cohort_gaps.csv", "linked_cohorts_1926_1939.csv"]
 for f in REBUILT:
@@ -111,8 +113,9 @@ for it in range(3):
     if a + b == 0: break
 g = g.drop(columns=["rate"])
 g["tier"] = np.where((g.tier_pop > 0) & (g.tier_lit > 0) & (g.val_lit <= g.val_pop), np.maximum(g.tier_pop, g.tier_lit), 0)
-# neighbour rule: an error both in the subtotal and in the single years passes the identities.
-# drop if literacy > 25 points from both neighbouring groups, or population > 3x or < 1/3 of both
+# Plausibility at the level of five-year groups. An error that was present both in the printed subtotal and in the single years
+# passes the identities; it is caught by comparison with the two adjacent five-year groups of the same series:
+# literacy more than 25 points away from both, or a population more than three times (less than a third of) both.
 def neighbour_rule(g):
     ok = g[g.tier > 0]; rate = (100 * ok.val_lit / ok.val_pop).where(ok.val_pop > 0)
     rd = dict(zip(zip(ok.region, ok.area, ok.group, ok.sex, ok.lo), rate)); pdict = dict(zip(zip(ok.region, ok.area, ok.group, ok.sex, ok.lo), ok.val_pop))
@@ -169,6 +172,7 @@ for key in ix[KEY].drop_duplicates().itertuples(index=False):
     for band, kind, comp in BANDS:
         v = from_single(key, comp) if kind == "s" else from_g5(key, comp)
         if v is None: continue
+
         rows.append(dict(region=key[0], area=key[1], group=key[2], sex=key[3], band=band, population=v[0], literate=v[1], tier=v[2]))
 bp = pd.DataFrame(rows); bp["literacy"] = 100 * bp.literate / bp.population
 P("\nBand cells before plausibility rules:", len(bp))
@@ -191,10 +195,10 @@ def plausibility(d, keys, bandcol, order, width, minlen=3, name=""):
     P(f"plausibility {name}: population rule {n1}, 30-point rule {n2}, short series {n3}; kept {len(d)}")
     return d.drop(columns=["bi", "ppy", "ratio"])
 bp = plausibility(bp, KEY, "band", BI, WID, name="(bands)")
-# 60+: needs the four groups 60-79 validated and 60-69 kept by the rules above
+# band 60+ (ages 60 and over): requires the four groups 60-79 validated and the band 60-69 to have passed the rules above
 have6069 = set(map(tuple, bp[bp.band == "60-69"][KEY].values))
 rows = []
-for key in have6069:
+for key in sorted(have6069):
     v = from_g5(key, ["60-64", "65-69", "70-74", "75-79"])
     if v is None: continue
     extra = [G5d.get(key + (x,)) for x in ["80-84", "85-89", "90-94", "95-99"]]; extra = [e for e in extra if e is not None]
@@ -285,32 +289,28 @@ P("\nmechanism_panel: old rows", len(oldm), "new rows", len(mp), "| rural non-Ru
   "new", int(((mp.area == "rural") & (mp.group != "Русские") & mp["ethgap_F_20-24"].notna() & mp.mobility_gap.notna() & mp.cwr.notna()).sum()))
 
 # ---------------- russians_region_baseline.csv ----------------
-# needs baseline_pre1917_by_province.csv from baseline_1897.py (Malein's data, see README)
-if not os.path.exists(f"{D}/baseline_pre1917_by_province.csv"):
-    P("\nrussians_region_baseline: data/baseline_pre1917_by_province.csv not found, skipped (run scripts/baseline_1897.py first)")
-else:
-    r = w[w.group == "russian"]; pref = r[r.area == "rural"]; have = set(pref.region)
-    r = pd.concat([pref, r[(r.area == "total") & (~r.region.isin(have))]])
-    wb = r.pivot_table(index="region", columns="band", values=["lit_M", "lit_F", "gender_gap"]); wb.columns = [f"{a}_{b}" for a, b in wb.columns]; wb = wb.reset_index()
-    wb = wb.merge(ix[["region", "pre1917_province"]].drop_duplicates(), on="region", how="left")
-    prov = pd.read_csv(f"{D}/baseline_pre1917_by_province.csv", sep=";", encoding="utf-8-sig")
-    BV = ["share_lit", "per_lit_f", "share_serfs", "share_old_beleivers1867", "enrollment_rate_1911", "school_density_1911", "teachers_percap_1911", "exp_zemstvo_edu_pc_1894", "lingfrac_1897", "agshare_1897", "zemstvo_prov"]
-    def base(pp):
-        ps = [p.strip() for p in str(pp).split(";")]; s = prov[prov.province_rus.isin(ps)]
-        return s[BV].mean() if len(s) else pd.Series({c: np.nan for c in BV})
-    wb = pd.concat([wb, wb["pre1917_province"].apply(base)], axis=1)
-    wb["lit_m_1897"] = 200 * wb.share_lit - wb.per_lit_f; wb["gendergap_1897"] = wb.lit_m_1897 - wb.per_lit_f
-    wb = wb.merge(mp[mp.group == "Русские"][["region", "cwr", "sr_20_39", "urban_share_M", "urban_share_F", "csr_0_4"]], on="region", how="left")
-    # columns in the v1 order, 60-69 and csr_0_4 added later
-    lit = [c for c in wb.columns if c.startswith(("gender_gap_", "lit_F_", "lit_M_")) and not c.endswith("_60-69")]
-    cols = ["region"] + lit + ["pre1917_province"] + BV + ["lit_m_1897", "gendergap_1897", "cwr", "sr_20_39", "urban_share_M", "urban_share_F"] + [c for c in wb.columns if c.endswith("_60-69")] + ["csr_0_4"]
-    wb[cols].to_csv(f"{D}/russians_region_baseline.csv", sep=";", index=False, encoding="utf-8-sig")
-    P("\nrussians_region_baseline: units", len(wb))
-    if os.path.exists(f"{V1}/russians_region_baseline.csv"):
-        oldb = pd.read_csv(f"{V1}/russians_region_baseline.csv", sep=";", encoding="utf-8-sig"); cmpb = oldb.merge(wb, on="region", suffixes=("_old", "_new"))
-        for c in ("gender_gap_20-24", "gender_gap_12-14", "gender_gap_40-49", "lit_F_40-49", "lit_F_60+", "cwr", "urban_share_M"):
-            dd = (cmpb[c + "_old"] - cmpb[c + "_new"]).abs()
-            P(f"   {c:18s} n old {int(cmpb[c + '_old'].notna().sum())}, n new {int(cmpb[c + '_new'].notna().sum())}, changed by more than 1: {int((dd > 1).sum())}, largest change {dd.max():.1f}")
+r = w[w.group == "russian"]; pref = r[r.area == "rural"]; have = set(pref.region)
+r = pd.concat([pref, r[(r.area == "total") & (~r.region.isin(have))]])
+wb = r.pivot_table(index="region", columns="band", values=["lit_M", "lit_F", "gender_gap"]); wb.columns = [f"{a}_{b}" for a, b in wb.columns]; wb = wb.reset_index()
+wb = wb.merge(ix[["region", "pre1917_province"]].drop_duplicates(), on="region", how="left")
+prov = pd.read_csv(f"{D}/baseline_pre1917_by_province.csv", sep=";", encoding="utf-8-sig")
+BV = ["share_lit", "per_lit_f", "share_serfs", "share_old_beleivers1867", "enrollment_rate_1911", "school_density_1911", "teachers_percap_1911", "exp_zemstvo_edu_pc_1894", "lingfrac_1897", "agshare_1897", "zemstvo_prov"]
+def base(pp):
+    ps = [p.strip() for p in str(pp).split(";")]; s = prov[prov.province_rus.isin(ps)]
+    return s[BV].mean() if len(s) else pd.Series({c: np.nan for c in BV})
+wb = pd.concat([wb, wb["pre1917_province"].apply(base)], axis=1)
+wb["lit_m_1897"] = 200 * wb.share_lit - wb.per_lit_f; wb["gendergap_1897"] = wb.lit_m_1897 - wb.per_lit_f
+wb = wb.merge(mp[mp.group == "Русские"][["region", "cwr", "sr_20_39", "urban_share_M", "urban_share_F", "csr_0_4"]], on="region", how="left")
+oldb = pd.read_csv(f"{V1}/russians_region_baseline.csv", sep=";", encoding="utf-8-sig")
+for c in oldb.columns:
+    if c not in wb.columns: wb[c] = np.nan
+extra_cols = [c for c in wb.columns if c.endswith("_60-69")] + ["csr_0_4"]
+wb[list(oldb.columns) + extra_cols].to_csv(f"{D}/russians_region_baseline.csv", sep=";", index=False, encoding="utf-8-sig")
+P("\nrussians_region_baseline: old units", len(oldb), "new units", len(wb))
+cmpb = oldb.merge(wb, on="region", suffixes=("_old", "_new"))
+for c in ("gender_gap_20-24", "gender_gap_12-14", "gender_gap_40-49", "lit_F_40-49", "lit_F_60+", "cwr", "urban_share_M"):
+    dd = (cmpb[c + "_old"] - cmpb[c + "_new"]).abs()
+    P(f"   {c:18s} n old {int(cmpb[c + '_old'].notna().sum())}, n new {int(cmpb[c + '_new'].notna().sum())}, changed by more than 1: {int((dd > 1).sum())}, largest change {dd.max():.1f}")
 
 # ---------------- tableIX_cohort_gaps.csv (six titular units, whole unit) ----------------
 oldg = pd.read_csv(f"{V1}/tableIX_cohort_gaps.csv", sep=";", encoding="utf-8-sig")
@@ -341,7 +341,7 @@ oldl = pd.read_csv(f"{V1}/linked_cohorts_1926_1939.csv", sep=";", encoding="utf-
 pairs = oldl[["unit_1926", "region_1939"]].drop_duplicates()
 PAIRS = [(list(range(8, 13)), "20-24"), (list(range(13, 18)), "25-29"), (list(range(18, 23)), "30-34"), (list(range(23, 28)), "35-39"),
          (list(range(28, 33)), "40-44"), (list(range(33, 38)), "45-49"), (list(range(38, 43)), "50-54"), (list(range(43, 48)), "55-59"),
-         (list(range(48, 53)), "60-64"), (list(range(53, 58)), "65-69")]   # last two above the age limit (placebo)
+         (list(range(48, 53)), "60-64"), (list(range(53, 58)), "65-69")]   # the last two cohorts were above the age limit of the campaign: placebo
 rows = []
 for u26, r39 in pairs.itertuples(index=False):
     for area in ("total", "rural"):

@@ -1,10 +1,10 @@
 """Downloads from Demoscope Weekly the 1959 census table "Распределение населения РСФСР по возрасту и уровню образования"
 (urban, rural and total population by sex and age, with the literate and the illiterate among those without primary education)
-and writes data/census1959_rsfsr_edu_by_age_sex.csv. Used for the cohort check of the 1939 literacy figures."""
-import io, os, re, sys, urllib.request, pandas as pd
+and writes data/census1959_rsfsr_edu_by_age_sex.csv. Used for the cohort check of the 1939 literacy figures (Section 7.5)."""
+import os, io, re, sys, urllib.request, pandas as pd
 sys.stdout.reconfigure(encoding="utf-8")
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-URL = "http://www.demoscope.ru/weekly/ssp/rus_edu_59.php"
+URL = "https://www.demoscope.ru/weekly/ssp/rus_edu_59.php"
 raw = urllib.request.urlopen(urllib.request.Request(URL, headers={"User-Agent": "Mozilla/5.0"}), timeout=60).read().decode("cp1251")
 t = [x for x in pd.read_html(io.StringIO(raw)) if x.shape[0] > 100][0]
 EDU = ["higher", "higher_incomplete", "secondary_special", "secondary_general", "secondary_incomplete", "seven_year", "seven_year_incomplete", "primary"]

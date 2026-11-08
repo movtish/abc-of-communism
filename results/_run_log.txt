@@ -1,0 +1,149 @@
+=== 0. Data and validation ===
+sex       F     M
+band             
+8-11   29.6  46.1
+12-14  41.2  71.0
+15-19  46.4  72.9
+20-24  47.4  84.5
+25-29  37.7  83.7
+30-39  27.8  78.0
+40-49  14.3  65.0
+50-59   8.8  46.4
+60-69   5.5  32.7
+
+=== 1. Household regime, 1897-1926 ===
+wave 1 wild bootstrap -11.010085450712403 0.0
+
+=== 2. The 1926 cross-section ===
+smallest and largest Russian gender gap: Ленинградская губ. 10.2 Тобольский округ 48.1
+         cells  units      pop     M     F
+group                                     
+Башкиры   12.0    1.0    347.8  50.9  20.8
+Вотяки    12.0    1.0    220.7  63.1  17.0
+Марийцы   33.0    3.0    197.9  70.3  15.0
+Мишари    12.0    1.0     76.3  53.1  24.6
+Мордва    45.0    4.0    479.2  59.5  10.8
+Русские  383.0   35.0  13880.8  78.3  38.7
+Татары   146.0   15.0   1132.3  59.0  35.2
+Чуваши    58.0    5.0    572.1  73.5  26.5
+decomposition permutation: observed -12.764327151160654
+decomposition wild bootstrap -6.111076686607604 0.0
+child sex ratios:
+group
+Башкиры                 101.0
+Вотяки                  100.0
+Евреи                   103.5
+Казаки                  107.3
+Карелы, финны, вепсы    102.1
+Марийцы                  97.4
+Мишари                  100.5
+Мордва                  100.0
+Русские                 100.3
+Татары                  100.5
+Украинцы                102.4
+Чуваши                  100.1
+
+=== 3. State regime, 1926-1939 ===
+cells per cohort:
+age_1926
+18-22    34
+23-27    30
+28-32    30
+33-37    26
+38-42    28
+43-47    26
+48-52    20
+53-57    24
+wave 2 wild bootstrap 6.78992078638465 0.0
+regions, rural women aged 20-34 in 1926:
+                             l26   l39  gain  taught  approx_borders
+region_en                                                           
+Central Industrial region   61.9  71.0   9.0    23.7             0.0
+Leningrad-Karelian region   64.4  73.7   9.3    26.2             1.0
+Northern region             54.9  66.0  11.1    24.5             0.0
+Ural oblast                 39.0  54.9  15.9    26.1             1.0
+Crimean ASSR                63.3  80.3  17.0    46.3             0.0
+Vyatka region               42.5  60.0  17.5    30.5             0.0
+North Caucasus krai         42.2  60.8  18.5    32.1             0.0
+Central Black Earth region  36.9  56.1  19.2    30.5             1.0
+Far Eastern krai            37.8  57.5  19.7    31.7             0.0
+Western region              35.7  56.8  21.1    32.8             1.0
+Middle Volga region         34.4  57.3  22.9    35.0             0.0
+Lower Volga region          42.6  66.6  24.0    41.8             0.0
+Siberian krai               23.8  48.4  24.7    32.4             1.0
+Bashkir ASSR                29.7  57.7  28.0    39.8             0.0
+Yakut ASSR                   5.3  35.0  29.7    31.4             0.0
+Buryat-Mongol ASSR          18.7  49.1  30.4    37.4             0.0
+Dagestan ASSR                5.2  49.7  44.5    46.9             0.0
+ZhNEA cohorts (both sexes):
+  sex  age39  age26         p26       p39   l26   l39     d     t        new
+0   T  20-24   8-12   9934240.0   8837383  50.4  94.5  44.1  88.9  3893374.7
+1   T  25-29  13-17  11707288.0  10566522  63.2  89.4  26.2  71.2  2767058.2
+2   T  30-34  18-22   9359856.4   8911099  70.6  88.0  17.4  59.1  1547055.8
+3   T  35-39  23-27   7958530.6   7313129  68.0  82.1  14.2  44.2  1035310.1
+4   T  40-44  28-32   6239179.8   5373554  63.4  76.3  12.9  35.2   692284.0
+5   T  45-49  33-37   5319391.4   4314959  57.9  68.3  10.4  24.7   449381.6
+6   T  50-54  38-42   4717116.6   3748219  51.5  60.6   9.1  18.8   341312.2
+7   T  55-59  43-47   4046436.4   3362053  45.1  47.9   2.8   5.1    93951.8
+8   T  60-64  48-52   3474481.0   2797169  38.6  41.3   2.7   4.4    75475.2
+9   T  65-69  53-57   2981671.2   2095057  32.4  35.6   3.2   4.7    66557.8
+regions:
+                     region_en   l26   l39  gain  gain_ref   net
+0                 Bashkir ASSR  51.5  73.3  21.7       8.2  13.5
+1           Buryat-Mongol ASSR  45.8  71.1  25.3       1.6  23.7
+2                Vyatka region  63.9  77.4  13.4       2.2  11.3
+3                Dagestan ASSR  20.2  66.8  46.6      11.3  35.3
+4             Far Eastern krai  65.8  80.3  14.5      -2.0  16.5
+5               Western region  63.9  76.4  12.5       0.6  11.9
+6                 Crimean ASSR  80.6  90.3   9.7       3.1   6.6
+7    Leningrad-Karelian region  85.3  94.6   9.3      18.5  -9.3
+8           Lower Volga region  65.5  82.5  17.0       4.0  13.0
+9              Northern region  73.7  81.7   8.1      -0.2   8.2
+10         North Caucasus krai  64.7  79.7  15.0       1.6  13.3
+11               Siberian krai  50.6  71.6  21.0       2.2  18.8
+12         Middle Volga region  58.8  75.8  17.0       4.3  12.7
+13                 Ural oblast  62.9  76.6  13.7       1.9  11.8
+14   Central Industrial region  81.2  89.7   8.5       6.0   2.6
+15  Central Black Earth region  62.2  75.9  13.7       1.2  12.5
+16                  Yakut ASSR  16.4  64.0  47.6       3.0  44.6
+ZhNEA determinants:
+                     region_en   l26   urb  assr  gain   net  taught_net
+0                 Bashkir ASSR  51.5  10.6     1  21.7  13.5        27.9
+1           Buryat-Mongol ASSR  45.8  14.2     1  25.3  23.7        43.6
+2                Vyatka region  63.9   9.7     0  13.4  11.3        31.3
+3                Dagestan ASSR  20.2  14.5     1  46.6  35.3        44.3
+4             Far Eastern krai  65.8  33.0     0  14.5  16.5        48.2
+5               Western region  63.9  16.5     0  12.5  11.9        32.8
+6                 Crimean ASSR  80.6  52.8     1   9.7   6.6        34.1
+7    Leningrad-Karelian region  85.3  46.4     0   9.3  -9.3       -62.9
+8           Lower Volga region  65.5  20.8     0  17.0  13.0        37.6
+9              Northern region  73.7  14.0     0   8.1   8.2        31.3
+10         North Caucasus krai  64.7  23.7     0  15.0  13.3        37.8
+11               Siberian krai  50.6  17.2     0  21.0  18.8        38.0
+12         Middle Volga region  58.8  14.4     0  17.0  12.7        30.8
+13                 Ural oblast  62.9  24.4     0  13.7  11.8        31.8
+14   Central Industrial region  81.2  35.0     0   8.5   2.6        13.7
+15  Central Black Earth region  62.2  11.7     0  13.7  12.5        33.0
+16                  Yakut ASSR  16.4   6.8     1  47.6  44.6        53.3
+
+=== 4. Two regimes ===
+
+=== 6. Legacy ===
+              mid   old  young  gF_ad  gM_ad  D_ad  units_ad
+nat                                                         
+Евреи         3.6  -2.7    2.9  -55.1   -9.5 -45.6       1.0
+Немцы         0.5   3.0   -1.5  -24.2   10.3 -34.5       1.0
+Калмыки      -2.7   4.4   -0.1   39.8   59.7 -19.9       1.0
+Татары        1.4   3.2    0.5   10.0   23.1 -13.1      11.0
+Башкиры       1.9   6.2   -0.5   19.7   28.1  -8.4       1.0
+Украинцы      2.8   4.7    1.7   -4.4   -4.5   0.1       7.0
+Коми-пермяки -7.2   0.2   -8.9   11.6    6.9   4.7       1.0
+Удмурты       1.2   5.4   -2.0   30.6   22.0   8.6       1.0
+Карелы       -2.8  -2.2   -3.1   31.6   21.3  10.3       1.0
+Мордва        1.8   8.1    0.0   26.2   15.4  10.7       2.0
+Чуваши        3.0  10.7   -1.0   23.2   12.0  11.2       4.0
+Марийцы       5.4  14.3   -2.8   33.2   19.6  13.5       3.0
+
+coefficients that are not identified: kor.notat.t, kor.notat.ts
+numbers: 3851 strings: 1609
+numbers.tex and numbers_ru.tex: 3851 numbers and 1609 strings

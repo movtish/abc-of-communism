@@ -1,0 +1,252 @@
+[
+  {
+    "file": "raw_sources/1937_contents.pdf",
+    "bytes": 235803,
+    "sha256": "c7ef47e09db4b83272d1f9075a1abb73d64f9a660212610f711875eff8e538f4",
+    "retrieved_date": "2026-11-08",
+    "url": "https://external.dandelon.com/download/attachments/dandelon/ids/DE013483EB7E5A6DA633CC1257729002DA725.pdf"
+  },
+  {
+    "file": "raw_sources/1939_Chuvash_ill.html",
+    "bytes": 26203,
+    "sha256": "3636925b1a155b2aa03d6f6fe544d321f8999bbdb61b7994c54ba55ec1fe32b7",
+    "retrieved_date": "2026-11-08",
+    "url": "https://www.demoscope.ru/weekly/ssp/rus_ill_39.php?reg=96"
+  },
+  {
+    "file": "raw_sources/1939_Chuvash_rural.html",
+    "bytes": 32942,
+    "sha256": "7d816a9c9876fe9d7cbead6373fb56afc8b220034fb90d5de736a8218ae9825a",
+    "retrieved_date": "2026-11-08",
+    "url": "https://www.demoscope.ru/weekly/ssp/rus_age_39.php?reg=83&gor=2"
+  },
+  {
+    "file": "raw_sources/1939_Chuvash_total.html",
+    "bytes": 32952,
+    "sha256": "013de947fb4c9659a79eed659f82e9f069005daea2c985a5a122d7d3df090b39",
+    "retrieved_date": "2026-11-08",
+    "url": "https://www.demoscope.ru/weekly/ssp/rus_age_39.php?reg=83&gor=3"
+  },
+  {
+    "file": "raw_sources/1939_Chuvash_urban.html",
+    "bytes": 32693,
+    "sha256": "82fd7fe3df42b77ce6f8934af549f3ba9d6b5359dbb3da8796694b67b76a57ee",
+    "retrieved_date": "2026-11-08",
+    "url": "https://www.demoscope.ru/weekly/ssp/rus_age_39.php?reg=83&gor=1"
+  },
+  {
+    "file": "raw_sources/1939_download_urls.json",
+    "bytes": 1127,
+    "sha256": "c97575a45ddea00b2360281d6c7328c32a49fb6b3cbf432801f694b760e4dbd1",
+    "retrieved_date": "2026-11-08",
+    "url": null
+  },
+  {
+    "file": "raw_sources/1939_Tatar_ill.html",
+    "bytes": 26323,
+    "sha256": "8099b23c94895fa23ba44a10c821c250565c0079db6b01fb2c27228c78e6de5a",
+    "retrieved_date": "2026-11-08",
+    "url": "https://www.demoscope.ru/weekly/ssp/rus_ill_39.php?reg=93"
+  },
+  {
+    "file": "raw_sources/1939_Tatar_rural.html",
+    "bytes": 33082,
+    "sha256": "cba43c8d491e7237163c1ad0e21fbb9e30df9ec6a8557cf2b4b9b28ed08c1aa4",
+    "retrieved_date": "2026-11-08",
+    "url": "https://www.demoscope.ru/weekly/ssp/rus_age_39.php?reg=80&gor=2"
+  },
+  {
+    "file": "raw_sources/1939_Tatar_total.html",
+    "bytes": 33108,
+    "sha256": "ad665bb442c9220ca4c5746265eb42abdcd979685f176a800ad04309b85840c4",
+    "retrieved_date": "2026-11-08",
+    "url": "https://www.demoscope.ru/weekly/ssp/rus_age_39.php?reg=80&gor=3"
+  },
+  {
+    "file": "raw_sources/1939_Tatar_urban.html",
+    "bytes": 32848,
+    "sha256": "70e85a5c8c0568a1a4caa297316c0caab62d56309b2aaf9e92dd4bb6862df393",
+    "retrieved_date": "2026-11-08",
+    "url": "https://www.demoscope.ru/weekly/ssp/rus_age_39.php?reg=80&gor=1"
+  },
+  {
+    "file": "raw_sources/1939_Yakut_ill.html",
+    "bytes": 26174,
+    "sha256": "21b7d08be51680417396a16c316a3d0b0c18828e536146f9f16b7248cf87db07",
+    "retrieved_date": "2026-11-08",
+    "url": "https://www.demoscope.ru/weekly/ssp/rus_ill_39.php?reg=97"
+  },
+  {
+    "file": "raw_sources/1939_Yakut_rural.html",
+    "bytes": 32849,
+    "sha256": "736c26ea73b27cfb97b7217cbab2c50308737002f88a4125e716c0bed6c67a2d",
+    "retrieved_date": "2026-11-08",
+    "url": "https://www.demoscope.ru/weekly/ssp/rus_age_39.php?reg=84&gor=2"
+  },
+  {
+    "file": "raw_sources/1939_Yakut_total.html",
+    "bytes": 32872,
+    "sha256": "2454bb6295dca79cef98e38c21929e30601d6e4a6ff29b5215e060ab336c9e2a",
+    "retrieved_date": "2026-11-08",
+    "url": "https://www.demoscope.ru/weekly/ssp/rus_age_39.php?reg=84&gor=3"
+  },
+  {
+    "file": "raw_sources/1939_Yakut_urban.html",
+    "bytes": 32634,
+    "sha256": "4dd1ee30c136628114c4e432306e6d997cca15c41e699c6b44bd8be56954a0a4",
+    "retrieved_date": "2026-11-08",
+    "url": "https://www.demoscope.ru/weekly/ssp/rus_age_39.php?reg=84&gor=1"
+  },
+  {
+    "file": "raw_sources/1959_base.html",
+    "bytes": 194375,
+    "sha256": "4385918f757e6e023ab07e48a827bc55f2e5519d8b5ff9bad6f69d0e7b10b07d",
+    "retrieved_date": "2026-11-08",
+    "url": "https://www.demoscope.ru/weekly/ssp/rus_edu_59.php"
+  },
+  {
+    "file": "raw_sources/1959_region_14.html",
+    "bytes": 190241,
+    "sha256": "bb4e40b21e42227d88ba6a16ad551a393d31c473a52781411d96c14eb23d4998",
+    "retrieved_date": "2026-11-08",
+    "url": "https://www.demoscope.ru/weekly/ssp/rus_edu_59.php?reg=14"
+  },
+  {
+    "file": "raw_sources/1959_region_24.html",
+    "bytes": 190304,
+    "sha256": "875dbbd582ff39eb67269a20339f20c6111df9466203a4d6df29944a12e411f6",
+    "retrieved_date": "2026-11-08",
+    "url": "https://www.demoscope.ru/weekly/ssp/rus_edu_59.php?reg=24"
+  },
+  {
+    "file": "raw_sources/1959_region_36.html",
+    "bytes": 190909,
+    "sha256": "924871eb966213d02d4dce347a19de5578c76ea920c2471dc1c6a835672ce7fa",
+    "retrieved_date": "2026-11-08",
+    "url": "https://www.demoscope.ru/weekly/ssp/rus_edu_59.php?reg=36"
+  },
+  {
+    "file": "raw_sources/1959_region_52.html",
+    "bytes": 190921,
+    "sha256": "ced910bcb199a940476619927e782ecc008600cdea30617795674e0918f59360",
+    "retrieved_date": "2026-11-08",
+    "url": "https://www.demoscope.ru/weekly/ssp/rus_edu_59.php?reg=52"
+  },
+  {
+    "file": "raw_sources/1959_source.xls",
+    "bytes": 1912320,
+    "sha256": "50605b6277b075baeddfbad8b305b0373bac4e98419428f7597861fd00dd2ded",
+    "retrieved_date": "2026-11-08",
+    "url": "https://www.demoscope.ru/weekly/ssp/rus_edu_59.xls"
+  },
+  {
+    "file": "raw_sources/census1920_preliminary.pdf",
+    "bytes": 21695772,
+    "sha256": "efc80ab8fd32fc6e8eb7b556e8691beb444eb6837334cf894d6505b51741ebc3",
+    "retrieved_date": "2026-11-08",
+    "url": "https://istmat.org/files/uploads/26366/perepis_1920_vyp._1.pdf"
+  },
+  {
+    "file": "raw_sources/istmat_18139.html",
+    "bytes": 24092,
+    "sha256": "baf70f1214d2a362cd4e7877adad9341584cda0c1a578dda03ac0f0397880ac8",
+    "retrieved_date": "2026-11-08",
+    "url": "https://istmat.org/node/18139"
+  },
+  {
+    "file": "raw_sources/istmat_18140.html",
+    "bytes": 30186,
+    "sha256": "3b188b102dcdb15ed1de621d834ad3366a1dba62a78a76eee2e0bdfede798a82",
+    "retrieved_date": "2026-11-08",
+    "url": "https://istmat.org/node/18140"
+  },
+  {
+    "file": "raw_sources/istmat_18145.html",
+    "bytes": 26911,
+    "sha256": "08b0631d6071b794f725c64a97305a282ad5fe47d9e682b39aa3d8e7c0205259",
+    "retrieved_date": "2026-11-08",
+    "url": "https://istmat.org/node/18145"
+  },
+  {
+    "file": "raw_sources/istmat_27236.html",
+    "bytes": 174921,
+    "sha256": "22f06ea6c3c4c249a4f73706f4652d14816d2c96b97bad20cb7b6ffe2c28cbf0",
+    "retrieved_date": "2026-11-08",
+    "url": "https://istmat.org/node/27236"
+  },
+  {
+    "file": "raw_sources/istmat_27934.html",
+    "bytes": 148139,
+    "sha256": "885ee849f6a1c2640bd68de734c88b11acaf56eb0f742a44d6aeaebb519bd0af",
+    "retrieved_date": "2026-11-08",
+    "url": "https://istmat.org/node/27934"
+  },
+  {
+    "file": "raw_sources/khakassia_guide.pdf",
+    "bytes": 4270519,
+    "sha256": "cd4321c543f87c560146e27e9c0c45bdb01477261a8b65c5cae3fe17f8a0966c",
+    "retrieved_date": "2026-11-08",
+    "url": "https://arhiv.r-19.ru/upload/iblock/c3e/c3ee70255a3a696bd93c7064fc7d5177.pdf"
+  },
+  {
+    "file": "raw_sources/pskov1920_page_13.jpg",
+    "bytes": 28425,
+    "sha256": "3a9893d57ec999878053b03a7a020b2da8ec343931fc05712080b3079301ac16",
+    "retrieved_date": "2026-11-08",
+    "url": "https://elib.shpl.ru/ru/nodes/59534-vyp-1-pol-vozrast-i-gramotnost-1921",
+    "note": "Selected image downloaded from public viewer, not full volume"
+  },
+  {
+    "file": "raw_sources/pskov1920_page_3.jpg",
+    "bytes": 23326,
+    "sha256": "418593f439c1be4b279ff757a628258ceb0c30c4d9f50002a72c3a47be508fa5",
+    "retrieved_date": "2026-11-08",
+    "url": "https://elib.shpl.ru/ru/nodes/59534-vyp-1-pol-vozrast-i-gramotnost-1921",
+    "note": "Selected image downloaded from public viewer, not full volume"
+  },
+  {
+    "file": "raw_sources/pskov1920_page_5.jpg",
+    "bytes": 28165,
+    "sha256": "539dbde2dbd2930daae31aafd38659ab85a7cb2eefff04991c3fbc89be57e6bd",
+    "retrieved_date": "2026-11-08",
+    "url": "https://elib.shpl.ru/ru/nodes/59534-vyp-1-pol-vozrast-i-gramotnost-1921",
+    "note": "Selected image downloaded from public viewer, not full volume"
+  },
+  {
+    "file": "raw_sources/pskov1920_page_7.jpg",
+    "bytes": 37087,
+    "sha256": "d1a3650733e0605c9bf4dd2d32e958b97e1890f331197543c9a479a85cbf9f7b",
+    "retrieved_date": "2026-11-08",
+    "url": "https://elib.shpl.ru/ru/nodes/59534-vyp-1-pol-vozrast-i-gramotnost-1921",
+    "note": "Selected image downloaded from public viewer, not full volume"
+  },
+  {
+    "file": "raw_sources/pskov1920_page_9.jpg",
+    "bytes": 20055,
+    "sha256": "0725d78ca58172ba79f2a2f3be98ff5edb71f6fe72a105f54e12599b04cac424",
+    "retrieved_date": "2026-11-08",
+    "url": "https://elib.shpl.ru/ru/nodes/59534-vyp-1-pol-vozrast-i-gramotnost-1921",
+    "note": "Selected image downloaded from public viewer, not full volume"
+  },
+  {
+    "file": "raw_sources/shpl_1920.html",
+    "bytes": 59748,
+    "sha256": "943a882573f8256deff8dd88c5123a5b07be5e83dfa772673bf5854ced7f1a88",
+    "retrieved_date": "2026-11-08",
+    "url": "https://elib.shpl.ru/ru/nodes/59534-vyp-1-pol-vozrast-i-gramotnost-1921"
+  },
+  {
+    "file": "raw_sources/spravochnik_1931_obrazovanie.pdf",
+    "bytes": 1311933,
+    "sha256": "0d9f6d6860bfc7b4853826cd176a7f08e9614ff6977b58047b3c0e4154003741",
+    "retrieved_date": "2026-11-08",
+    "url": "https://istmat.org/files/uploads/20626/spravochnik_1931_obrazovanie.pdf"
+  },
+  {
+    "file": "raw_sources/tatarstan_1926_book.pdf",
+    "bytes": 37533097,
+    "sha256": "2f997df2a11afcdc53c29ef411288ae52b7e127d3eb8593460b059fa92196209",
+    "retrieved_date": "2026-11-08",
+    "url": "https://kitaphane.tatarstan.ru/file/kitaphane/File/20.%20Inv_7416_70.pdf"
+  }
+]

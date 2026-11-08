@@ -1,8 +1,8 @@
-"""Wave 2 by Gosplan rayon: Table XV of 1926 x regions of 1939 summed to rayons, whole RSFSR (17 rayons).
--> data/linked_cohorts_rayon_1926_1939.csv, results/B9_wave2_rayon.txt"""
+"""Wave 2 at the level of the 1926 Gosplan rayons (Vol. 9 Table XV single ages, 1926) x 1939 census regions aggregated to rayons.
+Covers the whole RSFSR (17 rayons). Writes ROOT/data/linked_cohorts_rayon_1926_1939.csv and results/B9_wave2_rayon.txt"""
 import os, sys, warnings, numpy as np, pandas as pd, statsmodels.formula.api as smf
 warnings.filterwarnings("ignore"); sys.stdout.reconfigure(encoding="utf-8")
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__))); D = f"{ROOT}/data"; R = f"{ROOT}/results"; os.makedirs(R, exist_ok=True)
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__))); D = f"{ROOT}/data"; R = f"{ROOT}/results"
 xv = pd.read_csv(f"{D}/tableXV_1926_1897_age_sex_literacy.csv", sep=";", encoding="utf-8-sig")
 c39 = pd.read_csv(f"{D}/census1939_literacy_by_region_age_sex.csv", sep=";", encoding="utf-8-sig")
 c39 = c39[~c39.region_1939.str.startswith("в том числе")]

@@ -1,9 +1,18 @@
-results/
-figures/
-paper/
+# Keep audited result snapshots, figures and current manuscript sources.
 stata/data/
 stata/output/
 external/
 sources/
 __pycache__/
 *.pyc
+*.aux
+*.log
+*.out
+*.blg
+*.toc
+*.synctex.gz
+/work/
+/archive/
+/results_v1_before_validation/
+/slides/
+/SESSION_NOTES*
