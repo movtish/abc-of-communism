@@ -55,7 +55,7 @@ The cohort aged 33-37 in 1926 straddles 40 by 1931. It belongs to the model's in
 | Without Ural districts | Included | 20.377 | [16.551, 24.203] | 14.481 |
 | Without Ural districts | Omitted | 20.338 | [16.481, 24.194] | 14.479 |
 
-The eight estimates show little sensitivity to this intermediate cohort. They do not establish an untreated older comparison group. Earlier supplementary labels incorrectly called this a narrowing of the younger group. The code, CSV metadata, manuscript and documentation now describe the omission correctly.
+The eight estimates show little sensitivity to this intermediate cohort. They do not establish an untreated older comparison group.
 
 ## Regional literacy in 1959
 
